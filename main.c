@@ -31,7 +31,7 @@ int main(){
 
 
        p1 = crea_pedine(numped,'B',1,conta,*t);/* creare n pedine di carattere c */
-       p2 = crea_pedine(numped,'n',2,conta,*t);/* creare n pedine di carattere c */
+       p2 = crea_pedine(numped,'N',2,conta,*t);/* creare n pedine di carattere c */
 
        aggiorna_campo(t,*p1,*p2);
        printf("Campo di partenza : \n");

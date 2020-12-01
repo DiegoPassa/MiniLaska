@@ -66,4 +66,8 @@ unsigned int scelta_turno();/* decidere a chi va il primo turno */
 unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t);/* turno del player 1*/
 
 unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t);/* turno del player 2*/
+
+void setRed();
+void setYellow();
+void resetColor();
 #endif /*UNTITLED_SUPPORTO_H*/

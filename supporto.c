@@ -71,18 +71,58 @@ void stampa_campo(tcampo t,unsigned int cifre){
         for(j=0; j<t.c; j +=cifre)
         {
             int z;
-            for(z = 0 ; z < cifre; ++z){
-                if(z == 0){
-                    printf("| %c",t.mat[i][j]);
-                }else{
-                    if(z == cifre-1){
-                        printf("%c ",t.mat[i][j+z]);
+            if (t.mat[i][j+2] == 'N'){
+                for(z = 0 ; z < cifre; ++z){
+                    if(z == 0){
+                        printf("| ");
+                        setRed();
+                        printf("%c",t.mat[i][j]);
                     }else{
-                        printf("%c",t.mat[i][j+z]);
+                        if(z == cifre-1){
+                            setRed();
+                            printf("%c ",t.mat[i][j+z]);
+                        }else{
+                            setRed();
+                            printf("%c",t.mat[i][j+z]);
+                        }
+                    }
+                    resetColor();
+                }               
+            }else if (t.mat[i][j+2] == 'B')
+            {
+                for(z = 0 ; z < cifre; ++z){
+                    if(z == 0){
+                        printf("| ");
+                        setYellow();
+                        printf("%c",t.mat[i][j]);
+                    }else{
+                        if(z == cifre-1){
+                            setYellow();
+                            printf("%c ",t.mat[i][j+z]);
+                        }else{
+                            setYellow();
+                            printf("%c",t.mat[i][j+z]);
+                        }
+                    }
+                    resetColor();
+                }    
+            }
+            else{
+                for(z = 0 ; z < cifre; ++z){
+                    if(z == 0){
+                        printf("| %c",t.mat[i][j]);
+                    }else{
+                        if(z == cifre-1){
+                            printf("%c ",t.mat[i][j+z]);
+                        }else{
+                            printf("%c",t.mat[i][j+z]);
+                        }
                     }
                 }
-
+                
             }
+            
+            
         }
 
         printf("|\n");
@@ -148,17 +188,55 @@ void stampa_campo_inv(tcampo t,unsigned int cifre){
         for(j=0; j<t.c; j +=cifre)
         {
             int z;
-            for(z = 0 ; z < cifre; ++z){
-                if(z == 0){
-                    printf("| %c",t.mat[i][j]);
-                }else{
-                    if(z == cifre-1){
-                        printf("%c ",t.mat[i][j+z]);
+            if (t.mat[i][j+2] == 'N'){
+                for(z = 0 ; z < cifre; ++z){
+                    if(z == 0){
+                        printf("| ");
+                        setRed();
+                        printf("%c",t.mat[i][j]);
                     }else{
-                        printf("%c",t.mat[i][j+z]);
+                        if(z == cifre-1){
+                            setRed();
+                            printf("%c ",t.mat[i][j+z]);
+                        }else{
+                            setRed();
+                            printf("%c",t.mat[i][j+z]);
+                        }
+                    }
+                    resetColor();
+                }               
+            }else if (t.mat[i][j+2] == 'B')
+            {
+                for(z = 0 ; z < cifre; ++z){
+                    if(z == 0){
+                        printf("| ");
+                        setYellow();
+                        printf("%c",t.mat[i][j]);
+                    }else{
+                        if(z == cifre-1){
+                            setYellow();
+                            printf("%c ",t.mat[i][j+z]);
+                        }else{
+                            setYellow();
+                            printf("%c",t.mat[i][j+z]);
+                        }
+                    }
+                    resetColor();
+                }    
+            }
+            else{
+                for(z = 0 ; z < cifre; ++z){
+                    if(z == 0){
+                        printf("| %c",t.mat[i][j]);
+                    }else{
+                        if(z == cifre-1){
+                            printf("%c ",t.mat[i][j+z]);
+                        }else{
+                            printf("%c",t.mat[i][j+z]);
+                        }
                     }
                 }
-
+                
             }
         }
 
@@ -1063,6 +1141,18 @@ unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
     stampa_campo_inv(*t,(p2->arr[np].dim+3));
 
     return 0;
+}
+
+void setRed () {
+  printf("\033[1;31m");
+}
+
+void setYellow (){
+  printf("\033[1;33m");
+}
+
+void resetColor () {
+  printf("\033[0m");
 }
 
 
