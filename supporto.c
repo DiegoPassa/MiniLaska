@@ -992,7 +992,7 @@ unsigned int scelta_turno(){
 }
 unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
     char str[10];
-    unsigned int np,y = 0;
+    int np,y = 0;
 
     printf("Turno player 1 : \n");
     stampa_campo(*t,(p1->arr[0].dim+3));
@@ -1028,7 +1028,7 @@ unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
 }
 unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
     char str[10];
-    unsigned int np,y = 0;
+    int np,y = 0;
 
     printf("Turno player 2 : \n");
     stampa_campo_inv(*t,(p2->arr[0].dim+3));

@@ -1,6 +1,6 @@
-//
+/*
 // Created by Matteo on 28/11/2020.
-//
+*/
 
 #ifndef UNTITLED_SUPPORTO_H
 #define UNTITLED_SUPPORTO_H
@@ -66,4 +66,4 @@ unsigned int scelta_turno();/* decidere a chi va il primo turno */
 unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t);/* turno del player 1*/
 
 unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t);/* turno del player 2*/
-#endif //UNTITLED_SUPPORTO_H
+#endif /*UNTITLED_SUPPORTO_H*/

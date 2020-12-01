@@ -5,8 +5,8 @@
 int main(){
     tcampo *t;
     tplayer *p1 = NULL,*p2 = NULL;
-    unsigned int exit = 0,turno,round = 0;
-    unsigned int cifre,conta = 0,numped = 0;
+    int exit = 0,turno,round = 0;
+    int cifre,conta = 0,numped = 0;
 
    printf("Numero pedine ? : ");
    scanf("%d",&cifre);
