@@ -4,9 +4,13 @@
 
 int main(){
     tcampo *t;
-    tplayer *p1 = NULL,*p2 = NULL;
-    int exit = 0,turno,round = 0;
-    int cifre,conta = 0,numped = 0;
+    tplayer *p1 = NULL, *p2 = NULL;
+    int exit = 0, turno, round = 0;
+    int cifre, conta = 0, numped = 0;
+    int nBoard;
+
+    printf("Creazione campo\nDimensione scacchiera? : ");
+    scanf("%d", &nBoard);
 
    printf("Numero pedine ? : ");
    scanf("%d",&cifre);
@@ -19,15 +23,15 @@ int main(){
        if(pow(10,conta-1) == numped){
            --conta;
        }
-       printf("Numero cifre %d\n",conta);
+       printf("- Numero cifre %d\n",conta);
 
-       t = crea_campo(10,10,3+conta);
+       t = crea_campo(nBoard, nBoard, 3+conta);
        inizializza_campo(t,3+conta);
 
 
 
        p1 = crea_pedine(numped,'B',1,conta,*t);/* creare n pedine di carattere c */
-       p2 = crea_pedine(numped,'N',2,conta,*t);/* creare n pedine di carattere c */
+       p2 = crea_pedine(numped,'n',2,conta,*t);/* creare n pedine di carattere c */
 
        aggiorna_campo(t,*p1,*p2);
        printf("Campo di partenza : \n");
