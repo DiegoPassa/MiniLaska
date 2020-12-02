@@ -29,6 +29,10 @@ void setBlack (){
     printf("\033[0;30m");
 }
 
+void setWhite (){
+    printf("\033[47m");
+}
+
 void resetColor () {
     printf("\033[0m");
 }

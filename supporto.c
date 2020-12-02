@@ -56,12 +56,13 @@ void stampa_campo(tcampo t,unsigned int cifre){
     for(j=0; j<t.c; j +=cifre)
     {
         int z;
-        for(z = 0 ; z < cifre ; ++z){
+        printf("+");
+        for(z = 1 ; z < cifre ; ++z){
             printf("-");
         }
         printf("---");
     }
-    printf("-");/* recupero angolo dx */
+    printf("+");/* recupero angolo dx */
 
     printf("\n");
 
@@ -74,10 +75,10 @@ void stampa_campo(tcampo t,unsigned int cifre){
             if (t.mat[i][j+2] == 'N'){
                 for(z = 0 ; z < cifre; ++z){
                     if(z == 0){
-                        printf("| ");
+                        printf("|");
                         setBlack();
                         setRed(2);
-                        printf("%c",t.mat[i][j]);
+                        printf(" %c",t.mat[i][j]);
                     }else{
                         if(z == cifre-1){
                             setBlack();
@@ -95,10 +96,10 @@ void stampa_campo(tcampo t,unsigned int cifre){
             {
                 for(z = 0 ; z < cifre; ++z){
                     if(z == 0){
-                        printf("| ");
+                        printf("|");
                         setBlack();
                         setYellow(2);
-                        printf("%c",t.mat[i][j]);
+                        printf(" %c",t.mat[i][j]);
                     }else{
                         if(z == cifre-1){
                             setBlack();
@@ -107,6 +108,24 @@ void stampa_campo(tcampo t,unsigned int cifre){
                         }else{
                             setBlack();
                             setYellow(2);
+                            printf("%c",t.mat[i][j+z]);
+                        }
+                    }
+                    resetColor();
+                }    
+            }else if (t.mat[i][j+2] == '#')
+            {
+                for(z = 0 ; z < cifre; ++z){
+                    if(z == 0){
+                        printf("|");
+                        setWhite();
+                        printf(" %c",t.mat[i][j]);
+                    }else{
+                        if(z == cifre-1){
+                            setWhite();
+                            printf("%c ",t.mat[i][j+z]);
+                        }else{
+                            setWhite();
                             printf("%c",t.mat[i][j+z]);
                         }
                     }
@@ -163,12 +182,13 @@ void stampa_campo(tcampo t,unsigned int cifre){
     for(j=0; j<t.c; j +=cifre)
     {
         int z;
-        for(z = 0 ; z < cifre ; ++z){
+        printf("+");
+        for(z = 1 ; z < cifre ; ++z){
             printf("-");
         }
         printf("---");
     }
-    printf("-");/* recupero angolo dx */
+    printf("+");/* recupero angolo dx */
 
     printf("\n");
 
@@ -180,12 +200,13 @@ void stampa_campo_inv(tcampo t,unsigned int cifre){
     for(j=0; j<t.c; j +=cifre)
     {
         int z;
-        for(z = 0 ; z < cifre ; ++z){
+        printf("+");
+        for(z = 1 ; z < cifre ; ++z){
             printf("-");
         }
         printf("---");
     }
-    printf("-");/* recupero angolo dx */
+    printf("+");/* recupero angolo dx */
 
     printf("\n");
 
@@ -198,10 +219,10 @@ void stampa_campo_inv(tcampo t,unsigned int cifre){
             if (t.mat[i][j+2] == 'N'){
                 for(z = 0 ; z < cifre; ++z){
                     if(z == 0){
-                        printf("| ");
+                        printf("|");
                         setBlack();
                         setRed(2);
-                        printf("%c",t.mat[i][j]);
+                        printf(" %c",t.mat[i][j]);
                     }else{
                         if(z == cifre-1){
                             setBlack();
@@ -219,10 +240,10 @@ void stampa_campo_inv(tcampo t,unsigned int cifre){
             {
                 for(z = 0 ; z < cifre; ++z){
                     if(z == 0){
-                        printf("| ");
+                        printf("|");
                         setBlack();
                         setYellow(2);
-                        printf("%c",t.mat[i][j]);
+                        printf(" %c",t.mat[i][j]);
                     }else{
                         if(z == cifre-1){
                             setBlack();
@@ -231,6 +252,24 @@ void stampa_campo_inv(tcampo t,unsigned int cifre){
                         }else{
                             setBlack();
                             setYellow(2);
+                            printf("%c",t.mat[i][j+z]);
+                        }
+                    }
+                    resetColor();
+                }    
+            }else if (t.mat[i][j+2] == '#')
+            {
+                for(z = 0 ; z < cifre; ++z){
+                    if(z == 0){
+                        printf("|");
+                        setWhite();
+                        printf(" %c",t.mat[i][j]);
+                    }else{
+                        if(z == cifre-1){
+                            setWhite();
+                            printf("%c ",t.mat[i][j+z]);
+                        }else{
+                            setWhite();
                             printf("%c",t.mat[i][j+z]);
                         }
                     }
@@ -285,12 +324,13 @@ void stampa_campo_inv(tcampo t,unsigned int cifre){
     for(j=0; j<t.c; j +=cifre)
     {
         int z;
-        for(z = 0 ; z < cifre ; ++z){
+        printf("+");
+        for(z = 1 ; z < cifre ; ++z){
             printf("-");
         }
         printf("---");
     }
-    printf("-");/* recupero angolo dx */
+    printf("+");/* recupero angolo dx */
 
     printf("\n");
 
