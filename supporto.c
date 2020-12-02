@@ -403,194 +403,155 @@ unsigned int convert(tcampo t,unsigned int r,unsigned int c,unsigned int dim){
 }
 
 unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t){
-
+    unsigned int x,y,z;
     if(!strcmp(str,"sx")){
-        int x,y,z;
         x = p1->arr[np].r-1;
         y = p1->arr[np].c-(p1->arr[np].dim+3);
-        z = ricerca_pl(*p1,*p2,x,y);
-        if((z == 1) || (!z)){
-            return 0;
-        }else{
-            unsigned int num;
+    }else{
+        if(!strcmp(str,"dx")){
+            x = p1->arr[np].r-1;
+            y = p1->arr[np].c+(p1->arr[np].dim+3);
+        }
+        if(!strcmp(str,"bassosx")){
+            x = p1->arr[np].r+1;
+            y = p1->arr[np].c-(p1->arr[np].dim+3);
+        }
+        if(!strcmp(str,"bassodx")){
+            x = p1->arr[np].r+1;
+            y = p1->arr[np].c+(p1->arr[np].dim+3);
+        }
+
+    }
+    z = ricerca_pl(*p1,*p2,x,y);
+    if((z == 1) || (!z)){
+        return 0;
+    }else{
+        unsigned int num;
+        if(!strcmp(str,"sx")){
             num = convert(t,p1->arr[np].r-1,p1->arr[np].c-1,2+p1->arr[np].dim);
-            if(p1->arr[np].grado < 3){
-                char temp[3];
-                unsigned int f;
+        }else{
+            if(!strcmp(str,"dx")){
+                num = convert(t,p1->arr[np].r-1,p1->arr[np].c+((p1->arr[np].dim+3)*2-1),2+p1->arr[np].dim);
+            }
+            if(!strcmp(str,"bassosx")){
+                num = convert(t,p1->arr[np].r+1,p1->arr[np].c-1,2+p1->arr[np].dim);
+            }
+            if(!strcmp(str,"bassodx")){
+                num = convert(t,p1->arr[np].r+1,p1->arr[np].c+((p1->arr[np].dim+3)*2-1),2+p1->arr[np].dim);
+            }
 
-                temp[0] = p1->arr[np].et[1];
-                temp[1] = p1->arr[np].et[2];
-                temp[3] = p2->arr[num].et[p2->arr[num].cima];
+        }
+        char temp[3];
+        unsigned int f;
+        /* MANCA PARTE NEL CASO CI SIA LA TORRE ALTA TRE PEDINE */
+        temp[0] = p1->arr[np].et[1];
+        temp[1] = p1->arr[np].et[2];
+        temp[2] = p2->arr[num].et[p2->arr[num].cima];
 
-                if(p2->arr[num].grado == 1){
-                    --p2->arr[num].grado ;
-                }else{
-                    if(p2->arr[num].et[p2->arr[num].cima] == p2->arr[num].et[p2->arr[num].cima+1]){
-                        p2->arr[num].et[p2->arr[num].cima];
-                        ++p2->arr[num].cima;
-                    }else {
-                        if (is_empty(*p1) == -1) {
-                            controllo_pedina(p1, &(p2->arr[num]));
+        if(p2->arr[num].grado == 1){
+            --p2->arr[num].grado ;
+        }else{
+            if(p2->arr[num].et[p2->arr[num].cima] == p2->arr[num].et[p2->arr[num].cima+1]){
+                p2->arr[num].et[p2->arr[num].cima]= ' ';
+                ++p2->arr[num].cima;
+                --p2->arr[num].grado;
+            }else {
+                if (is_empty(*p1) == -1) {
+                    controllo_pedina(p1, p2,num);
+                } else {
+                    unsigned int pos, i;
+                    pos = is_empty(*p1);
+                    p2->arr[num].et[p2->arr[num].cima]= ' ';
+                    ++p2->arr[num].cima;
+                    --p2->arr[num].grado;
+                    for (i = 0; i < 3; ++i) {
+                        p1->arr[pos].et[i] = p2->arr[num].et[i];
+                    }
+                    --p2->arr[num].grado;
+                    p1->arr[pos].r = p2->arr[num].r;
+                    p1->arr[pos].c = p2->arr[num].c;
+                    ++p1->arr[pos].grado;
+                    i = p1->arr[pos].numero ;
+                    z = p1->arr[pos].dim-1;
+                    x = pow(10,z);
+                    for(f = 3 ; f < 3+p1->arr[num].dim ; ++f){
+                        unsigned int div = i/x;
+                        if (div > 0) {
+                            p1->arr[pos].et[f] = '0' + div;
                         } else {
-                            unsigned int pos, i;
-                            pos = is_empty(*p1);
-                            for (i = 0; i < 3; ++i) {
-                                p1->arr[pos].et[i] = p2->arr[num].et[i];
-                            }
-                            --p2->arr[num].grado;
-                            p1->arr[pos].r = p2->arr[num].r;
-                            p1->arr[pos].c = p2->arr[num].c;
-
+                            p1->arr[pos].et[f] = '0';
                         }
+                        i-= x *div ;
+                        --z;
+                        x = pow(10,z);
                     }
                 }
-                for(f = 0 ; f < 3 ; ++f ){
-                    p1->arr[np].et[f] = temp[f];
-                }
-                p1->arr[np].grado++;
-                --p1->arr[np].cima;
+            }
+        }
+        for(f = 0 ; f < 3 ; ++f ){
+            p1->arr[np].et[f] = temp[f];
+        }
+        ++p1->arr[np].grado;
+        --p1->arr[np].cima;
+        if(!strcmp(str,"sx")){
+            p1->arr[np].r -= 2;
+            p1->arr[np].c -= (p1->arr[np].dim+3)*2;
+        }else{
+            if(!strcmp(str,"dx")){
                 p1->arr[np].r -= 2;
-                p1->arr[np].c -= (p1->arr[np].dim+3)*2;
-
-            }else{
-                char c;
-                c = p2->arr[num].et[p2->arr[num].cima+1];
-                aggiungi_pedina(p1,np,c);
-                p2->arr[num].cima++;
-                --p2->arr[num].grado;
-                p2->arr[num].et[p2->arr[num].cima]= ' ';
-                p1->arr[np].r -= 2;
+                p1->arr[np].c += (p1->arr[np].dim+3)*2;
+            }
+            if(!strcmp(str,"bassosx")){
+                p1->arr[np].r += 2;
                 p1->arr[np].c -= (p1->arr[np].dim+3)*2;
             }
-            if(p2->arr[num].grado == 0){
+            if(!strcmp(str,"bassodx")){
+                p1->arr[np].r += 2;
+                p1->arr[np].c += (p1->arr[np].dim+3)*2;
+            }
+
+        }
+
+        if(p2->arr[num].grado == 0){
+            if(!strcmp(str,"sx")){
                 togli_pedina(&t,p1->arr[np].r+1,p1->arr[np].c+(p1->arr[np].dim+3),p1->arr[np].dim+3);
+            }else{
+                if(!strcmp(str,"dx")){
+                    togli_pedina(&t,p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),(p1->arr[np].dim+3));
+                }
+                if(!strcmp(str,"bassosx")){
+                    togli_pedina(&t,p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3),(p1->arr[np].dim+3));
+                }
+                if(!strcmp(str,"bassodx")){
+                    togli_pedina(&t,p1->arr[np].r-1,p1->arr[np].c+(p1->arr[np].dim+3),(p1->arr[np].dim+3));
+                }
 
             }
+
+
+        }
+        if(!strcmp(str,"sx")){
             togli_pedina(&t,p1->arr[np].r+2,p1->arr[np].c+(p1->arr[np].dim+3)*2,p1->arr[np].dim+3);
-            return 1;
-        }
-
-    }
-    if(!strcmp(str,"dx")){
-        int x,y,z;
-        x = p1->arr[np].r-1;
-        y = p1->arr[np].c+(p1->arr[np].dim+3);
-        z = ricerca_pl(*p1,*p2,x,y);
-        if((z == 1) || (!z)){
-            return 0;
         }else{
-            unsigned int num;
-            num = convert(t,p1->arr[np].r-1,p1->arr[np].c+((p1->arr[np].dim+3)*2-1),2+p1->arr[np].dim);
-            printf("num %u\n",num);
-            if(p1->arr[np].grado < 3){
-                p1->arr[np].et[p1->arr[np].cima] = p2->arr[num].et[p2->arr[num].cima+1];
-                --p1->arr[np].cima;
-                p1->arr[np].grado++;
-                p2->arr[num].cima++;
-                --p2->arr[num].grado;
-                p2->arr[num].et[p2->arr[num].cima]= ' ';
-                p1->arr[np].r -= 2;
-                p1->arr[np].c += (p1->arr[np].dim+3)*2;
-
-            }else{
-                char c;
-                c = p2->arr[num].et[p2->arr[num].cima+1];
-                aggiungi_pedina(p1,np,c);
-                p2->arr[num].cima++;
-                --p2->arr[num].grado;
-                p2->arr[num].et[p2->arr[num].cima]= ' ';
-                p1->arr[np].r -= 2;
-                p1->arr[np].c += (p1->arr[np].dim+3)*2;
+            if(!strcmp(str,"dx")){
+                togli_pedina(&t,p1->arr[np].r+2,p1->arr[np].c-(p1->arr[np].dim+3)*2,(p1->arr[np].dim+3));
             }
-            if(p2->arr[num].grado == 0){
-                togli_pedina(&t,p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),(p1->arr[np].dim+3));
-
+            if(!strcmp(str,"bassosx")){
+                togli_pedina(&t,p1->arr[np].r-2,p1->arr[np].c+(p1->arr[np].dim+3)*2,p1->arr[np].dim+3);
             }
-            togli_pedina(&t,p1->arr[np].r+2,p1->arr[np].c-(p1->arr[np].dim+3)*2,(p1->arr[np].dim+3));
-            return 1;
+            if(!strcmp(str,"bassodx")){
+                togli_pedina(&t,p1->arr[np].r-2,p1->arr[np].c-(p1->arr[np].dim+3)*2,(p1->arr[np].dim+3));
+            }
+
         }
 
+        return 1;
     }
-    if(!strcmp(str,"bassodx")){
-        int x,y,z;
-        x = p1->arr[np].r+1;
-        y = p1->arr[np].c+(p1->arr[np].dim+3);
-        z = ricerca_pl(*p1,*p2,x,y);
-        if((z == 1) || (!z)){
-            return 0;
-        }else{
-            unsigned int num;
-            num = convert(t,p1->arr[np].r+1,p1->arr[np].c+((p1->arr[np].dim+3)*2-1),2+p1->arr[np].dim);
-            if(p1->arr[np].grado < 3){
-                p1->arr[np].et[p1->arr[np].cima] = p2->arr[num].et[p2->arr[num].cima+1];
-                --p1->arr[np].cima;
-                p1->arr[np].grado++;
-                p2->arr[num].cima++;
-                --p2->arr[num].grado;
-                p2->arr[num].et[p2->arr[num].cima]= ' ';
-                p1->arr[np].r += 2;
-                p1->arr[np].c += (p1->arr[np].dim+3)*2;
 
-            }else{
-                char c;
-                c = p2->arr[num].et[p2->arr[num].cima+1];
-                aggiungi_pedina(p1,np,c);
-                p2->arr[num].cima++;
-                --p2->arr[num].grado;
-                p2->arr[num].et[p2->arr[num].cima]= ' ';
-                p1->arr[np].r += 2;
-                p1->arr[np].c += (p1->arr[np].dim+3)*2;
-            }
-            if(p2->arr[num].grado == 0){
-                togli_pedina(&t,p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3),(p1->arr[np].dim+3));
 
-            }
-            togli_pedina(&t,p1->arr[np].r-2,p1->arr[np].c-(p1->arr[np].dim+3)*2,(p1->arr[np].dim+3));
-            return 1;
-        }
 
-    }
-    if(!strcmp(str,"bassosx")){
-        int x,y,z;
-        x = p1->arr[np].r+1;
-        y = p1->arr[np].c-(p1->arr[np].dim+3);
-        z = ricerca_pl(*p1,*p2,x,y);
-        if((z == 1) || (!z)){
-            return 0;
-        }else{
 
-            unsigned int num;
-            num = convert(t,p1->arr[np].r+1,p1->arr[np].c-1,2+p1->arr[np].dim);
-            if(p1->arr[np].grado < 3){
-                p1->arr[np].et[p1->arr[np].cima] = p2->arr[num].et[p2->arr[num].cima+1];
-                --p1->arr[np].cima;
-                p1->arr[np].grado++;
-                p2->arr[num].cima++;
-                --p2->arr[num].grado;
-                p2->arr[num].et[p2->arr[num].cima]= ' ';
-                p1->arr[np].r += 2;
-                p1->arr[np].c -= (p1->arr[np].dim+3)*2;
 
-            }else{
-                char c;
-                c = p2->arr[num].et[p2->arr[num].cima+1];
-                aggiungi_pedina(p1,np,c);
-                p2->arr[num].cima++;
-                --p2->arr[num].grado;
-                p2->arr[num].et[p2->arr[num].cima]= ' ';
-                p1->arr[np].r += 2;
-                p1->arr[np].c -= (p1->arr[np].dim+3)*2;
-            }
-            if(p2->arr[num].grado == 0){
-                togli_pedina(&t,p1->arr[np].r-1,p1->arr[np].c+(p1->arr[np].dim+3),(p1->arr[np].dim+3));
-
-            }
-            togli_pedina(&t,p1->arr[np].r-2,p1->arr[np].c+(p1->arr[np].dim+3)*2,(p1->arr[np].dim+3));
-            return 1;
-        }
-
-    }
-    return 0;
 }
 unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2){
     if(!strcmp(str,"dx")){
@@ -1103,31 +1064,44 @@ int is_empty(tplayer p){
 
     return pos;
 }
-unsigned int controllo_pedina(tplayer *p,tpedina *k){
+unsigned int controllo_pedina(tplayer *p,tplayer *p2,unsigned int np){
 
-    tpedina *n;
-    printf("%u\n",p->dim*2);
-    n = (tpedina*)realloc(p->arr,(p->dim+1)*sizeof(tpedina));
-    printf("\n");
 
-    if(n) {
-        int i;
-        /*
-        n->arr[p->dim].et[0]= ' ';
-        n->arr[p->dim].et[1]= ' ';
-        n->arr[p->dim].et[2]= 'N';
-        n->arr[p->dim].et[3]= '5';
-        ++n->dim;
-        */
-        for(i = 0 ; i < p->dim*2 ; ++i){
-            n[i].grado = 1;
+    p->arr = (tpedina*)realloc(p->arr,(p->dim+1)*sizeof(tpedina));
+    p->arr[p->dim].et = (char*)malloc(sizeof(char)*(3+p2->arr[np].dim));
+
+    if((p->arr) &&(p->arr[p->dim].et)) {
+        unsigned int i,x,f,z;
+
+        p2->arr[np].et[p2->arr[np].cima]= ' ';
+        ++p2->arr[np].cima;
+        --p2->arr[np].grado;
+        p->arr[p->dim].dim = p2->arr[np].dim;
+        p->arr[p->dim].cima = p2->arr[np].cima;
+        p->arr[p->dim].numero = p->dim;
+        p->arr[p->dim].grado = p2->arr[np].grado;
+        p->arr[p->dim].c = p2->arr[np].c;
+        p->arr[p->dim].r = p2->arr[np].r;
+
+        for(i = 0 ; i < 3 ; ++i){
+            p->arr[p->dim].et[i] = p2->arr[np].et[i];
         }
 
-        for(i = 0 ; i < p->dim*2 ; ++i){
-            if(n[i].grado){
-                printf("%d\n",i);
+        i = p->dim;
+        z = p->arr[p->dim].dim-1;
+        x = pow(10,z);
+        for(f = 3 ; f < 3+p->arr[p->dim].dim ; ++f){
+            unsigned int div = i/x;
+            if (div > 0) {
+                p->arr[p->dim].et[f] = '0' + div;
+            } else {
+                p->arr[p->dim].et[f] = '0';
             }
+            i-= x *div ;
+            --z;
+            x = pow(10,z);
         }
+        ++p->dim;
 
         return 1;
     }else{
