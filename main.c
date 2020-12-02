@@ -33,8 +33,8 @@ int main()
 
     if (mod == 1)
     {
-        printf("\n[-Selezionato: Player vs Player-]\n\n");
-        printf("* Creazione campo\nDimensione scacchiera? : ");
+        printf("\nSelezionato: [Player vs Player]\n\n");
+        printf("* Creazione campo *\nDimensione scacchiera? : ");
         scanf("%d", &nBoard);
 
         printf("Numero pedine ? : ");
@@ -90,7 +90,7 @@ int main()
     }
     else if(mod == 2)
     {   
-        printf("\n[-Selezionato: Player vs AI-]\n\n");
+        printf("\nSelezionato: [Player vs AI]\n\n");
         printf("Non ancora implementato u.u\n");
         return 0;
     }
