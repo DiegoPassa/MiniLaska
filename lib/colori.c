@@ -5,7 +5,7 @@
     *    1 = Testo       *
     *    2 = Sfondo      *
     **********************
- */
+*/
 
 void setRed (int n) {
     if (n == 1){
