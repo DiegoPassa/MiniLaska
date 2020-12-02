@@ -1,5 +1,3 @@
-#ifndef UNTITLED_SUPPORTO_H
-#define UNTITLED_SUPPORTO_H
 struct campo{
     char **mat;
     unsigned int r;
@@ -13,9 +11,10 @@ struct pedina{
     unsigned int dim;
     unsigned int cima;
     unsigned int numero;
-    unsigned int grado; 
+    unsigned int grado;
     unsigned int r;
     unsigned int c;
+    int isPromoted;
 };
 typedef struct pedina tpedina;
 struct player{
@@ -42,7 +41,7 @@ unsigned int is_pedina(tcampo t,unsigned int r,unsigned int c,unsigned int cifre
 
 int is_empty(tplayer p);/* controllare se l'array ha pedina con grado 0*/
 
-unsigned int controllo_pedina(tplayer *p, tpedina *k);/* aggiunge una pedina all'altro player in base alla pedina mangiata*/
+unsigned int controllo_pedina(tplayer *p,tplayer *p2,unsigned int np);/* aggiunge una pedina all'altro player in base alla pedina mangiata*/
 
 unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2);/* spostare una pedina pl1 verso un posizione */
 
@@ -67,4 +66,3 @@ unsigned int scelta_turno();/* decidere a chi va il primo turno */
 unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t);/* turno del player 1*/
 
 unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t);/* turno del player 2*/
-#endif /*UNTITLED_SUPPORTO_H*/
