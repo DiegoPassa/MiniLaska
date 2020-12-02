@@ -40,6 +40,10 @@ void aggiorna_campo(tcampo *t,tplayer p1,tplayer p2);/* aggiornare posizione ped
 
 unsigned int is_pedina(tcampo t,unsigned int r,unsigned int c,unsigned int cifre);/* trovare se in una certa posizione c'è una pedina*/
 
+int is_empty(tplayer p);/* controllare se l'array ha pedina con grado 0*/
+
+unsigned int controllo_pedina(tplayer *p, tpedina *k);/* aggiunge una pedina all'altro player in base alla pedina mangiata*/
+
 unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2);/* spostare una pedina pl1 verso un posizione */
 
 unsigned int sposta_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *p1);/* spostare una pedina pl2 verso un posizione */

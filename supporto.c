@@ -357,7 +357,7 @@ tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,
             }
             p->arr[i].dim = cifre;
             p->arr[i].app = ped;
-            p->arr[i].cima = 1 ;
+            p->arr[i].cima = 2 ;
             p->arr[i].numero = i ;
             p->arr[i].grado = 1 ;
             p->arr[i].r = nr;
@@ -508,12 +508,39 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t){
             unsigned int num;
             num = convert(t,p1->arr[np].r-1,p1->arr[np].c-1,2+p1->arr[np].dim);
             if(p1->arr[np].grado < 3){
-                p1->arr[np].et[p1->arr[np].cima] = p2->arr[num].et[p2->arr[num].cima+1];
-                --p1->arr[np].cima;
+                char temp[3];
+                unsigned int f;
+
+                temp[0] = p1->arr[np].et[1];
+                temp[1] = p1->arr[np].et[2];
+                temp[3] = p2->arr[num].et[p2->arr[num].cima];
+
+                if(p2->arr[num].grado == 1){
+                    --p2->arr[num].grado ;
+                }else{
+                    if(p2->arr[num].et[p2->arr[num].cima] == p2->arr[num].et[p2->arr[num].cima+1]){
+                        ++p2->arr[num].cima;
+                    }else {
+                        if (is_empty(*p1) == -1) {
+                            controllo_pedina(p1, &(p2->arr[num]));
+                        } else {
+                            unsigned int pos, i;
+                            pos = is_empty(*p1);
+                            for (i = 0; i < 3; ++i) {
+                                p1->arr[pos].et[i] = p2->arr[num].et[i];
+                            }
+                            --p2->arr[num].grado;
+                            p1->arr[pos].r = p2->arr[num].r;
+                            p1->arr[pos].c = p2->arr[num].c;
+
+                        }
+                    }
+                }
+                for(f = 0 ; f < 3 ; ++f ){
+                    p1->arr[np].et[f] = temp[f];
+                }
                 p1->arr[np].grado++;
-                p2->arr[num].cima++;
-                --p2->arr[num].grado;
-                p2->arr[num].et[p2->arr[num].cima]= ' ';
+                --p1->arr[np].cima;
                 p1->arr[np].r -= 2;
                 p1->arr[np].c -= (p1->arr[np].dim+3)*2;
 
@@ -1151,7 +1178,7 @@ unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
     while(y==0){
         printf("Verso che direzione vuoi spostare la pedina ? ");
         scanf("%s",str);
-        printf("%d\n",y);
+        printf("%u\n",y);
         y = sposta_p2(p2,np,str,t,p1);
     }
     aggiorna_campo(t,*p1,*p2);
@@ -1160,19 +1187,44 @@ unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
     return 0;
 }
 
-void mangia_pedina(){
-    /*
-    mangia_p1();
-    mangia_p2();
-    */
+int is_empty(tplayer p){
+    int pos = -1;
+    unsigned int i;
+    for(i = 0 ; i < p.dim ; ++i){
+        if((p.arr[i].grado == 0)&&(pos == -1)){
+            pos = i;
+        }
+    }
+    return pos;
 }
 
-int controlla_dintorni_pedina(tplayer *player, tcampo t, unsigned int nPedina){
-    
-    
+unsigned int controllo_pedina(tplayer *p,tpedina *k){
+    tpedina *n;
+    printf("%u\n",p->dim*2);
+    n = (tpedina*)realloc(p->arr,(p->dim+1)*sizeof(tpedina));
+    printf("\n");
+    if(n) {
+        int i;
+        /*
+        n->arr[p->dim].et[0]= ' ';
+        n->arr[p->dim].et[1]= ' ';
+        n->arr[p->dim].et[2]= 'N';
+        n->arr[p->dim].et[3]= '5';
+        ++n->dim;
+        */
+        for(i = 0 ; i < p->dim*2 ; ++i){
+            n[i].grado = 1;
+        }
 
-    return -1; /* nessuna casella libera */
-    return 0;  /* casella libera solo a sinistra diagonalmente */
-    return 1;  /* casella libera solo a destra diagonalmente */
-    return 2;  /* caselle libere sia a destra che a sinistra diagonalmente */
+        for(i = 0 ; i < p->dim*2 ; ++i){
+            if(n[i].grado){
+                printf("%d\n",i);
+            }
+        }
+
+        return 1;
+    }else{
+        printf("Errore nella realloc\n");
+        return 0;
+    }
 }
