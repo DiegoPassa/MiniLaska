@@ -4,6 +4,7 @@
 #include<string.h>
 #include<time.h>
 #include <math.h>
+#include "lib/colori.h"
 tcampo *crea_campo(unsigned int r,unsigned int col,unsigned int cifre){
     tcampo *t;
 
@@ -75,14 +76,17 @@ void stampa_campo(tcampo t,unsigned int cifre){
                 for(z = 0 ; z < cifre; ++z){
                     if(z == 0){
                         printf("| ");
-                        setRed();
+                        setBlack();
+                        setRed(2);
                         printf("%c",t.mat[i][j]);
                     }else{
                         if(z == cifre-1){
-                            setRed();
+                            setBlack();
+                            setRed(2);
                             printf("%c ",t.mat[i][j+z]);
                         }else{
-                            setRed();
+                            setBlack();
+                            setRed(2);
                             printf("%c",t.mat[i][j+z]);
                         }
                     }
@@ -93,14 +97,17 @@ void stampa_campo(tcampo t,unsigned int cifre){
                 for(z = 0 ; z < cifre; ++z){
                     if(z == 0){
                         printf("| ");
-                        setYellow();
+                        setBlack();
+                        setYellow(2);
                         printf("%c",t.mat[i][j]);
                     }else{
                         if(z == cifre-1){
-                            setYellow();
+                            setBlack();
+                            setYellow(2);
                             printf("%c ",t.mat[i][j+z]);
                         }else{
-                            setYellow();
+                            setBlack();
+                            setYellow(2);
                             printf("%c",t.mat[i][j+z]);
                         }
                     }
@@ -133,7 +140,8 @@ void stampa_campo(tcampo t,unsigned int cifre){
             {
                 if(j != 0){
                     int z;
-                    for(z = 0 ; z < cifre ; ++z){
+                    printf("+");
+                    for(z = 1 ; z < cifre ; ++z){
                         printf("-");
                     }
                     printf("---");
@@ -192,14 +200,17 @@ void stampa_campo_inv(tcampo t,unsigned int cifre){
                 for(z = 0 ; z < cifre; ++z){
                     if(z == 0){
                         printf("| ");
-                        setRed();
+                        setBlack();
+                        setRed(2);
                         printf("%c",t.mat[i][j]);
                     }else{
                         if(z == cifre-1){
-                            setRed();
+                            setBlack();
+                            setRed(2);
                             printf("%c ",t.mat[i][j+z]);
                         }else{
-                            setRed();
+                            setBlack();
+                            setRed(2);
                             printf("%c",t.mat[i][j+z]);
                         }
                     }
@@ -210,14 +221,17 @@ void stampa_campo_inv(tcampo t,unsigned int cifre){
                 for(z = 0 ; z < cifre; ++z){
                     if(z == 0){
                         printf("| ");
-                        setYellow();
+                        setBlack();
+                        setYellow(2);
                         printf("%c",t.mat[i][j]);
                     }else{
                         if(z == cifre-1){
-                            setYellow();
+                            setBlack();
+                            setYellow(2);
                             printf("%c ",t.mat[i][j+z]);
                         }else{
-                            setYellow();
+                            setBlack();
+                            setYellow(2);
                             printf("%c",t.mat[i][j+z]);
                         }
                     }
@@ -248,7 +262,8 @@ void stampa_campo_inv(tcampo t,unsigned int cifre){
             {
                 if(j != 0){
                     int z;
-                    for(z = 0 ; z < cifre ; ++z){
+                    printf("+");
+                    for(z = 1 ; z < cifre ; ++z){
                         printf("-");
                     }
                     printf("---");
@@ -1071,8 +1086,9 @@ unsigned int scelta_turno(){
 unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
     char str[10];
     unsigned int np,y = 0;
-
+    setYellow(1);
     printf("Turno player 1 : \n");
+    resetColor();
     stampa_campo(*t,(p1->arr[0].dim+3));
 
     printf("Vuoi uscire dal gioco ? ");
@@ -1107,8 +1123,9 @@ unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
 unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
     char str[10];
     unsigned int np,y = 0;
-
+    setRed(1);
     printf("Turno player 2 : \n");
+    resetColor();
     stampa_campo_inv(*t,(p2->arr[0].dim+3));
 
     printf("Vuoi uscire dal gioco ? ");
@@ -1143,16 +1160,19 @@ unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
     return 0;
 }
 
-void setRed () {
-  printf("\033[1;31m");
+void mangia_pedina(){
+    /*
+    mangia_p1();
+    mangia_p2();
+    */
 }
 
-void setYellow (){
-  printf("\033[1;33m");
+int controlla_dintorni_pedina(tplayer *player, tcampo t, unsigned int nPedina){
+    
+    
+
+    return -1; /* nessuna casella libera */
+    return 0;  /* casella libera solo a sinistra diagonalmente */
+    return 1;  /* casella libera solo a destra diagonalmente */
+    return 2;  /* caselle libere sia a destra che a sinistra diagonalmente */
 }
-
-void resetColor () {
-  printf("\033[0m");
-}
-
-

@@ -1,7 +1,3 @@
-/*
-// Created by Matteo on 28/11/2020.
-*/
-
 #ifndef UNTITLED_SUPPORTO_H
 #define UNTITLED_SUPPORTO_H
 struct campo{
@@ -12,12 +8,12 @@ struct campo{
 };
 typedef struct campo tcampo;
 struct pedina{
-    char *et ;
-    char app;
+    char *et; /* etichetta della pedina Es. BN07 */
+    char app; 
     unsigned int dim;
     unsigned int cima;
     unsigned int numero;
-    unsigned int grado;
+    unsigned int grado; 
     unsigned int r;
     unsigned int c;
 };
@@ -27,6 +23,7 @@ struct player{
     unsigned int dim;
 };
 typedef struct player tplayer;
+
 tcampo *crea_campo(unsigned int r,unsigned int c,unsigned int cifre); /* creazione matrice */
 
 void inizializza_campo(tcampo *t,unsigned int cifre); /* inizializza matrice come scacchiera*/
@@ -66,8 +63,4 @@ unsigned int scelta_turno();/* decidere a chi va il primo turno */
 unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t);/* turno del player 1*/
 
 unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t);/* turno del player 2*/
-
-void setRed();
-void setYellow();
-void resetColor();
 #endif /*UNTITLED_SUPPORTO_H*/
