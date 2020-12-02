@@ -465,10 +465,10 @@ void aggiungi_pedina(tplayer *p,unsigned int np,char ped){
     }
 }
 unsigned int ricerca_pl(tplayer p1,tplayer p2,unsigned int x,unsigned int y){
-    int i,flag = 0;
+    int i,flag = 0; /* nessun player trovato */
     for(i = 0 ; i < p1.dim ; ++i){
         if((p1.arr[i].r == x)&&(p1.arr[i].c == y)){
-            flag = 1;
+            flag = 1; /* player 1 trovato */
         }
     }
     if(flag){
@@ -476,7 +476,7 @@ unsigned int ricerca_pl(tplayer p1,tplayer p2,unsigned int x,unsigned int y){
     }else{
         for(i = 0 ; i < p2.dim ; ++i){
             if((p2.arr[i].r == x)&&(p2.arr[i].c == y)){
-                flag = 2;
+                flag = 2; /* player 2 trovato */
             }
         }
     }
@@ -749,7 +749,7 @@ unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
     return 0;
 }
 unsigned int mangia_p2(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t){
-
+/*
     if(!strcmp(str,"sx")){
         int x,y,z;
         x = p2->arr[np].r+1;
@@ -903,8 +903,10 @@ unsigned int mangia_p2(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo 
 
     }
 
+    */
     return 0;
 }
+
 unsigned int sposta_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *p1){
 
     if(!strcmp(str,"sx")){
