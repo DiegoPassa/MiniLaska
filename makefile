@@ -1,2 +1,2 @@
-all: main.c supp.c supp.h
-	gcc main.c supp.h supp.c -o laska.exe -ansi -pedantic -Wall
+all: main.c supporto.c supporto.h
+	gcc main.c supporto.h supporto.c -o laska.exe -ansi -pedantic -Wall -lm
