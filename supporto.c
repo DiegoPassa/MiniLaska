@@ -513,26 +513,45 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t){
 
                 temp[0] = p1->arr[np].et[1];
                 temp[1] = p1->arr[np].et[2];
-                temp[3] = p2->arr[num].et[p2->arr[num].cima];
+                temp[2] = p2->arr[num].et[p2->arr[num].cima];
 
                 if(p2->arr[num].grado == 1){
                     --p2->arr[num].grado ;
                 }else{
                     if(p2->arr[num].et[p2->arr[num].cima] == p2->arr[num].et[p2->arr[num].cima+1]){
+                        p2->arr[num].et[p2->arr[num].cima]= ' ';
                         ++p2->arr[num].cima;
+                        --p2->arr[num].grado;
                     }else {
                         if (is_empty(*p1) == -1) {
                             controllo_pedina(p1, &(p2->arr[num]));
                         } else {
                             unsigned int pos, i;
                             pos = is_empty(*p1);
+                            p2->arr[num].et[p2->arr[num].cima]= ' ';
+                            ++p2->arr[num].cima;
+                            --p2->arr[num].grado;
                             for (i = 0; i < 3; ++i) {
                                 p1->arr[pos].et[i] = p2->arr[num].et[i];
                             }
                             --p2->arr[num].grado;
                             p1->arr[pos].r = p2->arr[num].r;
                             p1->arr[pos].c = p2->arr[num].c;
-
+                            ++p1->arr[pos].grado;
+                            i = p1->arr[pos].numero ;
+                            z = p1->arr[pos].dim;
+                            x = 1;
+                            for(f = 3 ; f < 3+p1->arr[num].dim ; ++f){
+                                unsigned int div = i/x;
+                                if (div > 0) {
+                                    p1->arr[pos].et[f] = '0' + div;
+                                } else {
+                                    p1->arr[pos].et[f] = '0';
+                                }
+                                i-= x *div ;
+                                --z;
+                                x = pow(10,z);
+                            }
                         }
                     }
                 }
