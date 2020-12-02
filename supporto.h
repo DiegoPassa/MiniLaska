@@ -1,3 +1,6 @@
+
+#define UNTITLED_SUPPORTO_H
+
 #ifndef UNTITLED_SUPPORTO_H
 #define UNTITLED_SUPPORTO_H
 struct campo{
@@ -8,12 +11,12 @@ struct campo{
 };
 typedef struct campo tcampo;
 struct pedina{
-    char *et; /* etichetta della pedina Es. BN07 */
-    char app; 
+    char *et ;
+    char app;
     unsigned int dim;
     unsigned int cima;
     unsigned int numero;
-    unsigned int grado; 
+    unsigned int grado;
     unsigned int r;
     unsigned int c;
 };
@@ -23,7 +26,6 @@ struct player{
     unsigned int dim;
 };
 typedef struct player tplayer;
-
 tcampo *crea_campo(unsigned int r,unsigned int c,unsigned int cifre); /* creazione matrice */
 
 void inizializza_campo(tcampo *t,unsigned int cifre); /* inizializza matrice come scacchiera*/
@@ -39,6 +41,10 @@ void stampa_player(tplayer p); /* stampa pedine di un player */
 void aggiorna_campo(tcampo *t,tplayer p1,tplayer p2);/* aggiornare posizione pedine sul campo */
 
 unsigned int is_pedina(tcampo t,unsigned int r,unsigned int c,unsigned int cifre);/* trovare se in una certa posizione c'è una pedina*/
+
+int is_empty(tplayer p);/* controllare se l'array ha pedina con grado 0*/
+
+unsigned int controllo_pedina(tplayer *p,,tpedina *k);/* aggiunge una pedina all'altro player in base alla pedina mangiata*/
 
 unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2);/* spostare una pedina pl1 verso un posizione */
 
@@ -63,4 +69,6 @@ unsigned int scelta_turno();/* decidere a chi va il primo turno */
 unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t);/* turno del player 1*/
 
 unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t);/* turno del player 2*/
+
+
 #endif /*UNTITLED_SUPPORTO_H*/
