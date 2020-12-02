@@ -9,17 +9,32 @@ int main()
     tplayer *p1 = NULL, *p2 = NULL;
     int exit = 0, turno, round = 0;
     int cifre, conta = 0, numped = 0;
-    int nBoard, mod;
+    int nBoard, mod = 0, flag_mod = 0;
 
     system("clear");
 
     printf("Progetto MiniLasca 51\n\nBenvenuto!\n  [1] Player vs Player\n  [2] Player vs AI\nSeleziona modalità di gioco: ");
-    scanf("%d", &mod);
+
+    while (mod != 1 && mod != 2)
+    {
+        if (flag_mod == 0)
+        {
+            scanf("%d", &mod);
+            flag_mod = 1;
+        }else
+        {
+            printf("\nSelezione non in elenco!\nNuova selezione: ");
+            scanf("%d", &mod);         
+        }
+        
+        
+    }
+    
 
     if (mod == 1)
     {
         printf("\n[-Selezionato: Player vs Player-]\n\n");
-        printf("- Creazione campo\nDimensione scacchiera? : ");
+        printf("* Creazione campo\nDimensione scacchiera? : ");
         scanf("%d", &nBoard);
 
         printf("Numero pedine ? : ");
@@ -70,15 +85,16 @@ int main()
         }
         else
         {
-            printf("Non ha senso giocare con %u pedine !\n", cifre);
+            printf("Non ha senso giocare con %d pedine !\n", cifre);
         }
     }
-    else
+    else if(mod == 2)
     {   
         printf("\n[-Selezionato: Player vs AI-]\n\n");
         printf("Non ancora implementato u.u\n");
         return 0;
     }
+    
 
     return 0;
 }
