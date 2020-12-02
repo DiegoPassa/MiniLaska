@@ -4,7 +4,7 @@
 #include<string.h>
 #include<time.h>
 #include <math.h>
-#include "colori.h"
+#include "lib/colori.h"
 tcampo *crea_campo(unsigned int r,unsigned int col,unsigned int cifre){
     tcampo *t;
 
