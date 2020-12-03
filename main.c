@@ -21,15 +21,13 @@ int main()
         {
             scanf("%d", &mod);
             flag_mod = 1;
-        }else
+        }
+        else
         {
             printf("\nSelezione non in elenco!\nNuova selezione: ");
-            scanf("%d", &mod);         
+            scanf("%d", &mod);
         }
-        
-        
     }
-    
 
     if (mod == 1)
     {
@@ -58,6 +56,9 @@ int main()
 
             p1 = crea_pedine(numped, 'B', 1, conta, *t); /* creare n pedine di carattere c */
             p2 = crea_pedine(numped, 'N', 2, conta, *t); /* creare n pedine di carattere c */
+
+            stampa_player(*p1);
+            stampa_player(*p2);
 
             aggiorna_campo(t, *p1, *p2);
             printf("\nCampo di partenza : \n");
@@ -88,13 +89,12 @@ int main()
             printf("Non ha senso giocare con %d pedine !\n", cifre);
         }
     }
-    else if(mod == 2)
-    {   
+    else if (mod == 2)
+    {
         printf("\nSelezionato: [Player vs AI]\n\n");
         printf("Non ancora implementato u.u\n");
         return 0;
     }
-    
 
     return 0;
 }
