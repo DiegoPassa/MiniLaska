@@ -79,33 +79,6 @@ void stampa_campo(tcampo t,unsigned int cifre){
                 k++;
             }
             if (t.mat[i][j+k] == 'N'){
-                /*
-                for(z = 0 ; z < cifre; ++z){
-                    if(z == 0){
-                        printf("|");
-                        setBlack();
-                        setRed(2);
-                        printf(" %c",t.mat[i][j]);
-                    }else{
-                        if(z == cifre-1){
-                            setBlack();
-                            if (t.mat[i][j+z] == 'B')
-                            {
-                                setYellow(2);
-                            }else
-                            {
-                                setRed(2);
-                            }                                            
-                            printf("%c ",t.mat[i][j+z]);
-                        }else{
-                            setBlack();
-                            setRed(2);
-                            printf("%c",t.mat[i][j+z]);
-                        }
-                    }
-                    resetColor();
-                }
-                */     
                 for(z = 0 ; z < cifre; ++z){
                     if(z == 0){
                         printf("|");
@@ -522,7 +495,7 @@ void stampa_player(tplayer p){
         printf("Cima = %d\n",p.arr[i].cima);
         printf("Numero pedina : %d \n",p.arr[i].numero);
         printf("Grado pedina : %d \n",p.arr[i].grado);
-        printf("Posizione nel campo x : %d,  y : %d\n",p.arr[i].r,p.arr[i].c );
+        printf("Posizione nel campo x : %d,  y : %d\n",p.arr[i].c,p.arr[i].r);
     }
 }
 
@@ -859,7 +832,6 @@ unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
     return 0;
 }
 unsigned int mangia_p2(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t){
-/*
     if(!strcmp(str,"sx")){
         int x,y,z;
         x = p2->arr[np].r+1;
@@ -1012,8 +984,6 @@ unsigned int mangia_p2(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo 
         }
 
     }
-
-    */
     return 0;
 }
 
