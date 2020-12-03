@@ -7,7 +7,7 @@ struct campo
 typedef struct campo tcampo;
 struct pedina
 {
-    char *et; /* etichetta della pedina Es. BN07 */
+    char *et; /* etichetta della pedina Es.|  BN07 | */
     char app;
     unsigned int dim;
     unsigned int cima;
@@ -15,11 +15,12 @@ struct pedina
     unsigned int grado;
     unsigned int r;
     unsigned int c;
-    int isPromoted;
+    int isPromoted; /* Es: |^ BN07| */
 };
 typedef struct pedina tpedina;
 struct player
 {
+    char colore;
     tpedina *arr;
     unsigned int dim;
 };

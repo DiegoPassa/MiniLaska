@@ -341,6 +341,7 @@ tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,
 
     p = (tplayer*)malloc(sizeof(tplayer));
     p->arr = (tpedina*)malloc(sizeof(tpedina)*n);
+    p->colore = ped;
     for(h = 0 ; h < n ; ++h){
         p->arr[h].et = (char*)malloc(sizeof(char)*(3+cifre));
     }
@@ -441,18 +442,27 @@ tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,
 
 void stampa_player(tplayer p){
     unsigned int i,j;
+    printf("\nCOLORE GIOCATORE : %c", p.colore);
+    printf("\n"); 
     for(i = 0 ; i < p.dim ; ++i){
-
+        printf("\n"); 
         printf("Pedina = ");
         for(j = 0 ; j < 3+p.arr[i].dim ;++j ){
-            printf("%c",p.arr[i].et[j]);
+            if (p.arr[i].et[j] == ' ')
+            {
+                printf("/");
+            }else
+            {
+                printf("%c",p.arr[i].et[j]);               
+            }
+            
+            
         }
         printf("\n");
         printf("Cima = %d\n",p.arr[i].cima);
         printf("Numero pedina : %d \n",p.arr[i].numero);
         printf("Grado pedina : %d \n",p.arr[i].grado);
-        printf("Posizione nel campo x e y : %d , %d\n",p.arr[i].r,p.arr[i].c );
-        printf("\n");
+        printf("Posizione nel campo x : %d,  y : %d\n",p.arr[i].r,p.arr[i].c );
     }
 }
 

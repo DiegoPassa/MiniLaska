@@ -58,6 +58,9 @@ int main()
 
             p1 = crea_pedine(numped, 'B', 1, conta, *t); /* creare n pedine di carattere c */
             p2 = crea_pedine(numped, 'N', 2, conta, *t); /* creare n pedine di carattere c */
+           
+            stampa_player(*p1);
+            stampa_player(*p2);         
 
             aggiorna_campo(t, *p1, *p2);
             printf("\nCampo di partenza : \n");
