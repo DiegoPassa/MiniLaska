@@ -374,11 +374,11 @@ tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,
 
     p = (tplayer*)malloc(sizeof(tplayer));
     p->arr = (tpedina*)malloc(sizeof(tpedina)*n);
-    p->colore = ped;
     for(h = 0 ; h < n ; ++h){
         p->arr[h].et = (char*)malloc(sizeof(char)*(3+cifre));
     }
     if( (p != NULL) && (p->arr != NULL)){
+        p->colore = ped;
         unsigned int i,nr,nc = 0;
         int c = -1;
 
@@ -565,11 +565,11 @@ unsigned int ricerca_pl(tplayer p1,tplayer p2,unsigned int x,unsigned int y){
     }
     return flag;
 }
-unsigned int convert(tcampo t,unsigned int r,unsigned int c,unsigned int dim){
+unsigned int convert(tcampo t,unsigned int r,unsigned int c,unsigned int dim,unsigned int cifre){
     unsigned int i,num = 0,z = 0;
 
-    for(i = dim ; i > dim-1 ; --i){
-        num += (t.mat[r][c]-'0')*pow(10,z);
+    for(i = dim ; i > cifre-1 ; --i){
+        num += (t.mat[r][c+i]-'0')*pow(10,z);
         z++;
 
     }
@@ -579,8 +579,6 @@ unsigned int convert(tcampo t,unsigned int r,unsigned int c,unsigned int dim){
 
 unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t){
     unsigned int x,y,z;
-    unsigned int f;
-    char temp[3];
     if(!strcmp(str,"sx")){
         x = p1->arr[np].r-1;
         y = p1->arr[np].c-(p1->arr[np].dim+3);
@@ -605,26 +603,30 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t){
     }else{
         unsigned int num;
         if(!strcmp(str,"sx")){
-            num = convert(t,p1->arr[np].r-1,p1->arr[np].c-1,2+p1->arr[np].dim);
+            num = convert(t,p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3),2+p1->arr[np].dim,3);
         }else{
             if(!strcmp(str,"dx")){
-                num = convert(t,p1->arr[np].r-1,p1->arr[np].c+((p1->arr[np].dim+3)*2-1),2+p1->arr[np].dim);
+                num = convert(t,p1->arr[np].r-1,p1->arr[np].c+p1->arr[np].c,2+p1->arr[np].dim,3);
             }
             if(!strcmp(str,"bassosx")){
-                num = convert(t,p1->arr[np].r+1,p1->arr[np].c-1,2+p1->arr[np].dim);
+                num = convert(t,p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),2+p1->arr[np].dim,3);
             }
             if(!strcmp(str,"bassodx")){
-                num = convert(t,p1->arr[np].r+1,p1->arr[np].c+((p1->arr[np].dim+3)*2-1),2+p1->arr[np].dim);
+                num = convert(t,p1->arr[np].r+1,p1->arr[np].c,2+p1->arr[np].dim,3);
             }
 
         }
-        /* MANCA PARTE NEL CASO CI SIA LA TORRE ALTA TRE PEDINE */
+
+        unsigned int f;
+
+        char temp[3];
+
         temp[0] = p1->arr[np].et[1];
         temp[1] = p1->arr[np].et[2];
         temp[2] = p2->arr[num].et[p2->arr[num].cima];
 
         if(p2->arr[num].grado == 1){
-            --p2->arr[num].grado ;
+            --p2->arr[num].grado;
         }else{
             if(p2->arr[num].et[p2->arr[num].cima] == p2->arr[num].et[p2->arr[num].cima+1]){
                 p2->arr[num].et[p2->arr[num].cima]= ' ';
@@ -642,10 +644,9 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t){
                     for (i = 0; i < 3; ++i) {
                         p1->arr[pos].et[i] = p2->arr[num].et[i];
                     }
-                    --p2->arr[num].grado;
+                    ++p1->arr[pos].grado;
                     p1->arr[pos].r = p2->arr[num].r;
                     p1->arr[pos].c = p2->arr[num].c;
-                    ++p1->arr[pos].grado;
                     i = p1->arr[pos].numero ;
                     z = p1->arr[pos].dim-1;
                     x = pow(10,z);
@@ -663,11 +664,13 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t){
                 }
             }
         }
-        for(f = 0 ; f < 3 ; ++f ){
-            p1->arr[np].et[f] = temp[f];
+        if(p1->arr[np].grado  < 3){
+            for(f = 0 ; f < 3 ; ++f ){
+                p1->arr[np].et[f] = temp[f];
+            }
+            ++p1->arr[np].grado;
+            --p1->arr[np].cima;
         }
-        ++p1->arr[np].grado;
-        --p1->arr[np].cima;
         if(!strcmp(str,"sx")){
             p1->arr[np].r -= 2;
             p1->arr[np].c -= (p1->arr[np].dim+3)*2;
@@ -687,22 +690,9 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t){
 
         }
 
-        if(p2->arr[num].grado == 0){
-            if(!strcmp(str,"sx")){
-                togli_pedina(&t,p1->arr[np].r+1,p1->arr[np].c+(p1->arr[np].dim+3),p1->arr[np].dim+3);
-            }else{
-                if(!strcmp(str,"dx")){
-                    togli_pedina(&t,p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),(p1->arr[np].dim+3));
-                }
-                if(!strcmp(str,"bassosx")){
-                    togli_pedina(&t,p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3),(p1->arr[np].dim+3));
-                }
-                if(!strcmp(str,"bassodx")){
-                    togli_pedina(&t,p1->arr[np].r-1,p1->arr[np].c+(p1->arr[np].dim+3),(p1->arr[np].dim+3));
-                }
+        if(p2->arr[num].grado < 1){
 
-            }
-
+            togli_pedina(&t,p2->arr[num].r,p2->arr[num].c,p2->arr[num].dim+3);
 
         }
         if(!strcmp(str,"sx")){
@@ -722,6 +712,9 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t){
 
         return 1;
     }
+
+
+
 }
 unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2){
     if(!strcmp(str,"dx")){
@@ -832,6 +825,7 @@ unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
     return 0;
 }
 unsigned int mangia_p2(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t){
+
     if(!strcmp(str,"sx")){
         int x,y,z;
         x = p2->arr[np].r+1;
@@ -841,7 +835,7 @@ unsigned int mangia_p2(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo 
             return 0;
         }else{
             unsigned int num;
-            num = convert(t,p2->arr[np].r+1,p2->arr[np].c-1,2+p2->arr[np].dim);
+            num = convert(t,p2->arr[np].r+1,p2->arr[np].c-1,2+p2->arr[np].dim,3);
             if(p2->arr[np].grado < 3){
                 p2->arr[np].et[p2->arr[np].cima] = p1->arr[num].et[p1->arr[num].cima+1];
                 --p2->arr[np].cima;
@@ -879,7 +873,7 @@ unsigned int mangia_p2(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo 
             return 0;
         }else{
             unsigned int num ;
-            num = convert(t,p2->arr[np].r+1,p2->arr[np].c+((p2->arr[np].dim+3)*2-1),2+p2->arr[np].dim);
+            num = convert(t,p2->arr[np].r+1,p2->arr[np].c+((p2->arr[np].dim+3)*2-1),2+p2->arr[np].dim,3);
             if(p2->arr[np].grado < 3){
                 p2->arr[np].et[p2->arr[np].cima] = p1->arr[num].et[p1->arr[num].cima+1];
                 --p2->arr[np].cima;
@@ -917,7 +911,7 @@ unsigned int mangia_p2(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo 
             return 0;
         }else{
             unsigned int num;
-            num = convert(t,p2->arr[np].r-1,p2->arr[np].c-1,2+p2->arr[np].dim);
+            num = convert(t,p2->arr[np].r-1,p2->arr[np].c-1,2+p2->arr[np].dim,3);
             if(p2->arr[np].grado < 3){
                 p2->arr[np].et[p2->arr[np].cima] = p1->arr[num].et[p1->arr[num].cima+1];
                 --p2->arr[np].cima;
@@ -955,7 +949,7 @@ unsigned int mangia_p2(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo 
             return 0;
         }else{
             unsigned int num;
-            num = convert(t,p2->arr[np].r-1,p2->arr[np].c+((p2->arr[np].dim+3)*2-1),2+p2->arr[np].dim);
+            num = convert(t,p2->arr[np].r-1,p2->arr[np].c+((p2->arr[np].dim+3)*2-1),2+p2->arr[np].dim,3);
             if(p2->arr[np].grado < 3){
                 p2->arr[np].et[p2->arr[np].cima] = p1->arr[num].et[p1->arr[num].cima+1];
                 --p2->arr[np].cima;
@@ -984,9 +978,9 @@ unsigned int mangia_p2(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo 
         }
 
     }
+
     return 0;
 }
-
 unsigned int sposta_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *p1){
 
     if(!strcmp(str,"sx")){
