@@ -56,7 +56,7 @@ void aggiungi_pedina(tplayer *p, unsigned int np, char ped); /* aggiungere la pe
 
 unsigned int mangia_p1(tplayer *p1, tplayer *p2, char *str, unsigned int np, tcampo t); /* conquistare una pedina veros una certa posizone*/
 
-unsigned int convert(tcampo t, unsigned int r, unsigned int c, unsigned int dim); /* converte il numero in da char ad int */
+unsigned int convert(tcampo t,unsigned int r,unsigned int c,unsigned int dim,unsigned int cifre); /* converte il numero in da char ad int */
 
 unsigned int mangia_p2(tplayer *p1, tplayer *p2, char *str, unsigned int np, tcampo t); /* conquistare una pedina veros una certa posizone*/
 
