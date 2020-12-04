@@ -52,18 +52,18 @@ void inizializza_campo(tcampo *t,unsigned int cifre){
 
 }
 void stampa_campo(tcampo t,unsigned int cifre){
+    unsigned int i,j;
 
-    unsigned int i,j, k = 0;
+
     for(j=0; j<t.c; j +=cifre)
     {
         int z;
-        printf("+");
-        for(z = 1 ; z < cifre ; ++z){
+        for(z = 0 ; z < cifre ; ++z){
             printf("-");
         }
         printf("---");
     }
-    printf("+");/* recupero angolo dx */
+    printf("-");/* recupero angolo dx */
 
     printf("\n");
 
@@ -73,97 +73,18 @@ void stampa_campo(tcampo t,unsigned int cifre){
         for(j=0; j<t.c; j +=cifre)
         {
             int z;
-            /* controllo dov'è la cima */
-            while (t.mat[i][j+k] != 'N' && t.mat[i][j+k] != 'B' && k<3)
-            {
-                k++;
-            }
-            if (t.mat[i][j+k] == 'N'){
-                for(z = 0 ; z < cifre; ++z){
-                    if(z == 0){
-                        printf("|");
-                        setBlack();
-                        setRed(2);
-                        printf(" %c",t.mat[i][j]);
+            for(z = 0 ; z < cifre; ++z){
+                if(z == 0){
+                    printf("| %c",t.mat[i][j]);
+                }else{
+                    if(z == cifre-1){
+                        printf("%c ",t.mat[i][j+z]);
                     }else{
-                        if(z == cifre-1){
-                            setBlack();
-                            setRed(2);
-                            printf("%c ",t.mat[i][j+z]);
-                        }else{
-                            setBlack();
-                            if (t.mat[i][j+z] == 'B')
-                            {
-                                setYellow(2);
-                            }else
-                            {
-                                setRed(2);
-                            }                                            
-                            printf("%c",t.mat[i][j+z]);
-                        }
-                    }
-                    resetColor();
-                }
-            }else if (t.mat[i][j+k] == 'B'){
-                for(z = 0 ; z < cifre; ++z){
-                    if(z == 0){
-                        printf("|");
-                        setBlack();
-                        setYellow(2);
-                        printf(" %c",t.mat[i][j]);
-                    }else{
-                        if(z == cifre-1){
-                            setBlack();
-                            setYellow(2);
-                            printf("%c ",t.mat[i][j+z]);
-                        }else{
-                            setBlack();
-                            if (t.mat[i][j+z] == 'N')
-                            {
-                                setRed(2);
-                            }else
-                            {
-                                setYellow(2);
-                            }                                            
-                            printf("%c",t.mat[i][j+z]);
-                        }
-                    }
-                    resetColor();
-                }
-            }else if (t.mat[i][j+2] == '#')
-            {
-                for(z = 0 ; z < cifre; ++z){
-                    if(z == 0){
-                        printf("|");
-                        setWhite();
-                        printf(" %c",t.mat[i][j]);
-                    }else{
-                        if(z == cifre-1){
-                            setWhite();
-                            printf("%c ",t.mat[i][j+z]);
-                        }else{
-                            setWhite();
-                            printf("%c",t.mat[i][j+z]);
-                        }
-                    }
-                    resetColor();
-                }    
-            }
-            else{
-                for(z = 0 ; z < cifre; ++z){
-                    if(z == 0){
-                        printf("| %c",t.mat[i][j]);
-                    }else{
-                        if(z == cifre-1){
-                            printf("%c ",t.mat[i][j+z]);
-                        }else{
-                            printf("%c",t.mat[i][j+z]);
-                        }
+                        printf("%c",t.mat[i][j+z]);
                     }
                 }
-                
+
             }
-            k = 0;
         }
 
         printf("|\n");
@@ -174,8 +95,7 @@ void stampa_campo(tcampo t,unsigned int cifre){
             {
                 if(j != 0){
                     int z;
-                    printf("+");
-                    for(z = 1 ; z < cifre ; ++z){
+                    for(z = 0 ; z < cifre ; ++z){
                         printf("-");
                     }
                     printf("---");
@@ -198,31 +118,29 @@ void stampa_campo(tcampo t,unsigned int cifre){
     for(j=0; j<t.c; j +=cifre)
     {
         int z;
-        printf("+");
-        for(z = 1 ; z < cifre ; ++z){
+        for(z = 0 ; z < cifre ; ++z){
             printf("-");
         }
         printf("---");
     }
-    printf("+");/* recupero angolo dx */
+    printf("-");/* recupero angolo dx */
 
     printf("\n");
 
 }
 void stampa_campo_inv(tcampo t,unsigned int cifre){
-    unsigned j, k = 0;
+    unsigned int j;
     int i;
 
     for(j=0; j<t.c; j +=cifre)
     {
         int z;
-        printf("+");
-        for(z = 1 ; z < cifre ; ++z){
+        for(z = 0 ; z < cifre ; ++z){
             printf("-");
         }
         printf("---");
     }
-    printf("+");/* recupero angolo dx */
+    printf("-");/* recupero angolo dx */
 
     printf("\n");
 
@@ -232,97 +150,18 @@ void stampa_campo_inv(tcampo t,unsigned int cifre){
         for(j=0; j<t.c; j +=cifre)
         {
             int z;
-            /* controllo dov'è la cima */
-            while (t.mat[i][j+k] != 'N' && t.mat[i][j+k] != 'B' && k<3)
-            {
-                k++;
-            }
-            if (t.mat[i][j+k] == 'N'){
-                for(z = 0 ; z < cifre; ++z){
-                    if(z == 0){
-                        printf("|");
-                        setBlack();
-                        setRed(2);
-                        printf(" %c",t.mat[i][j]);
+            for(z = 0 ; z < cifre; ++z){
+                if(z == 0){
+                    printf("| %c",t.mat[i][j]);
+                }else{
+                    if(z == cifre-1){
+                        printf("%c ",t.mat[i][j+z]);
                     }else{
-                        if(z == cifre-1){
-                            setBlack();
-                            setRed(2);
-                            printf("%c ",t.mat[i][j+z]);
-                        }else{
-                            setBlack();
-                            if (t.mat[i][j+z] == 'B')
-                            {
-                                setYellow(2);
-                            }else
-                            {
-                                setRed(2);
-                            }                                            
-                            printf("%c",t.mat[i][j+z]);
-                        }
+                        printf("%c",t.mat[i][j+z]);
                     }
-                    resetColor();
-                }          
-            }else if (t.mat[i][j+k] == 'B')
-            {
-                for(z = 0 ; z < cifre; ++z){
-                    if(z == 0){
-                        printf("|");
-                        setBlack();
-                        setYellow(2);
-                        printf(" %c",t.mat[i][j]);
-                    }else{                
-                        if(z == cifre-1){
-                            setBlack();
-                            setYellow(2);
-                            printf("%c ",t.mat[i][j+z]);
-                        }else{
-                            setBlack();
-                            if (t.mat[i][j+z] == 'N')
-                            {
-                                setRed(2);
-                            }else
-                            {
-                                setYellow(2);
-                            }                                            
-                            printf("%c",t.mat[i][j+z]);
-                        }
-                    }
-                    resetColor();
                 }
-            }else if (t.mat[i][j+2] == '#')
-            {
-                for(z = 0 ; z < cifre; ++z){
-                    if(z == 0){
-                        printf("|");
-                        setWhite();
-                        printf(" %c",t.mat[i][j]);
-                    }else{
-                        if(z == cifre-1){
-                            setWhite();
-                            printf("%c ",t.mat[i][j+z]);
-                        }else{
-                            setWhite();
-                            printf("%c",t.mat[i][j+z]);
-                        }
-                    }
-                    resetColor();
-                }    
+
             }
-            else{
-                for(z = 0 ; z < cifre; ++z){
-                    if(z == 0){
-                        printf("| %c",t.mat[i][j]);
-                    }else{
-                        if(z == cifre-1){
-                            printf("%c ",t.mat[i][j+z]);
-                        }else{
-                            printf("%c",t.mat[i][j+z]);
-                        }
-                    }
-                }            
-            }
-            k = 0;
         }
 
         printf("|\n");
@@ -333,8 +172,7 @@ void stampa_campo_inv(tcampo t,unsigned int cifre){
             {
                 if(j != 0){
                     int z;
-                    printf("+");
-                    for(z = 1 ; z < cifre ; ++z){
+                    for(z = 0 ; z < cifre ; ++z){
                         printf("-");
                     }
                     printf("---");
@@ -357,13 +195,12 @@ void stampa_campo_inv(tcampo t,unsigned int cifre){
     for(j=0; j<t.c; j +=cifre)
     {
         int z;
-        printf("+");
-        for(z = 1 ; z < cifre ; ++z){
+        for(z = 0 ; z < cifre ; ++z){
             printf("-");
         }
         printf("---");
     }
-    printf("+");/* recupero angolo dx */
+    printf("-");/* recupero angolo dx */
 
     printf("\n");
 
@@ -378,7 +215,6 @@ tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,
         p->arr[h].et = (char*)malloc(sizeof(char)*(3+cifre));
     }
     if( (p != NULL) && (p->arr != NULL)){
-        p->colore = ped;
         unsigned int i,nr,nc = 0;
         int c = -1;
 
@@ -475,27 +311,18 @@ tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,
 
 void stampa_player(tplayer p){
     unsigned int i,j;
-    printf("\nCOLORE GIOCATORE : %c", p.colore);
-    printf("\n"); 
     for(i = 0 ; i < p.dim ; ++i){
-        printf("\n"); 
+
         printf("Pedina = ");
         for(j = 0 ; j < 3+p.arr[i].dim ;++j ){
-            if (p.arr[i].et[j] == ' ')
-            {
-                printf("/");
-            }else
-            {
-                printf("%c",p.arr[i].et[j]);               
-            }
-            
-            
+            printf("%c",p.arr[i].et[j]);
         }
         printf("\n");
         printf("Cima = %d\n",p.arr[i].cima);
         printf("Numero pedina : %d \n",p.arr[i].numero);
         printf("Grado pedina : %d \n",p.arr[i].grado);
-        printf("Posizione nel campo x : %d,  y : %d\n",p.arr[i].c,p.arr[i].r);
+        printf("Posizione nel campo x e y : %d , %d\n",p.arr[i].r,p.arr[i].c );
+        printf("\n");
     }
 }
 
@@ -530,28 +357,32 @@ unsigned int is_pedina(tcampo t,unsigned int r,unsigned int c,unsigned int cifre
 }
 void togli_pedina(tcampo *t,unsigned int r,unsigned int c,unsigned cifre){
     unsigned int x = r , y = c,i;
+    printf("Non torna : %d e %d e %d\n",x,y,cifre);
     for(i = 0 ; i < cifre ; ++i){
-        if(((y/cifre)+x)%2 == 0){
+        t->mat[x][y+i] = '#';
+    }
+    /*if(((y/cifre)+x)%2 == 0){
             t->mat[r][c+i] = '#';
         }else{
             t->mat[r][c+i] = ' ';
-        }
-    }
+        }*/
 }
-void aggiungi_pedina(tplayer *p,unsigned int np,char ped){
-    if(p->arr[np].grado < 3){
-        p->arr[np].et[p->arr[np].cima] = ped;
-        --p->arr[np].cima;
-        ++p->arr[np].grado;
+
+void promuovi_pedina(tplayer *p,unsigned int np,unsigned int numpl,unsigned int meta){
+    if((numpl == 1)&&(p->arr[np].r == 0)){
+        p->arr[np].isPromoted = 1;
     }else{
-        p->arr[np].et[2] = ped;
+        if((numpl == 2)&&(p->arr[np].r == meta)){
+            p->arr[np].isPromoted = 1;
+        }
+
     }
 }
 unsigned int ricerca_pl(tplayer p1,tplayer p2,unsigned int x,unsigned int y){
-    int i,flag = 0; /* nessun player trovato */
+    int i,flag = 0;
     for(i = 0 ; i < p1.dim ; ++i){
         if((p1.arr[i].r == x)&&(p1.arr[i].c == y)){
-            flag = 1; /* player 1 trovato */
+            flag = 1;
         }
     }
     if(flag){
@@ -559,7 +390,7 @@ unsigned int ricerca_pl(tplayer p1,tplayer p2,unsigned int x,unsigned int y){
     }else{
         for(i = 0 ; i < p2.dim ; ++i){
             if((p2.arr[i].r == x)&&(p2.arr[i].c == y)){
-                flag = 2; /* player 2 trovato */
+                flag = 2;
             }
         }
     }
@@ -601,25 +432,23 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t){
     if((z == 1) || (!z)){
         return 0;
     }else{
-        unsigned int num;
+        unsigned int num,f;
+        char temp[3];
+
         if(!strcmp(str,"sx")){
             num = convert(t,p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3),2+p1->arr[np].dim,3);
         }else{
             if(!strcmp(str,"dx")){
-                num = convert(t,p1->arr[np].r-1,p1->arr[np].c+p1->arr[np].c,2+p1->arr[np].dim,3);
+                num = convert(t,p1->arr[np].r-1,p1->arr[np].c+(p1->arr[np].dim+3),2+p1->arr[np].dim,3);
             }
             if(!strcmp(str,"bassosx")){
                 num = convert(t,p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),2+p1->arr[np].dim,3);
             }
             if(!strcmp(str,"bassodx")){
-                num = convert(t,p1->arr[np].r+1,p1->arr[np].c,2+p1->arr[np].dim,3);
+                num = convert(t,p1->arr[np].r+1,p1->arr[np].c+(p1->arr[np].dim+3),2+p1->arr[np].dim,3);
             }
 
         }
-
-        unsigned int f;
-
-        char temp[3];
 
         temp[0] = p1->arr[np].et[1];
         temp[1] = p1->arr[np].et[2];
@@ -644,7 +473,7 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t){
                     for (i = 0; i < 3; ++i) {
                         p1->arr[pos].et[i] = p2->arr[num].et[i];
                     }
-                    ++p1->arr[pos].grado;
+                    p1->arr[pos].grado += -p2->arr[num].grado;
                     p1->arr[pos].r = p2->arr[num].r;
                     p1->arr[pos].c = p2->arr[num].c;
                     i = p1->arr[pos].numero ;
@@ -691,9 +520,7 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t){
         }
 
         if(p2->arr[num].grado < 1){
-
             togli_pedina(&t,p2->arr[num].r,p2->arr[num].c,p2->arr[num].dim+3);
-
         }
         if(!strcmp(str,"sx")){
             togli_pedina(&t,p1->arr[np].r+2,p1->arr[np].c+(p1->arr[np].dim+3)*2,p1->arr[np].dim+3);
@@ -709,6 +536,7 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t){
             }
 
         }
+        promuovi_pedina(p1,np,1,t.r-1);
 
         return 1;
     }
@@ -734,9 +562,7 @@ unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
                 togli_pedina(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3));
                 --p1->arr[np].r;
                 p1->arr[np].c += (p1->arr[np].dim+3);
-                if(p1->arr[np].r == 0){
-                    aggiungi_pedina(p1,np,p1->arr[np].app);
-                }
+                promuovi_pedina(p1,np,1,t->r-1);
                 return 1;
             }else{
                 return 0;
@@ -760,221 +586,82 @@ unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
                     togli_pedina(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3));
                     --p1->arr[np].r;
                     p1->arr[np].c -= (p1->arr[np].dim+3);
-                    if(p1->arr[np].r == 0){
-                        aggiungi_pedina(p1,np,p1->arr[np].app);
-                    }
+                    promuovi_pedina(p1,np,1,t->r-1);
                     return 1;
                 }else{
                     return 0;
                 }
             }
         }
-        if(!strcmp(str,"bassodx")){
-            if(is_pedina(*t,p1->arr[np].r+1,p1->arr[np].c+(p1->arr[np].dim+3),(p1->arr[np].dim+3))){
-                if((p1->arr[np].r+2 >= 0)&&(p1->arr[np].r+2<t->r)&&(p1->arr[np].c+((p1->arr[np].dim+3)*3-1) >= 0)&&(p1->arr[np].c+((p1->arr[np].dim+3)*3-1)< t->c)&&(p1->arr[np].grado > 1)){
-                    if(!is_pedina(*t,p1->arr[np].r+2,p1->arr[np].c+((p1->arr[np].dim+3)*2),(p1->arr[np].dim+3))){
-                        mangia_p1(p1,p2,str,np,*t);
-                        return 1;
+        if(p1->arr[np].isPromoted){
+            if(!strcmp(str,"bassodx")){
+                if(is_pedina(*t,p1->arr[np].r+1,p1->arr[np].c+(p1->arr[np].dim+3),(p1->arr[np].dim+3))){
+                    if((p1->arr[np].r+2 >= 0)&&(p1->arr[np].r+2<t->r)&&(p1->arr[np].c+((p1->arr[np].dim+3)*3-1) >= 0)&&(p1->arr[np].c+((p1->arr[np].dim+3)*3-1)< t->c)){
+                        if(!is_pedina(*t,p1->arr[np].r+2,p1->arr[np].c+((p1->arr[np].dim+3)*2),(p1->arr[np].dim+3))){
+                            mangia_p1(p1,p2,str,np,*t);
+                            return 1;
+                        }else{
+                            return 0;
+                        }
                     }else{
                         return 0;
                     }
                 }else{
-                    return 0;
-                }
-            }else{
-                if((p1->arr[np].r+1 >= 0)&&(p1->arr[np].r+1<t->r)&&(p1->arr[np].c+(p1->arr[np].dim+3) >= 0)&&(p1->arr[np].c+(p1->arr[np].dim+3) < t->c)&&(p1->arr[np].grado > 1)){
-                    togli_pedina(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3));
-                    p1->arr[np].r++;
-                    p1->arr[np].c += (p1->arr[np].dim+3);
-                    if(p1->arr[np].r == 0){
-                        aggiungi_pedina(p1,np,p1->arr[np].app);
-                    }
-                    return 1;
-                }else{
-                    return 0;
-                }
-            }
-        }
-        if(!strcmp(str,"bassosx")){
-            if(is_pedina(*t,p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),(p1->arr[np].dim+3))){
-                if((p1->arr[np].r+2 >= 0)&&(p1->arr[np].r+2<t->r)&&(p1->arr[np].c-((p1->arr[np].dim+3)*2) >= 0)&&(p1->arr[np].c-((p1->arr[np].dim+3)*2)< t->c)&&(p1->arr[np].grado > 1)){
-                    if(!is_pedina(*t,p1->arr[np].r+2,p1->arr[np].c-((p1->arr[np].dim+3)*2),(p1->arr[np].dim+3))){
-                        mangia_p1(p1,p2,str,np,*t);
+                    if((p1->arr[np].r+1 >= 0)&&(p1->arr[np].r+1<t->r)&&(p1->arr[np].c+(p1->arr[np].dim+3) >= 0)&&(p1->arr[np].c+(p1->arr[np].dim+3) < t->c)){
+                        togli_pedina(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3));
+                        p1->arr[np].r++;
+                        p1->arr[np].c += (p1->arr[np].dim+3);
+
                         return 1;
                     }else{
                         return 0;
                     }
-                }else{
-                    return 0;
                 }
-            }else{
-                if((p1->arr[np].r+1 >= 0)&&(p1->arr[np].r+1<t->r)&&(p1->arr[np].c-(p1->arr[np].dim+3) >= 0)&&(p1->arr[np].c-(p1->arr[np].dim+3) < t->c)&&(p1->arr[np].grado > 1)){
-                    togli_pedina(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3));
-                    p1->arr[np].r++;
-                    p1->arr[np].c -= (p1->arr[np].dim+3);
-                    if(p1->arr[np].r == 0){
-                        aggiungi_pedina(p1,np,p1->arr[np].app);
+            }
+            if(!strcmp(str,"bassosx")){
+                if(is_pedina(*t,p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),(p1->arr[np].dim+3))){
+                    if((p1->arr[np].r+2 >= 0)&&(p1->arr[np].r+2<t->r)&&(p1->arr[np].c-((p1->arr[np].dim+3)*2) >= 0)&&(p1->arr[np].c-((p1->arr[np].dim+3)*2)< t->c)){
+                        if(!is_pedina(*t,p1->arr[np].r+2,p1->arr[np].c-((p1->arr[np].dim+3)*2),(p1->arr[np].dim+3))){
+                            mangia_p1(p1,p2,str,np,*t);
+                            return 1;
+                        }else{
+                            return 0;
+                        }
+                    }else{
+                        return 0;
                     }
-                    return 1;
                 }else{
-                    return 0;
+                    if((p1->arr[np].r+1 >= 0)&&(p1->arr[np].r+1<t->r)&&(p1->arr[np].c-(p1->arr[np].dim+3) >= 0)&&(p1->arr[np].c-(p1->arr[np].dim+3) < t->c)){
+                        togli_pedina(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3));
+                        printf("Ciao\n");
+                        p1->arr[np].r++;
+                        p1->arr[np].c -= (p1->arr[np].dim+3);
+                        stampa_player(*p1);
+                        return 1;
+                    }else{
+                        return 0;
+                    }
                 }
             }
         }
+
+
     }
-    return 0;
+
 }
 unsigned int mangia_p2(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t){
 
-    if(!strcmp(str,"sx")){
-        int x,y,z;
-        x = p2->arr[np].r+1;
-        y = p2->arr[np].c-(p2->arr[np].dim+3);
-        z = ricerca_pl(*p1,*p2,x,y);
-        if((z == 2) || (!z)){
-            return 0;
-        }else{
-            unsigned int num;
-            num = convert(t,p2->arr[np].r+1,p2->arr[np].c-1,2+p2->arr[np].dim,3);
-            if(p2->arr[np].grado < 3){
-                p2->arr[np].et[p2->arr[np].cima] = p1->arr[num].et[p1->arr[num].cima+1];
-                --p2->arr[np].cima;
-                p2->arr[np].grado++;
-                p1->arr[num].cima++;
-                --p1->arr[num].grado;
-                p1->arr[num].et[p1->arr[num].cima]= ' ';
-                p2->arr[np].r += 2;
-                p2->arr[np].c -= ((p2->arr[np].dim+3)*2);
-            }else{
-                char c;
-                c = p1->arr[num].et[p2->arr[num].cima+1];
-                aggiungi_pedina(p2,np,c);
-                p1->arr[num].cima++;
-                --p1->arr[num].grado;
-                p1->arr[num].et[p2->arr[num].cima]= ' ';
-                p2->arr[np].r += 2;
-                p2->arr[np].c -= ((p2->arr[np].dim+3)*2);
-            }
-            if(p1->arr[num].grado == 0){
-                togli_pedina(&t,p2->arr[np].r-1,p2->arr[np].c+(p2->arr[np].dim+3),(p2->arr[np].dim+3));
-
-            }
-            togli_pedina(&t,p2->arr[np].r-2,p2->arr[np].c+((p2->arr[np].dim+3)*2),(p2->arr[np].dim+3));
-            return 1;
+    if(!strcmp(str,"sx")) {
+        mangia_p1(p2,p1,"bassosx",np,t);
+    }else{
+        if(!strcmp(str,"dx")){
+            mangia_p1(p2,p1,"bassodx",np,t);
         }
-
-    }
-    if(!strcmp(str,"dx")){
-        unsigned int x,y,z = 0;
-        x = p2->arr[np].r+1;
-        y = p2->arr[np].c+(p2->arr[np].dim+3);
-        z = ricerca_pl(*p1,*p2,x,y);
-        if((z == 2) || (!z)){
-            return 0;
-        }else{
-            unsigned int num ;
-            num = convert(t,p2->arr[np].r+1,p2->arr[np].c+((p2->arr[np].dim+3)*2-1),2+p2->arr[np].dim,3);
-            if(p2->arr[np].grado < 3){
-                p2->arr[np].et[p2->arr[np].cima] = p1->arr[num].et[p1->arr[num].cima+1];
-                --p2->arr[np].cima;
-                p2->arr[np].grado++;
-                p1->arr[num].cima++;
-                --p1->arr[num].grado;
-                p1->arr[num].et[p1->arr[num].cima]= ' ';
-                p2->arr[np].r += 2;
-                p2->arr[np].c += ((p2->arr[np].dim+3)*2);
-            }else{
-                char c;
-                c = p1->arr[num].et[p2->arr[num].cima+1];
-                aggiungi_pedina(p2,np,c);
-                p1->arr[num].cima++;
-                --p1->arr[num].grado;
-                p1->arr[num].et[p2->arr[num].cima]= ' ';
-                p2->arr[np].r += 2;
-                p2->arr[np].c += ((p2->arr[np].dim+3)*2);
-            }
-            if(p1->arr[num].grado == 0){
-                togli_pedina(&t,p2->arr[np].r-1,p2->arr[np].c-(p2->arr[np].dim+3),(p2->arr[np].dim+3));
-
-            }
-            togli_pedina(&t,p2->arr[np].r-2,p2->arr[np].c-((p2->arr[np].dim+3)*2),(p2->arr[np].dim+3));
-            return 1;
+        if(!strcmp(str,"bassosx")&&(p2->arr[np].isPromoted)) {
+            mangia_p1(p2,p1,"sx",np,t);
         }
-
-    }
-    if(!strcmp(str,"bassosx")){
-        int x,y,z;
-        x = p2->arr[np].r-1;
-        y = p2->arr[np].c-(p2->arr[np].dim+3);
-        z = ricerca_pl(*p1,*p2,x,y);
-        if((z == 2) || (!z)){
-            return 0;
-        }else{
-            unsigned int num;
-            num = convert(t,p2->arr[np].r-1,p2->arr[np].c-1,2+p2->arr[np].dim,3);
-            if(p2->arr[np].grado < 3){
-                p2->arr[np].et[p2->arr[np].cima] = p1->arr[num].et[p1->arr[num].cima+1];
-                --p2->arr[np].cima;
-                p2->arr[np].grado++;
-                p1->arr[num].cima++;
-                --p1->arr[num].grado;
-                p1->arr[num].et[p1->arr[num].cima]= ' ';
-                p2->arr[np].r -= 2;
-                p2->arr[np].c -= ((p2->arr[np].dim+3)*2);
-            }else{
-                char c;
-                c = p1->arr[num].et[p2->arr[num].cima+1];
-                aggiungi_pedina(p2,np,c);
-                p1->arr[num].cima++;
-                --p1->arr[num].grado;
-                p1->arr[num].et[p2->arr[num].cima]= ' ';
-                p2->arr[np].r -= 2;
-                p2->arr[np].c -= ((p2->arr[np].dim+3)*2);
-            }
-            if(p1->arr[num].grado == 0){
-                togli_pedina(&t,p2->arr[np].r+1,p2->arr[np].c+(p2->arr[np].dim+3),(p2->arr[np].dim+3));
-
-            }
-            togli_pedina(&t,p2->arr[np].r+2,p2->arr[np].c+((p2->arr[np].dim+3)*2),(p2->arr[np].dim+3));
-            return 1;
-        }
-
-    }
-    if(!strcmp(str,"bassodx")){
-        int x,y,z;
-        x = p2->arr[np].r-1;
-        y = p2->arr[np].c+(p2->arr[np].dim+3);
-        z = ricerca_pl(*p1,*p2,x,y);
-        if((z == 2) || (!z)){
-            return 0;
-        }else{
-            unsigned int num;
-            num = convert(t,p2->arr[np].r-1,p2->arr[np].c+((p2->arr[np].dim+3)*2-1),2+p2->arr[np].dim,3);
-            if(p2->arr[np].grado < 3){
-                p2->arr[np].et[p2->arr[np].cima] = p1->arr[num].et[p1->arr[num].cima+1];
-                --p2->arr[np].cima;
-                p2->arr[np].grado++;
-                p1->arr[num].cima++;
-                --p1->arr[num].grado;
-                p1->arr[num].et[p1->arr[num].cima]= ' ';
-                p2->arr[np].r -= 2;
-                p2->arr[np].c += ((p2->arr[np].dim+3)*2);
-            }else{
-                char c;
-                c = p1->arr[num].et[p2->arr[num].cima+1];
-                aggiungi_pedina(p2,np,c);
-                p1->arr[num].cima++;
-                --p1->arr[num].grado;
-                p1->arr[num].et[p2->arr[num].cima]= ' ';
-                p2->arr[np].r -= 2;
-                p2->arr[np].c += ((p2->arr[np].dim+3)*2);
-            }
-            if(p1->arr[num].grado == 0){
-                togli_pedina(&t,p2->arr[np].r+1,p2->arr[np].c-(p2->arr[np].dim+3),(p2->arr[np].dim+3));
-
-            }
-            togli_pedina(&t,p2->arr[np].r+2,p2->arr[np].c-((p2->arr[np].dim+3)*2),(p2->arr[np].dim+3));
-            return 1;
+        if(!strcmp(str,"bassodx")&&(p2->arr[np].isPromoted)) {
+            mangia_p1(p2,p1,"dx",np,t);
         }
 
     }
@@ -982,111 +669,25 @@ unsigned int mangia_p2(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo 
     return 0;
 }
 unsigned int sposta_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *p1){
+    if(!strcmp(str,"sx")) {
+        p2->arr[np].isPromoted = 1;
+        sposta_p1(p2,np,"bassosx",t,p1);
+        p2->arr[np].isPromoted = 0;
+    }else{
+        if(!strcmp(str,"dx")){
+            p2->arr[np].isPromoted = 1;
+            sposta_p1(p2,np,"bassodx",t,p1);
+            p2->arr[np].isPromoted = 0;
+        }
+        if(!strcmp(str,"bassosx")&&(p2->arr[np].isPromoted)) {
+            sposta_p1(p2,np,"sx",t,p1);
+        }
+        if(!strcmp(str,"bassodx")&&(p2->arr[np].isPromoted)) {
+            sposta_p1(p2,np,"dx",t,p1);
+        }
 
-    if(!strcmp(str,"sx")){
-        if(is_pedina(*t,p2->arr[np].r+1,p2->arr[np].c-(p2->arr[np].dim+3),(p2->arr[np].dim+3))){
-            if((p2->arr[np].r+2 >= 0)&&(p2->arr[np].r+2<t->r)&&(p2->arr[np].c-((p2->arr[np].dim+3)*2) >= 0)&&(p2->arr[np].c-((p2->arr[np].dim+3)*2)< t->c)){
-                if(!is_pedina(*t,p2->arr[np].r+2,p2->arr[np].c-((p2->arr[np].dim+3)*2),(p2->arr[np].dim+3))){
-                    mangia_p2(p1,p2,str,np,*t);
-                    return 1;
-                }else{
-                    return 0;
-                }
-            }else{
-                return 0;
-            }
-        }else{
-            if((p2->arr[np].r+1 >= 0)&&(p2->arr[np].r+1<t->r)&&(p2->arr[np].c-(p2->arr[np].dim+3) >= 0)&&(p2->arr[np].c-(p2->arr[np].dim+3) < t->c)){
-                togli_pedina(t,p2->arr[np].r,p2->arr[np].c,(p2->arr[np].dim+3));
-                p2->arr[np].r++;
-                p2->arr[np].c -= (p2->arr[np].dim+3);
-                if(p2->arr[np].r == 0){
-                    aggiungi_pedina(p2,np,p2->arr[np].app);
-                }
-                return 1;
-            }else{
-                return 0;
-            }
-        }
     }
-    if(!strcmp(str,"dx")){
-        if(is_pedina(*t,p2->arr[np].r+1,p2->arr[np].c+(p2->arr[np].dim+3),(p2->arr[np].dim+3))){
-            if((p2->arr[np].r+2 >= 0)&&(p2->arr[np].r+2<t->r)&&(p2->arr[np].c+((p2->arr[np].dim+3)*3-1) >= 0)&&(p2->arr[np].c+((p2->arr[np].dim+3)*3-1)< t->c)){
-                if(!is_pedina(*t,p2->arr[np].r+2,p2->arr[np].c+((p2->arr[np].dim+3)*2),(p2->arr[np].dim+3))){
-                    mangia_p2(p1,p2,str,np,*t);
-                    return 1;
-                }else{
-                    return 0;
-                }
-            }else{
-                return 0;
-            }
-        }else{
-            if((p2->arr[np].r+1 >= 0)&&(p2->arr[np].r+1<t->r)&&(p2->arr[np].c+(p2->arr[np].dim+3) >= 0)&&(p2->arr[np].c+(p2->arr[np].dim+3) < t->c)){
-                togli_pedina(t,p2->arr[np].r,p2->arr[np].c,(p2->arr[np].dim+3));
-                p2->arr[np].r++;
-                p2->arr[np].c += (p2->arr[np].dim+3);
-                if(p2->arr[np].r == 0){
-                    aggiungi_pedina(p2,np,p2->arr[np].app);
-                }
-                return 1;
-            }else{
-                return 0;
-            }
-        }
-    }
-    if(!strcmp(str,"bassosx")){
-        if(is_pedina(*t,p2->arr[np].r-1,p2->arr[np].c-(p2->arr[np].dim+3),(p2->arr[np].dim+3))){
-            if((p2->arr[np].r-2 >= 0)&&(p2->arr[np].r-2<t->r)&&(p2->arr[np].c-((p2->arr[np].dim+3)*2) >= 0)&&(p2->arr[np].c-((p2->arr[np].dim+3)*2)< t->c)&&(p2->arr[np].grado > 1)){
-                if(!is_pedina(*t,p2->arr[np].r-2,p2->arr[np].c-((p2->arr[np].dim+3)*2),(p2->arr[np].dim+3))){
-                    mangia_p2(p1,p2,str,np,*t);
-                    return 1;
-                }else{
-                    return 0;
-                }
-            }else{
-                return 0;
-            }
-        }else{
-            if((p2->arr[np].r-1 >= 0)&&(p2->arr[np].r-1<t->r)&&(p2->arr[np].c-(p2->arr[np].dim+3) >= 0)&&(p2->arr[np].c-(p2->arr[np].dim+3) < t->c)&&(p2->arr[np].grado > 1)){
-                togli_pedina(t,p2->arr[np].r,p2->arr[np].c,(p2->arr[np].dim+3));
-                p2->arr[np].r--;
-                p2->arr[np].c -= (p2->arr[np].dim+3);
-                if(p2->arr[np].r == 0){
-                    aggiungi_pedina(p2,np,p2->arr[np].app);
-                }
-                return 1;
-            }else{
-                return 0;
-            }
-        }
-    }
-    if(!strcmp(str,"bassodx")){
-        if(is_pedina(*t,p2->arr[np].r-1,p2->arr[np].c+(p2->arr[np].dim+3),(p2->arr[np].dim+3))){
-            if((p2->arr[np].r-2 >= 0)&&(p2->arr[np].r-2<t->r)&&(p2->arr[np].c+((p2->arr[np].dim+3)*3-1) >= 0)&&(p2->arr[np].c+((p2->arr[np].dim+3)*3-1)< t->c)&&(p2->arr[np].grado > 1)){
-                if(!is_pedina(*t,p2->arr[np].r-2,p2->arr[np].c+((p2->arr[np].dim+3)*2),(p2->arr[np].dim+3))){
-                    mangia_p2(p1,p2,str,np,*t);
-                    return 1;
-                }else{
-                    return 0;
-                }
-            }else{
-                return 0;
-            }
-        }else{
-            if((p2->arr[np].r-1 >= 0)&&(p2->arr[np].r-1<t->r)&&(p2->arr[np].c+(p2->arr[np].dim+3) >= 0)&&(p2->arr[np].c+(p2->arr[np].dim+3) < t->c)&&(p2->arr[np].grado > 1)){
-                togli_pedina(t,p2->arr[np].r,p2->arr[np].c,(p2->arr[np].dim+3));
-                p2->arr[np].r--;
-                p2->arr[np].c += (p2->arr[np].dim+3);
-                if(p2->arr[np].r == 0){
-                    aggiungi_pedina(p2,np,p2->arr[np].app);
-                }
-                return 1;
-            }else{
-                return 0;
-            }
-        }
-    }
+
     return 0;
 }
 unsigned int is_victory(tplayer p1,tplayer p2){
@@ -1145,22 +746,19 @@ unsigned int scelta_turno(){
 unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
     char str[10];
     unsigned int np,y = 0;
-    setYellow(1);
+
     printf("Turno player 1 : \n");
-    resetColor();
     stampa_campo(*t,(p1->arr[0].dim+3));
 
-    /*
     printf("Vuoi uscire dal gioco ? ");
     scanf("%s",str);
     if((!strcmp(str,"si"))||(!strcmp(str,"Si"))||(!strcmp(str,"SI"))){
         return 1;
     }
-    */
+
 
     printf("Numero di pedina da selezionare : ");
     scanf("%u",&np);
-    /*
     printf("Vuoi selezionare questa pedina %d ? ",np);
     scanf("%s",str);
 
@@ -1170,7 +768,7 @@ unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
         printf("Vuoi selezionare questa pedina %d ? ",np);
         scanf("%s",str);
     }
-    */
+
     while(y==0){
         printf("Verso che direzione vuoi spostare la pedina ? ");
         scanf("%s",str);
@@ -1184,22 +782,19 @@ unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
 unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
     char str[10];
     unsigned int np,y = 0;
-    setRed(1);
+
     printf("Turno player 2 : \n");
-    resetColor();
     stampa_campo_inv(*t,(p2->arr[0].dim+3));
 
-    /*
     printf("Vuoi uscire dal gioco ? ");
     scanf("%s",str);
     if((!strcmp(str,"si"))||(!strcmp(str,"Si"))||(!strcmp(str,"SI"))){
         return 1;
-    } */
+    }
 
 
     printf("Numero di pedina da selezionare : ");
     scanf("%u",&np);
-    /*
     printf("Vuoi selezionare questa pedina %d ? ",np);
     scanf("%s",str);
 
@@ -1210,7 +805,7 @@ unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
         scanf("%s",str);
     }
 
-    */
+
     while(y==0){
         printf("Verso che direzione vuoi spostare la pedina ? ");
         scanf("%s",str);
@@ -1222,7 +817,6 @@ unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
 
     return 0;
 }
-
 int is_empty(tplayer p){
     int pos = -1;
     unsigned int i;
@@ -1231,9 +825,9 @@ int is_empty(tplayer p){
             pos = i;
         }
     }
+
     return pos;
 }
-
 unsigned int controllo_pedina(tplayer *p,tplayer *p2,unsigned int np){
 
 
@@ -1278,4 +872,5 @@ unsigned int controllo_pedina(tplayer *p,tplayer *p2,unsigned int np){
         printf("Errore nella realloc\n");
         return 0;
     }
+}
 }
