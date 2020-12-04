@@ -138,16 +138,11 @@ void stampa_campo(tcampo t,unsigned int cifre){
                         setWhite();
                         printf(" %c",t.mat[i][j]);
                     }else{
-                        if(z == cifre-1){
-                            setWhite();
-                            printf("%c ",t.mat[i][j+z]);
-                        }else{
-                            setWhite();
-                            printf("%c",t.mat[i][j+z]);
-                        }
+                        printf("%c",t.mat[i][j+z]);
                     }
-                    resetColor();
-                }    
+                }
+                printf(" ");
+                resetColor();
             }
             else{
                 for(z = 0 ; z < cifre; ++z){
