@@ -544,7 +544,7 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t){
 
 
 }
-unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2){
+unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl){
     if(!strcmp(str,"dx")){
         if(is_pedina(*t,p1->arr[np].r-1,p1->arr[np].c+(p1->arr[np].dim+3),(p1->arr[np].dim+3)*2)){
             if((p1->arr[np].r-2 >= 0)&&(p1->arr[np].r-2<t->r)&&(p1->arr[np].c+((p1->arr[np].dim+3)*3-1) >= 0)&&(p1->arr[np].c+(p1->arr[np].dim+3)*3-1)< t->c){
@@ -593,7 +593,7 @@ unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
                 }
             }
         }
-        if(p1->arr[np].isPromoted){
+        if((p1->arr[np].isPromoted)||(pl == 2)){
             if(!strcmp(str,"bassodx")){
                 if(is_pedina(*t,p1->arr[np].r+1,p1->arr[np].c+(p1->arr[np].dim+3),(p1->arr[np].dim+3))){
                     if((p1->arr[np].r+2 >= 0)&&(p1->arr[np].r+2<t->r)&&(p1->arr[np].c+((p1->arr[np].dim+3)*3-1) >= 0)&&(p1->arr[np].c+((p1->arr[np].dim+3)*3-1)< t->c)){
@@ -653,15 +653,19 @@ unsigned int mangia_p2(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo 
 
     if(!strcmp(str,"sx")) {
         mangia_p1(p2,p1,"bassosx",np,t);
+        return 1;
     }else{
         if(!strcmp(str,"dx")){
             mangia_p1(p2,p1,"bassodx",np,t);
+            return 1;
         }
         if(!strcmp(str,"bassosx")&&(p2->arr[np].isPromoted)) {
             mangia_p1(p2,p1,"sx",np,t);
+            return 1;
         }
         if(!strcmp(str,"bassodx")&&(p2->arr[np].isPromoted)) {
             mangia_p1(p2,p1,"dx",np,t);
+            return 1;
         }
 
     }
@@ -670,20 +674,20 @@ unsigned int mangia_p2(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo 
 }
 unsigned int sposta_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *p1){
     if(!strcmp(str,"sx")) {
-        p2->arr[np].isPromoted = 1;
-        sposta_p1(p2,np,"bassosx",t,p1);
-        p2->arr[np].isPromoted = 0;
+        sposta_p1(p2,np,"bassosx",t,p1,2);
+        return 1;
     }else{
         if(!strcmp(str,"dx")){
-            p2->arr[np].isPromoted = 1;
-            sposta_p1(p2,np,"bassodx",t,p1);
-            p2->arr[np].isPromoted = 0;
+            sposta_p1(p2,np,"bassodx",t,p1,2);
+            return 1;
         }
         if(!strcmp(str,"bassosx")&&(p2->arr[np].isPromoted)) {
-            sposta_p1(p2,np,"sx",t,p1);
+            sposta_p1(p2,np,"sx",t,p1,2);
+            return 1;
         }
         if(!strcmp(str,"bassodx")&&(p2->arr[np].isPromoted)) {
-            sposta_p1(p2,np,"dx",t,p1);
+            sposta_p1(p2,np,"dx",t,p1,2);
+            return 1;
         }
 
     }
@@ -772,7 +776,7 @@ unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
     while(y==0){
         printf("Verso che direzione vuoi spostare la pedina ? ");
         scanf("%s",str);
-        y = sposta_p1(p1,np,str,t,p2);
+        y = sposta_p1(p1,np,str,t,p2,1);
     }
     aggiorna_campo(t,*p1,*p2);
     stampa_campo(*t,(p1->arr[0].dim+3));
