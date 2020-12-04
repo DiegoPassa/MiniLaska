@@ -4,6 +4,8 @@
 #include<string.h>
 #include<time.h>
 #include <math.h>
+#include "lib/colori.h"
+
 tcampo *crea_campo(unsigned int r,unsigned int col,unsigned int cifre){
     tcampo *t;
 
@@ -50,18 +52,18 @@ void inizializza_campo(tcampo *t,unsigned int cifre){
 
 }
 void stampa_campo(tcampo t,unsigned int cifre){
-    unsigned int i,j;
 
-
+    unsigned int i,j, k = 0;
     for(j=0; j<t.c; j +=cifre)
     {
         int z;
-        for(z = 0 ; z < cifre ; ++z){
+        printf("+");
+        for(z = 1 ; z < cifre ; ++z){
             printf("-");
         }
         printf("---");
     }
-    printf("-");/* recupero angolo dx */
+    printf("+");/* recupero angolo dx */
 
     printf("\n");
 
@@ -71,18 +73,97 @@ void stampa_campo(tcampo t,unsigned int cifre){
         for(j=0; j<t.c; j +=cifre)
         {
             int z;
-            for(z = 0 ; z < cifre; ++z){
-                if(z == 0){
-                    printf("| %c",t.mat[i][j]);
-                }else{
-                    if(z == cifre-1){
-                        printf("%c ",t.mat[i][j+z]);
+            /* controllo dov'è la cima */
+            while (t.mat[i][j+k] != 'N' && t.mat[i][j+k] != 'B' && k<3)
+            {
+                k++;
+            }
+            if (t.mat[i][j+k] == 'N'){
+                for(z = 0 ; z < cifre; ++z){
+                    if(z == 0){
+                        printf("|");
+                        setBlack();
+                        setRed(2);
+                        printf(" %c",t.mat[i][j]);
                     }else{
-                        printf("%c",t.mat[i][j+z]);
+                        if(z == cifre-1){
+                            setBlack();
+                            setRed(2);
+                            printf("%c ",t.mat[i][j+z]);
+                        }else{
+                            setBlack();
+                            if (t.mat[i][j+z] == 'B')
+                            {
+                                setYellow(2);
+                            }else
+                            {
+                                setRed(2);
+                            }                                            
+                            printf("%c",t.mat[i][j+z]);
+                        }
+                    }
+                    resetColor();
+                }
+            }else if (t.mat[i][j+k] == 'B'){
+                for(z = 0 ; z < cifre; ++z){
+                    if(z == 0){
+                        printf("|");
+                        setBlack();
+                        setYellow(2);
+                        printf(" %c",t.mat[i][j]);
+                    }else{
+                        if(z == cifre-1){
+                            setBlack();
+                            setYellow(2);
+                            printf("%c ",t.mat[i][j+z]);
+                        }else{
+                            setBlack();
+                            if (t.mat[i][j+z] == 'N')
+                            {
+                                setRed(2);
+                            }else
+                            {
+                                setYellow(2);
+                            }                                            
+                            printf("%c",t.mat[i][j+z]);
+                        }
+                    }
+                    resetColor();
+                }
+            }else if (t.mat[i][j+2] == '#')
+            {
+                for(z = 0 ; z < cifre; ++z){
+                    if(z == 0){
+                        printf("|");
+                        setWhite();
+                        printf(" %c",t.mat[i][j]);
+                    }else{
+                        if(z == cifre-1){
+                            setWhite();
+                            printf("%c ",t.mat[i][j+z]);
+                        }else{
+                            setWhite();
+                            printf("%c",t.mat[i][j+z]);
+                        }
+                    }
+                    resetColor();
+                }    
+            }
+            else{
+                for(z = 0 ; z < cifre; ++z){
+                    if(z == 0){
+                        printf("| %c",t.mat[i][j]);
+                    }else{
+                        if(z == cifre-1){
+                            printf("%c ",t.mat[i][j+z]);
+                        }else{
+                            printf("%c",t.mat[i][j+z]);
+                        }
                     }
                 }
-
+                
             }
+            k = 0;
         }
 
         printf("|\n");
@@ -93,7 +174,8 @@ void stampa_campo(tcampo t,unsigned int cifre){
             {
                 if(j != 0){
                     int z;
-                    for(z = 0 ; z < cifre ; ++z){
+                    printf("+");
+                    for(z = 1 ; z < cifre ; ++z){
                         printf("-");
                     }
                     printf("---");
@@ -116,29 +198,31 @@ void stampa_campo(tcampo t,unsigned int cifre){
     for(j=0; j<t.c; j +=cifre)
     {
         int z;
-        for(z = 0 ; z < cifre ; ++z){
+        printf("+");
+        for(z = 1 ; z < cifre ; ++z){
             printf("-");
         }
         printf("---");
     }
-    printf("-");/* recupero angolo dx */
+    printf("+");/* recupero angolo dx */
 
     printf("\n");
 
 }
 void stampa_campo_inv(tcampo t,unsigned int cifre){
-    unsigned int j;
+    unsigned j, k = 0;
     int i;
 
     for(j=0; j<t.c; j +=cifre)
     {
         int z;
-        for(z = 0 ; z < cifre ; ++z){
+        printf("+");
+        for(z = 1 ; z < cifre ; ++z){
             printf("-");
         }
         printf("---");
     }
-    printf("-");/* recupero angolo dx */
+    printf("+");/* recupero angolo dx */
 
     printf("\n");
 
@@ -148,18 +232,97 @@ void stampa_campo_inv(tcampo t,unsigned int cifre){
         for(j=0; j<t.c; j +=cifre)
         {
             int z;
-            for(z = 0 ; z < cifre; ++z){
-                if(z == 0){
-                    printf("| %c",t.mat[i][j]);
-                }else{
-                    if(z == cifre-1){
-                        printf("%c ",t.mat[i][j+z]);
-                    }else{
-                        printf("%c",t.mat[i][j+z]);
-                    }
-                }
-
+            /* controllo dov'è la cima */
+            while (t.mat[i][j+k] != 'N' && t.mat[i][j+k] != 'B' && k<3)
+            {
+                k++;
             }
+            if (t.mat[i][j+k] == 'N'){
+                for(z = 0 ; z < cifre; ++z){
+                    if(z == 0){
+                        printf("|");
+                        setBlack();
+                        setRed(2);
+                        printf(" %c",t.mat[i][j]);
+                    }else{
+                        if(z == cifre-1){
+                            setBlack();
+                            setRed(2);
+                            printf("%c ",t.mat[i][j+z]);
+                        }else{
+                            setBlack();
+                            if (t.mat[i][j+z] == 'B')
+                            {
+                                setYellow(2);
+                            }else
+                            {
+                                setRed(2);
+                            }                                            
+                            printf("%c",t.mat[i][j+z]);
+                        }
+                    }
+                    resetColor();
+                }          
+            }else if (t.mat[i][j+k] == 'B')
+            {
+                for(z = 0 ; z < cifre; ++z){
+                    if(z == 0){
+                        printf("|");
+                        setBlack();
+                        setYellow(2);
+                        printf(" %c",t.mat[i][j]);
+                    }else{                
+                        if(z == cifre-1){
+                            setBlack();
+                            setYellow(2);
+                            printf("%c ",t.mat[i][j+z]);
+                        }else{
+                            setBlack();
+                            if (t.mat[i][j+z] == 'N')
+                            {
+                                setRed(2);
+                            }else
+                            {
+                                setYellow(2);
+                            }                                            
+                            printf("%c",t.mat[i][j+z]);
+                        }
+                    }
+                    resetColor();
+                }
+            }else if (t.mat[i][j+2] == '#')
+            {
+                for(z = 0 ; z < cifre; ++z){
+                    if(z == 0){
+                        printf("|");
+                        setWhite();
+                        printf(" %c",t.mat[i][j]);
+                    }else{
+                        if(z == cifre-1){
+                            setWhite();
+                            printf("%c ",t.mat[i][j+z]);
+                        }else{
+                            setWhite();
+                            printf("%c",t.mat[i][j+z]);
+                        }
+                    }
+                    resetColor();
+                }    
+            }
+            else{
+                for(z = 0 ; z < cifre; ++z){
+                    if(z == 0){
+                        printf("| %c",t.mat[i][j]);
+                    }else{
+                        if(z == cifre-1){
+                            printf("%c ",t.mat[i][j+z]);
+                        }else{
+                            printf("%c",t.mat[i][j+z]);
+                        }
+                    }
+                }            
+            }
+            k = 0;
         }
 
         printf("|\n");
@@ -170,7 +333,8 @@ void stampa_campo_inv(tcampo t,unsigned int cifre){
             {
                 if(j != 0){
                     int z;
-                    for(z = 0 ; z < cifre ; ++z){
+                    printf("+");
+                    for(z = 1 ; z < cifre ; ++z){
                         printf("-");
                     }
                     printf("---");
@@ -193,12 +357,13 @@ void stampa_campo_inv(tcampo t,unsigned int cifre){
     for(j=0; j<t.c; j +=cifre)
     {
         int z;
-        for(z = 0 ; z < cifre ; ++z){
+        printf("+");
+        for(z = 1 ; z < cifre ; ++z){
             printf("-");
         }
         printf("---");
     }
-    printf("-");/* recupero angolo dx */
+    printf("+");/* recupero angolo dx */
 
     printf("\n");
 
@@ -209,6 +374,7 @@ tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,
 
     p = (tplayer*)malloc(sizeof(tplayer));
     p->arr = (tpedina*)malloc(sizeof(tpedina)*n);
+    p->colore = ped;
     for(h = 0 ; h < n ; ++h){
         p->arr[h].et = (char*)malloc(sizeof(char)*(3+cifre));
     }
@@ -309,18 +475,27 @@ tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,
 
 void stampa_player(tplayer p){
     unsigned int i,j;
+    printf("\nCOLORE GIOCATORE : %c", p.colore);
+    printf("\n"); 
     for(i = 0 ; i < p.dim ; ++i){
-
+        printf("\n"); 
         printf("Pedina = ");
         for(j = 0 ; j < 3+p.arr[i].dim ;++j ){
-            printf("%c",p.arr[i].et[j]);
+            if (p.arr[i].et[j] == ' ')
+            {
+                printf("/");
+            }else
+            {
+                printf("%c",p.arr[i].et[j]);               
+            }
+            
+            
         }
         printf("\n");
         printf("Cima = %d\n",p.arr[i].cima);
         printf("Numero pedina : %d \n",p.arr[i].numero);
         printf("Grado pedina : %d \n",p.arr[i].grado);
-        printf("Posizione nel campo x e y : %d , %d\n",p.arr[i].r,p.arr[i].c );
-        printf("\n");
+        printf("Posizione nel campo x : %d,  y : %d\n",p.arr[i].c,p.arr[i].r);
     }
 }
 
@@ -373,10 +548,10 @@ void aggiungi_pedina(tplayer *p,unsigned int np,char ped){
     }
 }
 unsigned int ricerca_pl(tplayer p1,tplayer p2,unsigned int x,unsigned int y){
-    int i,flag = 0;
+    int i,flag = 0; /* nessun player trovato */
     for(i = 0 ; i < p1.dim ; ++i){
         if((p1.arr[i].r == x)&&(p1.arr[i].c == y)){
-            flag = 1;
+            flag = 1; /* player 1 trovato */
         }
     }
     if(flag){
@@ -384,7 +559,7 @@ unsigned int ricerca_pl(tplayer p1,tplayer p2,unsigned int x,unsigned int y){
     }else{
         for(i = 0 ; i < p2.dim ; ++i){
             if((p2.arr[i].r == x)&&(p2.arr[i].c == y)){
-                flag = 2;
+                flag = 2; /* player 2 trovato */
             }
         }
     }
@@ -404,6 +579,8 @@ unsigned int convert(tcampo t,unsigned int r,unsigned int c,unsigned int dim){
 
 unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t){
     unsigned int x,y,z;
+    unsigned int f;
+    char temp[3];
     if(!strcmp(str,"sx")){
         x = p1->arr[np].r-1;
         y = p1->arr[np].c-(p1->arr[np].dim+3);
@@ -441,8 +618,6 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t){
             }
 
         }
-        char temp[3];
-        unsigned int f;
         /* MANCA PARTE NEL CASO CI SIA LA TORRE ALTA TRE PEDINE */
         temp[0] = p1->arr[np].et[1];
         temp[1] = p1->arr[np].et[2];
@@ -547,11 +722,6 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t){
 
         return 1;
     }
-
-
-
-
-
 }
 unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2){
     if(!strcmp(str,"dx")){
@@ -662,7 +832,6 @@ unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
     return 0;
 }
 unsigned int mangia_p2(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t){
-
     if(!strcmp(str,"sx")){
         int x,y,z;
         x = p2->arr[np].r+1;
@@ -815,9 +984,9 @@ unsigned int mangia_p2(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo 
         }
 
     }
-
     return 0;
 }
+
 unsigned int sposta_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *p1){
 
     if(!strcmp(str,"sx")){
@@ -982,19 +1151,22 @@ unsigned int scelta_turno(){
 unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
     char str[10];
     unsigned int np,y = 0;
-
+    setYellow(1);
     printf("Turno player 1 : \n");
+    resetColor();
     stampa_campo(*t,(p1->arr[0].dim+3));
 
+    /*
     printf("Vuoi uscire dal gioco ? ");
     scanf("%s",str);
     if((!strcmp(str,"si"))||(!strcmp(str,"Si"))||(!strcmp(str,"SI"))){
         return 1;
     }
-
+    */
 
     printf("Numero di pedina da selezionare : ");
     scanf("%u",&np);
+    /*
     printf("Vuoi selezionare questa pedina %d ? ",np);
     scanf("%s",str);
 
@@ -1004,7 +1176,7 @@ unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
         printf("Vuoi selezionare questa pedina %d ? ",np);
         scanf("%s",str);
     }
-
+    */
     while(y==0){
         printf("Verso che direzione vuoi spostare la pedina ? ");
         scanf("%s",str);
@@ -1018,19 +1190,22 @@ unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
 unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
     char str[10];
     unsigned int np,y = 0;
-
+    setRed(1);
     printf("Turno player 2 : \n");
+    resetColor();
     stampa_campo_inv(*t,(p2->arr[0].dim+3));
 
+    /*
     printf("Vuoi uscire dal gioco ? ");
     scanf("%s",str);
     if((!strcmp(str,"si"))||(!strcmp(str,"Si"))||(!strcmp(str,"SI"))){
         return 1;
-    }
+    } */
 
 
     printf("Numero di pedina da selezionare : ");
     scanf("%u",&np);
+    /*
     printf("Vuoi selezionare questa pedina %d ? ",np);
     scanf("%s",str);
 
@@ -1041,7 +1216,7 @@ unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
         scanf("%s",str);
     }
 
-
+    */
     while(y==0){
         printf("Verso che direzione vuoi spostare la pedina ? ");
         scanf("%s",str);
@@ -1053,6 +1228,7 @@ unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
 
     return 0;
 }
+
 int is_empty(tplayer p){
     int pos = -1;
     unsigned int i;
@@ -1061,9 +1237,9 @@ int is_empty(tplayer p){
             pos = i;
         }
     }
-
     return pos;
 }
+
 unsigned int controllo_pedina(tplayer *p,tplayer *p2,unsigned int np){
 
 
