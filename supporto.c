@@ -416,7 +416,7 @@ unsigned int is_in(unsigned int r,unsigned int c,tcampo t){
 }
 int is_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl){
     if(!strcmp(str,"sx")){
-        if((is_in(p1->arr[np].r-2,p1->arr[np].c-((p1->arr[np].dim+3)*2),*t))&&((is_in(p1->arr[np].r-1,p1->arr[np].c-p1->arr[np].dim+3,*t)))){
+        if((is_in(p1->arr[np].r-2,p1->arr[np].c-((p1->arr[np].dim+3)*2),*t))&&((is_in(p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3),*t)))){
             unsigned x,y,z;
             x = p1->arr[np].r-1;
             y = p1->arr[np].c-(p1->arr[np].dim+3);
@@ -437,7 +437,7 @@ int is_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned 
         }
     }else {
         if (!strcmp(str, "dx")) {
-            if ((is_in(p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 3 - 1), *t))&&((is_in(p1->arr[np].r - 1, p1->arr[np].c + p1->arr[np].dim + 3, *t)))) {
+            if ((is_in(p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 3 - 1), *t))&&((is_in(p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3), *t)))) {
                 unsigned x, y, z;
                 x = p1->arr[np].r - 1;
                 y = p1->arr[np].c + (p1->arr[np].dim + 3);
@@ -459,7 +459,7 @@ int is_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned 
             }
         }
         if (!strcmp(str, "bassosx") && ((pl == 2) || (p1->arr[np].isPromoted))) {
-            if ((is_in(p1->arr[np].r+2,p1->arr[np].c-((p1->arr[np].dim+3)*2),*t))&&((is_in(p1->arr[np].r+1,p1->arr[np].c-p1->arr[np].dim+3,*t)))) {
+            if ((is_in(p1->arr[np].r+2,p1->arr[np].c-((p1->arr[np].dim+3)*2),*t))&&((is_in(p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),*t)))) {
                 unsigned x, y, z;
                 x = p1->arr[np].r+1;
                 y = p1->arr[np].c-(p1->arr[np].dim+3);
@@ -480,7 +480,7 @@ int is_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned 
             }
         }
         if (!strcmp(str, "bassodx") && ((pl == 2) || (p1->arr[np].isPromoted))) {
-            if ((is_in(p1->arr[np].r+2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 3 - 1), *t))&&((is_in(p1->arr[np].r+ 1, p1->arr[np].c + p1->arr[np].dim + 3, *t)))) {
+            if ((is_in(p1->arr[np].r+2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 3 - 1), *t))&&((is_in(p1->arr[np].r+ 1, p1->arr[np].c +(p1->arr[np].dim + 3) , *t)))) {
                 unsigned x, y, z;
                 x = p1->arr[np].r +1;
                 y = p1->arr[np].c + (p1->arr[np].dim + 3);
@@ -507,7 +507,7 @@ int is_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned 
 }
 unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl){
     if(!strcmp(str,"sx")){
-        if((is_in(p1->arr[np].r-1,p1->arr[np].c-p1->arr[np].dim+3,*t))&&(!is_pedina(*t,p1->arr[np].r-1,p1->arr[np].c-p1->arr[np].dim+3,(p1->arr[np].dim+3)))){
+        if((is_in(p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3),*t))&&(!is_pedina(*t,p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3),(p1->arr[np].dim+3)))){
             togli_pedina(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3));
             --p1->arr[np].r;
             p1->arr[np].c -= (p1->arr[np].dim+3);
@@ -518,7 +518,7 @@ unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
         }
     }else{
         if (!strcmp(str, "dx")) {
-            if((is_in(p1->arr[np].r-1, p1->arr[np].c + p1->arr[np].dim + 3, *t))&&(!is_pedina(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3),p1->arr[np].dim+3))){
+            if((is_in(p1->arr[np].r-1, p1->arr[np].c + (p1->arr[np].dim + 3), *t))&&(!is_pedina(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3),p1->arr[np].dim+3))){
                 togli_pedina(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3));
                 --p1->arr[np].r;
                 p1->arr[np].c += (p1->arr[np].dim+3);
@@ -529,7 +529,7 @@ unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
             }
         }
         if (!strcmp(str, "bassosx") && ((pl == 2) || (p1->arr[np].isPromoted))) {
-            if((is_in(p1->arr[np].r+1,p1->arr[np].c-p1->arr[np].dim+3,*t))&&(!is_pedina(*t,p1->arr[np].r+1,p1->arr[np].c-p1->arr[np].dim+3,(p1->arr[np].dim+3)))){
+            if((is_in(p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),*t))&&(!is_pedina(*t,p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),(p1->arr[np].dim+3)))){
                 togli_pedina(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3));
                 p1->arr[np].r++;
                 p1->arr[np].c -= (p1->arr[np].dim+3);
@@ -539,7 +539,7 @@ unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
             }
         }
         if (!strcmp(str, "bassodx") && ((pl == 2) || (p1->arr[np].isPromoted))) {
-            if((is_in(p1->arr[np].r+1, p1->arr[np].c + p1->arr[np].dim + 3, *t))&&(!is_pedina(*t, p1->arr[np].r+1, p1->arr[np].c + (p1->arr[np].dim + 3),p1->arr[np].dim + 3))){
+            if((is_in(p1->arr[np].r+1, p1->arr[np].c + (p1->arr[np].dim + 3), *t))&&(!is_pedina(*t, p1->arr[np].r+1, p1->arr[np].c + (p1->arr[np].dim + 3),p1->arr[np].dim + 3))){
                 togli_pedina(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3));
                 p1->arr[np].r++;
                 p1->arr[np].c += (p1->arr[np].dim+3);
@@ -677,20 +677,33 @@ unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
 }
 unsigned int sposta_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *p1){
     if(!strcmp(str,"sx")) {
-        sposta_p1(p2,np,"bassosx",t,p1,2);
-        return 1;
+        if(sposta_p1(p2,np,"bassosx",t,p1,2)){
+            return 1;
+        }else{
+            return 0;
+        }
+
     }else{
         if(!strcmp(str,"dx")){
-            sposta_p1(p2,np,"bassodx",t,p1,2);
-            return 1;
+            if(sposta_p1(p2,np,"bassodx",t,p1,2)){
+                return 1;
+            }else{
+                return 0;
+            }
         }
         if(!strcmp(str,"bassosx")&&(p2->arr[np].isPromoted)) {
-            sposta_p1(p2,np,"sx",t,p1,2);
-            return 1;
+            if(sposta_p1(p2,np,"sx",t,p1,2)){
+                return 1;
+            }else{
+                return 0;
+            }
         }
         if(!strcmp(str,"bassodx")&&(p2->arr[np].isPromoted)) {
-            sposta_p1(p2,np,"dx",t,p1,2);
-            return 1;
+            if(sposta_p1(p2,np,"dx",t,p1,2)){
+                return 1;
+            }else{
+                return 0;
+            }
         }
 
     }
