@@ -132,16 +132,11 @@ void stampa_campo(tcampo t,unsigned int cifre){
                 }
             }else if (t.mat[i][j+2] == '#')
             {
-                for(z = 0 ; z < cifre; ++z){
-                    if(z == 0){
-                        printf("|");
-                        setWhite();
-                        printf(" %c",t.mat[i][j]);
-                    }else{
-                        printf("%c",t.mat[i][j+z]);
-                    }
+                printf("|");
+                setWhite();
+                for(z = 0 ; z < cifre+2; ++z){
+                    printf(" ");
                 }
-                printf(" ");
                 resetColor();
             }
             else{
@@ -287,22 +282,12 @@ void stampa_campo_inv(tcampo t,unsigned int cifre){
                 }
             }else if (t.mat[i][j+2] == '#')
             {
-                for(z = 0 ; z < cifre; ++z){
-                    if(z == 0){
-                        printf("|");
-                        setWhite();
-                        printf(" %c",t.mat[i][j]);
-                    }else{
-                        if(z == cifre-1){
-                            setWhite();
-                            printf("%c ",t.mat[i][j+z]);
-                        }else{
-                            setWhite();
-                            printf("%c",t.mat[i][j+z]);
-                        }
-                    }
-                    resetColor();
-                }    
+                printf("|");
+                setWhite();
+                for(z = 0 ; z < cifre+2; ++z){
+                    printf(" ");
+                }
+                resetColor();
             }
             else{
                 for(z = 0 ; z < cifre; ++z){
