@@ -662,6 +662,7 @@ unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
         }else{
             if(num == -4){
                 printf("Errore nella is_ate\n");
+                return 0;
             }else{
                 if(move_noeat(p1,np,str,t,p2,pl)){
                     return 1;
@@ -902,5 +903,4 @@ unsigned int controllo_pedina(tplayer *p,tplayer *p2,unsigned int np){
         printf("Errore nella realloc\n");
         return 0;
     }
-}
 }
