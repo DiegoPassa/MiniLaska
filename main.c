@@ -8,8 +8,8 @@ int main()
     tcampo *t;
     tplayer *p1 = NULL, *p2 = NULL;
     int exit = 0, turno, round = 0;
-    int cifre, conta = 0, numped = 0;
-    int nBoard, mod = 0, flag_mod = 0;
+    int cifre, conta = 0, numped = 0, mod = 0, flag_mod = 0;
+    unsigned int nBoard;
 
     system("clear");
 
@@ -33,7 +33,7 @@ int main()
     {
         printf("\nSelezionato: [Player vs Player]\n\n");
         printf("* Creazione campo *\nDimensione scacchiera? : ");
-        scanf("%d", &nBoard);
+        scanf("%u", &nBoard);
 
         printf("Numero pedine ? : ");
         scanf("%d", &cifre);
