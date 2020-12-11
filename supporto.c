@@ -916,17 +916,18 @@ unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
     printf("Turno player 1 : \n");
     stampa_campo(*t,(p1->arr[0].dim+3));
 
-/*     printf("Vuoi uscire dal gioco ? ");
+    printf("Vuoi uscire dal gioco ? ");
     scanf("%s",str);
     if((!strcmp(str,"si"))||(!strcmp(str,"Si"))||(!strcmp(str,"SI"))){
         return 1;
-    } */
+    }
 
 
     printf("Numero di pedina da selezionare : ");
     scanf("%u",&np);
-/*     printf("Vuoi selezionare questa pedina %d ? ",np);
-    scanf("%s",str); */
+    /*
+    printf("Vuoi selezionare questa pedina %d ? ",np);
+    scanf("%s",str);
 
     while((!strcmp(str,"no"))||(!strcmp(str,"NO"))||(!strcmp(str,"No"))){
         printf("Numero di pedina da selezionare : ");
@@ -934,6 +935,7 @@ unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
         printf("Vuoi selezionare questa pedina %d ? ",np);
         scanf("%s",str);
     }
+    */
 
     while(y==0){
         printf("Verso che direzione vuoi spostare la pedina ? ");
@@ -952,11 +954,11 @@ unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
     printf("Turno player 2 : \n");
     stampa_campo_inv(*t,(p2->arr[0].dim+3));
 
-/*     printf("Vuoi uscire dal gioco ? ");
+    printf("Vuoi uscire dal gioco ? ");
     scanf("%s",str);
     if((!strcmp(str,"si"))||(!strcmp(str,"Si"))||(!strcmp(str,"SI"))){
         return 1;
-    } */
+    }
 
 
     printf("Numero di pedina da selezionare : ");
@@ -964,7 +966,6 @@ unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
     /*
     printf("Vuoi selezionare questa pedina %d ? ",np);
     scanf("%s",str);
-    */
 
     while((!strcmp(str,"no"))||(!strcmp(str,"NO"))||(!strcmp(str,"No"))){
         printf("Numero di pedina da selezionare : ");
@@ -972,6 +973,7 @@ unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
         printf("Vuoi selezionare questa pedina %d ? ",np);
         scanf("%s",str);
     }
+    */
 
 
     while(y==0){

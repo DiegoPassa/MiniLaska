@@ -1,0 +1,5 @@
+Compilare con il makefile da terminale
+>/ make
+
+Eseguire dando come input il file .txt della mossa da testare
+>/ ./main_test.exe < mosse/mangia_semplice.txt
