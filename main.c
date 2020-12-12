@@ -19,7 +19,7 @@ int main()
             cifre /= 10;
             ++conta;
         }
-        if(pow(10,conta-1) == numped){
+        if((pow(10,conta-1) == numped)&&(numped != 1)){
             --conta;
         }
         printf("Numero cifre %d\n",conta);

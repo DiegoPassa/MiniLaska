@@ -4,8 +4,6 @@
 #include<string.h>
 #include<time.h>
 #include <math.h>
-#include "lib/colori.h"
-
 tcampo *crea_campo(unsigned int r,unsigned int col,unsigned int cifre){
     tcampo *t;
 
@@ -265,9 +263,7 @@ tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,
                 }
             }
             p->arr[i].dim = cifre;
-            p->arr[i].app = ped;
             p->arr[i].cima = 2 ;
-            p->arr[i].numero = i ;
             p->arr[i].grado = 1 ;
             p->arr[i].r = nr;
             p->arr[i].c = nc;
@@ -319,7 +315,6 @@ void stampa_player(tplayer p){
         }
         printf("\n");
         printf("Cima = %d\n",p.arr[i].cima);
-        printf("Numero pedina : %d \n",p.arr[i].numero);
         printf("Grado pedina : %d \n",p.arr[i].grado);
         printf("Posizione nel campo x e y : %d , %d\n",p.arr[i].r,p.arr[i].c );
         printf("\n");
@@ -404,17 +399,16 @@ unsigned int convert(tcampo t,unsigned int r,unsigned int c,unsigned int dim,uns
         z++;
 
     }
-
     return num;
 }
-unsigned int is_in(unsigned int r,unsigned int c,tcampo t){
+unsigned int is_in(int r,int c,tcampo t){
     if( (r < t.r)&&(c<t.c)){
         return 1;
     }else {
         return 0;
     }
 }
-int is_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl){
+int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl){
     if(!strcmp(str,"sx")){
         if((is_in(p1->arr[np].r-2,p1->arr[np].c-((p1->arr[np].dim+3)*2),*t))&&((is_in(p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3),*t)))){
             unsigned x,y,z;
@@ -424,7 +418,7 @@ int is_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned 
             if((z == 2)&&(is_pedina(*t,p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3),(p1->arr[np].dim+3)))&&(!is_pedina(*t,p1->arr[np].r-2,p1->arr[np].c-((p1->arr[np].dim+3)*2),(p1->arr[np].dim+3)))){
                 int num = -1 ;
                 num = convert(*t,p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3),2+p1->arr[np].dim,3);
-                if((num > 0)&&(num < p1->dim)){
+                if((num > -1)&&(num < p1->dim)){
                     return num;
                 }else{
                     return -1;
@@ -437,7 +431,7 @@ int is_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned 
         }
     }else {
         if (!strcmp(str, "dx")) {
-            if ((is_in(p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 3 - 1), *t))&&((is_in(p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3), *t)))) {
+            if ((is_in(p1->arr[np].r-2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 3-1 ), *t))&&((is_in(p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3), *t)))) {
                 unsigned x, y, z;
                 x = p1->arr[np].r - 1;
                 y = p1->arr[np].c + (p1->arr[np].dim + 3);
@@ -445,7 +439,7 @@ int is_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned 
                 if ((z == 2) && (is_pedina(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3),p1->arr[np].dim + 3)) &&(!is_pedina(*t, p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 2),(p1->arr[np].dim + 3)))) {
                     int num = -1;
                     num = convert(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3), 2 + p1->arr[np].dim,3);
-                    if((num > 0)&&(num < p1->dim)){
+                    if((num > -1)&&(num < p1->dim)){
                         return num;
                     }else{
                         return -1;
@@ -467,7 +461,7 @@ int is_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned 
                 if ((z == 2)&&(is_pedina(*t,p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),(p1->arr[np].dim+3)))&&(!is_pedina(*t,p1->arr[np].r+2,p1->arr[np].c-((p1->arr[np].dim+3)*2),(p1->arr[np].dim+3)))) {
                     int num = -1 ;
                     num = convert(*t,p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),2+p1->arr[np].dim,3);
-                    if((num > 0)&&(num < p1->dim)){
+                    if((num > -1)&&(num < p1->dim)){
                         return num;
                     }else{
                         return -1;
@@ -488,7 +482,7 @@ int is_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned 
                 if ((z == 2) && (is_pedina(*t,p1->arr[np].r+1,p1->arr[np].c+(p1->arr[np].dim+3),(p1->arr[np].dim+3)) &&(!is_pedina(*t, p1->arr[np].r+2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 2),(p1->arr[np].dim + 3))))) {
                     int num = -1;
                     num = convert(*t, p1->arr[np].r +1, p1->arr[np].c + (p1->arr[np].dim + 3), 2 + p1->arr[np].dim,3);
-                    if((num > 0)&&(num < p1->dim)){
+                    if((num > -1)&&(num < p1->dim)){
                         return num;
                     }else{
                         return -1;
@@ -584,7 +578,6 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t,un
                 p1->arr[pos].grado += -p2->arr[num].grado;
                 p1->arr[pos].r = p2->arr[num].r;
                 p1->arr[pos].c = p2->arr[num].c;
-                i = p1->arr[pos].numero ;
                 z = p1->arr[pos].dim-1;
                 x = pow(10,z);
                 for(f = 3 ; f < 3+p1->arr[num].dim ; ++f){
@@ -651,7 +644,7 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t,un
 }
 unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl){
     int num;
-    num = is_eat(p1,np,str,t,p2,pl);
+    num = can_eat(p1,np,str,t,p2,pl);
     if(num > -1){
         mangia_p1(p1,p2,str,np,*t,num);
         return 1;
@@ -661,7 +654,7 @@ unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
             return 0;
         }else{
             if(num == -4){
-                printf("Errore nella is_ate\n");
+                printf("Errore nella can_eat\n");
             }else{
                 if(move_noeat(p1,np,str,t,p2,pl)){
                     return 1;
@@ -673,7 +666,7 @@ unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
         }
 
     }
-
+    return 0;
 }
 unsigned int sposta_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *p1){
     if(!strcmp(str,"sx")) {
@@ -776,7 +769,6 @@ unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
         return 1;
     }
 
-
     printf("Numero di pedina da selezionare : ");
     scanf("%u",&np);
     printf("Vuoi selezionare questa pedina %d ? ",np);
@@ -793,6 +785,21 @@ unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
         printf("Verso che direzione vuoi spostare la pedina ? ");
         scanf("%s",str);
         y = sposta_p1(p1,np,str,t,p2,1);
+        if(y == 0){
+            char temp[2];
+
+            printf("Numero di pedina da selezionare : ");
+            scanf("%u",&np);
+            printf("Vuoi selezionare questa pedina %d ? ",np);
+            scanf("%s",temp);
+
+            while((!strcmp(temp,"no"))||(!strcmp(temp,"NO"))||(!strcmp(temp,"No"))){
+                printf("Numero di pedina da selezionare : ");
+                scanf("%u",&np);
+                printf("Vuoi selezionare questa pedina %d ? ",np);
+                scanf("%s",temp);
+            }
+        }
     }
     aggiorna_campo(t,*p1,*p2);
     stampa_campo(*t,(p1->arr[0].dim+3));
@@ -811,7 +818,7 @@ unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
     if((!strcmp(str,"si"))||(!strcmp(str,"Si"))||(!strcmp(str,"SI"))){
         return 1;
     }
-
+    stampa_player(*p2);
 
     printf("Numero di pedina da selezionare : ");
     scanf("%u",&np);
@@ -829,8 +836,23 @@ unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
     while(y==0){
         printf("Verso che direzione vuoi spostare la pedina ? ");
         scanf("%s",str);
-        printf("%u\n",y);
         y = sposta_p2(p2,np,str,t,p1);
+
+        if(y == 0){
+            char temp[2];
+
+            printf("Numero di pedina da selezionare : ");
+            scanf("%u",&np);
+            printf("Vuoi selezionare questa pedina %d ? ",np);
+            scanf("%s",temp);
+
+            while((!strcmp(temp,"no"))||(!strcmp(temp,"NO"))||(!strcmp(temp,"No"))){
+                printf("Numero di pedina da selezionare : ");
+                scanf("%u",&np);
+                printf("Vuoi selezionare questa pedina %d ? ",np);
+                scanf("%s",temp);
+            }
+        }
     }
     aggiorna_campo(t,*p1,*p2);
     stampa_campo_inv(*t,(p2->arr[np].dim+3));
@@ -862,7 +884,6 @@ unsigned int controllo_pedina(tplayer *p,tplayer *p2,unsigned int np){
         --p2->arr[np].grado;
         p->arr[p->dim].dim = p2->arr[np].dim;
         p->arr[p->dim].cima = p2->arr[np].cima;
-        p->arr[p->dim].numero = p->dim;
         p->arr[p->dim].grado = p2->arr[np].grado;
         p->arr[p->dim].c = p2->arr[np].c;
         p->arr[p->dim].r = p2->arr[np].r;
@@ -902,5 +923,4 @@ unsigned int controllo_pedina(tplayer *p,tplayer *p2,unsigned int np){
         printf("Errore nella realloc\n");
         return 0;
     }
-}
 }
