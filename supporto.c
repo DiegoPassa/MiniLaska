@@ -16,9 +16,9 @@ tcampo *crea_campo(unsigned int r,unsigned int col,unsigned int cifre){
         unsigned int i;
         t->r = r;
         t->c = col*cifre;
-        t->mat = (char**)malloc(sizeof(char*)*(t->r));
+        t->mat = (tpedina**)malloc(sizeof(tpedina*)*(t->r));
         for(i = 0 ; i < t->r ; ++i){
-            t->mat[i] = (char*)malloc(sizeof(char)*(t->c));
+            t->mat[i] = (tpedina*)malloc(sizeof(tpedina)*(t->c));
 
         }
 

@@ -1,6 +1,6 @@
 struct campo
 {
-    char **mat;
+    tpedina **mat;
     unsigned int r;
     unsigned int c;
 };
