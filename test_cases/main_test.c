@@ -7,8 +7,11 @@ int main()
 {
     tcampo *t;
     tplayer *p1 = NULL, *p2 = NULL;
-    int exit = 0, turno = 1, round = 0;
-    int cifre = 11, conta = 0;
+    int exit = 0, turno = 1, round = 0, test = 1;
+    int cifre = 11, conta = 0, numped, nBoard;
+
+    scanf("%d", &nBoard);
+    scanf("%d", &numped);
 
     system("clear");
 
@@ -25,11 +28,11 @@ int main()
         }
         printf("(Numero cifre %d)\n", conta);
 
-        t = crea_campo(7, 7, 3 + conta);
+        t = crea_campo(nBoard, nBoard, 3 + conta);
         inizializza_campo(t, 3 + conta);
 
-        p1 = crea_pedine(11, 'B', 1, conta, *t); /* creare n pedine di carattere c */
-        p2 = crea_pedine(11, 'N', 2, conta, *t); /* creare n pedine di carattere c */
+        p1 = crea_pedine(numped, 'B', 1, conta, *t); /* creare n pedine di carattere c */
+        p2 = crea_pedine(numped, 'N', 2, conta, *t); /* creare n pedine di carattere c */
 
         /*
         stampa_player(*p1);
