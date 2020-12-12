@@ -12,7 +12,7 @@ int main()
 
 
     printf("Numero pedine ? : ");
-    scanf("%d",&cifre);
+    scanf("%u",&cifre);
     numped = cifre;
     if(cifre > 0){
         while(cifre != 0){
@@ -51,7 +51,7 @@ int main()
        stampa_player(*p1);
        turno_player1(p1,p2,t);
        stampa_player(*p1);
-       /**/
+       */
 
         p1 = crea_pedine(numped,'N',1,conta,*t);/* creare n pedine di carattere c */
         p2 = crea_pedine(numped,'B',2,conta,*t);/* creare n pedine di carattere c */
