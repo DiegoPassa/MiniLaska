@@ -569,7 +569,7 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
             if((z == 2)&&(is_pedina(*t,p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3),(p1->arr[np].dim+3)))&&(!is_pedina(*t,p1->arr[np].r-2,p1->arr[np].c-((p1->arr[np].dim+3)*2),(p1->arr[np].dim+3)))){
                 int num = -1 ;
                 num = convert(*t,p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3),2+p1->arr[np].dim,3);
-                if((num > 0)&&(num < p1->dim)){
+                if((num >= 0)&&(num < p1->dim)){
                     return num;
                 }else{
                     return -1;
@@ -590,7 +590,7 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
                 if ((z == 2) && (is_pedina(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3),p1->arr[np].dim + 3)) &&(!is_pedina(*t, p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 2),(p1->arr[np].dim + 3)))) {
                     int num = -1;
                     num = convert(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3), 2 + p1->arr[np].dim,3);
-                    if((num > 0)&&(num < p1->dim)){
+                    if((num >= 0)&&(num < p1->dim)){
                         return num;
                     }else{
                         return -1;
@@ -612,7 +612,7 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
                 if ((z == 2)&&(is_pedina(*t,p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),(p1->arr[np].dim+3)))&&(!is_pedina(*t,p1->arr[np].r+2,p1->arr[np].c-((p1->arr[np].dim+3)*2),(p1->arr[np].dim+3)))) {
                     int num = -1 ;
                     num = convert(*t,p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),2+p1->arr[np].dim,3);
-                    if((num > 0)&&(num < p1->dim)){
+                    if((num >= 0)&&(num < p1->dim)){
                         return num;
                     }else{
                         return -1;
@@ -633,7 +633,7 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
                 if ((z == 2) && (is_pedina(*t,p1->arr[np].r+1,p1->arr[np].c+(p1->arr[np].dim+3),(p1->arr[np].dim+3)) &&(!is_pedina(*t, p1->arr[np].r+2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 2),(p1->arr[np].dim + 3))))) {
                     int num = -1;
                     num = convert(*t, p1->arr[np].r +1, p1->arr[np].c + (p1->arr[np].dim + 3), 2 + p1->arr[np].dim,3);
-                    if((num > 0)&&(num < p1->dim)){
+                    if((num >= 0)&&(num < p1->dim)){
                         return num;
                     }else{
                         return -1;
@@ -909,6 +909,7 @@ unsigned int scelta_turno(){
     }
     return 1;
 }
+
 unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
     char str[10];
     unsigned int np,y = 0;
@@ -922,12 +923,12 @@ unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
         return 1;
     }
 
-
     printf("Numero di pedina da selezionare : ");
     scanf("%u",&np);
     /*
     printf("Vuoi selezionare questa pedina %d ? ",np);
     scanf("%s",str);
+    
 
     while((!strcmp(str,"no"))||(!strcmp(str,"NO"))||(!strcmp(str,"No"))){
         printf("Numero di pedina da selezionare : ");
@@ -941,6 +942,21 @@ unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
         printf("Verso che direzione vuoi spostare la pedina ? ");
         scanf("%s",str);
         y = sposta_p1(p1,np,str,t,p2,1);
+        if(y == 0){
+            char temp[2];
+
+            printf("Numero di pedina da selezionare : ");
+            scanf("%u",&np);
+            printf("Vuoi selezionare questa pedina %d ? ",np);
+            scanf("%s",temp);
+
+            while((!strcmp(temp,"no"))||(!strcmp(temp,"NO"))||(!strcmp(temp,"No"))){
+                printf("Numero di pedina da selezionare : ");
+                scanf("%u",&np);
+                printf("Vuoi selezionare questa pedina %d ? ",np);
+                scanf("%s",temp);
+            }
+        }
     }
     aggiorna_campo(t,*p1,*p2);
     stampa_campo(*t,(p1->arr[0].dim+3));
@@ -959,7 +975,7 @@ unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
     if((!strcmp(str,"si"))||(!strcmp(str,"Si"))||(!strcmp(str,"SI"))){
         return 1;
     }
-
+    stampa_player(*p2);
 
     printf("Numero di pedina da selezionare : ");
     scanf("%u",&np);
@@ -975,18 +991,33 @@ unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
     }
     */
 
-
     while(y==0){
         printf("Verso che direzione vuoi spostare la pedina ? ");
         scanf("%s",str);
-        printf("%u\n",y);
         y = sposta_p2(p2,np,str,t,p1);
+
+        if(y == 0){
+            char temp[2];
+
+            printf("Numero di pedina da selezionare : ");
+            scanf("%u",&np);
+            printf("Vuoi selezionare questa pedina %d ? ",np);
+            scanf("%s",temp);
+
+            while((!strcmp(temp,"no"))||(!strcmp(temp,"NO"))||(!strcmp(temp,"No"))){
+                printf("Numero di pedina da selezionare : ");
+                scanf("%u",&np);
+                printf("Vuoi selezionare questa pedina %d ? ",np);
+                scanf("%s",temp);
+            }
+        }
     }
     aggiorna_campo(t,*p1,*p2);
     stampa_campo_inv(*t,(p2->arr[np].dim+3));
 
     return 0;
 }
+
 int is_empty(tplayer p){
     int pos = -1;
     unsigned int i;

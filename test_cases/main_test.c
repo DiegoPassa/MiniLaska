@@ -7,7 +7,7 @@ int main()
 {
     tcampo *t;
     tplayer *p1 = NULL, *p2 = NULL;
-    int exit = 0, turno = 1, round = 0, test = 1;
+    int exit = 0, turno = 1, round = 0;
     int cifre = 11, conta = 0, numped, nBoard;
 
     scanf("%d", &nBoard);
