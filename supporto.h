@@ -5,12 +5,10 @@ struct campo{
 
 };
 typedef struct campo tcampo;
-struct pedina{
-    char *et ;
-    char app;
+struct pedina {
+    char *et;
     unsigned int dim;
     unsigned int cima;
-    unsigned int numero;
     unsigned int grado;
     unsigned int r;
     unsigned int c;
@@ -26,9 +24,7 @@ tcampo *crea_campo(unsigned int r,unsigned int c,unsigned int cifre); /* creazio
 
 void inizializza_campo(tcampo *t,unsigned int cifre); /* inizializza matrice come scacchiera*/
 
-void stampa_campo(tcampo t,unsigned int cifre); /* stampa la matrice */
-
-void stampa_campo_inv(tcampo t,unsigned int cifre);/* stampa la matrice invertita */
+void stampa_campo(tcampo t,unsigned int cifre,unsigned int npl); /* stampa la matrice  cambiando visuale in base al player*/
 
 tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,tcampo t);/*creazione del giocatore */
 
@@ -36,11 +32,11 @@ void stampa_player(tplayer p); /* stampa pedine di un player */
 
 void aggiorna_campo(tcampo *t,tplayer p1,tplayer p2);/* aggiornare posizione pedine sul campo */
 
-int is_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/* controlli prima di mangiare un'altra pedina */
+int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/* controlli prima di mangiare un'altra pedina */
 
 unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/*si muove la pedina senza mangiare*/
 
-unsigned int is_in(unsigned int r,unsigned int c,tcampo t);/*controlla se le coordinate sono all'interno della matrice*/
+unsigned int is_in(int r,int c,tcampo t);/*controlla se le coordinate sono all'interno della matrice*/
 
 unsigned int is_pedina(tcampo t,unsigned int r,unsigned int c,unsigned int cifre);/* trovare se in una certa posizione c'è una pedina*/
 
@@ -56,7 +52,7 @@ void togli_pedina(tcampo *t,unsigned int r,unsigned int c,unsigned int cifre);/*
 
 void promuovi_pedina(tplayer *p,unsigned int np,unsigned int numpl,unsigned int meta);/* promozione di una pedina*/
 
-unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsigned int num);/* conquistare una pedina veros una certa posizone*/
+unsigned int mangia(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsigned int num);/* conquistare una pedina veros una certa posizone*/
 
 unsigned int convert(tcampo t,unsigned int r,unsigned int c,unsigned int dim,unsigned int cifre);/* converte il numero in da char ad int */
 
@@ -66,6 +62,6 @@ unsigned int is_victory(tplayer p1,tplayer p2);/* controlla se un giocatore o l'
 
 unsigned int scelta_turno();/* decidere a chi va il primo turno */
 
-unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t);/* turno del player 1*/
+unsigned int turno_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl);/* turno dei vari  player */
 
-unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t);/* turno del player 2*/
+int player_vs_player(unsigned int x );/* modalità giocatore vs giocatore */
