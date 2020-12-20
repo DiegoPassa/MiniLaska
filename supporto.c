@@ -679,6 +679,16 @@ unsigned int scelta_turno(){
     }else{
         printf("Lancio monetina ? ");
         scanf("%s",str);
+        if((!strcmp(str,"no"))||(!strcmp(str,"NO"))||(!strcmp(str,"No")) ){
+            unsigned int npl = 0;
+            printf("Giocatore 1 o 2 inizia per primo? : ");
+            scanf("%u",&npl);
+            while(npl != 1 && npl != 2){
+                printf("Quale giocatore inizia per primo(1/2) ? ");
+                scanf("%u",&npl);
+            }
+            return npl;
+        }
         if((!strcmp(str,"si"))||(!strcmp(str,"Si"))||(!strcmp(str,"SI"))){
             int x = 0 ;
             srand(time(NULL));
@@ -877,13 +887,27 @@ tcampo *campo_copy(tcampo t ,tcampo *new){
 
 }
 tplayer *player_copy(tplayer p,tplayer *n,unsigned int cifre){
-    n = (tplayer*)malloc(sizeof(tplayer));
+    unsigned int flag = 0;
+    if(n == NULL){
+        n = (tplayer*)malloc(sizeof(tplayer));
+        flag = 1;
+    }
     if(n != NULL){
         unsigned int i,j;
-        n->dim = p.dim;
-        n->arr = (tpedina*)malloc(sizeof(tpedina)*(n->dim));
+        if(flag == 1){
+            unsigned int m,l;
+            n->dim = p.dim;
+            n->arr = (tpedina*)malloc(sizeof(tpedina)*(n->dim));
+            for(l = 0 ; l < p.dim ; ++l){
+                n->arr[l].et = (char*)malloc(sizeof(char)*(cifre));
+            }
+            for(l = 0 ; l < p.dim ; ++l){
+                for(m = 0 ; m < cifre ; ++m){
+                    n->arr[l].et[m] = p.arr[l].et[m];
+                }
+            }
+        }
         for(i = 0 ; i < n->dim ; ++i){
-            n->arr[i].et = (char*)malloc(sizeof(char)*(cifre));
             for(j = 0 ; j < cifre ; ++j){
                 n->arr[i].et[j] = p.arr[i].et[j];
             }
@@ -913,19 +937,27 @@ unsigned int ped_noblock(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsign
             unsigned int flag = 0;
             if(sposta_p1(n1,nped,"sx",new,n2,1)){
                 flag = 1;
-                campo_copy(t,new);
+                new = campo_copy(t,new);
+                n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                n2 = player_copy(p2,n2,p2.arr[0].dim+3);
             }else{
                 if(sposta_p1(n1,nped,"dx",new,n2,1)){
                     flag = 1;
-                    campo_copy(t,new);
+                    new = campo_copy(t,new);
+                    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
                 }
                 if(sposta_p1(n1,nped,"bassosx",new,n2,1)){
                     flag = 1;
-                    campo_copy(t,new);
+                    new = campo_copy(t,new);
+                    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
                 }
                 if(sposta_p1(n1,nped,"bassodx",new,n2,1)){
                     flag = 1;
-                    campo_copy(t,new);
+                    new = campo_copy(t,new);
+                    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
                 }
                 destroy_campo(new);
                 destroy_player(n1);
@@ -936,19 +968,27 @@ unsigned int ped_noblock(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsign
             unsigned int flag = 0;
             if(sposta_p2(n2,nped,"sx",new,n1)){
                 flag = 1;
-                campo_copy(t,new);
+                new = campo_copy(t,new);
+                n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                n2 = player_copy(p2,n2,p2.arr[0].dim+3);
             }else{
                 if(sposta_p2(n2,nped,"dx",new,n1)){
                     flag = 1;
-                    campo_copy(t,new);
+                    new = campo_copy(t,new);
+                    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
                 }
                 if(sposta_p2(n2,nped,"bassosx",new,n1)){
                     flag = 1;
-                    campo_copy(t,new);
+                    new = campo_copy(t,new);
+                    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
                 }
                 if(sposta_p2(n2,nped,"bassodx",new,n1)){
                     flag = 1;
-                    campo_copy(t,new);
+                    new = campo_copy(t,new);
+                    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
                 }
                 destroy_campo(new);
                 destroy_player(n1);
