@@ -42,6 +42,14 @@ unsigned int is_pedina(tcampo t,unsigned int r,unsigned int c,unsigned int cifre
 
 int is_empty(tplayer p);/* controllare se l'array ha pedina con grado 0*/
 
+unsigned int max_pedine(unsigned int r,unsigned int c);/* calccolare il numero di pedine che si possono mettere in una matrice dimensione rxc */
+
+unsigned int ped_noblock(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsigned int npl);/*determinare se la pedina è bloccata o no*/
+
+tcampo *campo_copy(tcampo t ,tcampo *new);/*creare un nuovo campo copiando dalla variabile t */
+
+tplayer *player_copy(tplayer p,tplayer *n,unsigned int cifre);/* creare un nuovo player copiando da player p già esistente*/
+
 unsigned int controllo_pedina(tplayer *p,tplayer *p2,unsigned int np);/* aggiunge una pedina all'altro player in base alla pedina mangiata*/
 
 unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/* spostare una pedina pl1 verso un posizione */
@@ -65,3 +73,11 @@ unsigned int scelta_turno();/* decidere a chi va il primo turno */
 unsigned int turno_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl);/* turno dei vari  player */
 
 int player_vs_player(unsigned int x );/* modalità giocatore vs giocatore */
+
+unsigned int ia(tplayer *p,tcampo *t);
+
+int minimax();
+
+void destroy_player (tplayer *p); /* liberare spazio di memoria allocata da player*/
+
+void destroy_campo(tcampo *t);/* liberare spazio di memoria allocata da campo*/
