@@ -53,19 +53,17 @@ void inizializza_campo(tcampo *t,unsigned int cifre){
 }
 
 void stampa_campo(tcampo t,unsigned int cifre, unsigned npl){
+    int i, j, k = 0, z;
+    char topPl;
 
-    int i,j, k = 0;
-    for(j=0; j<t.c; j +=cifre)
-    {
-        int z;
+    /* stampo prima riga */
+    for(j=0; j<t.c; j +=cifre){
         printf("+");
-        for(z = 1 ; z < cifre ; ++z){
+        for(z = 0 ; z < cifre+2; ++z){ /* 2 = spazio a destra e sinistra */
             printf("-");
         }
-        printf("---");
     }
     printf("+");/* recupero angolo dx */
-
     printf("\n");
 
     /* parte centrale */
@@ -74,90 +72,78 @@ void stampa_campo(tcampo t,unsigned int cifre, unsigned npl){
     }else{
         i = t.r-1;
     }
-    while( (((npl == 1)&&(i < t.r))||((npl == 2)&&(i >= 0))) )
-    {
-        for(j=0; j<t.c; j +=cifre)
-        {
-            int z;
+    while( (((npl == 1)&&(i < t.r))||((npl == 2)&&(i >= 0))) ){
+        for(j=0; j<t.c; j +=cifre){
+            printf("|");
+
             /* controllo dov'è la cima */
-            while (t.mat[i][j+k] != 'N' && t.mat[i][j+k] != 'B' && k<3)
-            {
+            while (t.mat[i][j+k] != 'N' && t.mat[i][j+k] != 'B' && k<3){
                 k++;
             }
-            if (t.mat[i][j+k] == 'N'){
-                printf("|");
-                setRed(2);
+            topPl = t.mat[i][j+k]; /* indica il possessore della torre */
+
+            /* stampa le torri */
+            if (topPl == 'N' || topPl == 'B'){
+                setBlack();
+                if (topPl == 'N'){
+                    setRed(2);
+                }else if (topPl == 'B'){
+                    setYellow(2);
+                }
                 printf(" ");
-                for (z = 0; z < cifre; z++)
-                {
-                    setBlack();
-                    if (t.mat[i][j+z] == 'B'){
-                        setYellow(2);
+                for (z = 0; z < cifre; z++){
+                    /* controlla se all'interno della torre c'è una pedina avversaria */
+                    if ((t.mat[i][j+z] == 'B' || t.mat[i][j+z] == 'N') && t.mat[i][j+z] != topPl){
+                        if (topPl == 'N'){
+                            setYellow(2);
+                        }else if (topPl == 'B'){
+                            setRed(2);
+                        }
+                    /* altrimenti stampa il colore del proprietario */
                     }else{
-                        setRed(2);                 
-                    }
+                        if (topPl == 'N'){
+                            setRed(2);
+                        }else if (topPl == 'B'){
+                            setYellow(2);
+                        }             
+                    }                  
                     printf("%c",t.mat[i][j+z]);
                 }
                 printf(" ");
                 resetColor();
-            }else if (t.mat[i][j+k] == 'B'){
-                printf("|");
-                setYellow(2);
-                printf(" ");
-                for (z = 0; z < cifre; z++)
-                {
-                    setBlack();
-                    if (t.mat[i][j+z] == 'N'){
-                        setRed(2);                 
-                    }else{
-                        setYellow(2);
-                    }
-                    printf("%c",t.mat[i][j+z]);
-                }
-                printf(" ");
-                resetColor();
-            }else if (t.mat[i][j+2] == '#')
-            {
-                printf("|");
+            }
+            /* stampa le caselle bianche */
+            else if (topPl == '#'){
                 setWhite();
                 for(z = 0 ; z < cifre+2; ++z){
                     printf(" ");
                 }
                 resetColor();
             }
+            /* stampa le caselle nere */
             else{
-                printf("|");
                 for(z = 0 ; z < cifre+2; ++z){
                     printf(" ");
                 }
             }
             k = 0;
         }
-
         printf("|\n");
-        if(((npl == 1)&&(i != t.r-1))||((npl == 2)&&(i != 0)))
-        {
-            printf("|");
-            for(j=0; j<t.c; j +=cifre)
-            {
-                if(j != 0){
-                    int z;
-                    printf("+");
-                    for(z = 1 ; z < cifre ; ++z){
-                        printf("-");
-                    }
-                    printf("---");
-                }else{
-                    int z;
-                    for(z = 1 ; z < cifre ; ++z){
-                        printf("-");
-                    }
-                    printf("---");
-                }
 
+        /* stampa separatore tra righe */
+        if(((npl == 1)&&(i != t.r-1))||((npl == 2)&&(i != 0))){
+            printf("|");
+            for(j=0; j<t.c; j +=cifre){
+                if(j != 0){
+                    printf("+");
+                }
+                for(z = 0 ; z < cifre+2 ; ++z){
+                    printf("-");
+                }
             }
             printf("|\n");
         }
+        
         if(npl == 1){
             ++i;
         }else{
@@ -165,19 +151,14 @@ void stampa_campo(tcampo t,unsigned int cifre, unsigned npl){
         }
     }
 
-    /* e infine la base*/
-
-    for(j=0; j<t.c; j +=cifre)
-    {
-        int z;
+    /* stampa la base */
+    for(j=0; j<t.c; j +=cifre){
         printf("+");
-        for(z = 1 ; z < cifre ; ++z){
+        for(z = 0 ; z < cifre+2 ; ++z){
             printf("-");
         }
-        printf("---");
     }
     printf("+");/* recupero angolo dx */
-
     printf("\n");
 }
 
@@ -187,6 +168,7 @@ tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,
 
     p = (tplayer*)malloc(sizeof(tplayer));
     p->arr = (tpedina*)malloc(sizeof(tpedina)*n);
+    p->colore = ped;
     for(h = 0 ; h < n ; ++h){
         p->arr[h].et = (char*)malloc(sizeof(char)*(3+cifre));
     }
@@ -749,10 +731,16 @@ unsigned int turno_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
 
     aggiorna_campo(t,*p1,*p2);
     if(npl == 1){
-        printf("Turno player 1 : \n");
+        printPlayerTurn(p1->colore);
+        printf("Turno player 1 :");
+        resetColor();
+        printf("\n");
         stampa_campo(*t,(p1->arr[0].dim+3),1);
     }else{
-        printf("Turno player 2 : \n");
+        printPlayerTurn(p2->colore);
+        printf("Turno player 2 : ");
+        resetColor();
+        printf("\n");
         stampa_campo(*t,(p2->arr[0].dim+3),2);
     }
 

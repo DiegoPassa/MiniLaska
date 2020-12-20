@@ -147,14 +147,10 @@ int main()
        stampa_player(*p1);
        */
 
-        p1 = crea_pedine(numped,'N',1,conta,*t);/* creare n pedine di carattere c */
-        p2 = crea_pedine(numped,'B',2,conta,*t);/* creare n pedine di carattere c */
-
-
-
+        p1 = crea_pedine(numped,'B',1,conta,*t);/* creare n pedine di carattere c */
+        p2 = crea_pedine(numped,'N',2,conta,*t);/* creare n pedine di carattere c */
 
         aggiorna_campo(t,*p1,*p2);
-
 
         turno = scelta_turno();
         printf("Il player che inizia è %d\n",turno);

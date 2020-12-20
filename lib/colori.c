@@ -25,6 +25,15 @@ void setYellow (int n){
     }
 }
 
+void printPlayerTurn(char nPl){
+    if (nPl == 'B'){
+        setYellow(1);
+    }
+    if (nPl == 'N'){
+        setRed(1);
+    }
+}
+
 void setBlack (){
     printf("\033[0;30m");
 }
