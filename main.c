@@ -103,6 +103,7 @@ int main()
 
 int main()
 {
+    /*
     tcampo *t;
     tplayer *p1 = NULL,*p2 = NULL;
     unsigned int exit = 0,turno,round = 0;
@@ -125,30 +126,8 @@ int main()
         t = crea_campo(7,7,3+conta);
         inizializza_campo(t,3+conta);
 
-        /* p1->arr[2].grado = 2;
-       p1->arr[2].r = 5;
-       p1->arr[2].et[0] = 'N';
-       p1->arr[2].et[1] = 'B';
-       p1->arr[2].et[2] = 'N';
-       p1->arr[2].grado = 3;
-       p1->arr[2].cima = 0;
-       p2->arr[2].grado = 2;
-       p2->arr[2].cima = 1;
-       p2->arr[2].et[1]  = 'B';
-       p2->arr[2].et[2]  = 'N';
-       p2->arr[2].r = 6;
-       p2->arr[2].c = 16;
-       aggiorna_campo(t,*p1,*p2);
-       printf("Campo di partenza : \n");
-       stampa_campo(*t,3+conta);
-       turno_player1(p1,p2,t);
-       stampa_player(*p1);
-       turno_player1(p1,p2,t);
-       stampa_player(*p1);
-       */
-
-        p1 = crea_pedine(numped,'B',1,conta,*t);/* creare n pedine di carattere c */
-        p2 = crea_pedine(numped,'N',2,conta,*t);/* creare n pedine di carattere c */
+        p1 = crea_pedine(numped,'B',1,conta,*t);
+        p2 = crea_pedine(numped,'N',2,conta,*t);
 
         aggiorna_campo(t,*p1,*p2);
 
@@ -171,6 +150,9 @@ int main()
     }else{
         printf("Non ha senso giocare con %u pedine !\n",cifre);
     }
+    */
+
+    player_vs_player(0);
 
 
     return 0;
