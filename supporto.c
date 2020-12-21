@@ -370,40 +370,48 @@ unsigned int is_in(int r,int c,tcampo t){
         return 0;
     }
 }
-int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl){
-    if(!strcmp(str,"sx")){
-        if((is_in(p1->arr[np].r-2,p1->arr[np].c-((p1->arr[np].dim+3)*2),*t))&&((is_in(p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3),*t)))){
-            unsigned x,y,z;
-            x = p1->arr[np].r-1;
-            y = p1->arr[np].c-(p1->arr[np].dim+3);
-            z = ricerca_pl(*p1,*p2,x,y);
-            if((z == 2)&&(is_pedina(*t,p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3),(p1->arr[np].dim+3)))&&(!is_pedina(*t,p1->arr[np].r-2,p1->arr[np].c-((p1->arr[np].dim+3)*2),(p1->arr[np].dim+3)))){
-                int num = -1 ;
-                num = convert(*t,p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3),2+p1->arr[np].dim,3);
-                if((num > -1)&&(num < p1->dim)){
+int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl) {
+    if (!strcmp(str, "sx")) {
+        if ((is_in(p1->arr[np].r - 2, p1->arr[np].c - ((p1->arr[np].dim + 3) * 2), *t)) &&
+            ((is_in(p1->arr[np].r - 1, p1->arr[np].c - (p1->arr[np].dim + 3), *t)))) {
+            unsigned x, y, z;
+            x = p1->arr[np].r - 1;
+            y = p1->arr[np].c - (p1->arr[np].dim + 3);
+            z = ricerca_pl(*p1, *p2, x, y);
+            if ((z == 2) &&
+                (is_pedina(*t, p1->arr[np].r - 1, p1->arr[np].c - (p1->arr[np].dim + 3), (p1->arr[np].dim + 3))) &&
+                (!is_pedina(*t, p1->arr[np].r - 2, p1->arr[np].c - ((p1->arr[np].dim + 3) * 2),
+                            (p1->arr[np].dim + 3)))) {
+                int num = -1;
+                num = convert(*t, p1->arr[np].r - 1, p1->arr[np].c - (p1->arr[np].dim + 3), 2 + p1->arr[np].dim, 3);
+                if ((num > -1) && (num < p1->dim)) {
                     return num;
-                }else{
+                } else {
                     return -1;
                 }
-            }else{
+            } else {
                 return -2;
             }
-        }else{
+        } else {
             return -3;
         }
-    }else {
+    } else {
         if (!strcmp(str, "dx")) {
-            if ((is_in(p1->arr[np].r-2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 3-1 ), *t))&&((is_in(p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3), *t)))) {
+            if ((is_in(p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 3 - 1), *t)) &&
+                ((is_in(p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3), *t)))) {
                 unsigned x, y, z;
                 x = p1->arr[np].r - 1;
                 y = p1->arr[np].c + (p1->arr[np].dim + 3);
                 z = ricerca_pl(*p1, *p2, x, y);
-                if ((z == 2) && (is_pedina(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3),p1->arr[np].dim + 3)) &&(!is_pedina(*t, p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 2),(p1->arr[np].dim + 3)))) {
+                if ((z == 2) &&
+                    (is_pedina(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3), p1->arr[np].dim + 3)) &&
+                    (!is_pedina(*t, p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 2),
+                                (p1->arr[np].dim + 3)))) {
                     int num = -1;
-                    num = convert(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3), 2 + p1->arr[np].dim,3);
-                    if((num > -1)&&(num < p1->dim)){
+                    num = convert(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3), 2 + p1->arr[np].dim, 3);
+                    if ((num > -1) && (num < p1->dim)) {
                         return num;
-                    }else{
+                    } else {
                         return -1;
                     }
 
@@ -414,52 +422,66 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
                 return -3;
             }
         }
-        if (!strcmp(str, "bassosx") && ((pl == 2) || (p1->arr[np].isPromoted))) {
-            if ((is_in(p1->arr[np].r+2,p1->arr[np].c-((p1->arr[np].dim+3)*2),*t))&&((is_in(p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),*t)))) {
-                unsigned x, y, z;
-                x = p1->arr[np].r+1;
-                y = p1->arr[np].c-(p1->arr[np].dim+3);
-                z = ricerca_pl(*p1, *p2, x, y);
-                if ((z == 2)&&(is_pedina(*t,p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),(p1->arr[np].dim+3)))&&(!is_pedina(*t,p1->arr[np].r+2,p1->arr[np].c-((p1->arr[np].dim+3)*2),(p1->arr[np].dim+3)))) {
-                    int num = -1 ;
-                    num = convert(*t,p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),2+p1->arr[np].dim,3);
-                    if((num > -1)&&(num < p1->dim)){
-                        return num;
-                    }else{
-                        return -1;
+        if (((pl == 2) || (p1->arr[np].isPromoted))) {
+            if (!strcmp(str, "bassosx")) {
+                if ((is_in(p1->arr[np].r + 2, p1->arr[np].c - ((p1->arr[np].dim + 3) * 2), *t)) &&
+                    ((is_in(p1->arr[np].r + 1, p1->arr[np].c - (p1->arr[np].dim + 3), *t)))) {
+                    unsigned x, y, z;
+                    x = p1->arr[np].r + 1;
+                    y = p1->arr[np].c - (p1->arr[np].dim + 3);
+                    z = ricerca_pl(*p1, *p2, x, y);
+                    if ((z == 2) && (is_pedina(*t, p1->arr[np].r + 1, p1->arr[np].c - (p1->arr[np].dim + 3),
+                                               (p1->arr[np].dim + 3))) &&
+                        (!is_pedina(*t, p1->arr[np].r + 2, p1->arr[np].c - ((p1->arr[np].dim + 3) * 2),
+                                    (p1->arr[np].dim + 3)))) {
+                        int num = -1;
+                        num = convert(*t, p1->arr[np].r + 1, p1->arr[np].c - (p1->arr[np].dim + 3), 2 + p1->arr[np].dim,
+                                      3);
+                        if ((num > -1) && (num < p1->dim)) {
+                            return num;
+                        } else {
+                            return -1;
+                        }
+                    } else {
+                        return -2;
                     }
                 } else {
-                    return -2;
+                    return -3;
                 }
-            } else {
-                return -3;
             }
-        }
-        if (!strcmp(str, "bassodx") && ((pl == 2) || (p1->arr[np].isPromoted))) {
-            if ((is_in(p1->arr[np].r+2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 3 - 1), *t))&&((is_in(p1->arr[np].r+ 1, p1->arr[np].c +(p1->arr[np].dim + 3) , *t)))) {
-                unsigned x, y, z;
-                x = p1->arr[np].r +1;
-                y = p1->arr[np].c + (p1->arr[np].dim + 3);
-                z = ricerca_pl(*p1, *p2, x, y);
-                if ((z == 2) && (is_pedina(*t,p1->arr[np].r+1,p1->arr[np].c+(p1->arr[np].dim+3),(p1->arr[np].dim+3)) &&(!is_pedina(*t, p1->arr[np].r+2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 2),(p1->arr[np].dim + 3))))) {
-                    int num = -1;
-                    num = convert(*t, p1->arr[np].r +1, p1->arr[np].c + (p1->arr[np].dim + 3), 2 + p1->arr[np].dim,3);
-                    if((num > -1)&&(num < p1->dim)){
-                        return num;
-                    }else{
-                        return -1;
-                    }
+            if (!strcmp(str, "bassodx")) {
+                if ((is_in(p1->arr[np].r + 2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 3 - 1), *t)) &&
+                    ((is_in(p1->arr[np].r + 1, p1->arr[np].c + (p1->arr[np].dim + 3), *t)))) {
+                    unsigned x, y, z;
+                    x = p1->arr[np].r + 1;
+                    y = p1->arr[np].c + (p1->arr[np].dim + 3);
+                    z = ricerca_pl(*p1, *p2, x, y);
+                    if ((z == 2) && (is_pedina(*t, p1->arr[np].r + 1, p1->arr[np].c + (p1->arr[np].dim + 3),
+                                               (p1->arr[np].dim + 3)) &&
+                                     (!is_pedina(*t, p1->arr[np].r + 2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 2),
+                                                 (p1->arr[np].dim + 3))))) {
+                        int num = -1;
+                        num = convert(*t, p1->arr[np].r + 1, p1->arr[np].c + (p1->arr[np].dim + 3), 2 + p1->arr[np].dim,
+                                      3);
+                        if ((num > -1) && (num < p1->dim)) {
+                            return num;
+                        } else {
+                            return -1;
+                        }
 
+                    } else {
+                        return -2;
+                    }
                 } else {
-                    return -2;
+                    return -3;
                 }
-            } else {
-                return -3;
             }
+            return -4;
+        } else {
+            return -3;
         }
 
     }
-    return -4;
 }
 unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl){
     if(!strcmp(str,"sx")){
@@ -510,7 +532,7 @@ unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
     return 0;
 
 }
-unsigned int mangia(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t,unsigned int num){
+unsigned int mangia(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsigned int num){
 
     char temp[3];
     unsigned int x,f,z;
@@ -540,16 +562,20 @@ unsigned int mangia(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t,unsig
                 p1->arr[pos].grado += -p2->arr[num].grado;
                 p1->arr[pos].r = p2->arr[num].r;
                 p1->arr[pos].c = p2->arr[num].c;
-                z = p1->arr[pos].dim-1;
+                z = p2->arr[pos].dim-1;
                 x = pow(10,z);
                 for(f = 3 ; f < 3+p1->arr[num].dim ; ++f){
-                    unsigned int div = i/x;
+                    unsigned int div = pos/x;
+                    printf("Operazione div : %u e %u\n",pos,x);
+                    printf("Div : %u\n",div);
+                    printf("Div : %c\n",'0' + div);
                     if (div > 0) {
-                        p1->arr[pos].et[f] = '0' + div;
+                        p1->arr[pos].et[f] = '0'+div;
+                        printf("Lettera : %c\n",p1->arr[np].et[f]);
                     } else {
                         p1->arr[pos].et[f] = '0';
                     }
-                    i-= x *div ;
+                    pos -= x *div ;
                     --z;
                     x = pow(10,z);
                 }
@@ -853,7 +879,7 @@ int is_empty(tplayer p){
             pos = i;
         }
     }
-
+    printf("is_empty %u\n",pos);
     return pos;
 }
 unsigned int max_pedine(unsigned int r,unsigned int c){
@@ -968,30 +994,30 @@ unsigned int ped_noblock(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsign
                 new = campo_copy(t,new);
                 n1 = player_copy(p1,n1,p1.arr[0].dim+3);
                 n2 = player_copy(p2,n2,p2.arr[0].dim+3);
-            }else{
-                if(sposta_p1(n1,nped,"dx",new,n2,1)){
-                    flag = 1;
-                    new = campo_copy(t,new);
-                    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
-                    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
-                }
-                if(sposta_p1(n1,nped,"bassosx",new,n2,1)){
-                    flag = 1;
-                    new = campo_copy(t,new);
-                    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
-                    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
-                }
-                if(sposta_p1(n1,nped,"bassodx",new,n2,1)){
-                    flag = 1;
-                    new = campo_copy(t,new);
-                    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
-                    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
-                }
-                destroy_campo(new);
-                destroy_player(n1);
-                destroy_player(n2);
-                return flag;
             }
+            if(sposta_p1(n1,nped,"dx",new,n2,1)){
+                flag = 1;
+                new = campo_copy(t,new);
+                n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                n2 = player_copy(p2,n2,p2.arr[0].dim+3);
+            }
+            if(sposta_p1(n1,nped,"bassosx",new,n2,1)){
+                flag = 1;
+                new = campo_copy(t,new);
+                n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                n2 = player_copy(p2,n2,p2.arr[0].dim+3);
+            }
+            if(sposta_p1(n1,nped,"bassodx",new,n2,1)){
+                flag = 1;
+                new = campo_copy(t,new);
+                n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                n2 = player_copy(p2,n2,p2.arr[0].dim+3);
+            }
+            destroy_campo(new);
+            destroy_player(n1);
+            destroy_player(n2);
+            return flag;
+
         }else{
             unsigned int flag = 0;
             if(sposta_p2(n2,nped,"sx",new,n1)){
@@ -999,36 +1025,35 @@ unsigned int ped_noblock(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsign
                 new = campo_copy(t,new);
                 n1 = player_copy(p1,n1,p1.arr[0].dim+3);
                 n2 = player_copy(p2,n2,p2.arr[0].dim+3);
-            }else{
-                if(sposta_p2(n2,nped,"dx",new,n1)){
-                    flag = 1;
-                    new = campo_copy(t,new);
-                    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
-                    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
-                }
-                if(sposta_p2(n2,nped,"bassosx",new,n1)){
-                    flag = 1;
-                    new = campo_copy(t,new);
-                    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
-                    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
-                }
-                if(sposta_p2(n2,nped,"bassodx",new,n1)){
-                    flag = 1;
-                    new = campo_copy(t,new);
-                    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
-                    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
-                }
-                destroy_campo(new);
-                destroy_player(n1);
-                destroy_player(n2);
-                return flag;
             }
-
+            if(sposta_p2(n2,nped,"dx",new,n1)){
+                flag = 1;
+                new = campo_copy(t,new);
+                n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                n2 = player_copy(p2,n2,p2.arr[0].dim+3);
+            }
+            if(sposta_p2(n2,nped,"bassosx",new,n1)){
+                flag = 1;
+                new = campo_copy(t,new);
+                n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                n2 = player_copy(p2,n2,p2.arr[0].dim+3);
+            }
+            if(sposta_p2(n2,nped,"bassodx",new,n1)){
+                flag = 1;
+                new = campo_copy(t,new);
+                n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                n2 = player_copy(p2,n2,p2.arr[0].dim+3);
+            }
+            destroy_campo(new);
+            destroy_player(n1);
+            destroy_player(n2);
+            return flag;
         }
     }else{
         printf("Errore nella ped_noblock\n");
+        return 0;
     }
-    return 0;
+
 }
 unsigned int controllo_pedina(tplayer *p,tplayer *p2,unsigned int np){
 

@@ -40,6 +40,8 @@ void aggiorna_campo(tcampo *t,tplayer p1,tplayer p2);/* aggiornare posizione ped
 
 int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/* controlli prima di mangiare un'altra pedina */
 
+int *obl_eat(tplayer p,unsigned int np,tcampo t);/* mangiata obbligatoria*/
+
 unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/*si muove la pedina senza mangiare*/
 
 unsigned int is_in(int r,int c,tcampo t);/*controlla se le coordinate sono all'interno della matrice*/
@@ -83,6 +85,8 @@ int player_vs_player(unsigned int x );/* modalità giocatore vs giocatore */
 unsigned int ia(tplayer *p,tcampo *t);
 
 int minimax();
+
+    void player_vs_ia();
 
 void destroy_player (tplayer *p); /* liberare spazio di memoria allocata da player*/
 
