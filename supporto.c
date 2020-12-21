@@ -559,25 +559,21 @@ unsigned int mangia(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,u
                 for (i = 0; i < 3; ++i) {
                     p1->arr[pos].et[i] = p2->arr[num].et[i];
                 }
-                p1->arr[pos].grado += -p2->arr[num].grado;
+                p1->arr[pos].grado += p2->arr[num].grado;
+                p2->arr[num].grado = 0;
                 p1->arr[pos].r = p2->arr[num].r;
                 p1->arr[pos].c = p2->arr[num].c;
-                z = p2->arr[pos].dim-1;
-                x = pow(10,z);
-                for(f = 3 ; f < 3+p1->arr[num].dim ; ++f){
-                    unsigned int div = pos/x;
-                    printf("Operazione div : %u e %u\n",pos,x);
-                    printf("Div : %u\n",div);
-                    printf("Div : %c\n",'0' + div);
+                z = p1->arr[pos].dim-1;
+                x = pos;
+                for(f = 3 ; f < 3+p1->arr[pos].dim ; ++f){
+                    unsigned int div = x/pow(10,z);
                     if (div > 0) {
                         p1->arr[pos].et[f] = '0'+div;
-                        printf("Lettera : %c\n",p1->arr[np].et[f]);
                     } else {
                         p1->arr[pos].et[f] = '0';
                     }
-                    pos -= x *div ;
+                    x -= pow(10,z)*div ;
                     --z;
-                    x = pow(10,z);
                 }
             }
         }
