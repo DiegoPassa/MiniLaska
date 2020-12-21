@@ -6,7 +6,6 @@
 #include <math.h>
 #include "lib/colori.h"
 
-
 tcampo *crea_campo(unsigned int r,unsigned int col,unsigned int cifre){
     tcampo *t;
 
@@ -29,7 +28,6 @@ tcampo *crea_campo(unsigned int r,unsigned int col,unsigned int cifre){
         return NULL;
     }
 }
-
 void inizializza_campo(tcampo *t,unsigned int cifre){
     unsigned int i,j;
 
@@ -54,302 +52,116 @@ void inizializza_campo(tcampo *t,unsigned int cifre){
 
 }
 
-void stampa_campo(tcampo t,unsigned int cifre){
+void stampa_campo(tcampo t,unsigned int cifre, unsigned npl){
+    int i, j, k = 0, z;
+    char topPl;
 
-    unsigned int i,j, k = 0;
-    for(j=0; j<t.c; j +=cifre)
-    {
-        int z;
+    /* stampo prima riga */
+    for(j=0; j<t.c; j +=cifre){
         printf("+");
-        for(z = 1 ; z < cifre ; ++z){
+        for(z = 0 ; z < cifre+2; ++z){ /* 2 = spazio a destra e sinistra */
             printf("-");
         }
-        printf("---");
     }
     printf("+");/* recupero angolo dx */
-
     printf("\n");
 
     /* parte centrale */
-    for(i= 0; i < t.r; ++i)
-    {
-        for(j=0; j<t.c; j +=cifre)
-        {
-            int z;
+    if(npl == 1){
+        i = 0;
+    }else{
+        i = t.r-1;
+    }
+    while( (((npl == 1)&&(i < t.r))||((npl == 2)&&(i >= 0))) ){
+        for(j=0; j<t.c; j +=cifre){
+            printf("|");
+
             /* controllo dov'è la cima */
-            while (t.mat[i][j+k] != 'N' && t.mat[i][j+k] != 'B' && k<3)
-            {
+            while (t.mat[i][j+k] != 'N' && t.mat[i][j+k] != 'B' && k<3){
                 k++;
             }
-            if (t.mat[i][j+k] == 'N'){
-                for(z = 0 ; z < cifre; ++z){
-                    if(z == 0){
-                        printf("|");
-                        setBlack();
-                        setRed(2);
-                        printf(" %c",t.mat[i][j]);
-                    }else{
-                        if(z == cifre-1){
-                            setBlack();
-                            setRed(2);
-                            printf("%c ",t.mat[i][j+z]);
-                        }else{
-                            setBlack();
-                            if (t.mat[i][j+z] == 'B')
-                            {
-                                setYellow(2);
-                            }else
-                            {
-                                setRed(2);
-                            }                                            
-                            printf("%c",t.mat[i][j+z]);
-                        }
-                    }
-                    resetColor();
+            topPl = t.mat[i][j+k]; /* indica il possessore della torre */
+
+            /* stampa le torri */
+            if (topPl == 'N' || topPl == 'B'){
+                setBlack();
+                if (topPl == 'N'){
+                    setRed(2);
+                }else if (topPl == 'B'){
+                    setYellow(2);
                 }
-            }else if (t.mat[i][j+k] == 'B'){
-                for(z = 0 ; z < cifre; ++z){
-                    if(z == 0){
-                        printf("|");
-                        setBlack();
-                        setYellow(2);
-                        printf(" %c",t.mat[i][j]);
-                    }else{
-                        if(z == cifre-1){
-                            setBlack();
+                printf(" ");
+                for (z = 0; z < cifre; z++){
+                    /* controlla se all'interno della torre c'è una pedina avversaria */
+                    if ((t.mat[i][j+z] == 'B' || t.mat[i][j+z] == 'N') && t.mat[i][j+z] != topPl){
+                        if (topPl == 'N'){
                             setYellow(2);
-                            printf("%c ",t.mat[i][j+z]);
-                        }else{
-                            setBlack();
-                            if (t.mat[i][j+z] == 'N')
-                            {
-                                setRed(2);
-                            }else
-                            {
-                                setYellow(2);
-                            }                                            
-                            printf("%c",t.mat[i][j+z]);
+                        }else if (topPl == 'B'){
+                            setRed(2);
                         }
-                    }
-                    resetColor();
+                    /* altrimenti stampa il colore del proprietario */
+                    }else{
+                        if (topPl == 'N'){
+                            setRed(2);
+                        }else if (topPl == 'B'){
+                            setYellow(2);
+                        }             
+                    }                  
+                    printf("%c",t.mat[i][j+z]);
                 }
-            }else if (t.mat[i][j+2] == '#')
-            {
-                printf("|");
+                printf(" ");
+                resetColor();
+            }
+            /* stampa le caselle bianche */
+            else if (topPl == '#'){
                 setWhite();
                 for(z = 0 ; z < cifre+2; ++z){
                     printf(" ");
                 }
                 resetColor();
             }
+            /* stampa le caselle nere */
             else{
-                for(z = 0 ; z < cifre; ++z){
-                    if(z == 0){
-                        printf("| %c",t.mat[i][j]);
-                    }else{
-                        if(z == cifre-1){
-                            printf("%c ",t.mat[i][j+z]);
-                        }else{
-                            printf("%c",t.mat[i][j+z]);
-                        }
-                    }
-                }
-                
-            }
-            k = 0;
-        }
-
-        printf("|\n");
-        if(i != t.r-1)
-        {
-            printf("|");
-            for(j=0; j<t.c; j +=cifre)
-            {
-                if(j != 0){
-                    int z;
-                    printf("+");
-                    for(z = 1 ; z < cifre ; ++z){
-                        printf("-");
-                    }
-                    printf("---");
-                }else{
-                    int z;
-                    for(z = 1 ; z < cifre ; ++z){
-                        printf("-");
-                    }
-                    printf("---");
-                }
-
-            }
-            printf("|\n");
-        }
-    }
-
-    /* e infine la base*/
-
-    for(j=0; j<t.c; j +=cifre)
-    {
-        int z;
-        printf("+");
-        for(z = 1 ; z < cifre ; ++z){
-            printf("-");
-        }
-        printf("---");
-    }
-    printf("+");/* recupero angolo dx */
-
-    printf("\n");
-}
-
-void stampa_campo_inv(tcampo t,unsigned int cifre){
-    unsigned j, k = 0;
-    int i;
-
-    for(j=0; j<t.c; j +=cifre)
-    {
-        int z;
-        printf("+");
-        for(z = 1 ; z < cifre ; ++z){
-            printf("-");
-        }
-        printf("---");
-    }
-    printf("+");/* recupero angolo dx */
-
-    printf("\n");
-
-    /* parte centrale */
-    for(i= t.r-1; i > -1 ; --i)
-    {
-        for(j=0; j<t.c; j +=cifre)
-        {
-            int z;
-            /* controllo dov'è la cima */
-            while (t.mat[i][j+k] != 'N' && t.mat[i][j+k] != 'B' && k<3)
-            {
-                k++;
-            }
-            if (t.mat[i][j+k] == 'N'){
-                for(z = 0 ; z < cifre; ++z){
-                    if(z == 0){
-                        printf("|");
-                        setBlack();
-                        setRed(2);
-                        printf(" %c",t.mat[i][j]);
-                    }else{
-                        if(z == cifre-1){
-                            setBlack();
-                            setRed(2);
-                            printf("%c ",t.mat[i][j+z]);
-                        }else{
-                            setBlack();
-                            if (t.mat[i][j+z] == 'B')
-                            {
-                                setYellow(2);
-                            }else
-                            {
-                                setRed(2);
-                            }                                            
-                            printf("%c",t.mat[i][j+z]);
-                        }
-                    }
-                    resetColor();
-                }          
-            }else if (t.mat[i][j+k] == 'B')
-            {
-                for(z = 0 ; z < cifre; ++z){
-                    if(z == 0){
-                        printf("|");
-                        setBlack();
-                        setYellow(2);
-                        printf(" %c",t.mat[i][j]);
-                    }else{                
-                        if(z == cifre-1){
-                            setBlack();
-                            setYellow(2);
-                            printf("%c ",t.mat[i][j+z]);
-                        }else{
-                            setBlack();
-                            if (t.mat[i][j+z] == 'N')
-                            {
-                                setRed(2);
-                            }else
-                            {
-                                setYellow(2);
-                            }                                            
-                            printf("%c",t.mat[i][j+z]);
-                        }
-                    }
-                    resetColor();
-                }
-            }else if (t.mat[i][j+2] == '#')
-            {
-                printf("|");
-                setWhite();
                 for(z = 0 ; z < cifre+2; ++z){
                     printf(" ");
                 }
-                resetColor();
-            }
-            else{
-                for(z = 0 ; z < cifre; ++z){
-                    if(z == 0){
-                        printf("| %c",t.mat[i][j]);
-                    }else{
-                        if(z == cifre-1){
-                            printf("%c ",t.mat[i][j+z]);
-                        }else{
-                            printf("%c",t.mat[i][j+z]);
-                        }
-                    }
-                }            
             }
             k = 0;
         }
-
         printf("|\n");
-        if(i != 0)
-        {
-            printf("|");
-            for(j=0; j<t.c; j +=cifre)
-            {
-                if(j != 0){
-                    int z;
-                    printf("+");
-                    for(z = 1 ; z < cifre ; ++z){
-                        printf("-");
-                    }
-                    printf("---");
-                }else{
-                    int z;
-                    for(z = 1 ; z < cifre ; ++z){
-                        printf("-");
-                    }
-                    printf("---");
-                }
 
+        /* stampa separatore tra righe */
+        if(((npl == 1)&&(i != t.r-1))||((npl == 2)&&(i != 0))){
+            printf("|");
+            for(j=0; j<t.c; j +=cifre){
+                if(j != 0){
+                    printf("+");
+                }
+                for(z = 0 ; z < cifre+2 ; ++z){
+                    printf("-");
+                }
             }
             printf("|\n");
         }
+        
+        if(npl == 1){
+            ++i;
+        }else{
+            --i;
+        }
     }
 
-
-    /* e infine la base*/
-
-    for(j=0; j<t.c; j +=cifre)
-    {
-        int z;
+    /* stampa la base */
+    for(j=0; j<t.c; j +=cifre){
         printf("+");
-        for(z = 1 ; z < cifre ; ++z){
+        for(z = 0 ; z < cifre+2 ; ++z){
             printf("-");
         }
-        printf("---");
     }
     printf("+");/* recupero angolo dx */
-
     printf("\n");
-
 }
+
 tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,tcampo t){
     tplayer *p;
     unsigned int h;
@@ -410,12 +222,11 @@ tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,
                 }
             }
             p->arr[i].dim = cifre;
-            p->arr[i].app = ped;
             p->arr[i].cima = 2 ;
-            p->arr[i].numero = i ;
             p->arr[i].grado = 1 ;
             p->arr[i].r = nr;
             p->arr[i].c = nc;
+            p->colore = ped;
             if(np == 1){
                 if((nc+((3+cifre)*2) < t.c) && (nc+((3+cifre)*2) > 0)){
                     nc +=((3+cifre)*2);
@@ -464,7 +275,6 @@ void stampa_player(tplayer p){
         }
         printf("\n");
         printf("Cima = %d\n",p.arr[i].cima);
-        printf("Numero pedina : %d \n",p.arr[i].numero);
         printf("Grado pedina : %d \n",p.arr[i].grado);
         printf("Posizione nel campo x e y : %d , %d\n",p.arr[i].r,p.arr[i].c );
         printf("\n");
@@ -494,15 +304,17 @@ void aggiorna_campo(tcampo *t,tplayer p1,tplayer p2){
 }
 
 unsigned int is_pedina(tcampo t,unsigned int r,unsigned int c,unsigned int cifre){
-    int i,flag = 0;
+    unsigned int i,flag = 0;
     for(i = 0 ; i < cifre ; ++i){
-        (t.mat[r][c+i] != ' ')&&(t.mat[r][c+i] != '#') ? flag = 1 : flag;
+        if((t.mat[r][c+i] != ' ')&&(t.mat[r][c+i] != '#') ){
+            flag = 1;
+        }
     }
+    printf("\n");
     return flag;
 }
 void togli_pedina(tcampo *t,unsigned int r,unsigned int c,unsigned cifre){
     unsigned int x = r , y = c,i;
-    printf("Non torna : %d e %d e %d\n",x,y,cifre);
     for(i = 0 ; i < cifre ; ++i){
         t->mat[x][y+i] = '#';
     }
@@ -549,10 +361,9 @@ unsigned int convert(tcampo t,unsigned int r,unsigned int c,unsigned int dim,uns
         z++;
 
     }
-
     return num;
 }
-unsigned int is_in(unsigned int r,unsigned int c,tcampo t){
+unsigned int is_in(int r,int c,tcampo t){
     if( (r < t.r)&&(c<t.c)){
         return 1;
     }else {
@@ -569,7 +380,7 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
             if((z == 2)&&(is_pedina(*t,p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3),(p1->arr[np].dim+3)))&&(!is_pedina(*t,p1->arr[np].r-2,p1->arr[np].c-((p1->arr[np].dim+3)*2),(p1->arr[np].dim+3)))){
                 int num = -1 ;
                 num = convert(*t,p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3),2+p1->arr[np].dim,3);
-                if((num >= 0)&&(num < p1->dim)){
+                if((num > -1)&&(num < p1->dim)){
                     return num;
                 }else{
                     return -1;
@@ -582,7 +393,7 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
         }
     }else {
         if (!strcmp(str, "dx")) {
-            if ((is_in(p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 3 - 1), *t))&&((is_in(p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3), *t)))) {
+            if ((is_in(p1->arr[np].r-2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 3-1 ), *t))&&((is_in(p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3), *t)))) {
                 unsigned x, y, z;
                 x = p1->arr[np].r - 1;
                 y = p1->arr[np].c + (p1->arr[np].dim + 3);
@@ -590,7 +401,7 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
                 if ((z == 2) && (is_pedina(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3),p1->arr[np].dim + 3)) &&(!is_pedina(*t, p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 2),(p1->arr[np].dim + 3)))) {
                     int num = -1;
                     num = convert(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3), 2 + p1->arr[np].dim,3);
-                    if((num >= 0)&&(num < p1->dim)){
+                    if((num > -1)&&(num < p1->dim)){
                         return num;
                     }else{
                         return -1;
@@ -612,7 +423,7 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
                 if ((z == 2)&&(is_pedina(*t,p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),(p1->arr[np].dim+3)))&&(!is_pedina(*t,p1->arr[np].r+2,p1->arr[np].c-((p1->arr[np].dim+3)*2),(p1->arr[np].dim+3)))) {
                     int num = -1 ;
                     num = convert(*t,p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3),2+p1->arr[np].dim,3);
-                    if((num >= 0)&&(num < p1->dim)){
+                    if((num > -1)&&(num < p1->dim)){
                         return num;
                     }else{
                         return -1;
@@ -633,7 +444,7 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
                 if ((z == 2) && (is_pedina(*t,p1->arr[np].r+1,p1->arr[np].c+(p1->arr[np].dim+3),(p1->arr[np].dim+3)) &&(!is_pedina(*t, p1->arr[np].r+2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 2),(p1->arr[np].dim + 3))))) {
                     int num = -1;
                     num = convert(*t, p1->arr[np].r +1, p1->arr[np].c + (p1->arr[np].dim + 3), 2 + p1->arr[np].dim,3);
-                    if((num >= 0)&&(num < p1->dim)){
+                    if((num > -1)&&(num < p1->dim)){
                         return num;
                     }else{
                         return -1;
@@ -656,7 +467,7 @@ unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
             togli_pedina(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3));
             --p1->arr[np].r;
             p1->arr[np].c -= (p1->arr[np].dim+3);
-            promuovi_pedina(p1,np,1,t->r-1);
+            promuovi_pedina(p1,np,pl,t->r-1);
             return 1;
         }else{
             return 0;
@@ -667,7 +478,7 @@ unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
                 togli_pedina(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3));
                 --p1->arr[np].r;
                 p1->arr[np].c += (p1->arr[np].dim+3);
-                promuovi_pedina(p1,np,1,t->r-1);
+                promuovi_pedina(p1,np,pl,t->r-1);
                 return 1;
             }else{
                 return 0;
@@ -699,7 +510,7 @@ unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
     return 0;
 
 }
-unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t,unsigned int num){
+unsigned int mangia(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t,unsigned int num){
 
     char temp[3];
     unsigned int x,f,z;
@@ -729,7 +540,6 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t,un
                 p1->arr[pos].grado += -p2->arr[num].grado;
                 p1->arr[pos].r = p2->arr[num].r;
                 p1->arr[pos].c = p2->arr[num].c;
-                i = p1->arr[pos].numero ;
                 z = p1->arr[pos].dim-1;
                 x = pow(10,z);
                 for(f = 3 ; f < 3+p1->arr[num].dim ; ++f){
@@ -750,6 +560,7 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t,un
         for(f = 0 ; f < 3 ; ++f ){
             p1->arr[np].et[f] = temp[f];
         }
+
         ++p1->arr[np].grado;
         --p1->arr[np].cima;
     }
@@ -776,21 +587,21 @@ unsigned int mangia_p1(tplayer *p1,tplayer *p2,char *str,unsigned np,tcampo t,un
         togli_pedina(&t,p2->arr[num].r,p2->arr[num].c,p2->arr[num].dim+3);
     }
     if(!strcmp(str,"sx")){
-        togli_pedina(&t,p1->arr[np].r+2,p1->arr[np].c+(p1->arr[np].dim+3)*2,p1->arr[np].dim+3);
+        togli_pedina(&t,p1->arr[np].r+2,p1->arr[np].c+((p1->arr[np].dim+3)*2),p1->arr[np].dim+3);
     }else{
         if(!strcmp(str,"dx")){
-            togli_pedina(&t,p1->arr[np].r+2,p1->arr[np].c-(p1->arr[np].dim+3)*2,(p1->arr[np].dim+3));
+            togli_pedina(&t,p1->arr[np].r+2,p1->arr[np].c-((p1->arr[np].dim+3)*2),(p1->arr[np].dim+3));
         }
         if(!strcmp(str,"bassosx")){
-            togli_pedina(&t,p1->arr[np].r-2,p1->arr[np].c+(p1->arr[np].dim+3)*2,p1->arr[np].dim+3);
+            togli_pedina(&t,p1->arr[np].r-2,p1->arr[np].c+((p1->arr[np].dim+3)*2),p1->arr[np].dim+3);
         }
         if(!strcmp(str,"bassodx")){
-            togli_pedina(&t,p1->arr[np].r-2,p1->arr[np].c-(p1->arr[np].dim+3)*2,(p1->arr[np].dim+3));
+            togli_pedina(&t,p1->arr[np].r-2,p1->arr[np].c-((p1->arr[np].dim+3)*2),(p1->arr[np].dim+3));
         }
 
     }
     promuovi_pedina(p1,np,1,t.r-1);
-
+    promuovi_pedina(p2,np,2,t.r-1);
     return 1;
 
 }
@@ -798,7 +609,7 @@ unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
     int num;
     num = can_eat(p1,np,str,t,p2,pl);
     if(num > -1){
-        mangia_p1(p1,p2,str,np,*t,num);
+        mangia(p1,p2,str,np,*t,num);
         return 1;
     }else{
         if(num == -1){
@@ -806,8 +617,7 @@ unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
             return 0;
         }else{
             if(num == -4){
-                printf("Errore nella is_ate\n");
-                return 0;
+                printf("Errore nella can_eat\n");
             }else{
                 if(move_noeat(p1,np,str,t,p2,pl)){
                     return 1;
@@ -819,7 +629,7 @@ unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
         }
 
     }
-
+    return 0;
 }
 unsigned int sposta_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *p1){
     if(!strcmp(str,"sx")) {
@@ -893,6 +703,16 @@ unsigned int scelta_turno(){
     }else{
         printf("Lancio monetina ? ");
         scanf("%s",str);
+        if((!strcmp(str,"no"))||(!strcmp(str,"NO"))||(!strcmp(str,"No")) ){
+            unsigned int npl = 0;
+            printf("Giocatore 1 o 2 inizia per primo? : ");
+            scanf("%u",&npl);
+            while(npl != 1 && npl != 2){
+                printf("Quale giocatore inizia per primo(1/2) ? ");
+                scanf("%u",&npl);
+            }
+            return npl;
+        }
         if((!strcmp(str,"si"))||(!strcmp(str,"Si"))||(!strcmp(str,"SI"))){
             int x = 0 ;
             srand(time(NULL));
@@ -909,13 +729,23 @@ unsigned int scelta_turno(){
     }
     return 1;
 }
-
-unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
+unsigned int turno_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
     char str[10];
-    unsigned int np,y = 0;
+    unsigned int y = 0,np;
 
-    printf("Turno player 1 : \n");
-    stampa_campo(*t,(p1->arr[0].dim+3));
+    aggiorna_campo(t,*p1,*p2);
+    if(npl == 1){
+        printPlayerTurn(p1->colore);
+        printf("Turno player 1 : \n");
+        resetColor();
+        stampa_campo(*t,(p1->arr[0].dim+3),1);
+    }else{
+        printPlayerTurn(p2->colore);
+        printf("Turno player 2 : \n");
+        resetColor();
+        stampa_campo(*t,(p2->arr[0].dim+3),2);
+    }
+
 
     printf("Vuoi uscire dal gioco ? ");
     scanf("%s",str);
@@ -925,95 +755,92 @@ unsigned int turno_player1(tplayer *p1,tplayer *p2,tcampo *t){
 
     printf("Numero di pedina da selezionare : ");
     scanf("%u",&np);
-    /*
-    printf("Vuoi selezionare questa pedina %d ? ",np);
-    scanf("%s",str);
-    
+    while( !((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim)))) || (!ped_noblock(*p1,*p2,*t,np,npl))){
 
-    while((!strcmp(str,"no"))||(!strcmp(str,"NO"))||(!strcmp(str,"No"))){
+        if(!ped_noblock(*p1,*p2,*t,np,npl)){
+            printf("La pedina %u non puo' fare nessuna mossa!\n",np);
+        }else{
+            printf("Non puoi selezionare la pedina n. %u",np);
+        }
         printf("Numero di pedina da selezionare : ");
         scanf("%u",&np);
+    }
+    printf("Vuoi selezionare questa pedina %d ? ",np);
+    scanf("%s",str);
+
+    /* (!((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim))))) || */
+    /*while( (!((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim))))) ||(!ped_noblock(*p1,*p2,*t,np,npl))){
+        if(!ped_noblock(*p1,*p2,*t,np,npl)){
+            printf("La pedina %u non puo' fare nessuna mossa!\n",np);
+        }else{
+            printf("Non puoi selezionare la pedina n. %u",np);
+        }
+        printf("Seleziona un'altra pedina : ");
+        scanf("%u",&np);
+    }*/
+
+    while( (!strcmp(str,"no"))||(!strcmp(str,"NO"))||(!strcmp(str,"No")) ){
+        printf("Numero di pedina da selezionare : ");
+        scanf("%u",&np);
+        while( (!((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim))))) ||(!ped_noblock(*p1,*p2,*t,np,npl))){
+            if(!ped_noblock(*p1,*p2,*t,np,npl)){
+                printf("La pedina %u non puo' fare nessuna mossa!\n",np);
+            }else{
+                printf("Non puoi selezionare la pedina n. %u",np);
+            }
+            printf("Numero di pedina da selezionare : ");
+            scanf("%u",&np);
+        }
         printf("Vuoi selezionare questa pedina %d ? ",np);
         scanf("%s",str);
     }
-    */
 
     while(y==0){
         printf("Verso che direzione vuoi spostare la pedina ? ");
         scanf("%s",str);
-        y = sposta_p1(p1,np,str,t,p2,1);
+        if(npl == 1){
+            y = sposta_p1(p1,np,str,t,p2,1);
+        }else{
+            y = sposta_p2(p2,np,str,t,p1);
+        }
         if(y == 0){
             char temp[2];
+            printf("La pedina numero %u non si puo' spostare verso %s\n",np,str);
 
             printf("Numero di pedina da selezionare : ");
             scanf("%u",&np);
+            while( !((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim)))) || (!ped_noblock(*p1,*p2,*t,np,npl))){
+
+                if(!ped_noblock(*p1,*p2,*t,np,npl)){
+                    printf("La pedina %u non puo' fare nessuna mossa!\n",np);
+                }else{
+                    printf("Non puoi selezionare la pedina n. %u",np);
+                }
+                printf("Numero di pedina da selezionare : ");
+                scanf("%u",&np);
+            }
             printf("Vuoi selezionare questa pedina %d ? ",np);
             scanf("%s",temp);
 
-            while((!strcmp(temp,"no"))||(!strcmp(temp,"NO"))||(!strcmp(temp,"No"))){
+            while( !((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim)))) || (!ped_noblock(*p1,*p2,*t,np,npl))){
+
+                if(!ped_noblock(*p1,*p2,*t,np,npl)){
+                    printf("La pedina %u non puo' fare nessuna mossa!\n",np);
+                }else{
+                    printf("Non puoi selezionare la pedina n. %u",np);
+                }
                 printf("Numero di pedina da selezionare : ");
                 scanf("%u",&np);
-                printf("Vuoi selezionare questa pedina %d ? ",np);
-                scanf("%s",temp);
             }
         }
     }
     aggiorna_campo(t,*p1,*p2);
-    stampa_campo(*t,(p1->arr[0].dim+3));
-
-    return 0;
-}
-unsigned int turno_player2(tplayer *p1,tplayer *p2,tcampo *t){
-    char str[10];
-    unsigned int np,y = 0;
-
-    printf("Turno player 2 : \n");
-    stampa_campo_inv(*t,(p2->arr[0].dim+3));
-
-    printf("Vuoi uscire dal gioco ? ");
-    scanf("%s",str);
-    if((!strcmp(str,"si"))||(!strcmp(str,"Si"))||(!strcmp(str,"SI"))){
-        return 1;
+    if(npl == 1){
+        stampa_campo(*t,(p1->arr[0].dim+3),1);
+    }else{
+        stampa_campo(*t,(p1->arr[0].dim+3),2);
     }
-    stampa_player(*p2);
 
-    printf("Numero di pedina da selezionare : ");
-    scanf("%u",&np);
-    /*
-    printf("Vuoi selezionare questa pedina %d ? ",np);
-    scanf("%s",str);
-
-    while((!strcmp(str,"no"))||(!strcmp(str,"NO"))||(!strcmp(str,"No"))){
-        printf("Numero di pedina da selezionare : ");
-        scanf("%u",&np);
-        printf("Vuoi selezionare questa pedina %d ? ",np);
-        scanf("%s",str);
-    }
-    */
-
-    while(y==0){
-        printf("Verso che direzione vuoi spostare la pedina ? ");
-        scanf("%s",str);
-        y = sposta_p2(p2,np,str,t,p1);
-
-        if(y == 0){
-            char temp[2];
-
-            printf("Numero di pedina da selezionare : ");
-            scanf("%u",&np);
-            printf("Vuoi selezionare questa pedina %d ? ",np);
-            scanf("%s",temp);
-
-            while((!strcmp(temp,"no"))||(!strcmp(temp,"NO"))||(!strcmp(temp,"No"))){
-                printf("Numero di pedina da selezionare : ");
-                scanf("%u",&np);
-                printf("Vuoi selezionare questa pedina %d ? ",np);
-                scanf("%s",temp);
-            }
-        }
-    }
-    aggiorna_campo(t,*p1,*p2);
-    stampa_campo_inv(*t,(p2->arr[np].dim+3));
 
     return 0;
 }
@@ -1029,6 +856,180 @@ int is_empty(tplayer p){
 
     return pos;
 }
+unsigned int max_pedine(unsigned int r,unsigned int c){
+    unsigned int k,l,t = 0,numped = 0;
+
+    l = ((r+1)/2)-1;
+    k = (c+1)/2;
+    if(r%2 == 0){
+        --r;
+    }
+    while(r-1 > l){
+        if(!t){
+            numped += k;
+            t = 1;
+        }else{
+            if(c%2 != 0){
+                numped += k-1;
+            }else{
+                numped += k;
+            }
+            t = 0;
+        }
+        --r;
+    }
+
+    return numped;
+}
+tcampo *campo_copy(tcampo t ,tcampo *new){
+    unsigned int flag = 0;
+    if(new == NULL){
+        flag = 1;
+        new = (tcampo*)malloc(sizeof(tcampo));
+    }
+    if(new != NULL){
+        unsigned int j,k;
+        new->r = t.r;
+        new->c = t.c;
+        if(flag == 1){
+            unsigned int i;
+            new->mat = (char**)malloc(sizeof(char*)*(new->r));
+            for(i = 0 ; i < new->r ; ++i){
+                new->mat[i] = (char*)malloc(sizeof(char)*(new->c));
+            }
+        }
+        for(k = 0 ; k < new->r ; ++k){
+            for(j = 0 ; j < new->c ; ++j){
+                new->mat[k][j] = t.mat[k][j];
+            }
+        }
+        return new;
+        if(!(new->mat)){
+            printf("Errore nella campo_copy(malloc della matrice di char)");
+            return NULL;
+        }
+    }else{
+        printf("Errore nella campo_copy (malloc di new)");
+        return NULL;
+    }
+
+}
+tplayer *player_copy(tplayer p,tplayer *n,unsigned int cifre){
+    unsigned int flag = 0;
+    if(n == NULL){
+        n = (tplayer*)malloc(sizeof(tplayer));
+        flag = 1;
+    }
+    if(n != NULL){
+        unsigned int i,j;
+        if(flag == 1){
+            unsigned int m,l;
+            n->dim = p.dim;
+            n->arr = (tpedina*)malloc(sizeof(tpedina)*(n->dim));
+            for(l = 0 ; l < p.dim ; ++l){
+                n->arr[l].et = (char*)malloc(sizeof(char)*(cifre));
+            }
+            for(l = 0 ; l < p.dim ; ++l){
+                for(m = 0 ; m < cifre ; ++m){
+                    n->arr[l].et[m] = p.arr[l].et[m];
+                }
+            }
+        }
+        for(i = 0 ; i < n->dim ; ++i){
+            for(j = 0 ; j < cifre ; ++j){
+                n->arr[i].et[j] = p.arr[i].et[j];
+            }
+            n->arr[i].dim = p.arr[i].dim;
+            n->arr[i].cima = p.arr[i].cima;
+            n->arr[i].grado = p.arr[i].grado;
+            n->arr[i].r = p.arr[i].r;
+            n->arr[i].c = p.arr[i].c;
+            n->arr[i].isPromoted = p.arr[i].isPromoted;
+        }
+        return n;
+    }else{
+        printf("Errore malloc player_copy");
+        return NULL;
+    }
+
+}
+unsigned int ped_noblock(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsigned int npl){
+    tcampo *new = NULL;
+    tplayer *n1 = NULL,*n2 = NULL;
+    new = campo_copy(t,new);
+    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
+    if(new != NULL && n1 != NULL && n2 != NULL){
+        aggiorna_campo(new,p1,p2);
+        if(npl == 1){
+            unsigned int flag = 0;
+            if(sposta_p1(n1,nped,"sx",new,n2,1)){
+                flag = 1;
+                new = campo_copy(t,new);
+                n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                n2 = player_copy(p2,n2,p2.arr[0].dim+3);
+            }else{
+                if(sposta_p1(n1,nped,"dx",new,n2,1)){
+                    flag = 1;
+                    new = campo_copy(t,new);
+                    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
+                }
+                if(sposta_p1(n1,nped,"bassosx",new,n2,1)){
+                    flag = 1;
+                    new = campo_copy(t,new);
+                    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
+                }
+                if(sposta_p1(n1,nped,"bassodx",new,n2,1)){
+                    flag = 1;
+                    new = campo_copy(t,new);
+                    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
+                }
+                destroy_campo(new);
+                destroy_player(n1);
+                destroy_player(n2);
+                return flag;
+            }
+        }else{
+            unsigned int flag = 0;
+            if(sposta_p2(n2,nped,"sx",new,n1)){
+                flag = 1;
+                new = campo_copy(t,new);
+                n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                n2 = player_copy(p2,n2,p2.arr[0].dim+3);
+            }else{
+                if(sposta_p2(n2,nped,"dx",new,n1)){
+                    flag = 1;
+                    new = campo_copy(t,new);
+                    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
+                }
+                if(sposta_p2(n2,nped,"bassosx",new,n1)){
+                    flag = 1;
+                    new = campo_copy(t,new);
+                    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
+                }
+                if(sposta_p2(n2,nped,"bassodx",new,n1)){
+                    flag = 1;
+                    new = campo_copy(t,new);
+                    n1 = player_copy(p1,n1,p1.arr[0].dim+3);
+                    n2 = player_copy(p2,n2,p2.arr[0].dim+3);
+                }
+                destroy_campo(new);
+                destroy_player(n1);
+                destroy_player(n2);
+                return flag;
+            }
+
+        }
+    }else{
+        printf("Errore nella ped_noblock\n");
+    }
+    return 0;
+}
 unsigned int controllo_pedina(tplayer *p,tplayer *p2,unsigned int np){
 
 
@@ -1043,7 +1044,6 @@ unsigned int controllo_pedina(tplayer *p,tplayer *p2,unsigned int np){
         --p2->arr[np].grado;
         p->arr[p->dim].dim = p2->arr[np].dim;
         p->arr[p->dim].cima = p2->arr[np].cima;
-        p->arr[p->dim].numero = p->dim;
         p->arr[p->dim].grado = p2->arr[np].grado;
         p->arr[p->dim].c = p2->arr[np].c;
         p->arr[p->dim].r = p2->arr[np].r;
@@ -1083,4 +1083,139 @@ unsigned int controllo_pedina(tplayer *p,tplayer *p2,unsigned int np){
         printf("Errore nella realloc\n");
         return 0;
     }
+}
+int player_vs_player(unsigned int x ){
+    tcampo *t;
+    tplayer *p1 = NULL,*p2 = NULL;
+    unsigned int exit = 0,turno,round = 0;
+    unsigned int cifre,conta = 2,numped = 11;
+
+    if(x == 0){
+        t = crea_campo(7,7,3+conta);
+        inizializza_campo(t,3+conta);
+        p1 = crea_pedine(11,'B',1,conta,*t);/* creare n pedine di carattere c */
+        p2 = crea_pedine(11,'N',2,conta,*t);/* creare n pedine di carattere c */
+    }else{
+        unsigned int w,h,max_ped = 0;
+        conta = 0;
+        printf("Altezza della scacchiera : ");
+        scanf("%u",&h);
+        printf("Larghezza della scacchiera : ");
+        scanf("%u",&w);
+        while(w < 3 || h < 3){
+            printf("Larghezza e altezza della scacchiera non soddisfa requisiti minimi(h >= 3,w >= 3)\n");
+            printf("Reinserire altezza e larghezza\n ");
+            printf("Altezza della scacchiera : ");
+            scanf("%u",&h);
+            printf("Larghezza della scacchiera : ");
+            scanf("%u",&w);
+        }
+        max_ped = max_pedine(h,w);
+        printf("Numero di pedine massimo per giocatore : %u\n",max_ped);
+        printf("Numero pedine ?(ovviamente minore o guale al massimo numero) : ");
+        scanf("%u",&cifre);
+        while(cifre > max_ped){
+            printf("Reinserire numero pedine : ");
+            scanf("%u",&cifre);
+        }
+        numped = cifre;
+        if(cifre > 0) {
+            while (cifre != 0) {
+                cifre /= 10;
+                ++conta;
+            }
+            if ((pow(10, conta - 1) == numped) && (numped != 1)) {
+                --conta;
+            }
+            t = crea_campo(h,w,3+conta);
+            inizializza_campo(t,3+conta);
+            p1 = crea_pedine(numped,'B',1,conta,*t);/* creare n pedine di carattere c */
+            p2 = crea_pedine(numped,'N',2,conta,*t);/* creare n pedine di carattere c */
+
+        }else{
+            printf("Non ha senso giocare con %u pedine !\n",cifre);
+            return 0;
+        }
+    }
+    turno = scelta_turno();
+    printf("Il player che inizia e' %d\n",turno);
+    while((exit == 0)&&(!is_victory(*p1,*p2))){
+        printf("Round numero : %u\n",round);
+        if(turno == 1){
+            exit = turno_player(p1,p2,t,turno);
+            turno = 2;
+        }else{
+            exit = turno_player(p1,p2,t,turno);
+
+            turno = 1;
+        }
+        ++round;
+    }
+    exit = is_victory(*p1,*p2);
+    if(exit == 0){
+        printf("Hai abbandonato la partita\n");
+    }else{
+        printf("Il vincitore e' il player %d!\n",exit);
+    }
+
+    destroy_campo(t);
+    destroy_player(p1);
+    destroy_player(p2);
+
+    return 1;
+}
+
+unsigned int ia(tplayer *p,tcampo *t){
+    unsigned int i;/* ,*pos;
+    int *punteggio;
+
+    pos = (unsigned int *)malloc(sizeof(unsigned int)*p->dim);
+    punteggio = (int *)malloc(sizeof(int)*p->dim);
+    */
+    for(i = 0 ; i < p->dim ; ++i){
+        /* if pedina non  bloccata
+            int p,j;
+            p = minimax (sx);
+            j = minimax (dx);
+            if  p > j
+                punteggio[i] = p;
+                pos[i] = 0;
+                if(minimax(bassosx) > minimax(bassodx) && ispromoted)
+                    punteggio[i] < minimax(bassosx) ? punteggio[i] = minimax(bassosx) : 0;
+                    pos[i] = 3;
+                 else
+                    ...
+            else
+                ...
+         */
+    }
+    for(i = 0 ; i < p->dim ; ++i){
+        /* trovo max punteggio */
+        /* m = i (indice max punteggio )*/
+    }
+
+    /* return m*/
+    return 0;
+
+
+    /* liberare punt e pos con free*/
+
+}
+void destroy_player (tplayer *p){
+
+    unsigned int i;
+    for(i = 0 ; i < p->dim ;++i){
+        free(p->arr[i].et);
+    }
+    free(p->arr);
+    free(p);
+}
+void destroy_campo(tcampo *t){
+    unsigned int i;
+
+    for(i = 0 ; i < t->r ; ++i){
+        free(t->mat[i]);
+    }
+    free(t);
+
 }
