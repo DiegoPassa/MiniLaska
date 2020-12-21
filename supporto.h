@@ -74,7 +74,9 @@ unsigned int convert(tcampo t,unsigned int r,unsigned int c,unsigned int dim,uns
 
 unsigned int ricerca_pl(tplayer p1,tplayer p2,unsigned int x,unsigned int y);/*trovare se una pedina in una posizione è del player 1 o 2*/
 
-unsigned int is_victory(tplayer p1,tplayer p2);/* controlla se un giocatore o l'altro ha vinto oppure no*/
+unsigned int is_victory(tplayer p1,tplayer p2,tcampo t);/* controlla se un giocatore o l'altro ha vinto oppure no*/
+
+unsigned int all_block(tplayer p1,tplayer p2,tcampo t,unsigned int npl);/* controlla se tutte le pedine sono bloccate o no */
 
 unsigned int scelta_turno();/* decidere a chi va il primo turno */
 
@@ -86,7 +88,7 @@ unsigned int ia(tplayer *p,tcampo *t);
 
 int minimax();
 
-    void player_vs_ia();
+void player_vs_ia();
 
 void destroy_player (tplayer *p); /* liberare spazio di memoria allocata da player*/
 
