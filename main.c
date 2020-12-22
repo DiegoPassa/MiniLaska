@@ -152,7 +152,7 @@ int main()
     }
     */
 
-    player_vs_player(1);
+    player_vs_player(0);
 
 
     return 0;

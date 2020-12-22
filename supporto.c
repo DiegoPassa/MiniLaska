@@ -265,33 +265,7 @@ tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,
         return NULL;
     }
 }
-void stampa_dir(unsigned int *arr,unsigned int dim,unsigned int np){
-    unsigned int i,flag = 0;
-    for(i = 0 ; i < dim ;++i){
-        if(arr[i]){
-            flag = 1;
-        }
-    }
-    if(flag == 1){
-        printf("La pedina n.%u puo' andare e quindi mangiare in queste direzioni : \n",np);
-        for(i = 0 ; i < dim ; ++i){
-            if(i == 0 && arr[i] == 1){
-                printf("sx\n");
-            }
-            if(i == 1 && arr[i] == 1){
-                printf("dx\n");
-            }
-            if(i == 2 && arr[i] == 1){
-                printf("bassosx\n");
-            }
-            if(i == 3 && arr[i] == 1){
-                printf("bassodx\n");
-            }
-        }
-    }
 
-
-}
 void stampa_player(tplayer p){
     unsigned int i,j;
     for(i = 0 ; i < p.dim ; ++i){
@@ -398,96 +372,8 @@ unsigned int is_in(int r,int c,tcampo t){
         return 0;
     }
 }
-unsigned int contr_dir(unsigned int *arr,unsigned int dim,char *str){
-    unsigned int i,flag = 0,j;
-    for(i = 0 ; i < dim ; ++i){
-        if(arr[i]){
-            flag = 1;
-        }
-    }
-    if(!flag){
-        return 1;
-    }
-    if(!strcmp(str, "sx")){
-        j = 0;
-    }
-    if(!strcmp(str, "dx")){
-        j = 1;
-    }
-    if(!strcmp(str, "bassosx")){
-        j = 2;
-    }
-    if(!strcmp(str, "bassodx")){
-        j = 3;
-    }
-    if(arr[j] == 1 && j < dim){
-        return 1;
-    }else{
-        return 0;
-    }
-
-
-}
-unsigned int *obl_eat(tplayer p1,tplayer p2,tcampo t,unsigned int np,unsigned int npl){
-    unsigned int *arr,dim;
-    if(npl == 1){
-        if(p1.arr[np].isPromoted ){
-            dim = 4;
-        }else{
-            dim = 2;
-        }
-    }
-    if(npl == 2){
-        if(p2.arr[np].isPromoted){
-            dim = 4;
-        }else{
-            dim = 2;
-        }
-    }
-    arr = (unsigned int*)malloc(sizeof(unsigned int)*dim);
-    if(arr){
-        unsigned int i;
-        for(i = 0 ; i < dim ; ++i){
-            arr[i] = 0;
-        }
-        if(npl == 1){
-            if(can_eat(&p1,np,"sx",&t,&p2,npl) >= 0){
-                arr[0] = 1;
-            }
-            if(can_eat(&p1,np,"dx",&t,&p2,npl)>= 0){
-                arr[1] = 1;
-            }
-            if(can_eat(&p1,np,"bassosx",&t,&p2,npl)>= 0 && dim == 4){
-                arr[2] = 1;
-            }
-            if(can_eat(&p1,np,"bassodx",&t,&p2,npl)>= 0 && dim == 4){
-                arr[3] = 1;
-            }
-        }
-        if(npl == 2){
-            if(can_eat(&p2,np,"sx",&t,&p1,npl)>= 0){
-                arr[0] = 1;
-            }
-            if(can_eat(&p2,np,"dx",&t,&p1,npl)>= 0){
-                arr[1] = 1;
-            }
-            if(can_eat(&p2,np,"bassosx",&t,&p1,npl)>= 0 && dim == 4){
-                arr[2] = 1;
-            }
-            if(can_eat(&p2,np,"bassodx",&t,&p1,npl)>= 0 && dim == 4){
-                arr[3] = 1;
-            }
-        }
-        return arr;
-    }else{
-        printf("Errore nella obl_eat\n");
-        return NULL;
-    }
-
-
-}
 int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl) {
-    if ( (!strcmp(str, "sx"))&&((pl == 1)||((pl == 2)&&(!strcmp(str, "bassosx"))) )) {
+    if (!strcmp(str, "sx")) {
         if ((is_in(p1->arr[np].r - 2, p1->arr[np].c - ((p1->arr[np].dim + 3+1) * 2), *t)) &&
             ((is_in(p1->arr[np].r - 1, p1->arr[np].c - (p1->arr[np].dim + 3+1), *t)))) {
             unsigned x, y, z;
@@ -512,7 +398,7 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
             return -3;
         }
     } else {
-        if ( (!strcmp(str, "dx"))&&((pl == 1)||((pl == 2)&&(!strcmp(str, "bassodx"))) )) {
+        if (!strcmp(str, "dx")) {
             if ((is_in(p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 3 ), *t)) &&
                 ((is_in(p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3+1), *t)))) {
                 unsigned x, y, z;
@@ -524,7 +410,7 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
                     (!is_pedina(*t, p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3+1) * 2),
                                 (p1->arr[np].dim + 3+1)))) {
                     int num = -1;
-                    num = convert(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3+1), 3 + p1->arr[np].dim, 3);
+                    num = convert(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3+1), 2 + p1->arr[np].dim, 3);
                     if ((num > -1) && (num < p1->dim)) {
                         return num;
                     } else {
@@ -539,7 +425,7 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
             }
         }
         if (((pl == 2) || (p1->arr[np].isPromoted))) {
-            if ((!strcmp(str, "bassosx")) || (!strcmp(str, "sx"))) {
+            if (!strcmp(str, "bassosx")) {
                 if ((is_in(p1->arr[np].r + 2, p1->arr[np].c - ((p1->arr[np].dim + 3+1) * 2), *t)) &&
                     ((is_in(p1->arr[np].r + 1, p1->arr[np].c - (p1->arr[np].dim + 3+1), *t)))) {
                     unsigned x, y, z;
@@ -551,7 +437,7 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
                         (!is_pedina(*t, p1->arr[np].r + 2, p1->arr[np].c - ((p1->arr[np].dim + 3+1) * 2),
                                     (p1->arr[np].dim + 3+1)))) {
                         int num = -1;
-                        num = convert(*t, p1->arr[np].r + 1, p1->arr[np].c - (p1->arr[np].dim + 3+1), 3 + p1->arr[np].dim,
+                        num = convert(*t, p1->arr[np].r + 1, p1->arr[np].c - (p1->arr[np].dim + 3+1), 2 + p1->arr[np].dim,
                                       3);
                         if ((num > -1) && (num < p1->dim)) {
                             return num;
@@ -565,7 +451,7 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
                     return -3;
                 }
             }
-            if ((!strcmp(str, "bassodx")) || (!strcmp(str, "dx"))) {
+            if (!strcmp(str, "bassodx")) {
                 if ((is_in(p1->arr[np].r + 2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 3 ), *t)) &&
                     ((is_in(p1->arr[np].r + 1, p1->arr[np].c + (p1->arr[np].dim + 3+1), *t)))) {
                     unsigned x, y, z;
@@ -577,7 +463,7 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
                                      (!is_pedina(*t, p1->arr[np].r + 2, p1->arr[np].c + ((p1->arr[np].dim + 3+1) * 2),
                                                  (p1->arr[np].dim + 3+1))))) {
                         int num = -1;
-                        num = convert(*t, p1->arr[np].r + 1, p1->arr[np].c + (p1->arr[np].dim + +1), 3 + p1->arr[np].dim,
+                        num = convert(*t, p1->arr[np].r + 1, p1->arr[np].c + (p1->arr[np].dim + +1), 2 + p1->arr[np].dim,
                                       3);
                         if ((num > -1) && (num < p1->dim)) {
                             return num;
@@ -962,29 +848,8 @@ unsigned int turno_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
     }
 
     while(y==0){
-        unsigned int *arr,dim;
-        if(npl == 1){
-            if(p1->arr[np].isPromoted ){
-                dim = 4;
-            }else{
-                dim = 2;
-            }
-        }
-        if(npl == 2){
-            if(p2->arr[np].isPromoted){
-                dim = 4;
-            }else{
-                dim = 2;
-            }
-        }
-        arr = obl_eat(*p1,*p2,*t,np,npl);
-        stampa_dir(arr,dim,np);
         printf("Verso che direzione vuoi spostare la pedina ? ");
         scanf("%s",str);
-        while(!contr_dir(arr,dim,str)){
-            printf("Verso che direzione vuoi spostare la pedina ? ");
-            scanf("%s",str);
-        }
         if(npl == 1){
             y = sposta_p1(p1,np,str,t,p2,1);
         }else{
