@@ -36,11 +36,15 @@ tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,
 
 void stampa_player(tplayer p); /* stampa pedine di un player */
 
+void stampa_dir(unsigned int *arr,unsigned int dim,unsigned int np);/* stampa le direzioni che devo fare per la mangiata obbligatoria*/
+
 void aggiorna_campo(tcampo *t,tplayer p1,tplayer p2);/* aggiornare posizione pedine sul campo */
 
 int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/* controlli prima di mangiare un'altra pedina */
 
-int *obl_eat(tplayer p,unsigned int np,tcampo t);/* mangiata obbligatoria*/
+unsigned int *obl_eat(tplayer p1,tplayer p2,tcampo t,unsigned int np,unsigned int npl);/* mangiata obbligatoria*/
+
+unsigned int contr_dir(unsigned int *arr,unsigned int dim,char *str);/* confronta la stringa con le direzioni obbligatorie*/
 
 unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/*si muove la pedina senza mangiare*/
 
