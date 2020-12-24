@@ -72,7 +72,7 @@ void togli_pedina(tcampo *t,unsigned int r,unsigned int c,unsigned int cifre);/*
 
 void promuovi_pedina(tplayer *p,unsigned int np,unsigned int numpl,unsigned int meta);/* promozione di una pedina*/
 
-unsigned int mangia(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsigned int num);/* conquistare una pedina veros una certa posizone*/
+unsigned int mangia(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsigned int num,unsigned int npl);/* conquistare una pedina veros una certa posizone*/
 
 unsigned int convert(tcampo t,unsigned int r,unsigned int c,unsigned int dim,unsigned int cifre);/* converte il numero in da char ad int */
 
