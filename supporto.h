@@ -54,6 +54,8 @@ unsigned int is_pedina(tcampo t,unsigned int r,unsigned int c,unsigned int cifre
 
 int is_empty(tplayer p);/* controllare se l'array ha pedina con grado 0*/
 
+unsigned int is_sel(tplayer p1,tplayer p2,unsigned int np,unsigned int npl);/* controlla se la pedina np si può selezionare*/
+
 unsigned int max_pedine(unsigned int r,unsigned int c);/* calccolare il numero di pedine che si possono mettere in una matrice dimensione rxc */
 
 unsigned int ped_noblock(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsigned int npl);/*determinare se la pedina è bloccata o no*/

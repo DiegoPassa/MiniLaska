@@ -340,6 +340,15 @@ unsigned int is_pedina(tcampo t,unsigned int r,unsigned int c,unsigned int cifre
     }
     return flag;
 }
+unsigned int is_sel(tplayer p1,tplayer p2,unsigned int np,unsigned int npl){
+    if(npl == 1 && p1.arr[np].grado > 0){
+        return 1;
+    }
+    if(npl == 2 && p2.arr[np].grado > 0){
+        return 1;
+    }
+    return 0;
+}
 void togli_pedina(tcampo *t,unsigned int r,unsigned int c,unsigned cifre){
     unsigned int i;
     for(i = 0 ; i < cifre ; ++i){
@@ -464,7 +473,7 @@ unsigned int *obl_eat(tplayer p1,tplayer p2,tcampo t,unsigned int np,unsigned in
             }
         }
         if(npl == 2){
-            if(can_eat(&p2,np,"basssosx",&t,&p1,npl)>= 0){
+            if(can_eat(&p2,np,"bassosx",&t,&p1,npl)>= 0){
                 arr[0] = 1;
             }
             if(can_eat(&p2,np,"bassodx",&t,&p1,npl)>= 0){
@@ -935,12 +944,12 @@ unsigned int turno_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
 
     printf("Numero di pedina da selezionare : ");
     scanf("%u",&np);
-    while( !((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim)))) || (!ped_noblock(*p1,*p2,*t,np,npl))){
+    while( (!((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim)))) || (!ped_noblock(*p1,*p2,*t,np,npl)))||(!is_sel(*p1,*p2,np,npl))){
 
         if(!ped_noblock(*p1,*p2,*t,np,npl)){
             printf("La pedina %u non puo' fare nessuna mossa!\n",np);
         }else{
-            printf("Non puoi selezionare la pedina n. %u",np);
+            printf("Non puoi selezionare la pedina n. %u\n",np);
         }
         printf("Numero di pedina da selezionare : ");
         scanf("%u",&np);
@@ -962,11 +971,11 @@ unsigned int turno_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
     while( (!strcmp(str,"no"))||(!strcmp(str,"NO"))||(!strcmp(str,"No")) ){
         printf("Numero di pedina da selezionare : ");
         scanf("%u",&np);
-        while( (!((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim))))) ||(!ped_noblock(*p1,*p2,*t,np,npl))){
+        while( (!((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim)))) ||(!ped_noblock(*p1,*p2,*t,np,npl)))||(!is_sel(*p1,*p2,np,npl))){
             if(!ped_noblock(*p1,*p2,*t,np,npl)){
                 printf("La pedina %u non puo' fare nessuna mossa!\n",np);
             }else{
-                printf("Non puoi selezionare la pedina n. %u",np);
+                printf("Non puoi selezionare la pedina n. %u\n",np);
             }
             printf("Numero di pedina da selezionare : ");
             scanf("%u",&np);
@@ -1010,12 +1019,12 @@ unsigned int turno_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
 
             printf("Numero di pedina da selezionare : ");
             scanf("%u",&np);
-            while( !((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim)))) || (!ped_noblock(*p1,*p2,*t,np,npl))){
+            while( (!((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim)))) || (!ped_noblock(*p1,*p2,*t,np,npl)))||(!is_sel(*p1,*p2,np,npl)) ){
 
                 if(!ped_noblock(*p1,*p2,*t,np,npl)){
                     printf("La pedina %u non puo' fare nessuna mossa!\n",np);
                 }else{
-                    printf("Non puoi selezionare la pedina n. %u",np);
+                    printf("Non puoi selezionare la pedina n. %u\n",np);
                 }
                 printf("Numero di pedina da selezionare : ");
                 scanf("%u",&np);
@@ -1023,12 +1032,12 @@ unsigned int turno_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
             printf("Vuoi selezionare questa pedina %d ? ",np);
             scanf("%s",temp);
 
-            while( !((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim)))) || (!ped_noblock(*p1,*p2,*t,np,npl))){
+            while( (!((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim)))) || (!ped_noblock(*p1,*p2,*t,np,npl)))||(!is_sel(*p1,*p2,np,npl))){
 
                 if(!ped_noblock(*p1,*p2,*t,np,npl)){
                     printf("La pedina %u non puo' fare nessuna mossa!\n",np);
                 }else{
-                    printf("Non puoi selezionare la pedina n. %u",np);
+                    printf("Non puoi selezionare la pedina n. %u\n",np);
                 }
                 printf("Numero di pedina da selezionare : ");
                 scanf("%u",&np);
@@ -1289,8 +1298,8 @@ int player_vs_player(unsigned int x ){
     unsigned int cifre,conta = 2,numped = 11;
 
     if(x == 0){
-        t = crea_campo(7,7,3+conta);
-        inizializza_campo(t,3+conta);
+        t = crea_campo(7,7,3+conta+1);
+        inizializza_campo(t,3+conta+1);
         p1 = crea_pedine(11,'B',1,conta,*t);/* creare n pedine di carattere c */
         p2 = crea_pedine(11,'N',2,conta,*t);/* creare n pedine di carattere c */
     }else{
