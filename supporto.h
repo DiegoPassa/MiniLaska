@@ -8,14 +8,12 @@ typedef struct campo tcampo;
 struct pedina
 {
     char *et; /* etichetta della pedina Es.|  BN07 | */
-    char app;
     unsigned int dim;
     unsigned int cima;
-    unsigned int numero;
     unsigned int grado;
     unsigned int r;
     unsigned int c;
-    int isPromoted; /* Es: |^ BN07| */
+    unsigned int isPromoted; /* Es: |  BN07^ | */
 };
 typedef struct pedina tpedina;
 struct player
@@ -60,9 +58,9 @@ unsigned int max_pedine(unsigned int r,unsigned int c);/* calccolare il numero d
 
 unsigned int ped_noblock(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsigned int npl);/*determinare se la pedina è bloccata o no*/
 
-tcampo *campo_copy(tcampo t ,tcampo *new);/*creare un nuovo campo copiando dalla variabile t */
+void campo_copy(tcampo t ,tcampo *new);/*creare un nuovo campo copiando dalla variabile t */
 
-tplayer *player_copy(tplayer p,tplayer *n,unsigned int cifre);/* creare un nuovo player copiando da player p già esistente*/
+void player_copy(tplayer p,tplayer *n,unsigned int cifre);/* creare un nuovo player copiando da player p già esistente*/
 
 unsigned int controllo_pedina(tplayer *p,tplayer *p2,unsigned int np);/* aggiunge una pedina all'altro player in base alla pedina mangiata*/
 
