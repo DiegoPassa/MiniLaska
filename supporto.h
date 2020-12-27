@@ -26,7 +26,7 @@ struct player
 };
 typedef struct player tplayer;
 
-tcampo *crea_campo(unsigned int r,unsigned int c,unsigned int cifre); /* creazione matrice */
+tcampo* crea_campo(unsigned int r,unsigned int c,unsigned int cifre); /* creazione matrice */
 
 void inizializza_campo(tcampo *t,unsigned int cifre); /* inizializza matrice come scacchiera*/
 

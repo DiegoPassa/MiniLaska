@@ -6,27 +6,25 @@
 #include <math.h>
 #include "lib/colori.h"
 
-tcampo *crea_campo(unsigned int r,unsigned int col,unsigned int cifre){
-    tcampo *t;
+ tcampo* crea_campo(unsigned int r,unsigned int col,unsigned int cifre){
+    tcampo *t = NULL;
 
     t = (tcampo*)malloc(sizeof(tcampo));
-
     if(t != NULL){
         unsigned int i;
         t->r = r;
-        t->c = col*cifre;
-        t->mat = (char**)malloc(sizeof(char*)*(t->r));
+        t->c = (col*cifre);
+        t->mat = (char**)malloc((t->r)*sizeof(char*));
         for(i = 0 ; i < t->r ; ++i){
             t->mat[i] = (char*)malloc(sizeof(char)*(t->c));
 
         }
-
         return t;
+     }else{
+         printf("Errore nella malloc nella funzione crea_campo\n");
+         return NULL;
+     }
 
-    }else{
-        printf("Errore nella malloc nella funzione crea_campo\n");
-        return NULL;
-    }
 }
 void inizializza_campo(tcampo *t,unsigned int cifre){
     unsigned int i,j;
@@ -190,7 +188,7 @@ void stampa_dir(unsigned int *arr,unsigned int dim,unsigned int np){
 
 }
 tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,tcampo t){
-    tplayer *p;
+    tplayer *p = NULL;
     unsigned int h;
 
     p = (tplayer*)malloc(sizeof(tplayer));
@@ -1165,10 +1163,18 @@ tplayer *player_copy(tplayer p,tplayer *n,unsigned int cifre){
 unsigned int ped_noblock(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsigned int npl){
     tcampo *new = NULL;
     tplayer *n1 = NULL,*n2 = NULL;
+
     new = campo_copy(t,new);
     n1 = player_copy(p1,n1,p1.arr[0].dim+3+1);
     n2 = player_copy(p2,n2,p2.arr[0].dim+3+1);
+
     if(new != NULL && n1 != NULL && n2 != NULL){
+        if(npl == 1){
+            inizializza_campo(new,p1.arr[0].dim+3+1);
+        }
+        if(npl == 2){
+            inizializza_campo(new,p2.arr[0].dim+3+1);
+        }
         aggiorna_campo(new,*n1,*n2);
         if(npl == 1){
             unsigned int flag = 0;
@@ -1233,6 +1239,15 @@ unsigned int ped_noblock(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsign
         }
     }else{
         printf("Errore nella ped_noblock\n");
+        if(new != NULL){
+            destroy_campo(new);
+        }
+        if(n1 != NULL){
+            destroy_player(n1);
+        }
+        if(n2 != NULL){
+            destroy_player(n2);
+        }
         return 0;
     }
 
@@ -1428,12 +1443,12 @@ void destroy_player (tplayer *p){
     free(p->arr);
     free(p);
 }
-void destroy_campo(tcampo *t){
+void destroy_campo(tcampo *t) {
     unsigned int i;
 
-    for(i = 0 ; i < t->r ; ++i){
+    for (i = 0; i < t->r ;++i) {
         free(t->mat[i]);
     }
+    free(t->mat);
     free(t);
-
 }
