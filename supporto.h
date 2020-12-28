@@ -90,11 +90,11 @@ unsigned int round_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl);/*
 
 int player_vs_player(unsigned int x );/* mode player vs player */
 
-unsigned int ia(tplayer *p,tcampo *t);
+void player_vs_ia();/*mode player vs ia */
+
+unsigned int round_ia(tplayer *p1,tplayer *ia,tcampo *t,unsigned int npl);
 
 int minimax();
-
-void player_vs_ia();
 
 void destroy_player (tplayer *p); /* free up memory space allocated by player */
 
