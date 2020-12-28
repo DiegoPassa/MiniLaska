@@ -231,7 +231,13 @@ tplayer *create_pawns(unsigned int n,char ped,unsigned int np,unsigned int cifre
                 }
                 p->arr[i].et[(3+cifre)-1] = '0'+i;
             }else {
-                unsigned int x = 1, f = 3, z,m = i;
+                unsigned int dest,index;
+                index = cifre;
+                for(dest = 3 ; dest < cifre+3 ; ++dest){
+                    p->arr[i].et[dest] = int_converter(i,index);
+                    --index;
+                }
+            /*    unsigned int x = 1, f = 3, z,m = i;
                 z = cifre-1;
                 x = pow(10,z);
                 for(f = 3 ; f < 3+cifre ; ++f){
@@ -244,7 +250,7 @@ tplayer *create_pawns(unsigned int n,char ped,unsigned int np,unsigned int cifre
                     m -= x *div ;
                     --z;
                     x = pow(10,z);
-                }
+                }*/
             }
             p->arr[i].et[3+cifre] = ' ';
             p->arr[i].dim = cifre;
@@ -389,7 +395,7 @@ unsigned int check_player(tplayer p1,tplayer p2,unsigned int x,unsigned int y){
     }
     return flag;
 }
-unsigned int convert(tcampo t,unsigned int r,unsigned int c,unsigned int dim,unsigned int cifre){
+unsigned int char_converter(tcampo t,unsigned int r,unsigned int c,unsigned int dim,unsigned int cifre){
     unsigned int i,num = 0,z = 0;
     for(i = dim ; i >cifre-1 ; --i){
         num += ((t.mat[r][c+i]-'0')*pow(10,z));
@@ -482,13 +488,13 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
             unsigned x, y, z;
             x = p1->arr[np].r - 1;
             y = p1->arr[np].c - (p1->arr[np].dim + 3+1);
-            z = ricerca_pl(*p1, *p2, x, y);
+            z = check_player(*p1, *p2, x, y);
             if ((z == 2) &&
                 (check_spot(*t, p1->arr[np].r - 1, p1->arr[np].c - (p1->arr[np].dim + 3+1), (p1->arr[np].dim + 3+1))) &&
                 (!check_spot(*t, p1->arr[np].r - 2, p1->arr[np].c - ((p1->arr[np].dim + 3+1) * 2),
                             (p1->arr[np].dim + 3+1)))) {
                 int num = -1;
-                num = convert(*t, p1->arr[np].r - 1, p1->arr[np].c - (p1->arr[np].dim + 3+1), 2 + p1->arr[np].dim, 3);
+                num =  char_converter(*t, p1->arr[np].r - 1, p1->arr[np].c - (p1->arr[np].dim + 3+1), 2 + p1->arr[np].dim, 3);
                 if ((num > -1) && (num < p1->dim)) {
                     return num;
                 } else {
@@ -513,7 +519,7 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
                 (!check_spot(*t, p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3+1) * 2),
                             (p1->arr[np].dim + 3+1)))) {
                 int num = -1;
-                num = convert(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3+1), 2 + p1->arr[np].dim, 3);
+                num =  char_converter(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3+1), 2 + p1->arr[np].dim, 3);
                 if ((num > -1) && (num < p1->dim)) {
                     return num;
                 } else {
@@ -541,7 +547,7 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
                     (!check_spot(*t, p1->arr[np].r + 2, p1->arr[np].c - ((p1->arr[np].dim + 3 + 1) * 2),
                                 (p1->arr[np].dim + 3 + 1)))) {
                     int num = -1;
-                    num = convert(*t, p1->arr[np].r + 1, p1->arr[np].c - (p1->arr[np].dim + 3 + 1), 2 + p1->arr[np].dim,3);
+                    num =  char_converter(*t, p1->arr[np].r + 1, p1->arr[np].c - (p1->arr[np].dim + 3 + 1), 2 + p1->arr[np].dim,3);
                     if ((num > -1) && (num < p1->dim)) {
                         return num;
                     } else {
@@ -566,7 +572,7 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
                                  (!check_spot(*t, p1->arr[np].r + 2, p1->arr[np].c + ((p1->arr[np].dim + 3 + 1) * 2),
                                              (p1->arr[np].dim + 3 + 1))))) {
                     int num = -1;
-                    num = convert(*t, p1->arr[np].r + 1, p1->arr[np].c + (p1->arr[np].dim + 3 + 1), 2 + p1->arr[np].dim,3);
+                    num =  char_converter(*t, p1->arr[np].r + 1, p1->arr[np].c + (p1->arr[np].dim + 3 + 1), 2 + p1->arr[np].dim,3);
                     if ((num > -1) && (num < p1->dim)) {
                         return num;
                     } else {
@@ -643,7 +649,7 @@ unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
 unsigned int eat(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsigned int num,unsigned int npl){
 
     char temp[3];
-    unsigned int x,f,z;
+    unsigned int f;
     temp[0] = p1->arr[np].et[1];
     temp[1] = p1->arr[np].et[2];
     temp[2] = p2->arr[num].et[p2->arr[num].cima];
@@ -661,7 +667,7 @@ unsigned int eat(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsi
                 remove_pawn(&t,p2->arr[num].r,p2->arr[num].c,p2->arr[num].dim+3+1);
                 p2->arr[num].grado = 0;
             } else {
-                unsigned int pos, i;
+                unsigned int pos, i,index;
                 pos = is_empty(*p1);
                 p2->arr[num].et[p2->arr[num].cima]= ' ';
                 ++p2->arr[num].cima;
@@ -678,19 +684,11 @@ unsigned int eat(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsi
                 p2->arr[num].grado = 0;
                 p1->arr[pos].r = p2->arr[num].r;
                 p1->arr[pos].c = p2->arr[num].c;
-                z = p1->arr[pos].dim-1;
-                x = pos;
-                for(f = 3 ; f < 3+p1->arr[pos].dim ; ++f){
-                    unsigned int div = x/pow(10,z);
-                    if (div > 0) {
-                        p1->arr[pos].et[f] = '0'+div;
-                    } else {
-                        p1->arr[pos].et[f] = '0';
-                    }
-                    x -= pow(10,z)*div ;
-                    --z;
+                index = p1->arr[pos].dim;
+                for(i = 3 ; i < p1->arr[pos].dim+3 ; ++i){
+                    int_converter(pos,index);
+                    --index;
                 }
-
             }
         }
     }
@@ -753,7 +751,7 @@ unsigned int move_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p
         return 1;
     }else{
         if(num == -1){
-            printf("Errore nella convert\n");
+            printf("Errore nella char_convert\n");
             return 0;
         }else{
             if(num == -4){
@@ -1201,54 +1199,59 @@ unsigned int is_notstuck(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsign
     }
 
 }
-unsigned int add_pawn(tplayer *p,tplayer *p2,unsigned int np){
+char int_converter(unsigned int num,unsigned int index){
+
+    unsigned int x = 1;
+    char let;
+    let = '0';
+    x = pow(10,index);
+    let += (num/x);
+    /*
+    for(f = 3 ; f < 3+cifre ; ++f){
+        unsigned int div = m/x;
+        if (div > 0) {
+            p->arr[i].et[f] = '0' + div;
+        } else {
+            p->arr[i].et[f] = '0';
+        }
+        m -= x *div ;
+        --z;
+        x = pow(10,z);
+    } */
+    return let;
+
+}
+unsigned int add_pawn(tplayer *p1,tplayer *p2,unsigned int np){
 
 
-    p->arr = (tpedina*)realloc(p->arr,(p->dim+1)*sizeof(tpedina));
-    p->arr[p->dim].et = (char*)malloc(sizeof(char)*(3+p2->arr[np].dim));
+    p1->arr = (tpedina*)realloc(p1->arr,(p1->dim+1)*sizeof(tpedina));
+    p1->arr[p1->dim].et = (char*)calloc((p2->arr[np].dim+3+1),sizeof(char));
 
-    if((p->arr) &&(p->arr[p->dim].et)) {
-        unsigned int i,x,f,z,cifre;
+    if((p1->arr) &&(p1->arr[p1->dim].et)) {
+        unsigned int i,index;
 
         p2->arr[np].et[p2->arr[np].cima]= ' ';
         ++p2->arr[np].cima;
         --p2->arr[np].grado;
-        p->arr[p->dim].dim = p2->arr[np].dim;
-        p->arr[p->dim].cima = p2->arr[np].cima;
-        p->arr[p->dim].grado = p2->arr[np].grado;
-        p->arr[p->dim].c = p2->arr[np].c;
-        p->arr[p->dim].r = p2->arr[np].r;
+       p1->arr[p1->dim].dim = p2->arr[np].dim;
+        p1->arr[p1->dim].cima = p2->arr[np].cima;
+        p1->arr[p1->dim].grado = p2->arr[np].grado;
+        p1->arr[p1->dim].c = p2->arr[np].c;
+        p1->arr[p1->dim].r = p2->arr[np].r;
+        p2->arr[np].isPromoted = 0;
+        p2->arr[np].et[p2->arr[np].dim+3+1] = ' ';
 
+        /* in caso if per cifre e riadattare cifre*/
         for(i = 0 ; i < 3 ; ++i){
-            p->arr[p->dim].et[i] = p2->arr[np].et[i];
+            p1->arr[p1->dim].et[i] = p2->arr[np].et[i];
         }
-        i = 0;
-        cifre = p->dim;
-        while(cifre != 0){
-            cifre /= 10;
-            ++i;
+        index = p2->arr[np].dim;
+        for(i = 3 ; i < p2->arr[np].dim+3 ; ++i){
+            p1->arr[p1->dim].et[i] = p2->arr[np].et[i];
+            --index;
         }
-        printf("%u\n",cifre);
-        if(cifre != p2->arr[np].dim){
-            printf("un fottuto casino\n");
-        }
-        i = p->dim;
-        printf("%u\n",p->dim);
-        z = p->arr[p->dim].dim-1;
-        x = pow(10,z);
-        for(f = 3 ; f < 3+p->arr[p->dim].dim ; ++f){
-            unsigned int div = i/x;
-            if (div > 0) {
-                p->arr[p->dim].et[f] = '0' + div;
-            } else {
-                p->arr[p->dim].et[f] = '0';
-            }
-            i-= x *div ;
-            --z;
-            x = pow(10,z);
-        }
-        ++p->dim;
 
+        ++p1->dim;
         return 1;
     }else{
         printf("Errore nella realloc\n");
@@ -1256,7 +1259,7 @@ unsigned int add_pawn(tplayer *p,tplayer *p2,unsigned int np){
     }
 }
 int player_vs_player(unsigned int x ){
-    tcampo *t;
+    tcampo *t = NULL;
     tplayer *p1 = NULL,*p2 = NULL;
     unsigned int exit = 0,turno,round = 0;
     unsigned int cifre,conta = 2,numped = 11;
@@ -1392,7 +1395,7 @@ void destroy_player (tplayer *p){
     free(p->arr);
     free(p);
 }
-void destroy_campo(tcampo *t) {
+void destroy_board(tcampo *t) {
     unsigned int i;
 
     for (i = 0; i < t->r ;++i) {

@@ -62,7 +62,7 @@ tcampo* copy_board(tcampo t ,tcampo *new);/* create a new board  copying from th
 
 tplayer* player_copy(tplayer p,tplayer *n,unsigned int cifre);/* create a new player copying an existing player */
 
-unsigned int add_pawn(tplayer *p,tplayer *p2,unsigned int np);/* add a pawn to the other player based on the pawn eaten */
+unsigned int add_pawn(tplayer *p1,tplayer *p2,unsigned int np);/* add a pawn to the other player based on the pawn eaten */
 
 unsigned int move_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/* move a player1's pawn to a direction */
 
@@ -74,7 +74,9 @@ void pawn_promotion(tplayer *p,unsigned int np,unsigned int numpl,unsigned int m
 
 unsigned int eat(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsigned int num,unsigned int npl);/* eat an enemy pawn */
 
-unsigned int convert(tcampo t,unsigned int r,unsigned int c,unsigned int dim,unsigned int cifre);/* convert from char to int */
+unsigned int char_converter(tcampo t,unsigned int r,unsigned int c,unsigned int dim,unsigned int cifre);/* convert from char to int */
+
+char int_converter(unsigned int num,unsigned int index);/* convert num in pos from int to char*/
 
 unsigned int check_player(tplayer p1,tplayer p2,unsigned int x,unsigned int y);/* check if a pawn is a player1's pawn or if is a player2's pawn */
 
