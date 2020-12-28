@@ -6,7 +6,7 @@
 #include <math.h>
 #include "lib/colori.h"
 
-tcampo* crea_campo(unsigned int r,unsigned int col,unsigned int cifre){
+tcampo* create_board(unsigned int r,unsigned int col,unsigned int cifre){
     tcampo *t = NULL;
 
     t = (tcampo*)malloc(sizeof(tcampo));
@@ -26,7 +26,7 @@ tcampo* crea_campo(unsigned int r,unsigned int col,unsigned int cifre){
     }
 
 }
-void inizializza_campo(tcampo *t,unsigned int cifre){
+void initialize_board(tcampo *t,unsigned int cifre){
     unsigned int i,j;
 
     for(i = 0 ; i < t->r ; ++i) {
@@ -50,7 +50,7 @@ void inizializza_campo(tcampo *t,unsigned int cifre){
 
 }
 
-void stampa_campo(tcampo t,unsigned int cifre, unsigned npl){
+void print_board(tcampo t,unsigned int cifre, unsigned npl){
     int i, j, k = 0, z;
     char topPl;
 
@@ -160,7 +160,7 @@ void stampa_campo(tcampo t,unsigned int cifre, unsigned npl){
     printf("\n");
 
 }
-void stampa_dir(unsigned int *arr,unsigned int dim,unsigned int np){
+void print_directions(unsigned int *arr,unsigned int dim,unsigned int np){
     unsigned int i,flag = 0;
     for(i = 0 ; i < dim ;++i){
         if(arr[i]){
@@ -187,7 +187,7 @@ void stampa_dir(unsigned int *arr,unsigned int dim,unsigned int np){
 
 
 }
-tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,tcampo t){
+tplayer *create_pawns(unsigned int n,char ped,unsigned int np,unsigned int cifre,tcampo t){
     tplayer *p = NULL;
     unsigned int h;
 
@@ -291,7 +291,7 @@ tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,
     }
 }
 
-void stampa_player(tplayer p){
+void print_player(tplayer p){
     unsigned int i,j;
     for(i = 0 ; i < p.dim ; ++i){
 
@@ -307,7 +307,7 @@ void stampa_player(tplayer p){
     }
 }
 
-void aggiorna_campo(tcampo *t,tplayer p1,tplayer p2){
+void update_board(tcampo *t,tplayer p1,tplayer p2){
     unsigned int i;
     for(i = 0 ; i < p1.dim ; ++i){
         if(p1.arr[i].grado > 0){
@@ -329,7 +329,7 @@ void aggiorna_campo(tcampo *t,tplayer p1,tplayer p2){
 
 }
 
-unsigned int is_pedina(tcampo t,unsigned int r,unsigned int c,unsigned int cifre){
+unsigned int check_spot(tcampo t,unsigned int r,unsigned int c,unsigned int cifre){
     unsigned int i,flag = 0;
     for(i = 0 ; i < cifre ; ++i){
         if((t.mat[r][c+i] != ' ')&&(t.mat[r][c+i] != '#') ){
@@ -338,7 +338,7 @@ unsigned int is_pedina(tcampo t,unsigned int r,unsigned int c,unsigned int cifre
     }
     return flag;
 }
-unsigned int is_sel(tplayer p1,tplayer p2,unsigned int np,unsigned int npl){
+unsigned int is_selected(tplayer p1,tplayer p2,unsigned int np,unsigned int npl){
     if(npl == 1 && p1.arr[np].grado > 0){
         return 1;
     }
@@ -347,7 +347,7 @@ unsigned int is_sel(tplayer p1,tplayer p2,unsigned int np,unsigned int npl){
     }
     return 0;
 }
-void togli_pedina(tcampo *t,unsigned int r,unsigned int c,unsigned cifre){
+void remove_pawn(tcampo *t,unsigned int r,unsigned int c,unsigned cifre){
     unsigned int i;
     for(i = 0 ; i < cifre ; ++i){
         t->mat[r][c+i] = '#';
@@ -359,7 +359,7 @@ void togli_pedina(tcampo *t,unsigned int r,unsigned int c,unsigned cifre){
         }*/
 }
 
-void promuovi_pedina(tplayer *p,unsigned int np,unsigned int numpl,unsigned int meta){
+void pawn_promotion(tplayer *p,unsigned int np,unsigned int numpl,unsigned int meta){
     if((numpl == 1)&&(p->arr[np].r == 0)){
         p->arr[np].isPromoted = 1;
         p->arr[np].et[p->arr[np].dim+3] = '^';
@@ -371,7 +371,7 @@ void promuovi_pedina(tplayer *p,unsigned int np,unsigned int numpl,unsigned int 
 
     }
 }
-unsigned int ricerca_pl(tplayer p1,tplayer p2,unsigned int x,unsigned int y){
+unsigned int check_player(tplayer p1,tplayer p2,unsigned int x,unsigned int y){
     int i,flag = 0;
     for(i = 0 ; i < p1.dim ; ++i){
         if((p1.arr[i].r == x)&&(p1.arr[i].c == y)){
@@ -404,7 +404,7 @@ unsigned int is_in(int r,int c,tcampo t){
         return 0;
     }
 }
-unsigned int contr_dir(unsigned int *arr,unsigned int dim,char *str){
+unsigned int check_directions(unsigned int *arr,unsigned int dim,char *str){
     unsigned int i,flag = 0,j;
     for(i = 0 ; i < dim ; ++i){
         if(arr[i]){
@@ -434,7 +434,7 @@ unsigned int contr_dir(unsigned int *arr,unsigned int dim,char *str){
 
 
 }
-unsigned int *obl_eat(tplayer p1,tplayer p2,tcampo t,unsigned int np,unsigned int npl){
+unsigned int *must_eat(tplayer p1,tplayer p2,tcampo t,unsigned int np,unsigned int npl){
     unsigned int *arr,dim;
     if(npl == 1){
         if(p1.arr[np].isPromoted ){
@@ -484,8 +484,8 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
             y = p1->arr[np].c - (p1->arr[np].dim + 3+1);
             z = ricerca_pl(*p1, *p2, x, y);
             if ((z == 2) &&
-                (is_pedina(*t, p1->arr[np].r - 1, p1->arr[np].c - (p1->arr[np].dim + 3+1), (p1->arr[np].dim + 3+1))) &&
-                (!is_pedina(*t, p1->arr[np].r - 2, p1->arr[np].c - ((p1->arr[np].dim + 3+1) * 2),
+                (check_spot(*t, p1->arr[np].r - 1, p1->arr[np].c - (p1->arr[np].dim + 3+1), (p1->arr[np].dim + 3+1))) &&
+                (!check_spot(*t, p1->arr[np].r - 2, p1->arr[np].c - ((p1->arr[np].dim + 3+1) * 2),
                             (p1->arr[np].dim + 3+1)))) {
                 int num = -1;
                 num = convert(*t, p1->arr[np].r - 1, p1->arr[np].c - (p1->arr[np].dim + 3+1), 2 + p1->arr[np].dim, 3);
@@ -507,10 +507,10 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
             unsigned x, y, z;
             x = p1->arr[np].r - 1;
             y = p1->arr[np].c + (p1->arr[np].dim + 3+1);
-            z = ricerca_pl(*p1, *p2, x, y);
+            z = check_player(*p1, *p2, x, y);
             if ((z == 2) &&
-                (is_pedina(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3+1), p1->arr[np].dim + 3+1)) &&
-                (!is_pedina(*t, p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3+1) * 2),
+                (check_spot(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3+1), p1->arr[np].dim + 3+1)) &&
+                (!check_spot(*t, p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3+1) * 2),
                             (p1->arr[np].dim + 3+1)))) {
                 int num = -1;
                 num = convert(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3+1), 2 + p1->arr[np].dim, 3);
@@ -535,10 +535,10 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
                 unsigned x, y, z;
                 x = p1->arr[np].r + 1;
                 y = p1->arr[np].c - (p1->arr[np].dim + 3 + 1);
-                z = ricerca_pl(*p1, *p2, x, y);
-                if ((z == 2) && (is_pedina(*t, p1->arr[np].r + 1, p1->arr[np].c - (p1->arr[np].dim + 3 + 1),
+                z = check_player(*p1, *p2, x, y);
+                if ((z == 2) && (check_spot(*t, p1->arr[np].r + 1, p1->arr[np].c - (p1->arr[np].dim + 3 + 1),
                                            (p1->arr[np].dim + 3 + 1))) &&
-                    (!is_pedina(*t, p1->arr[np].r + 2, p1->arr[np].c - ((p1->arr[np].dim + 3 + 1) * 2),
+                    (!check_spot(*t, p1->arr[np].r + 2, p1->arr[np].c - ((p1->arr[np].dim + 3 + 1) * 2),
                                 (p1->arr[np].dim + 3 + 1)))) {
                     int num = -1;
                     num = convert(*t, p1->arr[np].r + 1, p1->arr[np].c - (p1->arr[np].dim + 3 + 1), 2 + p1->arr[np].dim,3);
@@ -560,10 +560,10 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
                 unsigned x, y, z;
                 x = p1->arr[np].r + 1;
                 y = p1->arr[np].c + (p1->arr[np].dim + 3 + 1);
-                z = ricerca_pl(*p1, *p2, x, y);
-                if ((z == 2) && (is_pedina(*t, p1->arr[np].r + 1, p1->arr[np].c + (p1->arr[np].dim + 3 + 1),
+                z = check_player(*p1, *p2, x, y);
+                if ((z == 2) && (check_spot(*t, p1->arr[np].r + 1, p1->arr[np].c + (p1->arr[np].dim + 3 + 1),
                                            (p1->arr[np].dim + 3 + 1)) &&
-                                 (!is_pedina(*t, p1->arr[np].r + 2, p1->arr[np].c + ((p1->arr[np].dim + 3 + 1) * 2),
+                                 (!check_spot(*t, p1->arr[np].r + 2, p1->arr[np].c + ((p1->arr[np].dim + 3 + 1) * 2),
                                              (p1->arr[np].dim + 3 + 1))))) {
                     int num = -1;
                     num = convert(*t, p1->arr[np].r + 1, p1->arr[np].c + (p1->arr[np].dim + 3 + 1), 2 + p1->arr[np].dim,3);
@@ -587,34 +587,34 @@ int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned
 }
 unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl){
     if(!strcmp(str,"sx")){
-        if((is_in(p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3+1),*t))&&(!is_pedina(*t,p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3+1),(p1->arr[np].dim+3+1)))){
-            togli_pedina(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3+1));
+        if((is_in(p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3+1),*t))&&(!check_spot(*t,p1->arr[np].r-1,p1->arr[np].c-(p1->arr[np].dim+3+1),(p1->arr[np].dim+3+1)))){
+            remove_pawn(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3+1));
             --p1->arr[np].r;
             p1->arr[np].c -= (p1->arr[np].dim+3+1);
-            promuovi_pedina(p1,np,pl,t->r-1);
+            pawn_promotion(p1,np,pl,t->r-1);
             return 1;
         }else{
             return 0;
         }
     }else{
         if (!strcmp(str, "dx")) {
-            if((is_in(p1->arr[np].r-1, p1->arr[np].c + (p1->arr[np].dim + 3+1), *t))&&(!is_pedina(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3+1),p1->arr[np].dim+3+1))){
-                togli_pedina(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3+1));
+            if((is_in(p1->arr[np].r-1, p1->arr[np].c + (p1->arr[np].dim + 3+1), *t))&&(!check_spot(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3+1),p1->arr[np].dim+3+1))){
+                remove_pawn(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3+1));
                 --p1->arr[np].r;
                 p1->arr[np].c += (p1->arr[np].dim+3+1);
-                promuovi_pedina(p1,np,pl,t->r-1);
+                pawn_promotion(p1,np,pl,t->r-1);
                 return 1;
             }else{
                 return 0;
             }
         }
         if (!strcmp(str, "bassosx") && ((pl == 2) || (p1->arr[np].isPromoted))) {
-            if((is_in(p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3+1),*t))&&(!is_pedina(*t,p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3+1),(p1->arr[np].dim+3+1)))){
-                togli_pedina(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3+1));
+            if((is_in(p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3+1),*t))&&(!check_spot(*t,p1->arr[np].r+1,p1->arr[np].c-(p1->arr[np].dim+3+1),(p1->arr[np].dim+3+1)))){
+                remove_pawn(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3+1));
                 p1->arr[np].r++;
                 p1->arr[np].c -= (p1->arr[np].dim+3+1);
                 if(pl == 2){
-                    promuovi_pedina(p1,np,pl,t->r-1);
+                    pawn_promotion(p1,np,pl,t->r-1);
                 }
                 return 1;
             }else{
@@ -622,12 +622,12 @@ unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
             }
         }
         if (!strcmp(str, "bassodx") && ((pl == 2) || (p1->arr[np].isPromoted))) {
-            if((is_in(p1->arr[np].r+1, p1->arr[np].c + (p1->arr[np].dim + 3+1), *t))&&(!is_pedina(*t, p1->arr[np].r+1, p1->arr[np].c + (p1->arr[np].dim + 3+1),p1->arr[np].dim + 3+1))){
-                togli_pedina(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3+1));
+            if((is_in(p1->arr[np].r+1, p1->arr[np].c + (p1->arr[np].dim + 3+1), *t))&&(!check_spot(*t, p1->arr[np].r+1, p1->arr[np].c + (p1->arr[np].dim + 3+1),p1->arr[np].dim + 3+1))){
+                remove_pawn(t,p1->arr[np].r,p1->arr[np].c,(p1->arr[np].dim+3+1));
                 p1->arr[np].r++;
                 p1->arr[np].c += (p1->arr[np].dim+3+1);
                 if(pl == 2){
-                    promuovi_pedina(p1,np,pl,t->r-1);
+                    pawn_promotion(p1,np,pl,t->r-1);
                 }
                 return 1;
             }else{
@@ -640,7 +640,7 @@ unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
     return 0;
 
 }
-unsigned int mangia(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsigned int num,unsigned int npl){
+unsigned int eat(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsigned int num,unsigned int npl){
 
     char temp[3];
     unsigned int x,f,z;
@@ -658,7 +658,7 @@ unsigned int mangia(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,u
         }else {
             if (is_empty(*p1) == -1) {
                 /*controllo_pedina(p1, p2,num);*/
-                togli_pedina(&t,p2->arr[num].r,p2->arr[num].c,p2->arr[num].dim+3+1);
+                remove_pawn(&t,p2->arr[num].r,p2->arr[num].c,p2->arr[num].dim+3+1);
                 p2->arr[num].grado = 0;
             } else {
                 unsigned int pos, i;
@@ -721,35 +721,35 @@ unsigned int mangia(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,u
     }
     /*togli_pedina(&t,p2->arr[num].r,p2->arr[num].c,p2->arr[num].dim+3+1);*/
     if(p2->arr[num].grado < 1){
-        togli_pedina(&t,p2->arr[num].r,p2->arr[num].c,p2->arr[num].dim+3+1);
+        remove_pawn(&t,p2->arr[num].r,p2->arr[num].c,p2->arr[num].dim+3+1);
     }
     if(!strcmp(str,"sx")){
-        togli_pedina(&t,p1->arr[np].r+2,p1->arr[np].c+((p1->arr[np].dim+3+1)*2),p1->arr[np].dim+3+1);
+        remove_pawn(&t,p1->arr[np].r+2,p1->arr[np].c+((p1->arr[np].dim+3+1)*2),p1->arr[np].dim+3+1);
     }else{
         if(!strcmp(str,"dx")){
-            togli_pedina(&t,p1->arr[np].r+2,p1->arr[np].c-((p1->arr[np].dim+3+1)*2),(p1->arr[np].dim+3+1));
+            remove_pawn(&t,p1->arr[np].r+2,p1->arr[np].c-((p1->arr[np].dim+3+1)*2),(p1->arr[np].dim+3+1));
         }
         if(!strcmp(str,"bassosx")){
-            togli_pedina(&t,p1->arr[np].r-2,p1->arr[np].c+((p1->arr[np].dim+3+1)*2),p1->arr[np].dim+3+1);
+            remove_pawn(&t,p1->arr[np].r-2,p1->arr[np].c+((p1->arr[np].dim+3+1)*2),p1->arr[np].dim+3+1);
         }
         if(!strcmp(str,"bassodx")){
-            togli_pedina(&t,p1->arr[np].r-2,p1->arr[np].c-((p1->arr[np].dim+3+1)*2),(p1->arr[np].dim+3+1));
+            remove_pawn(&t,p1->arr[np].r-2,p1->arr[np].c-((p1->arr[np].dim+3+1)*2),(p1->arr[np].dim+3+1));
         }
 
     }
     if(npl == 1 ){
-        promuovi_pedina(p1,np,1,t.r-1);
+        pawn_promotion(p1,np,1,t.r-1);
     }else{
-        promuovi_pedina(p1,np,2,t.r-1);
+        pawn_promotion(p1,np,2,t.r-1);
     }
     return 1;
 
 }
-unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl){
+unsigned int move_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl){
     int num;
     num = can_eat(p1,np,str,t,p2,pl);
     if(num > -1){
-        mangia(p1,p2,str,np,*t,num,pl);
+        eat(p1,p2,str,np,*t,num,pl);
         return 1;
     }else{
         if(num == -1){
@@ -771,9 +771,9 @@ unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
     }
     return 0;
 }
-unsigned int sposta_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *p1){
+unsigned int move_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *p1){
     if(!strcmp(str,"sx")) {
-        if(sposta_p1(p2,np,"bassosx",t,p1,2)){
+        if(move_p1(p2,np,"bassosx",t,p1,2)){
             return 1;
         }else{
             return 0;
@@ -781,21 +781,21 @@ unsigned int sposta_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *
 
     }else{
         if(!strcmp(str,"dx")){
-            if(sposta_p1(p2,np,"bassodx",t,p1,2)){
+            if(move_p1(p2,np,"bassodx",t,p1,2)){
                 return 1;
             }else{
                 return 0;
             }
         }
         if(!strcmp(str,"bassosx")&&(p2->arr[np].isPromoted)) {
-            if(sposta_p1(p2,np,"sx",t,p1,2)){
+            if(move_p1(p2,np,"sx",t,p1,2)){
                 return 1;
             }else{
                 return 0;
             }
         }
         if(!strcmp(str,"bassodx")&&(p2->arr[np].isPromoted)) {
-            if(sposta_p1(p2,np,"dx",t,p1,2)){
+            if(move_p1(p2,np,"dx",t,p1,2)){
                 return 1;
             }else{
                 return 0;
@@ -806,7 +806,7 @@ unsigned int sposta_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *
 
     return 0;
 }
-unsigned int all_block(tplayer p1,tplayer p2,tcampo t,unsigned int npl){
+unsigned int all_blocked(tplayer p1,tplayer p2,tcampo t,unsigned int npl){
     unsigned int i,flag ;
     if(npl == 1){
         flag = 1;
@@ -815,12 +815,12 @@ unsigned int all_block(tplayer p1,tplayer p2,tcampo t,unsigned int npl){
     }
     for(i = 0 ; i < p1.dim ; ++i){
         if(p1.arr[i].grado > 0 && npl == 1){
-            if(ped_noblock(p1,p2,t,i,npl)){
+            if(is_notstuck(p1,p2,t,i,npl)){
                 flag = 0;
             }
         }
         if(p2.arr[i].grado > 0 && npl == 2){
-            if(ped_noblock(p1,p2,t,i,npl)){
+            if(is_notstuck(p1,p2,t,i,npl)){
                 flag = 0;
             }
         }
@@ -856,7 +856,7 @@ unsigned int is_victory(tplayer p1,tplayer p2,tcampo t){
 
     return flag;
 }
-unsigned int scelta_turno(){
+unsigned int round_choice(){
     char str[2];
 
     printf("Inizia il turno come da predefinito (quindi primo giocatore)? ");
@@ -892,21 +892,21 @@ unsigned int scelta_turno(){
     }
     return 1;
 }
-unsigned int turno_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
+unsigned int round_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
     char str[10];
     unsigned int y = 0,np;
 
-    aggiorna_campo(t,*p1,*p2);
+    update_board(t,*p1,*p2);
     if(npl == 1){
         printPlayerTurn(p1->colore);
         printf("Turno player 1 : \n");
         resetColor();
-        stampa_campo(*t,(p1->arr[0].dim+3)+1,1);
+        print_board(*t,(p1->arr[0].dim+3)+1,1);
     }else{
         printPlayerTurn(p2->colore);
         printf("Turno player 2 : \n");
         resetColor();
-        stampa_campo(*t,(p2->arr[0].dim+3)+1,2);
+        print_board(*t,(p2->arr[0].dim+3)+1,2);
     }
 
 
@@ -918,9 +918,9 @@ unsigned int turno_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
 
     printf("Numero di pedina da selezionare : ");
     scanf("%u",&np);
-    while( (!((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim)))) || (!ped_noblock(*p1,*p2,*t,np,npl)))||(!is_sel(*p1,*p2,np,npl))){
+    while( (!((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim)))) || (!is_notstuck(*p1,*p2,*t,np,npl)))||(!is_selected(*p1,*p2,np,npl))){
 
-        if(!ped_noblock(*p1,*p2,*t,np,npl)){
+        if(!is_notstuck(*p1,*p2,*t,np,npl)){
             printf("La pedina %u non puo' fare nessuna mossa!\n",np);
         }else{
             printf("Non puoi selezionare la pedina n. %u\n",np);
@@ -945,8 +945,8 @@ unsigned int turno_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
     while( (!strcmp(str,"no"))||(!strcmp(str,"NO"))||(!strcmp(str,"No")) ){
         printf("Numero di pedina da selezionare : ");
         scanf("%u",&np);
-        while( (!((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim)))) ||(!ped_noblock(*p1,*p2,*t,np,npl)))||(!is_sel(*p1,*p2,np,npl))){
-            if(!ped_noblock(*p1,*p2,*t,np,npl)){
+        while( (!((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim)))) ||(!is_notstuck(*p1,*p2,*t,np,npl)))||(!is_selected(*p1,*p2,np,npl))){
+            if(!is_notstuck(*p1,*p2,*t,np,npl)){
                 printf("La pedina %u non puo' fare nessuna mossa!\n",np);
             }else{
                 printf("Non puoi selezionare la pedina n. %u\n",np);
@@ -974,18 +974,18 @@ unsigned int turno_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
                 dim = 2;
             }
         }
-        arr = obl_eat(*p1,*p2,*t,np,npl);
-        stampa_dir(arr,dim,np);
+        arr = must_eat(*p1,*p2,*t,np,npl);
+        print_directions(arr,dim,np);
         printf("Verso che direzione vuoi spostare la pedina ? ");
         scanf("%s",str);
-        while(!contr_dir(arr,dim,str)){
+        while(!check_directions(arr,dim,str)){
             printf("Verso che direzione vuoi spostare la pedina ? ");
             scanf("%s",str);
         }
         if(npl == 1){
-            y = sposta_p1(p1,np,str,t,p2,npl);
+            y = move_p1(p1,np,str,t,p2,npl);
         }else{
-            y = sposta_p2(p2,np,str,t,p1);
+            y = move_p2(p2,np,str,t,p1);
         }
         if(y == 0){
             char temp[2];
@@ -993,9 +993,9 @@ unsigned int turno_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
 
             printf("Numero di pedina da selezionare : ");
             scanf("%u",&np);
-            while( (!((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim)))) || (!ped_noblock(*p1,*p2,*t,np,npl)))||(!is_sel(*p1,*p2,np,npl)) ){
+            while( (!((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim)))) || (!is_notstuck(*p1,*p2,*t,np,npl)))||(!is_selected(*p1,*p2,np,npl)) ){
 
-                if(!ped_noblock(*p1,*p2,*t,np,npl)){
+                if(!is_notstuck(*p1,*p2,*t,np,npl)){
                     printf("La pedina %u non puo' fare nessuna mossa!\n",np);
                 }else{
                     printf("Non puoi selezionare la pedina n. %u\n",np);
@@ -1006,9 +1006,9 @@ unsigned int turno_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
             printf("Vuoi selezionare questa pedina %d ? ",np);
             scanf("%s",temp);
 
-            while( (!((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim)))) || (!ped_noblock(*p1,*p2,*t,np,npl)))||(!is_sel(*p1,*p2,np,npl))){
+            while( (!((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < p2->dim)))) || (!is_notstuck(*p1,*p2,*t,np,npl)))||(!is_selected(*p1,*p2,np,npl))){
 
-                if(!ped_noblock(*p1,*p2,*t,np,npl)){
+                if(!is_notstuck(*p1,*p2,*t,np,npl)){
                     printf("La pedina %u non puo' fare nessuna mossa!\n",np);
                 }else{
                     printf("Non puoi selezionare la pedina n. %u\n",np);
@@ -1019,11 +1019,11 @@ unsigned int turno_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
         }
         free(arr);
     }
-    aggiorna_campo(t,*p1,*p2);
+    update_board(t,*p1,*p2);
     if(npl == 1){
-        stampa_campo(*t,(p1->arr[0].dim+3)+1,1);
+        print_board(*t,(p1->arr[0].dim+3)+1,1);
     }else{
-        stampa_campo(*t,(p1->arr[0].dim+3)+1,2);
+        print_board(*t,(p1->arr[0].dim+3)+1,2);
     }
 
 
@@ -1040,7 +1040,7 @@ int is_empty(tplayer p){
     }
     return pos;
 }
-unsigned int max_pedine(unsigned int r,unsigned int c){
+unsigned int max_pawns(unsigned int r,unsigned int c){
     unsigned int k,l,t = 0,numped = 0;
 
     l = ((r+1)/2)-1;
@@ -1065,7 +1065,7 @@ unsigned int max_pedine(unsigned int r,unsigned int c){
 
     return numped;
 }
-tcampo *campo_copy(tcampo t ,tcampo *new){
+tcampo *copy_board(tcampo t ,tcampo *new){
     unsigned int flag = 0;
     if(new == NULL){
         flag = 1;
@@ -1138,7 +1138,7 @@ tplayer *player_copy(tplayer p,tplayer *n,unsigned int cifre){
     }
 
 }
-unsigned int ped_noblock(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsigned int npl){
+unsigned int is_notstuck(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsigned int npl){
     tcampo *new = NULL;
     tplayer *n1 = NULL,*n2 = NULL;
     unsigned int cifre = 0;
@@ -1150,38 +1150,38 @@ unsigned int ped_noblock(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsign
     }
 
 
-    new = campo_copy(t,new);
+    new = copy_board(t,new);
     n1 = player_copy(p1,n1,p1.arr[0].dim+3+1);
     n2 = player_copy(p2,n2,p2.arr[0].dim+3+1);
 
     if(new != NULL && n1 != NULL && n2 != NULL){
         unsigned int flag = 0;
-        aggiorna_campo(new,*n1,*n2);
-        if( ((npl == 1)&&(sposta_p1(n1,nped,"sx",new,n2,1))) || ((npl == 2)&&(sposta_p2(n2,nped,"sx",new,n1))) ){
+        update_board(new,*n1,*n2);
+        if( ((npl == 1)&&(move_p1(n1,nped,"sx",new,n2,1))) || ((npl == 2)&&(move_p2(n2,nped,"sx",new,n1))) ){
             flag = 1;
-            campo_copy(t,new);
+            copy_board(t,new);
             player_copy(p1,n1,cifre);
             player_copy(p2,n2,cifre);
         }
-        if ( ((npl == 1)&&(sposta_p1(n1,nped,"dx",new,n2,1))) || ((npl == 2)&&(sposta_p2(n2,nped,"dx",new,n1))) ){
+        if ( ((npl == 1)&&(move_p1(n1,nped,"dx",new,n2,1))) || ((npl == 2)&&(move_p2(n2,nped,"dx",new,n1))) ){
             flag = 1;
-            campo_copy(t,new);
+            copy_board(t,new);
             player_copy(p1,n1,cifre);
             player_copy(p2,n2,cifre);
         }
-        if( ((npl == 1)&&(sposta_p1(n1,nped,"bassosx",new,n2,1))) || ((npl == 2)&&(sposta_p2(n2,nped,"bassosx",new,n1))) ){
+        if( ((npl == 1)&&(move_p1(n1,nped,"bassosx",new,n2,1))) || ((npl == 2)&&(move_p2(n2,nped,"bassosx",new,n1))) ){
             flag = 1;
-            campo_copy(t,new);
+            copy_board(t,new);
             player_copy(p1,n1,cifre);
             player_copy(p2,n2,cifre);
         }
-        if( ((npl == 1)&&(sposta_p1(n1,nped,"bassodx",new,n2,1))) || ((npl == 2)&&(sposta_p2(n2,nped,"bassodx",new,n1))) ){
+        if( ((npl == 1)&&(move_p1(n1,nped,"bassodx",new,n2,1))) || ((npl == 2)&&(move_p2(n2,nped,"bassodx",new,n1))) ){
             flag = 1;
-            campo_copy(t,new);
+            copy_board(t,new);
             player_copy(p1,n1,cifre);
             player_copy(p2,n2,cifre);
         }
-        destroy_campo(new);
+        destroy_board(new);
         destroy_player(n1);
         destroy_player(n2);
         return flag;
@@ -1189,7 +1189,7 @@ unsigned int ped_noblock(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsign
     }else{
         printf("Errore nella ped_noblock\n");
         if(new != NULL){
-            destroy_campo(new);
+            destroy_board(new);
         }
         if(n1 != NULL){
             destroy_player(n1);
@@ -1201,7 +1201,7 @@ unsigned int ped_noblock(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsign
     }
 
 }
-unsigned int controllo_pedina(tplayer *p,tplayer *p2,unsigned int np){
+unsigned int add_pawn(tplayer *p,tplayer *p2,unsigned int np){
 
 
     p->arr = (tpedina*)realloc(p->arr,(p->dim+1)*sizeof(tpedina));
@@ -1262,10 +1262,10 @@ int player_vs_player(unsigned int x ){
     unsigned int cifre,conta = 2,numped = 11;
 
     if(x == 0){
-        t = crea_campo(7,7,3+conta+1);
-        inizializza_campo(t,3+conta+1);
-        p1 = crea_pedine(11,'B',1,conta,*t);/* creare n pedine di carattere c */
-        p2 = crea_pedine(11,'N',2,conta,*t);/* creare n pedine di carattere c */
+        t = create_board(7,7,3+conta+1);
+        initialize_board(t,3+conta+1);
+        p1 = create_pawns(11,'B',1,conta,*t);/* creare n pedine di carattere c */
+        p2 = create_pawns(11,'N',2,conta,*t);/* creare n pedine di carattere c */
     }else{
         unsigned int w,h,max_ped = 0;
         conta = 0;
@@ -1281,7 +1281,7 @@ int player_vs_player(unsigned int x ){
             printf("Larghezza della scacchiera : ");
             scanf("%u",&w);
         }
-        max_ped = max_pedine(h,w);
+        max_ped = max_pawns(h,w);
         printf("Numero di pedine massimo per giocatore : %u\n",max_ped);
         printf("Numero pedine ?(ovviamente minore o guale al massimo numero) : ");
         scanf("%u",&cifre);
@@ -1298,32 +1298,32 @@ int player_vs_player(unsigned int x ){
             if ((pow(10, conta - 1) == numped) && (numped != 1)) {
                 --conta;
             }
-            t = crea_campo(h,w,3+conta+1);
-            inizializza_campo(t,3+conta+1);
-            p1 = crea_pedine(numped,'B',1,conta,*t);/* creare n pedine di carattere c */
-            p2 = crea_pedine(numped,'N',2,conta,*t);/* creare n pedine di carattere c */
+            t = create_board(h,w,3+conta+1);
+            initialize_board(t,3+conta+1);
+            p1 = create_pawns(numped,'B',1,conta,*t);/* creare n pedine di carattere c */
+            p2 = create_pawns(numped,'N',2,conta,*t);/* creare n pedine di carattere c */
 
         }else{
             printf("Non ha senso giocare con %u pedine !\n",cifre);
             return 0;
         }
     }
-    turno = scelta_turno();
+    turno = round_choice();
     printf("Il player che inizia e' %d\n",turno);
     while((exit == 0)&&(!is_victory(*p1,*p2,*t))){
-        if(all_block(*p1,*p2,*t,turno) == 1 && turno == 1){
+        if(all_blocked(*p1,*p2,*t,turno) == 1 && turno == 1){
             exit = 2;
         }
-        if(all_block(*p1,*p2,*t,turno) == 2 && turno == 2){
+        if(all_blocked(*p1,*p2,*t,turno) == 2 && turno == 2){
             exit = 1;
         }
         if(!exit ){
             printf("Round numero : %u\n",round);
             if(turno == 1){
-                exit = turno_player(p1,p2,t,turno);
+                exit = round_player(p1,p2,t,turno);
                 turno = 2;
             }else{
-                exit = turno_player(p1,p2,t,turno);
+                exit = round_player(p1,p2,t,turno);
                 turno = 1;
             }
             ++round;
@@ -1340,7 +1340,7 @@ int player_vs_player(unsigned int x ){
         printf("Il vincitore e' il player %d!\n",exit);
     }
 
-    destroy_campo(t);
+    destroy_board(t);
     destroy_player(p1);
     destroy_player(p2);
 
