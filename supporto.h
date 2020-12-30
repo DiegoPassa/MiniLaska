@@ -1,6 +1,10 @@
+/**
+ * @brief Struttura campo.
+ * 
+ */
 struct campo
 {
-    char **mat;
+    char **mat; /*!< Detailed description after the member */
     unsigned int r;
     unsigned int c;
 };
