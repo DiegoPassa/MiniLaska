@@ -239,7 +239,7 @@ tplayer *create_pawns(unsigned int n,char ped,unsigned int np,unsigned int cifre
                 num = i;
                 for(dest = 3 ; dest < cifre+3 ; ++dest){
                     p->arr[i].et[dest] = int_converter(num,index);
-                    num -= pow(10,index)*(num/pow(10,index));
+                    num -= pow(10,index)*(p->arr[i].et[dest]-'0');
                     --index;
                 }
             /*    unsigned int x = 1, f = 3, z,m = i;
@@ -1206,13 +1206,10 @@ unsigned int is_notstuck(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsign
 }
 char int_converter(unsigned int num,unsigned int index){
 
-    unsigned int x = 1;
     char let;
     let = '0';
-    x = pow(10,index);
-    if((num/x) > 0){
-        let += (num/x);
-        return let;
+    if((num/pow(10,index)) > 0){
+        return let+(num/pow(10,index));
     }else{
         return '0';
     }
@@ -1371,16 +1368,20 @@ unsigned int round_ia(tplayer *p1,tplayer *ia,tcampo *t,unsigned int npl){
 
     while( (!((np >= 0)&&( ((npl == 1)&&(np < p1->dim)) || ((npl == 2)&&(np < ia->dim)))) ||(!is_notstuck(*p1,*ia,*t,np,npl)))||(!is_selected(*p1,*ia,np,npl))){
         srand(time(NULL));
-        while(np == 0){
-            np = rand()%(ia->dim);
-        }
+        np = rand()%(ia->dim);
     }
-    if(move_p2(ia,np,"sx",t,p1)){
+    if( (move_p2(ia,np,"sx",t,p1)) || (move_p2(ia,np,"dx",t,p1))){
+        return 0;
+    }else{
+        return 1;
+    }
+    printf("Num ped : %u\n",np);
+   /* if(move_p2(ia,np,"sx",t,p1)){
         return 1;
     }else{
         return 0;
-    }
-
+    }*/
+    return 0;
 
 }
 void player_vs_ia(){
@@ -1390,13 +1391,12 @@ void player_vs_ia(){
     unsigned int conta = 2;
 
 
-    t = create_board(30,30,3+conta+1+1);
-    initialize_board(t,3+conta+1);
-    p1 = create_pawns(101,'B',1,conta+1,*t);/* creare n pedine di carattere c */
-    ia = create_pawns(101,'N',2,conta+1,*t);/* creare n pedine di carattere c */
+    t = create_board(7,7,conta+3+1);
+    initialize_board(t,conta+3+1);
+    p1 = create_pawns(11,'B',1,conta,*t);/* creare n pedine di carattere c */
+    ia = create_pawns(11,'N',2,conta,*t);/* creare n pedine di carattere c */
 
-    print_player(*ia);
-/*
+
     turno = round_choice();
     printf("Il player che inizia e' %d\n",turno);
     while((exit == 0)&&(!is_victory(*p1,*ia,*t))) {
@@ -1417,7 +1417,7 @@ void player_vs_ia(){
             }
             ++round;
         }
-    }*/
+    }
     destroy_board(t);
     destroy_player(p1);
     destroy_player(ia);
