@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: supporto.h File Reference</title>
+<title>MiniLasca: supporto.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">MiniLasca
    </div>
   </td>
  </tr>
@@ -93,6 +93,7 @@ Typedefs</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a45c407702e9be0abc15eaf0ca385fa10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="supporto_8h.html#ad95f14493ade4e851620d5aea786ad10">tcampo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="supporto_8h.html#a45c407702e9be0abc15eaf0ca385fa10">create_board</a> (unsigned int r, unsigned int c, unsigned int cifre)</td></tr>
+<tr class="memdesc:a45c407702e9be0abc15eaf0ca385fa10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creazione del campo di gioco.  <a href="supporto_8h.html#a45c407702e9be0abc15eaf0ca385fa10">More...</a><br /></td></tr>
 <tr class="separator:a45c407702e9be0abc15eaf0ca385fa10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bebec4622d89e69e845dda90b782bcf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="supporto_8h.html#a9bebec4622d89e69e845dda90b782bcf">initialize_board</a> (<a class="el" href="supporto_8h.html#ad95f14493ade4e851620d5aea786ad10">tcampo</a> *t, unsigned int cifre)</td></tr>
 <tr class="separator:a9bebec4622d89e69e845dda90b782bcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -558,6 +559,18 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Creazione del campo di gioco. </p>
+<p>Crea una matrice r*c e per ogni "cella" alloca abbastanza spazio da rappresentare correttamente la pedina. Lo spazio è dato da "altezza massima della torre(3)" + "spazio per la promozione(1)" + "spazio per rappresentare le cifre(variabile)"</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>Numero di righe della schacchiera. </td></tr>
+    <tr><td class="paramname">c</td><td>Numero di colonne della scacchiera. </td></tr>
+    <tr><td class="paramname">cifre</td><td>Numero di cifre da allocare in modo da rappresentare il numero delle pedine nella scacchiera. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>tcampo* Ritorna il puntatore al campo. </dd></dl>
 
 </div>
 </div>

@@ -24,6 +24,17 @@ struct player
 };
 typedef struct player tplayer;
 
+/**
+ * @brief Creazione del campo di gioco.
+ * 
+ * Crea una matrice r*c e per ogni "cella" alloca abbastanza spazio da rappresentare correttamente la pedina.
+ * Lo spazio è dato da "altezza massima della torre(3)" + "spazio per la promozione(1)" + "spazio per rappresentare le cifre(variabile)"
+ * 
+ * @param r Numero di righe della schacchiera.
+ * @param c Numero di colonne della scacchiera.
+ * @param cifre Numero di cifre da allocare in modo da rappresentare il numero delle pedine nella scacchiera.
+ * @return tcampo* Ritorna il puntatore al campo.
+ */
 tcampo* create_board(unsigned int r,unsigned int c,unsigned int cifre); /* matrix creation */
 
 void initialize_board(tcampo *t,unsigned int cifre); /* initialize matrix as a chessboard */

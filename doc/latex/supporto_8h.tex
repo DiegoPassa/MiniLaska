@@ -22,7 +22,7 @@ typedef struct \mbox{\hyperlink{structplayer}{player}} \mbox{\hyperlink{supporto
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$ \mbox{\hyperlink{supporto_8h_a45c407702e9be0abc15eaf0ca385fa10}{create\+\_\+board}} (unsigned int r, unsigned int c, unsigned int cifre)
-\item 
+\begin{DoxyCompactList}\small\item\em Creazione del campo di gioco. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{supporto_8h_a9bebec4622d89e69e845dda90b782bcf}{initialize\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, unsigned int cifre)
 \item 
 void \mbox{\hyperlink{supporto_8h_a94c7c50bc7d3a9dffc1354c289bd682d}{print\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t, unsigned int cifre, unsigned int npl)
@@ -175,6 +175,24 @@ void \mbox{\hyperlink{supporto_8h_a24106889ed5727d00c0cbea018d4290a}{destroy\+\_
 \doxysubsubsection{\texorpdfstring{create\_board()}{create\_board()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}$\ast$ create\+\_\+board (\begin{DoxyParamCaption}\item[{unsigned int}]{r,  }\item[{unsigned int}]{c,  }\item[{unsigned int}]{cifre }\end{DoxyParamCaption})}
 
+
+
+Creazione del campo di gioco. 
+
+Crea una matrice r$\ast$c e per ogni \char`\"{}cella\char`\"{} alloca abbastanza spazio da rappresentare correttamente la pedina. Lo spazio è dato da \char`\"{}altezza massima della torre(3)\char`\"{} + \char`\"{}spazio per la promozione(1)\char`\"{} + \char`\"{}spazio per rappresentare le cifre(variabile)\char`\"{}
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & Numero di righe della schacchiera. \\
+\hline
+{\em c} & Numero di colonne della scacchiera. \\
+\hline
+{\em cifre} & Numero di cifre da allocare in modo da rappresentare il numero delle pedine nella scacchiera. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+tcampo$\ast$ Ritorna il puntatore al campo. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{supporto_8h_ad8dd92d796029b9e2a02a8e446dfe69a}\label{supporto_8h_ad8dd92d796029b9e2a02a8e446dfe69a}} 
 \index{supporto.h@{supporto.h}!create\_pawns@{create\_pawns}}
 \index{create\_pawns@{create\_pawns}!supporto.h@{supporto.h}}
