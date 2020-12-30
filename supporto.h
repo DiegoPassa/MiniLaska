@@ -18,6 +18,7 @@ struct pedina
     unsigned int r;
     unsigned int c;
     unsigned int isPromoted; /* Es: |  BN07^ | */
+    unsigned int *canMove; /* 0010 -> bassodx */
 };
 typedef struct pedina tpedina;
 struct player
@@ -71,7 +72,7 @@ unsigned int is_selected(tplayer p1,tplayer p2,unsigned int np,unsigned int npl)
 
 unsigned int max_pawns(unsigned int r,unsigned int c);/* calculate the number of pawns that can be placed in an rxc dimension matrix */
 
-unsigned int is_notstuck(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsigned int npl);/* check if the pawn is stuck */
+unsigned int is_notstuck(tplayer *p1,tplayer *p2,tcampo t,unsigned int nped,unsigned int npl);/* check if the pawn is stuck */
 
 tcampo* copy_board(tcampo t ,tcampo *new);/* create a new board  copying from the variable t */
 
@@ -111,6 +112,12 @@ unsigned int round_ia(tplayer *p1,tplayer *ia,tcampo *t,unsigned int npl);
 
 int minimax();
 
+void set_moves_pawn(tplayer *pl1, tplayer *pl2, tcampo t, int nPl);
+
+unsigned int check_canMove(tplayer *p, int nPed);
+
 void destroy_player (tplayer *p); /* free up memory space allocated by player */
 
 void destroy_board(tcampo *t);/* free up memory space allocated by board */
+
+unsigned int check_while(tplayer pl1, tplayer pl2, unsigned int nPlayer, unsigned int nPawn);
