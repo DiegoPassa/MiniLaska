@@ -1,0 +1,311 @@
+\hypertarget{supporto_8c}{}\doxysection{supporto.\+c File Reference}
+\label{supporto_8c}\index{supporto.c@{supporto.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}supporto.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}src/colors/colors.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$ \mbox{\hyperlink{supporto_8c_a5990696653b133a07b8ba34860a49a9e}{create\+\_\+board}} (unsigned int r, unsigned int col, unsigned int cifre)
+\item 
+void \mbox{\hyperlink{supporto_8c_a9bebec4622d89e69e845dda90b782bcf}{initialize\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, unsigned int cifre)
+\item 
+void \mbox{\hyperlink{supporto_8c_a0f5abdfda7950070922773386d876041}{print\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t, unsigned int cifre, unsigned npl)
+\item 
+void \mbox{\hyperlink{supporto_8c_ade0653b2e42848b6f90ae0cd27e2cd42}{print\+\_\+directions}} (unsigned int $\ast$arr, unsigned int dim, unsigned int np)
+\item 
+\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$ \mbox{\hyperlink{supporto_8c_ad8dd92d796029b9e2a02a8e446dfe69a}{create\+\_\+pawns}} (unsigned int n, char ped, unsigned int np, unsigned int cifre, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t)
+\item 
+void \mbox{\hyperlink{supporto_8c_a600f606f3b2109510e79b7cb0fc77c62}{print\+\_\+player}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p)
+\item 
+void \mbox{\hyperlink{supporto_8c_a871cb258dda2536b6de44bc691911c49}{update\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p2)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8c_a4cc6078ed777b67a77218e2bef4ebd10}{check\+\_\+spot}} (\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t, unsigned int r, unsigned int c, unsigned int cifre)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8c_a6f65590ae83d869a3bec216de6368113}{is\+\_\+selected}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p2, unsigned int np, unsigned int npl)
+\item 
+void \mbox{\hyperlink{supporto_8c_a7d1dc4d260db76ae0d174f8aba5b9e1e}{remove\+\_\+pawn}} (\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, unsigned int r, unsigned int c, unsigned cifre)
+\item 
+void \mbox{\hyperlink{supporto_8c_ab67187e14285d24a161877b62c7b945b}{pawn\+\_\+promotion}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p, unsigned int np, unsigned int numpl, unsigned int meta)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8c_a57235c5f4283c975b5374478b124686f}{check\+\_\+player}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p2, unsigned int x, unsigned int y)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8c_a1512ab1980abe9a7fcd4dd513c948a06}{char\+\_\+converter}} (\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t, unsigned int r, unsigned int c, unsigned int dim, unsigned int cifre)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8c_a1bda86cdcd668572e34d8efc0ebf73fe}{is\+\_\+in}} (int r, int c, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8c_a666e0c221817bf8d09c0708bd147050f}{check\+\_\+directions}} (unsigned int $\ast$arr, unsigned int dim, char $\ast$str)
+\item 
+unsigned int $\ast$ \mbox{\hyperlink{supporto_8c_a74b79a62b552ea48c2ddb28febb445fd}{must\+\_\+eat}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p2, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t, unsigned int np, unsigned int npl)
+\item 
+int \mbox{\hyperlink{supporto_8c_acc4625a3f4b1fe971d82d3e0fb2db07a}{can\+\_\+eat}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p1, unsigned int np, char $\ast$str, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p2, unsigned int pl)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8c_a8001bec87945745ccef27e03a874213c}{move\+\_\+noeat}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p1, unsigned int np, char $\ast$str, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p2, unsigned int pl)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8c_a17e15008fea16e23d403ca1b340d8610}{eat}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p2, char $\ast$str, unsigned int np, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t, unsigned int num, unsigned int npl)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8c_a9753032031107e08ce2cdeab8e32d021}{move\+\_\+p1}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p1, unsigned int np, char $\ast$str, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p2, unsigned int pl)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8c_a67a27daf195ef004a26f202207be9d39}{move\+\_\+p2}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p2, unsigned int np, char $\ast$str, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p1)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8c_ab70152d716bc2a0320e6c3f1c30dde9f}{all\+\_\+blocked}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p2, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t, unsigned int npl)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8c_aaf7e6ccff2cc4d299c57e594b4a51ee3}{is\+\_\+victory}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p2, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8c_ad0f3596ada5da999aca1ba3923d6814f}{round\+\_\+choice}} ()
+\item 
+unsigned int \mbox{\hyperlink{supporto_8c_add3f5f3eb41cdcad84e5d63c2b70c920}{round\+\_\+player}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p2, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, unsigned int npl)
+\item 
+int \mbox{\hyperlink{supporto_8c_ad0b249d0604a36c24742cee6f4819ccf}{is\+\_\+empty}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8c_a0bd4d9ad7b168fa5a30645559b5173bf}{max\+\_\+pawns}} (unsigned int r, unsigned int c)
+\item 
+\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$ \mbox{\hyperlink{supporto_8c_afa07018b01c41707db9ad8bcb5f2eba0}{copy\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$new)
+\item 
+\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$ \mbox{\hyperlink{supporto_8c_a430b311c67c575e4b0b7be78ee0f7221}{player\+\_\+copy}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$n, unsigned int cifre)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8c_a4d3969ebd9f51ce44f7184bfd28fb7c8}{is\+\_\+notstuck}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p2, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t, unsigned int nped, unsigned int npl)
+\item 
+char \mbox{\hyperlink{supporto_8c_a7082b2f18b8eebe86c5a0da55d792df2}{int\+\_\+converter}} (unsigned int num, unsigned int index)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8c_a0dbb798af8981e4d2eb5f3a1dca2350b}{add\+\_\+pawn}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p2, unsigned int np)
+\item 
+int \mbox{\hyperlink{supporto_8c_a47b10bbd5a55138c5589d579f88ad609}{player\+\_\+vs\+\_\+player}} (unsigned int x)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8c_a356f1511e00a9bf2d02ae8c229fcaaac}{round\+\_\+ia}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$ia, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, unsigned int npl)
+\item 
+void \mbox{\hyperlink{supporto_8c_af132ad3ea6d429831047325e8ad017f2}{player\+\_\+vs\+\_\+ia}} ()
+\item 
+void \mbox{\hyperlink{supporto_8c_a3f4fff539fe0fdfccfff1619561c9975}{destroy\+\_\+player}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p)
+\item 
+void \mbox{\hyperlink{supporto_8c_a24106889ed5727d00c0cbea018d4290a}{destroy\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{supporto_8c_a0dbb798af8981e4d2eb5f3a1dca2350b}\label{supporto_8c_a0dbb798af8981e4d2eb5f3a1dca2350b}} 
+\index{supporto.c@{supporto.c}!add\_pawn@{add\_pawn}}
+\index{add\_pawn@{add\_pawn}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{add\_pawn()}{add\_pawn()}}
+{\footnotesize\ttfamily unsigned int add\+\_\+pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p2,  }\item[{unsigned int}]{np }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_ab70152d716bc2a0320e6c3f1c30dde9f}\label{supporto_8c_ab70152d716bc2a0320e6c3f1c30dde9f}} 
+\index{supporto.c@{supporto.c}!all\_blocked@{all\_blocked}}
+\index{all\_blocked@{all\_blocked}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{all\_blocked()}{all\_blocked()}}
+{\footnotesize\ttfamily unsigned int all\+\_\+blocked (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p2,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t,  }\item[{unsigned int}]{npl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_acc4625a3f4b1fe971d82d3e0fb2db07a}\label{supporto_8c_acc4625a3f4b1fe971d82d3e0fb2db07a}} 
+\index{supporto.c@{supporto.c}!can\_eat@{can\_eat}}
+\index{can\_eat@{can\_eat}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{can\_eat()}{can\_eat()}}
+{\footnotesize\ttfamily int can\+\_\+eat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p1,  }\item[{unsigned int}]{np,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p2,  }\item[{unsigned int}]{pl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a1512ab1980abe9a7fcd4dd513c948a06}\label{supporto_8c_a1512ab1980abe9a7fcd4dd513c948a06}} 
+\index{supporto.c@{supporto.c}!char\_converter@{char\_converter}}
+\index{char\_converter@{char\_converter}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{char\_converter()}{char\_converter()}}
+{\footnotesize\ttfamily unsigned int char\+\_\+converter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t,  }\item[{unsigned int}]{r,  }\item[{unsigned int}]{c,  }\item[{unsigned int}]{dim,  }\item[{unsigned int}]{cifre }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a666e0c221817bf8d09c0708bd147050f}\label{supporto_8c_a666e0c221817bf8d09c0708bd147050f}} 
+\index{supporto.c@{supporto.c}!check\_directions@{check\_directions}}
+\index{check\_directions@{check\_directions}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{check\_directions()}{check\_directions()}}
+{\footnotesize\ttfamily unsigned int check\+\_\+directions (\begin{DoxyParamCaption}\item[{unsigned int $\ast$}]{arr,  }\item[{unsigned int}]{dim,  }\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a57235c5f4283c975b5374478b124686f}\label{supporto_8c_a57235c5f4283c975b5374478b124686f}} 
+\index{supporto.c@{supporto.c}!check\_player@{check\_player}}
+\index{check\_player@{check\_player}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{check\_player()}{check\_player()}}
+{\footnotesize\ttfamily unsigned int check\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p2,  }\item[{unsigned int}]{x,  }\item[{unsigned int}]{y }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a4cc6078ed777b67a77218e2bef4ebd10}\label{supporto_8c_a4cc6078ed777b67a77218e2bef4ebd10}} 
+\index{supporto.c@{supporto.c}!check\_spot@{check\_spot}}
+\index{check\_spot@{check\_spot}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{check\_spot()}{check\_spot()}}
+{\footnotesize\ttfamily unsigned int check\+\_\+spot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t,  }\item[{unsigned int}]{r,  }\item[{unsigned int}]{c,  }\item[{unsigned int}]{cifre }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_afa07018b01c41707db9ad8bcb5f2eba0}\label{supporto_8c_afa07018b01c41707db9ad8bcb5f2eba0}} 
+\index{supporto.c@{supporto.c}!copy\_board@{copy\_board}}
+\index{copy\_board@{copy\_board}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{copy\_board()}{copy\_board()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}$\ast$ copy\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{new }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a5990696653b133a07b8ba34860a49a9e}\label{supporto_8c_a5990696653b133a07b8ba34860a49a9e}} 
+\index{supporto.c@{supporto.c}!create\_board@{create\_board}}
+\index{create\_board@{create\_board}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{create\_board()}{create\_board()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}$\ast$ create\+\_\+board (\begin{DoxyParamCaption}\item[{unsigned int}]{r,  }\item[{unsigned int}]{col,  }\item[{unsigned int}]{cifre }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_ad8dd92d796029b9e2a02a8e446dfe69a}\label{supporto_8c_ad8dd92d796029b9e2a02a8e446dfe69a}} 
+\index{supporto.c@{supporto.c}!create\_pawns@{create\_pawns}}
+\index{create\_pawns@{create\_pawns}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{create\_pawns()}{create\_pawns()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}$\ast$ create\+\_\+pawns (\begin{DoxyParamCaption}\item[{unsigned int}]{n,  }\item[{char}]{ped,  }\item[{unsigned int}]{np,  }\item[{unsigned int}]{cifre,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a24106889ed5727d00c0cbea018d4290a}\label{supporto_8c_a24106889ed5727d00c0cbea018d4290a}} 
+\index{supporto.c@{supporto.c}!destroy\_board@{destroy\_board}}
+\index{destroy\_board@{destroy\_board}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{destroy\_board()}{destroy\_board()}}
+{\footnotesize\ttfamily void destroy\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a3f4fff539fe0fdfccfff1619561c9975}\label{supporto_8c_a3f4fff539fe0fdfccfff1619561c9975}} 
+\index{supporto.c@{supporto.c}!destroy\_player@{destroy\_player}}
+\index{destroy\_player@{destroy\_player}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{destroy\_player()}{destroy\_player()}}
+{\footnotesize\ttfamily void destroy\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a17e15008fea16e23d403ca1b340d8610}\label{supporto_8c_a17e15008fea16e23d403ca1b340d8610}} 
+\index{supporto.c@{supporto.c}!eat@{eat}}
+\index{eat@{eat}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{eat()}{eat()}}
+{\footnotesize\ttfamily unsigned int eat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p2,  }\item[{char $\ast$}]{str,  }\item[{unsigned int}]{np,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t,  }\item[{unsigned int}]{num,  }\item[{unsigned int}]{npl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a9bebec4622d89e69e845dda90b782bcf}\label{supporto_8c_a9bebec4622d89e69e845dda90b782bcf}} 
+\index{supporto.c@{supporto.c}!initialize\_board@{initialize\_board}}
+\index{initialize\_board@{initialize\_board}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{initialize\_board()}{initialize\_board()}}
+{\footnotesize\ttfamily void initialize\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t,  }\item[{unsigned int}]{cifre }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a7082b2f18b8eebe86c5a0da55d792df2}\label{supporto_8c_a7082b2f18b8eebe86c5a0da55d792df2}} 
+\index{supporto.c@{supporto.c}!int\_converter@{int\_converter}}
+\index{int\_converter@{int\_converter}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{int\_converter()}{int\_converter()}}
+{\footnotesize\ttfamily char int\+\_\+converter (\begin{DoxyParamCaption}\item[{unsigned int}]{num,  }\item[{unsigned int}]{index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_ad0b249d0604a36c24742cee6f4819ccf}\label{supporto_8c_ad0b249d0604a36c24742cee6f4819ccf}} 
+\index{supporto.c@{supporto.c}!is\_empty@{is\_empty}}
+\index{is\_empty@{is\_empty}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{is\_empty()}{is\_empty()}}
+{\footnotesize\ttfamily int is\+\_\+empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a1bda86cdcd668572e34d8efc0ebf73fe}\label{supporto_8c_a1bda86cdcd668572e34d8efc0ebf73fe}} 
+\index{supporto.c@{supporto.c}!is\_in@{is\_in}}
+\index{is\_in@{is\_in}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{is\_in()}{is\_in()}}
+{\footnotesize\ttfamily unsigned int is\+\_\+in (\begin{DoxyParamCaption}\item[{int}]{r,  }\item[{int}]{c,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a4d3969ebd9f51ce44f7184bfd28fb7c8}\label{supporto_8c_a4d3969ebd9f51ce44f7184bfd28fb7c8}} 
+\index{supporto.c@{supporto.c}!is\_notstuck@{is\_notstuck}}
+\index{is\_notstuck@{is\_notstuck}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{is\_notstuck()}{is\_notstuck()}}
+{\footnotesize\ttfamily unsigned int is\+\_\+notstuck (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p2,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t,  }\item[{unsigned int}]{nped,  }\item[{unsigned int}]{npl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a6f65590ae83d869a3bec216de6368113}\label{supporto_8c_a6f65590ae83d869a3bec216de6368113}} 
+\index{supporto.c@{supporto.c}!is\_selected@{is\_selected}}
+\index{is\_selected@{is\_selected}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{is\_selected()}{is\_selected()}}
+{\footnotesize\ttfamily unsigned int is\+\_\+selected (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p2,  }\item[{unsigned int}]{np,  }\item[{unsigned int}]{npl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_aaf7e6ccff2cc4d299c57e594b4a51ee3}\label{supporto_8c_aaf7e6ccff2cc4d299c57e594b4a51ee3}} 
+\index{supporto.c@{supporto.c}!is\_victory@{is\_victory}}
+\index{is\_victory@{is\_victory}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{is\_victory()}{is\_victory()}}
+{\footnotesize\ttfamily unsigned int is\+\_\+victory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p2,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a0bd4d9ad7b168fa5a30645559b5173bf}\label{supporto_8c_a0bd4d9ad7b168fa5a30645559b5173bf}} 
+\index{supporto.c@{supporto.c}!max\_pawns@{max\_pawns}}
+\index{max\_pawns@{max\_pawns}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{max\_pawns()}{max\_pawns()}}
+{\footnotesize\ttfamily unsigned int max\+\_\+pawns (\begin{DoxyParamCaption}\item[{unsigned int}]{r,  }\item[{unsigned int}]{c }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a8001bec87945745ccef27e03a874213c}\label{supporto_8c_a8001bec87945745ccef27e03a874213c}} 
+\index{supporto.c@{supporto.c}!move\_noeat@{move\_noeat}}
+\index{move\_noeat@{move\_noeat}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{move\_noeat()}{move\_noeat()}}
+{\footnotesize\ttfamily unsigned int move\+\_\+noeat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p1,  }\item[{unsigned int}]{np,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p2,  }\item[{unsigned int}]{pl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a9753032031107e08ce2cdeab8e32d021}\label{supporto_8c_a9753032031107e08ce2cdeab8e32d021}} 
+\index{supporto.c@{supporto.c}!move\_p1@{move\_p1}}
+\index{move\_p1@{move\_p1}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{move\_p1()}{move\_p1()}}
+{\footnotesize\ttfamily unsigned int move\+\_\+p1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p1,  }\item[{unsigned int}]{np,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p2,  }\item[{unsigned int}]{pl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a67a27daf195ef004a26f202207be9d39}\label{supporto_8c_a67a27daf195ef004a26f202207be9d39}} 
+\index{supporto.c@{supporto.c}!move\_p2@{move\_p2}}
+\index{move\_p2@{move\_p2}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{move\_p2()}{move\_p2()}}
+{\footnotesize\ttfamily unsigned int move\+\_\+p2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p2,  }\item[{unsigned int}]{np,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p1 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a74b79a62b552ea48c2ddb28febb445fd}\label{supporto_8c_a74b79a62b552ea48c2ddb28febb445fd}} 
+\index{supporto.c@{supporto.c}!must\_eat@{must\_eat}}
+\index{must\_eat@{must\_eat}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{must\_eat()}{must\_eat()}}
+{\footnotesize\ttfamily unsigned int$\ast$ must\+\_\+eat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p2,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t,  }\item[{unsigned int}]{np,  }\item[{unsigned int}]{npl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_ab67187e14285d24a161877b62c7b945b}\label{supporto_8c_ab67187e14285d24a161877b62c7b945b}} 
+\index{supporto.c@{supporto.c}!pawn\_promotion@{pawn\_promotion}}
+\index{pawn\_promotion@{pawn\_promotion}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{pawn\_promotion()}{pawn\_promotion()}}
+{\footnotesize\ttfamily void pawn\+\_\+promotion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p,  }\item[{unsigned int}]{np,  }\item[{unsigned int}]{numpl,  }\item[{unsigned int}]{meta }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a430b311c67c575e4b0b7be78ee0f7221}\label{supporto_8c_a430b311c67c575e4b0b7be78ee0f7221}} 
+\index{supporto.c@{supporto.c}!player\_copy@{player\_copy}}
+\index{player\_copy@{player\_copy}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{player\_copy()}{player\_copy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}$\ast$ player\+\_\+copy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{n,  }\item[{unsigned int}]{cifre }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_af132ad3ea6d429831047325e8ad017f2}\label{supporto_8c_af132ad3ea6d429831047325e8ad017f2}} 
+\index{supporto.c@{supporto.c}!player\_vs\_ia@{player\_vs\_ia}}
+\index{player\_vs\_ia@{player\_vs\_ia}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{player\_vs\_ia()}{player\_vs\_ia()}}
+{\footnotesize\ttfamily void player\+\_\+vs\+\_\+ia (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a47b10bbd5a55138c5589d579f88ad609}\label{supporto_8c_a47b10bbd5a55138c5589d579f88ad609}} 
+\index{supporto.c@{supporto.c}!player\_vs\_player@{player\_vs\_player}}
+\index{player\_vs\_player@{player\_vs\_player}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{player\_vs\_player()}{player\_vs\_player()}}
+{\footnotesize\ttfamily int player\+\_\+vs\+\_\+player (\begin{DoxyParamCaption}\item[{unsigned int}]{x }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a0f5abdfda7950070922773386d876041}\label{supporto_8c_a0f5abdfda7950070922773386d876041}} 
+\index{supporto.c@{supporto.c}!print\_board@{print\_board}}
+\index{print\_board@{print\_board}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{print\_board()}{print\_board()}}
+{\footnotesize\ttfamily void print\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t,  }\item[{unsigned int}]{cifre,  }\item[{unsigned}]{npl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_ade0653b2e42848b6f90ae0cd27e2cd42}\label{supporto_8c_ade0653b2e42848b6f90ae0cd27e2cd42}} 
+\index{supporto.c@{supporto.c}!print\_directions@{print\_directions}}
+\index{print\_directions@{print\_directions}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{print\_directions()}{print\_directions()}}
+{\footnotesize\ttfamily void print\+\_\+directions (\begin{DoxyParamCaption}\item[{unsigned int $\ast$}]{arr,  }\item[{unsigned int}]{dim,  }\item[{unsigned int}]{np }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a600f606f3b2109510e79b7cb0fc77c62}\label{supporto_8c_a600f606f3b2109510e79b7cb0fc77c62}} 
+\index{supporto.c@{supporto.c}!print\_player@{print\_player}}
+\index{print\_player@{print\_player}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{print\_player()}{print\_player()}}
+{\footnotesize\ttfamily void print\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a7d1dc4d260db76ae0d174f8aba5b9e1e}\label{supporto_8c_a7d1dc4d260db76ae0d174f8aba5b9e1e}} 
+\index{supporto.c@{supporto.c}!remove\_pawn@{remove\_pawn}}
+\index{remove\_pawn@{remove\_pawn}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{remove\_pawn()}{remove\_pawn()}}
+{\footnotesize\ttfamily void remove\+\_\+pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t,  }\item[{unsigned int}]{r,  }\item[{unsigned int}]{c,  }\item[{unsigned}]{cifre }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_ad0f3596ada5da999aca1ba3923d6814f}\label{supporto_8c_ad0f3596ada5da999aca1ba3923d6814f}} 
+\index{supporto.c@{supporto.c}!round\_choice@{round\_choice}}
+\index{round\_choice@{round\_choice}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{round\_choice()}{round\_choice()}}
+{\footnotesize\ttfamily unsigned int round\+\_\+choice (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a356f1511e00a9bf2d02ae8c229fcaaac}\label{supporto_8c_a356f1511e00a9bf2d02ae8c229fcaaac}} 
+\index{supporto.c@{supporto.c}!round\_ia@{round\_ia}}
+\index{round\_ia@{round\_ia}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{round\_ia()}{round\_ia()}}
+{\footnotesize\ttfamily unsigned int round\+\_\+ia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{ia,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t,  }\item[{unsigned int}]{npl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_add3f5f3eb41cdcad84e5d63c2b70c920}\label{supporto_8c_add3f5f3eb41cdcad84e5d63c2b70c920}} 
+\index{supporto.c@{supporto.c}!round\_player@{round\_player}}
+\index{round\_player@{round\_player}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{round\_player()}{round\_player()}}
+{\footnotesize\ttfamily unsigned int round\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p2,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t,  }\item[{unsigned int}]{npl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8c_a871cb258dda2536b6de44bc691911c49}\label{supporto_8c_a871cb258dda2536b6de44bc691911c49}} 
+\index{supporto.c@{supporto.c}!update\_board@{update\_board}}
+\index{update\_board@{update\_board}!supporto.c@{supporto.c}}
+\doxysubsubsection{\texorpdfstring{update\_board()}{update\_board()}}
+{\footnotesize\ttfamily void update\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p2 }\end{DoxyParamCaption})}
+
