@@ -4,7 +4,7 @@
 #include<string.h>
 #include<time.h>
 #include <math.h>
-#include "lib/colori.h"
+#include "src/colors/colors.h"
 
 tcampo* create_board(unsigned int r,unsigned int col,unsigned int cifre){
     tcampo *t = NULL;
