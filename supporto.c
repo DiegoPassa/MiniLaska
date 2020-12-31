@@ -129,7 +129,7 @@ void print_board(tcampo t,unsigned int cifre, unsigned npl){
                         }
                         resetColor();
                     }    /* stampa le caselle bianche */
-                    else if (topPl[j/cifre] == '#'){
+                    else if (topPl[j/cifre] == '#' || (cime[j/cifre]!=3)){
                         setWhite();
                         for(z = 0 ; z < cifre+2; ++z){
                             printf(" ");
