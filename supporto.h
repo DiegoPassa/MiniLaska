@@ -56,7 +56,7 @@ void update_board(tcampo *t,tplayer p1,tplayer p2);/* update the pawns position 
 
 int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/* check before eating another pawn, if the pawn is an eney then you can eat it */
 
-unsigned int *must_eat(tplayer p1,tplayer p2,tcampo t,unsigned int np,unsigned int npl);/* the pawn must eat the enemy */
+void must_eat(tplayer *p1,tplayer *p2,tcampo t,unsigned int np,unsigned int npl);/* the pawn must eat the enemy */
 
 unsigned int check_directions(unsigned int *arr,unsigned int dim,char *str);/* compare the string with the mandatory directions */
 

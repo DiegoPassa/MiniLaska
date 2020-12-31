@@ -200,23 +200,27 @@ void print_directions(unsigned int *arr,unsigned int dim,unsigned int np){
     unsigned int i,flag = 0;
     for(i = 0 ; i < dim ;++i){
         if(arr[i]){
-            flag = 1;
+            ++flag;
         }
     }
-    if(flag == 1){
-        printf("La pedina %u puo' muoversi in queste direzioni : \n",np);
+    if(flag != 0){
+        if(flag == 1){
+            printf("La pedina %u puo' muoversi solo in questa direzione : \n",np);
+        }else{
+            printf("La pedina %u puo' muoversi in queste direzioni : \n",np);
+        }
         for(i = 0 ; i < dim ; ++i){
             if(i == 0 && arr[0] == 1){
-                printf("sx\n");
+                printf("-> sx\n");
             }
             if(i == 1 && arr[1] == 1){
-                printf("dx\n");
+                printf("-> dx\n");
             }
             if(i == 2 && arr[2] == 1){
-                printf("bassosx\n");
+                printf("-> bassosx\n");
             }
             if(i == 3 && arr[3] == 1){
-                printf("bassodx\n");
+                printf("-> bassodx\n");
             }
         }
     }
@@ -348,9 +352,7 @@ void print_player(tplayer p){
             printf("%c",p.arr[i].et[j]);
         }
         printf("\n");
-
         print_directions(p.arr[i].canMove, 2, i);
-        
         printf("Cima = %d\n",p.arr[i].cima);
         printf("Grado pedina : %d \n",p.arr[i].grado);
         printf("Posizione nel campo x e y : %d , %d\n",p.arr[i].r,p.arr[i].c );
@@ -466,10 +468,10 @@ unsigned int check_directions(unsigned int *arr,unsigned int dim,char *str){
     if(!strcmp(str, "dx")){
         j = 1;
     }
-    if(!strcmp(str, "bassosx")){
+    if(!strcmp(str, "bassodx")){
         j = 2;
     }
-    if(!strcmp(str, "bassodx")){
+    if(!strcmp(str, "bassosx")){
         j = 3;
     }
     if(arr[j] == 1 && j < dim){
@@ -480,42 +482,72 @@ unsigned int check_directions(unsigned int *arr,unsigned int dim,char *str){
 
 
 }
-unsigned int *must_eat(tplayer p1,tplayer p2,tcampo t,unsigned int np,unsigned int npl){
-    unsigned int *arr,dim;
-    if(npl == 1){
-        if(p1.arr[np].isPromoted ){
-            dim = 4;
-        }else{
-            dim = 2;
-        }
-    }
-    if(npl == 2){
-        if(p2.arr[np].isPromoted){
-            dim = 4;
-        }else{
-            dim = 2;
-        }
-    }
-    arr = (unsigned int*)calloc(dim,sizeof(unsigned int));
-    if(arr){
+void must_eat(tplayer *p1,tplayer *p2,tcampo t,unsigned int np,unsigned int npl){
 
-        if( ((npl == 1)&&(can_eat(&p1,np,"sx",&t,&p2,1) >= 0)) || ((npl == 2)&&(can_eat(&p2,np,"bassosx",&t,&p1,2)>=0))  ){
-            arr[0] = 1;
+    if(p1->arr[np].canMove){
+        unsigned int flag = 1;
+        if( ((npl == 1)&&(can_eat(p1,np,"sx",&t,p2,1) >= 0)) || ((npl == 2)&&(can_eat(p2,np,"bassosx",&t,p1,2)>=0))  ){
+            if(npl == 1 && flag == 1){
+                reset_moves_paws(p1,np);
+                flag = 0;
+            }
+            if(npl == 2 && flag == 1){
+                reset_moves_paws(p2,np);
+                flag = 0;
+            }
+            if(npl == 1){
+                p1->arr[np].canMove[0] = 1;
+            }else{
+                p2->arr[np].canMove[0] = 1;
+            }
         }
-        if( ((npl == 1)&&(can_eat(&p1,np,"dx",&t,&p2,1) >= 0)) || ((npl == 2)&&(can_eat(&p2,np,"bassodx",&t,&p1,2)>=0)) ){
-            arr[1] = 1;
+        if( ((npl == 1)&&(can_eat(p1,np,"dx",&t,p2,1) >= 0)) || ((npl == 2)&&(can_eat(p2,np,"bassodx",&t,p1,2)>=0)) ){
+            if(npl == 1 && flag == 1){
+                reset_moves_paws(p1,np);
+                flag = 0;
+            }
+            if(npl == 2 && flag == 1){
+                reset_moves_paws(p2,np);
+                flag = 0;
+            }
+            if(npl == 1){
+                p1->arr[np].canMove[1] = 1;
+            }else{
+                p2->arr[np].canMove[1] = 1;
+            }
         }
-        if( (((npl == 1)&&(can_eat(&p1,np,"bassosx",&t,&p2,1) >= 0)) || ((npl == 2)&&(can_eat(&p2,np,"sx",&t,&p1,2)>=0))) && (dim == 4) ){
-            arr[2] = 1;
+        if ((p1->arr[np].isPromoted && npl==1) || (p2->arr[np].isPromoted && npl==2)){
+            if( (((npl == 1)&&(can_eat(p1,np,"bassodx",&t,p2,1) >= 0)) || ((npl == 2)&&(can_eat(p2,np,"dx",&t,p1,2)>=0))) ){
+                if(npl == 1 && flag == 1){
+                    reset_moves_paws(p1,np);
+                    flag = 0;
+                }
+                if(npl == 2 && flag == 1){
+                    reset_moves_paws(p2,np);
+                    flag = 0;
+                }
+                if(npl == 1){
+                    p1->arr[np].canMove[2] = 1;
+                }else{
+                    p2->arr[np].canMove[2] = 1;
+                }
+            }
+            if( (((npl == 1)&&(can_eat(p1,np,"bassosx",&t,p2,1) >= 0)) || ((npl == 2)&&(can_eat(p2,np,"sx",&t,p1,2)>=0))) ){
+                if(npl == 1 && flag == 1){
+                    reset_moves_paws(p1,np);
+                }
+                if(npl == 2 && flag == 1){
+                    reset_moves_paws(p2,np);
+                }
+                if(npl == 1){
+                    p1->arr[np].canMove[3] = 1;
+                }else{
+                    p2->arr[np].canMove[3] = 1;
+                }
+            }
         }
-        if( (((npl == 1)&&(can_eat(&p1,np,"bassodx",&t,&p2,1) >= 0)) || ((npl == 2)&&(can_eat(&p2,np,"dx",&t,&p1,2)>=0))) && (dim == 4) ){
-            arr[3] = 1;
-        }
-
-        return arr;
     }else{
         printf("Errore nella obl_eat\n");
-        return NULL;
     }
 
 
@@ -703,9 +735,9 @@ unsigned int eat(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsi
             --p2->arr[num].grado;
         }else {
             if (is_empty(*p1) == -1) {
-                /*controllo_pedina(p1, p2,num);*/
-                remove_pawn(&t,p2->arr[num].r,p2->arr[num].c,p2->arr[num].dim+3+1);
-                p2->arr[num].grado = 0;
+                add_pawn(p1, p2,num);
+                /*remove_pawn(&t,p2->arr[num].r,p2->arr[num].c,p2->arr[num].dim+3+1);
+                p2->arr[num].grado = 0;*/
             } else {
                 unsigned int pos, i,index;
                 pos = is_empty(*p1);
@@ -720,6 +752,7 @@ unsigned int eat(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsi
                 p1->arr[pos].isPromoted = 0;
                 p1->arr[pos].et[3+p2->arr[num].dim] = ' ';
 
+
                 p1->arr[pos].grado = p2->arr[num].grado;
                 p2->arr[num].grado = 0;
                 p1->arr[pos].r = p2->arr[num].r;
@@ -729,6 +762,7 @@ unsigned int eat(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsi
                     int_converter(pos,index);
                     --index;
                 }
+
             }
         }
     }
@@ -1005,28 +1039,32 @@ unsigned int round_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
     }
 
     while(y==0){
-        unsigned int *arr,dim;
+        must_eat(p1,p2,*t,np,npl);
         if(npl == 1){
-            if(p1->arr[np].isPromoted ){
-                dim = 4;
-            }else{
-                dim = 2;
-            }
+            unsigned int index = 2;
+            p1->arr[np].isPromoted ? index = 4 : index;
+            print_directions(p1->arr[np].canMove,index,np);
+        }else{
+            unsigned int index = 2;
+            p2->arr[np].isPromoted ? index = 4 : index;
+            print_directions(p2->arr[np].canMove,index,np);
         }
-        if(npl == 2){
-            if(p2->arr[np].isPromoted){
-                dim = 4;
-            }else{
-                dim = 2;
-            }
-        }
-        arr = must_eat(*p1,*p2,*t,np,npl);
-        print_directions(arr,dim,np);
         printf("Verso che direzione vuoi spostare la pedina ? ");
         scanf("%s",str);
-        while(!check_directions(arr,dim,str)){
-            printf("Verso che direzione vuoi spostare la pedina ? ");
-            scanf("%s",str);
+        if(npl == 1){
+            unsigned int index = 2;
+            p1->arr[np].isPromoted ? index = 4 : index;
+            while(!check_directions(p1->arr[np].canMove,index,str)){
+                printf("Verso che direzione vuoi spostare la pedina ? ");
+                scanf("%s",str);
+            }
+        }else{
+            unsigned int index = 2;
+            p2->arr[np].isPromoted ? index = 4 : index;
+            while(!check_directions(p2->arr[np].canMove,index,str)){
+                printf("Verso che direzione vuoi spostare la pedina ? ");
+                scanf("%s",str);
+            }
         }
         if(npl == 1){
             y = move_p1(p1,np,str,t,p2,npl);
@@ -1079,7 +1117,6 @@ unsigned int round_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
                 scanf("%s",str);
             }
         }
-        free(arr);
     }
     update_board(t,*p1,*p2);
     if(npl == 1){
@@ -1231,11 +1268,11 @@ unsigned int is_notstuck(tplayer *p1,tplayer *p2,tcampo t,unsigned int nped,unsi
             copy_board(t,new);
             player_copy(*p1,n1,cifre);
             player_copy(*p2,n2,cifre);
-        }else
+        }/*else
         {
             p1->arr[nped].canMove[0] = 0;
             p2->arr[nped].canMove[0] = 0;
-        }
+        }*/
         
         if ( ((npl == 1)&&(move_p1(n1,nped,"dx",new,n2,1))) || ((npl == 2)&&(move_p2(n2,nped,"dx",new,n1))) ){
             if (npl == 1)
@@ -1249,12 +1286,12 @@ unsigned int is_notstuck(tplayer *p1,tplayer *p2,tcampo t,unsigned int nped,unsi
             copy_board(t,new);
             player_copy(*p1,n1,cifre);
             player_copy(*p2,n2,cifre);
-        }else{
+        }/*else{
             p1->arr[nped].canMove[1] = 0;
             p2->arr[nped].canMove[1] = 0;
-        }
+        }*/
         if ((p1->arr[nped].isPromoted && npl==1) || (p2->arr[nped].isPromoted && npl==2)){
-            if( ((npl == 1)&&(move_p1(n1,nped,"bassosx",new,n2,1))) || ((npl == 2)&&(move_p2(n2,nped,"bassosx",new,n1))) ){
+            if( ((npl == 1)&&(move_p1(n1,nped,"bassodx",new,n2,1))) || ((npl == 2)&&(move_p2(n2,nped,"bassodx",new,n1))) ){
                 if (npl == 1)
                 {
                     p1->arr[nped].canMove[2] = 1;
@@ -1266,11 +1303,11 @@ unsigned int is_notstuck(tplayer *p1,tplayer *p2,tcampo t,unsigned int nped,unsi
                 copy_board(t,new);
                 player_copy(*p1,n1,cifre);
                 player_copy(*p2,n2,cifre);
-            }else{
+            }/*else{
                 p1->arr[nped].canMove[2] = 0;
                 p2->arr[nped].canMove[2] = 0;
-            }
-            if( ((npl == 1)&&(move_p1(n1,nped,"bassodx",new,n2,1))) || ((npl == 2)&&(move_p2(n2,nped,"bassodx",new,n1))) ){
+            }*/
+            if( ((npl == 1)&&(move_p1(n1,nped,"bassosx",new,n2,1))) || ((npl == 2)&&(move_p2(n2,nped,"bassosx",new,n1))) ){
                 if (npl == 1)
                 {
                     p1->arr[nped].canMove[3] = 1;
@@ -1282,10 +1319,10 @@ unsigned int is_notstuck(tplayer *p1,tplayer *p2,tcampo t,unsigned int nped,unsi
                 copy_board(t,new);
                 player_copy(*p1,n1,cifre);
                 player_copy(*p2,n2,cifre);
-            }else{
+            }/*else{
                 p1->arr[nped].canMove[3] = 0;
                 p2->arr[nped].canMove[3] = 0;
-            }
+            }*/
         }       
         destroy_board(new);
         destroy_player(n1);
@@ -1350,6 +1387,7 @@ unsigned int add_pawn(tplayer *p1,tplayer *p2,unsigned int np){
         p1->arr[p1->dim].r = p2->arr[np].r;
         p2->arr[np].isPromoted = 0;
         p2->arr[np].et[p2->arr[np].dim+3+1] = ' ';
+
 
         /* in caso if per cifre e riadattare cifre*/
         for(i = 0 ; i < 3 ; ++i){
@@ -1468,7 +1506,7 @@ unsigned int round_ia(tplayer *p1,tplayer *ia,tcampo *t,unsigned int npl){
     srand(time(NULL));
     np = rand()%(ia->dim);
 
-    while (!check_canMove(ia, np)){
+    while (!check_canMove(ia,np) ||(!is_selected(*p1,*ia,np,npl))){
         np = rand()%(ia->dim);      
     }
 
@@ -1487,9 +1525,9 @@ unsigned int round_ia(tplayer *p1,tplayer *ia,tcampo *t,unsigned int npl){
     }else if (newMove == 1){
         move = "dx";
     }else if (newMove == 2){
-        move = "bassosx";
-    }else if (newMove == 3){
         move = "bassodx";
+    }else if (newMove == 3){
+        move = "bassosx";
     }
 
     move_p2(ia,np,move,t,p1);
@@ -1531,6 +1569,7 @@ void player_vs_ia(){
         if (!exit) {
             printf("Round numero : %u\n", round);
             if (turno == 1) {
+                print_player(*p1);
                 exit = round_player(p1, ia, t, turno);
                 turno = 2;
             } else {
@@ -1539,6 +1578,15 @@ void player_vs_ia(){
             }
             ++round;
         }
+    }
+    if(exit == 3){
+        printf("Hai abbandonato la partita\n");
+    }else{
+        if(!exit){
+            exit = is_victory(*p1,*ia,*t);
+        }
+        printf("Round totali della partita : %u\n",round);
+        printf("Il vincitore e' il player %d!\n",exit);
     }
     destroy_board(t);
     destroy_player(p1);
@@ -1571,29 +1619,34 @@ void reset_moves_paws(tplayer *pl,int nPawn){
     if(nPawn == -1){
         for(i = 0 ; i < pl->dim ; ++i){
             unsigned int j,z;
-            if(pl->arr[i].isPromoted){
-                j = 3;
+            if(pl->arr[i].isPromoted == 1){
+                z = 4;
             }else{
-                j = 1;
+                z = 2;
             }
-            for(z = j ; z >= 0 ; --z){
-                pl->arr[i].canMove[z] = 0;
+            for(j = 0; j < z ; ++j){
+                pl->arr[i].canMove[j] = 0;
             }
         }
     }else{
         unsigned int z;
-        if(pl->arr[nPawn].isPromoted){
-            i = 3;
+        if(pl->arr[nPawn].isPromoted == 1){
+            i = 4;
         }else{
-            i = 1;
+            i = 2;
         }
-        for(z =i ; z >= 0 ; --z){
+        for(z = 0; z < i ; ++z){
             pl->arr[nPawn].canMove[z] = 0;
         }
     }
 }
 void set_moves_pawn(tplayer *pl1, tplayer *pl2, tcampo t, int nPl){
     int i;
+    if(nPl == 1){
+        reset_moves_paws(pl1,-1);
+    }else{
+        reset_moves_paws(pl2,-1);
+    }
     for(i = 0; i < pl1->dim; i++){
         is_notstuck(pl1, pl2, t, i, nPl);
     }
@@ -1623,7 +1676,7 @@ unsigned int check_canMove(tplayer *p, int nPed){
 }
 
 unsigned int check_while(tplayer pl1, tplayer pl2, unsigned int nPlayer, unsigned int nPawn){
-    if ((!((nPawn >= 0)&&(((nPlayer == 1)&&(nPawn < pl1.dim)) && ((nPlayer == 2)&&(nPawn < pl2.dim)))))|| (!is_selected(pl1, pl2, nPawn, nPlayer))){
+    if ( (!((nPawn >= 0)&&(((nPlayer == 1)&&(nPawn < pl1.dim)) || ((nPlayer == 2)&&(nPawn < pl2.dim))))) || (!is_selected(pl1, pl2, nPawn, nPlayer))){
         if (nPlayer == 1){
             return check_canMove(&pl1, nPawn);
         }else{
