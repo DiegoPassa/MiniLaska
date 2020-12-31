@@ -51,8 +51,9 @@ void initialize_board(tcampo *t,unsigned int cifre){
 }
 
 void print_board(tcampo t,unsigned int cifre, unsigned npl){
-    int i, j, k = 0, z;
-    char topPl;
+    int i, j, k = 0, z, l;
+    char *topPl = malloc(7*sizeof(char));
+    int cime[7];
 
     /* stampo prima riga */
     for(j=0; j<t.c; j +=cifre){
@@ -71,62 +72,96 @@ void print_board(tcampo t,unsigned int cifre, unsigned npl){
         i = t.r-1;
     }
     while( (((npl == 1)&&(i < t.r))||((npl == 2)&&(i >= 0))) ){
-        for(j=0; j<t.c; j +=cifre){
-            printf("|");
-
-            /* controllo dov'è la cima */
-            while (t.mat[i][j+k] != 'N' && t.mat[i][j+k] != 'B' && k<3){
+        for (l = 0; l < t.c; l+=cifre)
+        {
+            /* controllo dov'è la cima */      
+            while (t.mat[i][l+k] != 'N' && t.mat[i][l+k] != 'B' && k<3){
                 k++;
             }
-            topPl = t.mat[i][j+k]; /* indica il possessore della torre */
-
-            /* stampa le torri */
-            if (topPl == 'N' || topPl == 'B'){
-                setBlack();
-                if (topPl == 'N'){
-                    setRed(2);
-                }else if (topPl == 'B'){
-                    setYellow(2);
-                }
-                printf(" ");
-                for (z = 0; z < cifre; z++){
-                    /* controlla se all'interno della torre c'è una pedina avversaria */
-                    if ((t.mat[i][j+z] == 'B' || t.mat[i][j+z] == 'N') && t.mat[i][j+z] != topPl){
-                        if (topPl == 'N'){
-                            setYellow(2);
-                        }else if (topPl == 'B'){
+            cime[l/cifre] = k;
+            /* indica il possessore della torre */
+            topPl[l/cifre] = t.mat[i][l+k];
+            k=0;
+        }
+        /*
+        for (l = 0; l < 7; l++)
+        {
+            printf("%d %c\n",cime[l], topPl[l]);
+        }*/
+        
+        for (l = 0; l < 3; l++){
+            for(j=0; j<t.c; j +=cifre){
+                printf("|");
+                /* stampa le torri */
+                if (cime[j/cifre]==l){
+                    if (topPl[j/cifre] == 'N' || topPl[j/cifre] == 'B'){
+                        setBlack();
+                        if (topPl[j/cifre] == 'N'){
                             setRed(2);
+                        }else if (topPl[j/cifre] == 'B'){
+                            setYellow(2);
                         }
-                        /* altrimenti stampa il colore del proprietario */
-                    }else{
-                        if (topPl == 'N'){
-                            setRed(2);
-                        }else if (topPl == 'B'){
-                            setYellow(2);
+                        printf(" ");
+                        for (z = 0; z < cifre; z++){
+                            printf("%c",t.mat[i][j+z]);
+                        }
+                        printf(" ");
+                        resetColor();
+                    }
+                }else{
+                    if (cime[j/cifre]<l){
+                        if ((t.mat[i][j+l] == 'B' || t.mat[i][j+l] == 'N') && t.mat[i][j+l] != topPl[j/cifre]){
+                            if (topPl[j/cifre] == 'N'){
+                                setYellow(2);
+                            }else if (topPl[j/cifre] == 'B'){
+                                setRed(2);
+                            }
+                            /* altrimenti stampa il colore del proprietario */
+                        }else{
+                            if (topPl[j/cifre] == 'N'){
+                                setRed(2);
+                            }else if (topPl[j/cifre] == 'B'){
+                                setYellow(2);
+                            }
+                        }
+                        for(z = 0 ; z < cifre+2; ++z){
+                            printf(" ");
+                        }
+                        resetColor();
+                    }    /* stampa le caselle bianche */
+                    else if (topPl[j/cifre] == '#'){
+                        setWhite();
+                        for(z = 0 ; z < cifre+2; ++z){
+                            printf(" ");
+                        }
+                        resetColor();
+                    }
+                    /* stampa le caselle nere */
+                    else{
+                        for(z = 0 ; z < cifre+2; ++z){
+                            printf(" ");
                         }
                     }
-                    printf("%c",t.mat[i][j+z]);
+                    
+                    
+                    /*
+                    else
+                    {
+                        setWhite();
+                        for(z = 0 ; z < cifre+2; ++z){
+                            printf(" ");
+                        }
+                        resetColor();
+                    }*/
+                    
+                    
                 }
-                printf(" ");
-                resetColor();
+                  
             }
-                /* stampa le caselle bianche */
-            else if (topPl == '#'){
-                setWhite();
-                for(z = 0 ; z < cifre+2; ++z){
-                    printf(" ");
-                }
-                resetColor();
-            }
-                /* stampa le caselle nere */
-            else{
-                for(z = 0 ; z < cifre+2; ++z){
-                    printf(" ");
-                }
-            }
-            k = 0;
+            printf("|\n");
+
         }
-        printf("|\n");
+        
 
         /* stampa separatore tra righe */
         if(((npl == 1)&&(i != t.r-1))||((npl == 2)&&(i != 0))){
@@ -223,7 +258,7 @@ tplayer *create_pawns(unsigned int n,char ped,unsigned int np,unsigned int cifre
         for(i = 0 ; i < n ; ++i){
             p->arr[i].canMove = (unsigned int*) calloc(2, sizeof(unsigned int));
             p->arr[i].et[0] = ' ';
-            p->arr[i].et[1] = ' ' ;
+            p->arr[i].et[1] = ' ';
             p->arr[i].et[2] = ped;
             if(i < 10){
                 unsigned int z;
