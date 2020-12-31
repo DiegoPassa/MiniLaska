@@ -52,9 +52,8 @@ void initialize_board(tcampo *t,unsigned int cifre){
 
 void print_board(tcampo t,unsigned int cifre, unsigned npl){
     int i, j, k = 0, z, l;
-    char *topPl = malloc(7*sizeof(char));
-    int cime[7];
-
+    char *topPl = (char*) malloc((t.c)*sizeof(char));
+    int *cime = (int*) malloc((t.c)*sizeof(int));
     /* stampo prima riga */
     for(j=0; j<t.c; j +=cifre){
         printf("+");
@@ -194,6 +193,8 @@ void print_board(tcampo t,unsigned int cifre, unsigned npl){
     printf("+");/* recupero angolo dx */
     printf("\n");
 
+    free(cime);
+    free(topPl);
 }
 void print_directions(unsigned int *arr,unsigned int dim,unsigned int np){
     unsigned int i,flag = 0;
