@@ -944,11 +944,11 @@ unsigned int round_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
     }
 
 
- /* printf("Vuoi uscire dal gioco ? ");
+    printf("Vuoi uscire dal gioco ? ");
     scanf("%s",str);
     if((!strcmp(str,"si"))||(!strcmp(str,"Si"))||(!strcmp(str,"SI"))){
         return 3;
-    } */
+    }
 
     printf("Numero di pedina da selezionare : ");
     scanf("%u",&np);
@@ -1566,7 +1566,32 @@ void destroy_board(tcampo *t) {
     free(t->mat);
     free(t);
 }
-
+void reset_moves_paws(tplayer *pl,int nPawn){
+    unsigned int i;
+    if(nPawn == -1){
+        for(i = 0 ; i < pl->dim ; ++i){
+            unsigned int j,z;
+            if(pl->arr[i].isPromoted){
+                j = 3;
+            }else{
+                j = 1;
+            }
+            for(z = j ; z >= 0 ; --z){
+                pl->arr[i].canMove[z] = 0;
+            }
+        }
+    }else{
+        unsigned int z;
+        if(pl->arr[nPawn].isPromoted){
+            i = 3;
+        }else{
+            i = 1;
+        }
+        for(z =i ; z >= 0 ; --z){
+            pl->arr[nPawn].canMove[z] = 0;
+        }
+    }
+}
 void set_moves_pawn(tplayer *pl1, tplayer *pl2, tcampo t, int nPl){
     int i;
     for(i = 0; i < pl1->dim; i++){
@@ -1582,7 +1607,7 @@ void set_moves_pawn(tplayer *pl1, tplayer *pl2, tcampo t, int nPl){
  * @return unsigned int 
  */
 unsigned int check_canMove(tplayer *p, int nPed){
-    int i = 0, dim = 2, flag = 0;
+    unsigned int i = 0, dim = 2, flag = 0;
     if (p->arr[nPed].isPromoted){
         dim = 4;
     }

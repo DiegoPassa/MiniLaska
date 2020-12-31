@@ -114,6 +114,8 @@ int minimax();
 
 void set_moves_pawn(tplayer *pl1, tplayer *pl2, tcampo t, int nPl);
 
+void reset_moves_paws(tplayer *pl,int nPawn);
+
 unsigned int check_canMove(tplayer *p, int nPed);
 
 void destroy_player (tplayer *p); /* free up memory space allocated by player */
