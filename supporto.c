@@ -217,10 +217,10 @@ void print_directions(unsigned int *arr,unsigned int dim,unsigned int np){
                 printf("-> dx\n");
             }
             if(i == 2 && arr[2] == 1){
-                printf("-> bassosx\n");
+                printf("-> bassodx\n");
             }
             if(i == 3 && arr[3] == 1){
-                printf("-> bassodx\n");
+                printf("-> bassosx\n");
             }
         }
     }
@@ -356,6 +356,7 @@ void print_player(tplayer p){
         printf("Cima = %d\n",p.arr[i].cima);
         printf("Grado pedina : %d \n",p.arr[i].grado);
         printf("Posizione nel campo x e y : %d , %d\n",p.arr[i].r,p.arr[i].c );
+        printf("Promozione pedina : %u\n",p.arr[i].isPromoted);
         printf("\n");
     }
 }
@@ -453,7 +454,7 @@ unsigned int is_in(int r,int c,tcampo t){
     }
 }
 unsigned int check_directions(unsigned int *arr,unsigned int dim,char *str){
-    unsigned int i,flag = 0,j;
+    unsigned int i,flag = 0,j = 5;
     for(i = 0 ; i < dim ; ++i){
         if(arr[i]){
             flag = 1;
@@ -474,7 +475,7 @@ unsigned int check_directions(unsigned int *arr,unsigned int dim,char *str){
     if(!strcmp(str, "bassosx")){
         j = 3;
     }
-    if(arr[j] == 1 && j < dim){
+    if( j < dim && arr[j] == 1 ){
         return 1;
     }else{
         return 0;
@@ -484,7 +485,6 @@ unsigned int check_directions(unsigned int *arr,unsigned int dim,char *str){
 }
 void must_eat(tplayer *p1,tplayer *p2,tcampo t,unsigned int np,unsigned int npl){
 
-    if(p1->arr[np].canMove){
         unsigned int flag = 1;
         if( ((npl == 1)&&(can_eat(p1,np,"sx",&t,p2,1) >= 0)) || ((npl == 2)&&(can_eat(p2,np,"bassosx",&t,p1,2)>=0))  ){
             if(npl == 1 && flag == 1){
@@ -516,7 +516,7 @@ void must_eat(tplayer *p1,tplayer *p2,tcampo t,unsigned int np,unsigned int npl)
                 p2->arr[np].canMove[1] = 1;
             }
         }
-        if ((p1->arr[np].isPromoted && npl==1) || (p2->arr[np].isPromoted && npl==2)){
+        if ( (p1->arr[np].isPromoted && npl==1) || ((npl==2)&&(p2->arr[np].isPromoted))){
             if( (((npl == 1)&&(can_eat(p1,np,"bassodx",&t,p2,1) >= 0)) || ((npl == 2)&&(can_eat(p2,np,"dx",&t,p1,2)>=0))) ){
                 if(npl == 1 && flag == 1){
                     reset_moves_paws(p1,np);
@@ -546,9 +546,6 @@ void must_eat(tplayer *p1,tplayer *p2,tcampo t,unsigned int np,unsigned int npl)
                 }
             }
         }
-    }else{
-        printf("Errore nella obl_eat\n");
-    }
 
 
 }
@@ -962,7 +959,7 @@ unsigned int round_choice(){
 }
 unsigned int round_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
     char str[10];
-    unsigned int y = 0,np;
+    unsigned int y = 0,np = 0;
 
     update_board(t,*p1,*p2);
     if(npl == 1){
@@ -1208,18 +1205,27 @@ tplayer *player_copy(tplayer p,tplayer *n,unsigned int cifre){
         n->dim = p.dim;
         n->colore = p.colore;
         if(flag == 1){
-            unsigned int m,l;
+            unsigned int l;
             n->arr = (tpedina*)calloc((n->dim),sizeof(tpedina));
             for(l = 0 ; l < p.dim ; ++l){
                 n->arr[l].et = (char*)calloc((cifre),sizeof(char));
             }
-            for(l = 0 ; l < p.dim ; ++l){
-                for(m = 0 ; m < cifre ; ++m){
-                    n->arr[l].et[m] = p.arr[l].et[m];
+        /*    for(l = 0 ; l < p.dim ; ++l){
+                unsigned int dim = 2;
+                if(p.arr[l].isPromoted == 1){
+                    dim = 4;
                 }
-            }
+                n->arr[l].canMove = (unsigned int*)calloc(dim,sizeof(unsigned char));
+            }*/
         }
         for(i = 0 ; i < n->dim ; ++i){
+        /*    unsigned int dim = 2;
+            if(p.arr[i].isPromoted == 1){
+                dim = 4;
+            }
+            for(j = 0 ; j < dim ; ++j){
+                n->arr[i].canMove[j] = p.arr[i].canMove[j];
+            }*/
             for(j = 0 ; j < cifre ; ++j){
                 n->arr[i].et[j] = p.arr[i].et[j];
             }
@@ -1463,6 +1469,8 @@ int player_vs_player(unsigned int x ){
     turno = round_choice();
     printf("Il player che inizia e' %d\n",turno);
     while((exit == 0)&&(!is_victory(*p1,*p2,*t))){
+        set_moves_pawn(p1,p2,*t,1);
+        set_moves_pawn(p1,p2,*t,2);
         if(all_blocked(*p1,*p2,*t,turno) == 1 && turno == 1){
             exit = 2;
         }
@@ -1529,8 +1537,12 @@ unsigned int round_ia(tplayer *p1,tplayer *ia,tcampo *t,unsigned int npl){
     }else if (newMove == 3){
         move = "bassosx";
     }
+    if(npl == 2){
+        move_p2(ia,np,move,t,p1);
+    }else{
+        move_p1(ia,np,move,t,p1,npl);
+    }
 
-    move_p2(ia,np,move,t,p1);
 
 /*  if( (move_p2(ia,np,"sx",t,p1)) || (move_p2(ia,np,"dx",t,p1))){
         return 0;
@@ -1558,8 +1570,8 @@ void player_vs_ia(){
     turno = round_choice();
     printf("Il player che inizia e' %d\n",turno);
     while((exit == 0)&&(!is_victory(*p1,*ia,*t))) {
-        set_moves_pawn(p1, ia, *t, turno);
-        
+        set_moves_pawn(p1, ia, *t, 1);
+        set_moves_pawn(p1, ia, *t, 2);
         if (all_blocked(*p1, *ia, *t, turno) == 1 && turno == 1) {
             exit = 2;
         }
@@ -1569,13 +1581,15 @@ void player_vs_ia(){
         if (!exit) {
             printf("Round numero : %u\n", round);
             if (turno == 1) {
-                print_player(*p1);
-                exit = round_player(p1, ia, t, turno);
+                exit = round_ia(ia,p1,t,turno);
+                /*exit = round_player(p1, ia, t, turno);*/
                 turno = 2;
             } else {
                 exit = round_ia(p1, ia, t, turno);
                 turno = 1;
             }
+            update_board(t,*p1,*ia);
+            print_board(*t,6,1);
             ++round;
         }
     }
@@ -1588,6 +1602,10 @@ void player_vs_ia(){
         printf("Round totali della partita : %u\n",round);
         printf("Il vincitore e' il player %d!\n",exit);
     }
+    print_player(*p1);
+    printf("\n");
+    print_player(*ia);
+
     destroy_board(t);
     destroy_player(p1);
     destroy_player(ia);
@@ -1648,7 +1666,12 @@ void set_moves_pawn(tplayer *pl1, tplayer *pl2, tcampo t, int nPl){
         reset_moves_paws(pl2,-1);
     }
     for(i = 0; i < pl1->dim; i++){
-        is_notstuck(pl1, pl2, t, i, nPl);
+        if(nPl == 1 && pl1->arr[i].grado > 0){
+            is_notstuck(pl1, pl2, t, i, nPl);
+        }
+        if(nPl == 2 && pl2->arr[i].grado > 0){
+            is_notstuck(pl1, pl2, t, i, nPl);
+        }
     }
 }
 
@@ -1668,8 +1691,7 @@ unsigned int check_canMove(tplayer *p, int nPed){
         if (p->arr[nPed].canMove[i] == 1){
             flag = 1;
         }
-        
-        /* p->arr[nPed].canMove[i] = 1 ? flag = 1 : flag; */
+
         i++;
     }
     return flag;
