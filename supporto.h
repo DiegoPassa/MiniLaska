@@ -78,7 +78,7 @@ tcampo* copy_board(tcampo t ,tcampo *new);/* create a new board  copying from th
 
 tplayer* player_copy(tplayer p,tplayer *n,unsigned int cifre);/* create a new player copying an existing player */
 
-unsigned int add_pawn(tplayer *p1,tplayer *p2,unsigned int np);/* add a pawn to the other player based on the pawn eaten */
+unsigned int add_pawn(tplayer *p1,tplayer *p2,unsigned int np,char ap);/* add a pawn to the other player based on the pawn eaten */
 
 unsigned int move_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/* move a player1's pawn to a direction */
 
@@ -116,10 +116,12 @@ void set_moves_pawn(tplayer *pl1, tplayer *pl2, tcampo t, int nPl);
 
 void reset_moves_paws(tplayer *pl,int nPawn);
 
-unsigned int check_canMove(tplayer *p, int nPed);
+unsigned int check_canMove(tplayer p, int nPed);
 
 void destroy_player (tplayer *p); /* free up memory space allocated by player */
 
 void destroy_board(tcampo *t);/* free up memory space allocated by board */
 
 unsigned int check_while(tplayer pl1, tplayer pl2, unsigned int nPlayer, unsigned int nPawn);
+
+int last_move(tplayer p);

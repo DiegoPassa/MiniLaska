@@ -732,7 +732,7 @@ unsigned int eat(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsi
             --p2->arr[num].grado;
         }else {
             if (is_empty(*p1) == -1) {
-                add_pawn(p1, p2,num);
+                add_pawn(p1, p2,num,p1->arr[np].et[p1->arr[np].cima]);
                 /*remove_pawn(&t,p2->arr[num].r,p2->arr[num].c,p2->arr[num].dim+3+1);
                 p2->arr[num].grado = 0;*/
             } else {
@@ -763,12 +763,14 @@ unsigned int eat(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsi
             }
         }
     }
-    if(p1->arr[np].grado  < 3){
-        for(f = 0 ; f < 3 ; ++f ){
-            p1->arr[np].et[f] = temp[f];
+    if(is_empty(*p1) != -1 && p1->arr[np].grado  < 3){
+        if(p1->arr[np].grado  < 3){
+            for(f = 0 ; f < 3 ; ++f ){
+                p1->arr[np].et[f] = temp[f];
+            }
+            ++p1->arr[np].grado;
+            --p1->arr[np].cima;
         }
-        ++p1->arr[np].grado;
-        --p1->arr[np].cima;
     }
     if(!strcmp(str,"sx")){
         p1->arr[np].r -= 2;
@@ -883,10 +885,10 @@ unsigned int all_blocked(tplayer p1,tplayer p2,tcampo t,unsigned int npl){
         flag = 2;
     }
     for(i = 0 ; i < p1.dim ; ++i){
-        if(p1.arr[i].grado > 0 && npl == 1 && check_canMove(&p1, i)){
+        if(p1.arr[i].grado > 0 && npl == 1 && check_canMove(p1, i)){
             flag = 0;
         }
-        if(p2.arr[i].grado > 0 && npl == 2 && check_canMove(&p2, i)){
+        if(p2.arr[i].grado > 0 && npl == 2 && check_canMove(p2, i)){
             flag = 0;
         }
     }
@@ -987,9 +989,9 @@ unsigned int round_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
     while(!check_while(*p1, *p2, npl, np)){
         unsigned int flag = 1;
         if (npl == 1){
-            flag = check_canMove(p1, np);
+            flag = check_canMove(*p1, np);
         }else{
-            flag = check_canMove(p2, np);              
+            flag = check_canMove(*p2, np);
         }    
         if(!flag){
             printf("La pedina %u non puo' muoversi!\n",np);
@@ -1019,9 +1021,9 @@ unsigned int round_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
         while(!check_while(*p1, *p2, npl, np)){
             unsigned int flag = 1;
             if (npl == 1){
-                flag = check_canMove(p1, np);
+                flag = check_canMove(*p1, np);
             }else{
-                flag = check_canMove(p2, np);              
+                flag = check_canMove(*p2, np);
             }    
             if(!flag){
                 printf("La pedina %u non puo' muoversi!\n",np);
@@ -1077,9 +1079,9 @@ unsigned int round_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
             while(!check_while(*p1, *p2, npl, np)){
                 unsigned int flag = 1;
                 if (npl == 1){
-                    flag = check_canMove(p1, np);
+                    flag = check_canMove(*p1, np);
                 }else{
-                    flag = check_canMove(p2, np);              
+                    flag = check_canMove(*p2, np);
                 }    
                 if(!flag){
                     printf("La pedina %u non puo' muoversi!\n",np);
@@ -1098,9 +1100,9 @@ unsigned int round_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl){
                 while(!check_while(*p1, *p2, npl, np)){
                     unsigned int flag = 1;
                     if (npl == 1){
-                        flag = check_canMove(p1, np);
+                        flag = check_canMove(*p1, np);
                     }else{
-                        flag = check_canMove(p2, np);              
+                        flag = check_canMove(*p2, np);
                     }    
                     if(!flag){
                         printf("La pedina %u non puo' muoversi!\n",np);
@@ -1375,13 +1377,28 @@ char int_converter(unsigned int num,unsigned int index){
 
 
 }
-unsigned int add_pawn(tplayer *p1,tplayer *p2,unsigned int np){
+unsigned int add_pawn(tplayer *p1,tplayer *p2,unsigned int np,char ap){
 
     p1->arr = (tpedina*)realloc(p1->arr,(p1->dim+1)*sizeof(tpedina));
     p1->arr[p1->dim].et = (char*)calloc((p2->arr[np].dim+3+1),sizeof(char));
+    p1->arr[p1->dim].canMove = (unsigned int*)calloc(2,sizeof(unsigned int));
 
     if((p1->arr) &&(p1->arr[p1->dim].et)) {
         unsigned int i,index;
+        char temp[3];
+
+
+        for(i = 0 ; i < 3-p2->arr[np].grado ; ++i ){
+            temp[i] = ' ';
+        }
+        i = (3-p2->arr[np].grado)+1;
+        temp[i] = ap;
+        ++i;
+        while(i < 3){
+            temp[i] = p2->arr[np].et[p2->arr[np].cima+i];
+            ++i;
+        }
+
 
         p2->arr[np].et[p2->arr[np].cima]= ' ';
         ++p2->arr[np].cima;
@@ -1389,6 +1406,7 @@ unsigned int add_pawn(tplayer *p1,tplayer *p2,unsigned int np){
         p1->arr[p1->dim].dim = p2->arr[np].dim;
         p1->arr[p1->dim].cima = p2->arr[np].cima;
         p1->arr[p1->dim].grado = p2->arr[np].grado;
+        p2->arr[np].grado = 0;
         p1->arr[p1->dim].c = p2->arr[np].c;
         p1->arr[p1->dim].r = p2->arr[np].r;
         p2->arr[np].isPromoted = 0;
@@ -1397,7 +1415,7 @@ unsigned int add_pawn(tplayer *p1,tplayer *p2,unsigned int np){
 
         /* in caso if per cifre e riadattare cifre*/
         for(i = 0 ; i < 3 ; ++i){
-            p1->arr[p1->dim].et[i] = p2->arr[np].et[i];
+            p1->arr[p1->dim].et[i] = temp[i];
         }
         index = p2->arr[np].dim;
         for(i = 3 ; i < p2->arr[np].dim+3 ; ++i){
@@ -1514,8 +1532,13 @@ unsigned int round_ia(tplayer *p1,tplayer *ia,tcampo *t,unsigned int npl){
     srand(time(NULL));
     np = rand()%(ia->dim);
 
-    while (!check_canMove(ia,np) ||(!is_selected(*p1,*ia,np,npl))){
-        np = rand()%(ia->dim);      
+    while (!check_canMove(*ia,np) ||(!is_selected(*p1,*ia,np,npl))){
+        if(last_move(*ia) == -1){
+            np = rand()%(ia->dim);
+        }else{
+            np = last_move(*ia);
+        }
+
     }
 
     if (ia->arr[np].isPromoted){
@@ -1682,13 +1705,13 @@ void set_moves_pawn(tplayer *pl1, tplayer *pl2, tcampo t, int nPl){
  * @param nPed 
  * @return unsigned int 
  */
-unsigned int check_canMove(tplayer *p, int nPed){
+unsigned int check_canMove(tplayer p, int nPed){
     unsigned int i = 0, dim = 2, flag = 0;
-    if (p->arr[nPed].isPromoted){
+    if (p.arr[nPed].isPromoted == 1){
         dim = 4;
     }
     while (i < dim && flag == 0){
-        if (p->arr[nPed].canMove[i] == 1){
+        if (p.arr[nPed].canMove[i] == 1){
             flag = 1;
         }
 
@@ -1696,13 +1719,26 @@ unsigned int check_canMove(tplayer *p, int nPed){
     }
     return flag;
 }
-
+int last_move(tplayer p){
+    unsigned int flag = 0 ,pos = 0,i;
+    for(i = 0 ; i < p.dim ; ++i){
+        if(check_canMove(p,i)){
+            ++flag ;
+            pos = i;
+        }
+    }
+    if(flag < 3){
+        return pos;
+    }else{
+        return -1;
+    }
+}
 unsigned int check_while(tplayer pl1, tplayer pl2, unsigned int nPlayer, unsigned int nPawn){
     if ( (!((nPawn >= 0)&&(((nPlayer == 1)&&(nPawn < pl1.dim)) || ((nPlayer == 2)&&(nPawn < pl2.dim))))) || (!is_selected(pl1, pl2, nPawn, nPlayer))){
         if (nPlayer == 1){
-            return check_canMove(&pl1, nPawn);
+            return check_canMove(pl1, nPawn);
         }else{
-            return check_canMove(&pl2, nPawn);              
+            return check_canMove(pl2, nPawn);
         }     
     }else{
         return 1;
