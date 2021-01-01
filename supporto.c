@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include <unistd.h>
 #include<stdlib.h>
 #include"supporto.h"
 #include<string.h>
@@ -1611,6 +1612,8 @@ void player_vs_ia(){
                 exit = round_ia(p1, ia, t, turno);
                 turno = 1;
             }
+            /*getchar();*/
+            sleep(1);
             update_board(t,*p1,*ia);
             print_board(*t,6,1);
             ++round;
