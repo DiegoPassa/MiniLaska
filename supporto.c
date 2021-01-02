@@ -551,59 +551,63 @@ void must_eat(tplayer *p1,tplayer *p2,tcampo t,unsigned int np,unsigned int npl)
 
 }
 int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl) {
-
-    if ( (!strcmp(str, "sx")) ) {
-        if ((is_in(p1->arr[np].r - 2, p1->arr[np].c - ((p1->arr[np].dim + 3+1) * 2), *t)) &&
-            ((is_in(p1->arr[np].r - 1, p1->arr[np].c - (p1->arr[np].dim + 3+1), *t)))) {
-            unsigned x, y, z;
-            x = p1->arr[np].r - 1;
-            y = p1->arr[np].c - (p1->arr[np].dim + 3+1);
-            z = check_player(*p1, *p2, x, y);
-            if ((z == 2) &&
-                (check_spot(*t, p1->arr[np].r - 1, p1->arr[np].c - (p1->arr[np].dim + 3+1), (p1->arr[np].dim + 3+1))) &&
-                (!check_spot(*t, p1->arr[np].r - 2, p1->arr[np].c - ((p1->arr[np].dim + 3+1) * 2),
-                            (p1->arr[np].dim + 3+1)))) {
-                int num = -1;
-                num =  char_converter(*t, p1->arr[np].r - 1, p1->arr[np].c - (p1->arr[np].dim + 3+1), 2 + p1->arr[np].dim, 3);
-                if ((num > -1) && (num < p1->dim)) {
-                    return num;
+    if((pl == 1)||(p1->arr[np].isPromoted)) {
+        if ((!strcmp(str, "sx"))) {
+            if ((is_in(p1->arr[np].r - 2, p1->arr[np].c - ((p1->arr[np].dim + 3 + 1) * 2), *t)) &&
+                ((is_in(p1->arr[np].r - 1, p1->arr[np].c - (p1->arr[np].dim + 3 + 1), *t)))) {
+                unsigned x, y, z;
+                x = p1->arr[np].r - 1;
+                y = p1->arr[np].c - (p1->arr[np].dim + 3 + 1);
+                z = check_player(*p1, *p2, x, y);
+                if ((z == 2) &&
+                    (check_spot(*t, p1->arr[np].r - 1, p1->arr[np].c - (p1->arr[np].dim + 3 + 1),
+                                (p1->arr[np].dim + 3 + 1))) &&
+                    (!check_spot(*t, p1->arr[np].r - 2, p1->arr[np].c - ((p1->arr[np].dim + 3 + 1) * 2),
+                                 (p1->arr[np].dim + 3 + 1)))) {
+                    int num = -1;
+                    num = char_converter(*t, p1->arr[np].r - 1, p1->arr[np].c - (p1->arr[np].dim + 3 + 1),
+                                         2 + p1->arr[np].dim, 3);
+                    if ((num > -1) && (num < p1->dim)) {
+                        return num;
+                    } else {
+                        return -1;
+                    }
                 } else {
-                    return -1;
+                    return -2;
                 }
             } else {
-                return -2;
+                return -3;
             }
-        } else {
-            return -3;
         }
-    }
-    if ((!strcmp(str, "dx")) ) {
-        if ((is_in(p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 3 ), *t)) &&
-            ((is_in(p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3+1), *t)))) {
-            unsigned x, y, z;
-            x = p1->arr[np].r - 1;
-            y = p1->arr[np].c + (p1->arr[np].dim + 3+1);
-            z = check_player(*p1, *p2, x, y);
-            if ((z == 2) &&
-                (check_spot(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3+1), p1->arr[np].dim + 3+1)) &&
-                (!check_spot(*t, p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3+1) * 2),
-                            (p1->arr[np].dim + 3+1)))) {
-                int num = -1;
-                num =  char_converter(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3+1), 2 + p1->arr[np].dim, 3);
-                if ((num > -1) && (num < p1->dim)) {
-                    return num;
+        if ((!strcmp(str, "dx"))) {
+            if ((is_in(p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3) * 3), *t)) &&
+                ((is_in(p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3 + 1), *t)))) {
+                unsigned x, y, z;
+                x = p1->arr[np].r - 1;
+                y = p1->arr[np].c + (p1->arr[np].dim + 3 + 1);
+                z = check_player(*p1, *p2, x, y);
+                if ((z == 2) &&
+                    (check_spot(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3 + 1),
+                                p1->arr[np].dim + 3 + 1)) &&
+                    (!check_spot(*t, p1->arr[np].r - 2, p1->arr[np].c + ((p1->arr[np].dim + 3 + 1) * 2),
+                                 (p1->arr[np].dim + 3 + 1)))) {
+                    int num = -1;
+                    num = char_converter(*t, p1->arr[np].r - 1, p1->arr[np].c + (p1->arr[np].dim + 3 + 1),
+                                         2 + p1->arr[np].dim, 3);
+                    if ((num > -1) && (num < p1->dim)) {
+                        return num;
+                    } else {
+                        return -1;
+                    }
+
                 } else {
-                    return -1;
+                    return -2;
                 }
-
             } else {
-                return -2;
+                return -3;
             }
-        } else {
-            return -3;
         }
     }
-
     if (((pl == 2) || (p1->arr[np].isPromoted))) {
         if ((!strcmp(str, "bassosx")) ) {
             if ((is_in(p1->arr[np].r + 2, p1->arr[np].c - ((p1->arr[np].dim + 3 + 1) * 2), *t)) &&
@@ -727,44 +731,49 @@ unsigned int eat(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsi
     if(p2->arr[num].grado == 1){
         --p2->arr[num].grado;
     }else{
-        if(p2->arr[num].et[p2->arr[num].cima] == p2->arr[num].et[p2->arr[num].cima+1]){
-            p2->arr[num].et[p2->arr[num].cima]= ' ';
+        f = 0;
+        if(p2->arr[num].et[p2->arr[num].cima] == p2->arr[num].et[p2->arr[num].cima+1]) {
+            p2->arr[num].et[p2->arr[num].cima] = ' ';
+            printf("cima  : %u\n",p2->arr[num].cima);
             ++p2->arr[num].cima;
             --p2->arr[num].grado;
-        }else {
-            if (is_empty(*p1) == -1) {
-                add_pawn(p1, p2,num,p1->arr[np].et[p1->arr[np].cima]);
+            f = 1;
+        }
+        if (is_empty(*p1) == -1) {
+            add_pawn(p1, p2,num,p1->arr[np].et[p1->arr[np].cima]);
                 /*remove_pawn(&t,p2->arr[num].r,p2->arr[num].c,p2->arr[num].dim+3+1);
                 p2->arr[num].grado = 0;*/
-            } else {
-                unsigned int pos, i,index;
-                pos = is_empty(*p1);
+        } else {
+            unsigned int pos, i,index;
+            pos = is_empty(*p1);
+            if(f != 1){
                 p2->arr[num].et[p2->arr[num].cima]= ' ';
                 ++p2->arr[num].cima;
                 --p2->arr[num].grado;
-                for (i = 0; i < 3; ++i) {
-                    p1->arr[pos].et[i] = p2->arr[num].et[i];
-                }
-                p2->arr[num].isPromoted = 0;
-                p2->arr[num].et[3+p2->arr[num].dim] = ' ';
-                p1->arr[pos].isPromoted = 0;
-                p1->arr[pos].et[3+p2->arr[num].dim] = ' ';
+            }
+            for (i = 0; i < 3; ++i) {
+                p1->arr[pos].et[i] = p2->arr[num].et[i];
+            }
+            p2->arr[num].isPromoted = 0;
+            p2->arr[num].et[p2->arr[num].dim+3] = ' ';
+            p1->arr[pos].isPromoted = 0;
+            p1->arr[pos].et[p2->arr[num].dim+3] = ' ';
 
 
-                p1->arr[pos].grado = p2->arr[num].grado;
-                p2->arr[num].grado = 0;
-                p1->arr[pos].r = p2->arr[num].r;
-                p1->arr[pos].c = p2->arr[num].c;
-                index = p1->arr[pos].dim;
-                for(i = 3 ; i < p1->arr[pos].dim+3 ; ++i){
-                    int_converter(pos,index);
-                    --index;
-                }
+            p1->arr[pos].grado = p2->arr[num].grado;
+            p2->arr[num].grado = 0;
+            p1->arr[pos].r = p2->arr[num].r;
+            p1->arr[pos].c = p2->arr[num].c;
+            index = p1->arr[pos].dim;
+            for(i = 3 ; i < p1->arr[pos].dim+3 ; ++i){
+                int_converter(pos,index);
+                --index;
+            }
 
             }
-        }
+
     }
-    if(is_empty(*p1) != -1 && p1->arr[np].grado  < 3){
+    if(((is_empty(*p1) != -1)||(p2->arr[num].grado < 3)) && p1->arr[np].grado  < 3){
         if(p1->arr[np].grado  < 3){
             for(f = 0 ; f < 3 ; ++f ){
                 p1->arr[np].et[f] = temp[f];
@@ -1545,7 +1554,7 @@ unsigned int round_ia(tplayer *p1,tplayer *ia,tcampo *t,unsigned int npl){
     if (ia->arr[np].isPromoted){
         dim = 4;
     }
-    
+
     newMove = rand()%(dim);
 
     while(ia->arr[np].canMove[newMove] == 0){
@@ -1626,7 +1635,11 @@ void player_vs_ia(){
             exit = is_victory(*p1,*ia,*t);
         }
         printf("Round totali della partita : %u\n",round);
-        printf("Il vincitore e' il player %d!\n",exit);
+        if(all_blocked(*p1, *ia, *t, turno) == all_blocked(*ia, *p1, *t, turno)){
+            printf("Nessun vincitore,entrambi i player bloccati\n");
+        }else{
+            printf("Il vincitore e' il player %d!\n",exit);
+        }
     }
     print_player(*p1);
     printf("\n");
@@ -1694,9 +1707,11 @@ void set_moves_pawn(tplayer *pl1, tplayer *pl2, tcampo t, int nPl){
     for(i = 0; i < pl1->dim; i++){
         if(nPl == 1 && pl1->arr[i].grado > 0){
             is_notstuck(pl1, pl2, t, i, nPl);
+            must_eat(pl1,pl2,t,i,nPl);
         }
         if(nPl == 2 && pl2->arr[i].grado > 0){
             is_notstuck(pl1, pl2, t, i, nPl);
+            must_eat(pl1,pl2,t,i,nPl);
         }
     }
 }
@@ -1730,7 +1745,7 @@ int last_move(tplayer p){
             pos = i;
         }
     }
-    if(flag < 3){
+    if(flag < 2){
         return pos;
     }else{
         return -1;
