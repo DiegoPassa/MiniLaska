@@ -722,64 +722,63 @@ unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer 
 }
 unsigned int eat(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsigned int num,unsigned int npl){
 
-    char temp[3];
-    unsigned int f;
-    temp[0] = p1->arr[np].et[1];
-    temp[1] = p1->arr[np].et[2];
-    temp[2] = p2->arr[num].et[p2->arr[num].cima];
 
-    if(p2->arr[num].grado == 1){
+    if(p2->arr[num].et[p2->arr[num].cima] == p2->arr[num].et[p2->arr[num].cima+1]) {
+        p2->arr[num].et[p2->arr[num].cima] = ' ';
+        ++p2->arr[num].cima;
         --p2->arr[num].grado;
     }else{
-        f = 0;
-        if(p2->arr[num].et[p2->arr[num].cima] == p2->arr[num].et[p2->arr[num].cima+1]) {
-            p2->arr[num].et[p2->arr[num].cima] = ' ';
-            printf("cima  : %u\n",p2->arr[num].cima);
-            ++p2->arr[num].cima;
+        char temp[3];
+        unsigned int f;
+        temp[0] = p1->arr[np].et[1];
+        temp[1] = p1->arr[np].et[2];
+        temp[2] = p2->arr[num].et[p2->arr[num].cima];
+
+        if(p2->arr[num].grado == 1){
             --p2->arr[num].grado;
-            f = 1;
-        }
-        if (is_empty(*p1) == -1) {
-            add_pawn(p1, p2,num,p1->arr[np].et[p1->arr[np].cima]);
+        }else{
+            if (is_empty(*p1) == -1) {
+                add_pawn(p1, p2,num,p1->arr[np].et[p1->arr[np].cima]);
                 /*remove_pawn(&t,p2->arr[num].r,p2->arr[num].c,p2->arr[num].dim+3+1);
                 p2->arr[num].grado = 0;*/
-        } else {
-            unsigned int pos, i,index;
-            pos = is_empty(*p1);
-            if(f != 1){
+            } else {
+                unsigned int pos, i,index;
+
+                pos = is_empty(*p1);
                 p2->arr[num].et[p2->arr[num].cima]= ' ';
                 ++p2->arr[num].cima;
                 --p2->arr[num].grado;
-            }
-            for (i = 0; i < 3; ++i) {
-                p1->arr[pos].et[i] = p2->arr[num].et[i];
-            }
-            p2->arr[num].isPromoted = 0;
-            p2->arr[num].et[p2->arr[num].dim+3] = ' ';
-            p1->arr[pos].isPromoted = 0;
-            p1->arr[pos].et[p2->arr[num].dim+3] = ' ';
+                for (i = 0; i < 3; ++i) {
+                    p1->arr[pos].et[i] = p2->arr[num].et[i];
+                }
+                p2->arr[num].isPromoted = 0;
+                p2->arr[num].et[p2->arr[num].dim+3] = ' ';
+                p1->arr[pos].isPromoted = 0;
+                p1->arr[pos].et[p2->arr[num].dim+3] = ' ';
 
+                p1->arr[pos].dim = p2->arr[num].dim;
+                p1->arr[pos].cima = p2->arr[num].cima;
+                p1->arr[pos].grado = p2->arr[num].grado;
+                p2->arr[num].grado = 0;
+                p1->arr[pos].r = p2->arr[num].r;
+                p1->arr[pos].c = p2->arr[num].c;
+                index = p1->arr[pos].dim;
+                for(i = 3 ; i < p1->arr[pos].dim+3 ; ++i){
+                    int_converter(pos,index);
+                    --index;
+                }
 
-            p1->arr[pos].grado = p2->arr[num].grado;
-            p2->arr[num].grado = 0;
-            p1->arr[pos].r = p2->arr[num].r;
-            p1->arr[pos].c = p2->arr[num].c;
-            index = p1->arr[pos].dim;
-            for(i = 3 ; i < p1->arr[pos].dim+3 ; ++i){
-                int_converter(pos,index);
-                --index;
             }
 
+        }
+        if(((is_empty(*p1) != -1)||(p2->arr[num].grado < 3)) && p1->arr[np].grado  < 3){
+            if(p1->arr[np].grado  < 3){
+                for(f = 0 ; f < 3 ; ++f ){
+                    p1->arr[np].et[f] = temp[f];
+                }
+                ++p1->arr[np].grado;
+                --p1->arr[np].cima;
             }
-
-    }
-    if(((is_empty(*p1) != -1)||(p2->arr[num].grado < 3)) && p1->arr[np].grado  < 3){
-        if(p1->arr[np].grado  < 3){
-            for(f = 0 ; f < 3 ; ++f ){
-                p1->arr[np].et[f] = temp[f];
-            }
-            ++p1->arr[np].grado;
-            --p1->arr[np].cima;
         }
     }
     if(!strcmp(str,"sx")){
@@ -868,15 +867,15 @@ unsigned int move_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *p1
                 return 0;
             }
         }
-        if(!strcmp(str,"bassosx")&&(p2->arr[np].isPromoted)) {
-            if(move_p1(p2,np,"sx",t,p1,2)){
+        if(!strcmp(str,"bassodx")&&(p2->arr[np].isPromoted)) {
+            if(move_p1(p2,np,"dx",t,p1,2)){
                 return 1;
             }else{
                 return 0;
             }
         }
-        if(!strcmp(str,"bassodx")&&(p2->arr[np].isPromoted)) {
-            if(move_p1(p2,np,"dx",t,p1,2)){
+        if(!strcmp(str,"bassosx")&&(p2->arr[np].isPromoted)) {
+            if(move_p1(p2,np,"sx",t,p1,2)){
                 return 1;
             }else{
                 return 0;
@@ -1497,8 +1496,8 @@ int player_vs_player(unsigned int x ){
     turno = round_choice();
     printf("Il player che inizia e' %d\n",turno);
     while((exit == 0)&&(!is_victory(*p1,*p2,*t))){
-        set_moves_pawn(p1,p2,*t,1);
-        set_moves_pawn(p1,p2,*t,2);
+        set_moves_pawn(p1,p2,*t,1,-1);
+        set_moves_pawn(p1,p2,*t,2,-1);
         if(all_blocked(*p1,*p2,*t,turno) == 1 && turno == 1){
             exit = 2;
         }
@@ -1603,8 +1602,8 @@ void player_vs_ia(){
     turno = round_choice();
     printf("Il player che inizia e' %d\n",turno);
     while((exit == 0)&&(!is_victory(*p1,*ia,*t))) {
-        set_moves_pawn(p1, ia, *t, 1);
-        set_moves_pawn(p1, ia, *t, 2);
+        set_moves_pawn(p1, ia, *t, 1,-1);
+        set_moves_pawn(p1, ia, *t, 2,-1);
         if (all_blocked(*p1, *ia, *t, turno) == 1 && turno == 1) {
             exit = 2;
         }
@@ -1697,23 +1696,52 @@ void reset_moves_paws(tplayer *pl,int nPawn){
         }
     }
 }
-void set_moves_pawn(tplayer *pl1, tplayer *pl2, tcampo t, int nPl){
-    int i;
-    if(nPl == 1){
+void set_moves_pawn(tplayer *pl1, tplayer *pl2, tcampo t, int nPl,int nPawn){
+
+    if( (nPl == 1) && (nPawn < 0) ){
         reset_moves_paws(pl1,-1);
-    }else{
+    }
+    if((nPl == 2) && (nPawn < 0)){
         reset_moves_paws(pl2,-1);
     }
-    for(i = 0; i < pl1->dim; i++){
-        if(nPl == 1 && pl1->arr[i].grado > 0){
-            is_notstuck(pl1, pl2, t, i, nPl);
-            must_eat(pl1,pl2,t,i,nPl);
+    if(nPawn < 0){
+        if(nPl == 1){
+            reset_moves_paws(pl1,nPawn);
+        }else{
+            reset_moves_paws(pl2,nPawn);
         }
-        if(nPl == 2 && pl2->arr[i].grado > 0){
-            is_notstuck(pl1, pl2, t, i, nPl);
-            must_eat(pl1,pl2,t,i,nPl);
+
+    }
+    if(nPawn < 0){
+        unsigned int i;
+            if(nPl == 1){
+                for(i = 0; i < pl1->dim; ++i){
+                    if(pl1->arr[i].grado > 0){
+                        is_notstuck(pl1, pl2, t, i,1);
+                        must_eat(pl1,pl2,t,i,1);
+                    }
+                }
+            }else{
+                for(i = 0; i < pl2->dim; ++i){
+                    if( pl2->arr[i].grado > 0){
+                        is_notstuck(pl1, pl2, t, i,2);
+                        must_eat(pl1,pl2,t,i,2);
+                    }
+                }
+            }
+    }else{
+        if(nPl == 1 && pl1->arr[nPawn].grado > 0){
+            is_notstuck(pl1, pl2, t, nPawn,1);
+            must_eat(pl1,pl2,t,nPawn,1);
+        }
+        if(nPl == 2 && pl2->arr[nPawn].grado > 0){
+            is_notstuck(pl1, pl2, t, nPawn,2);
+            must_eat(pl1,pl2,t,nPawn,2);
         }
     }
+
+
+
 }
 
 /**
@@ -1762,36 +1790,60 @@ unsigned int check_while(tplayer pl1, tplayer pl2, unsigned int nPlayer, unsigne
         return 1;
     }
 }
+int round_ia_minimax(tplayer *p1, tplayer *p2, tcampo *board){
+    int *score;
 
+    score =(int*)calloc(p2->dim,sizeof(int));
+    if(score){
+        unsigned int i,max = 0,pos;
+        for(i = 0 ; i < p2->dim ; ++i){
+            if(check_canMove(*p2,i)){
+                /* applicazione della minimax*/
+            }
+        }
+        for(i = 0 ; i < p2->dim ; ++i){
+            if(max < score[i]){
+                max = score[i];
+                pos = i;
+            }
+        }
+
+        free(score);
+        return pos;
+    }else{
+        return -1;
+    }
+
+}
 /*unsigned int i; ,*pos;
-    int *punteggio;
+ int *punteggio;
 
-    pos = (unsigned int *)malloc(sizeof(unsigned int)*p->dim);
-    punteggio = (int *)malloc(sizeof(int)*p->dim);
+ pos = (unsigned int *)malloc(sizeof(unsigned int)*p->dim);
+ punteggio = (int *)malloc(sizeof(int)*p->dim);
 
 for(i = 0 ; i < p->dim ; ++i){
- if pedina non  bloccata
-    int p,j;
-    p = minimax (sx);
-    j = minimax (dx);
-    if  p > j
-        punteggio[i] = p;
-        pos[i] = 0;
-        if(minimax(bassosx) > minimax(bassodx) && ispromoted)
-            punteggio[i] < minimax(bassosx) ? punteggio[i] = minimax(bassosx) : 0;
-            pos[i] = 3;
-         else
-            ...
-    else
-        ...
+if pedina non  bloccata
+ int p,j;
+ p = minimax (sx);
+ j = minimax (dx);
+ if  p > j
+     punteggio[i] = p;
+     pos[i] = 0;
+     if(minimax(bassosx) > minimax(bassodx) && ispromoted)
+         punteggio[i] < minimax(bassosx) ? punteggio[i] = minimax(bassosx) : 0;
+         pos[i] = 3;
+      else
+         ...
+ else
+     ...
 
 }
 for(i = 0 ; i < p->dim ; ++i){
- trovo max punteggio
- m = i (indice max punteggio )
+trovo max punteggio
+m = i (indice max punteggio )
 }
 
- return m
+return m
 return 0;*/
 
 

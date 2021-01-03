@@ -112,7 +112,9 @@ unsigned int round_ia(tplayer *p1,tplayer *ia,tcampo *t,unsigned int npl);
 
 int minimax();
 
-void set_moves_pawn(tplayer *pl1, tplayer *pl2, tcampo t, int nPl);
+int round_ia_minimax(tplayer *p1, tplayer *p2, tcampo *board);
+
+void set_moves_pawn(tplayer *pl1, tplayer *pl2, tcampo t, int nPl,int nPawn);
 
 void reset_moves_paws(tplayer *pl,int nPawn);
 

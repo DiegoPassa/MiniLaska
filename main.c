@@ -8,7 +8,10 @@ int main()
 
    /*  player_vs_player(1);*/
 
+
+
     player_vs_ia();
+
 /*  tcampo *board;
 
     tplayer *p1;
