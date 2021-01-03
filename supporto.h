@@ -1,6 +1,10 @@
+/**
+ * @brief Struttura campo.
+ * 
+ */
 struct campo
 {
-    char **mat;
+    char **mat; /*!< Detailed description after the member */
     unsigned int r;
     unsigned int c;
 };
@@ -8,14 +12,13 @@ typedef struct campo tcampo;
 struct pedina
 {
     char *et; /* etichetta della pedina Es.|  BN07 | */
-    char app;
     unsigned int dim;
     unsigned int cima;
-    unsigned int numero;
     unsigned int grado;
     unsigned int r;
     unsigned int c;
-    int isPromoted; /* Es: |^ BN07| */
+    unsigned int isPromoted; /* Es: |  BN07^ | */
+    unsigned int *canMove; /* 0010 -> bassodx */
 };
 typedef struct pedina tpedina;
 struct player
@@ -26,64 +29,101 @@ struct player
 };
 typedef struct player tplayer;
 
-tcampo *crea_campo(unsigned int r,unsigned int c,unsigned int cifre); /* creazione matrice */
+/**
+ * @brief Creazione del campo di gioco.
+ * 
+ * Crea una matrice r*c e per ogni "cella" alloca abbastanza spazio da rappresentare correttamente la pedina.
+ * Lo spazio è dato da "altezza massima della torre(3)" + "spazio per la promozione(1)" + "spazio per rappresentare le cifre(variabile)"
+ * 
+ * @param r Numero di righe della schacchiera.
+ * @param c Numero di colonne della scacchiera.
+ * @param cifre Numero di cifre da allocare in modo da rappresentare il numero delle pedine nella scacchiera.
+ * @return tcampo* Ritorna il puntatore al campo.
+ */
+tcampo* create_board(unsigned int r,unsigned int c,unsigned int cifre); /* matrix creation */
 
-void inizializza_campo(tcampo *t,unsigned int cifre); /* inizializza matrice come scacchiera*/
+void initialize_board(tcampo *t,unsigned int cifre); /* initialize matrix as a chessboard */
 
-void stampa_campo(tcampo t,unsigned int cifre,unsigned int npl); /* stampa la matrice  cambiando visuale in base al player*/
+void print_board(tcampo t,unsigned int cifre,unsigned int npl); /* print the matrix changing the view according to the player */
 
-tplayer *crea_pedine(unsigned int n,char ped,unsigned int np,unsigned int cifre,tcampo t);/*creazione del giocatore */
+tplayer *create_pawns(unsigned int n,char ped,unsigned int np,unsigned int cifre,tcampo t);/* player creation */
 
-void stampa_player(tplayer p); /* stampa pedine di un player */
+void print_player(tplayer p); /* print the player's pawns */
 
-void aggiorna_campo(tcampo *t,tplayer p1,tplayer p2);/* aggiornare posizione pedine sul campo */
+void print_directions(unsigned int *arr,unsigned int dim,unsigned int np);/* print the directions when the soldier must jump over/eat an enemy */
 
-int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/* controlli prima di mangiare un'altra pedina */
+void update_board(tcampo *t,tplayer p1,tplayer p2);/* update the pawns position on the board */
 
-unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/*si muove la pedina senza mangiare*/
+int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/* check before eating another pawn, if the pawn is an eney then you can eat it */
 
-unsigned int is_in(int r,int c,tcampo t);/*controlla se le coordinate sono all'interno della matrice*/
+void must_eat(tplayer *p1,tplayer *p2,tcampo t,unsigned int np,unsigned int npl);/* the pawn must eat the enemy */
 
-unsigned int is_pedina(tcampo t,unsigned int r,unsigned int c,unsigned int cifre);/* trovare se in una certa posizione c'è una pedina*/
+unsigned int check_directions(unsigned int *arr,unsigned int dim,char *str);/* compare the string with the mandatory directions */
 
-int is_empty(tplayer p);/* controllare se l'array ha pedina con grado 0*/
+unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/* moves the pawn without eating */
 
-unsigned int max_pedine(unsigned int r,unsigned int c);/* calccolare il numero di pedine che si possono mettere in una matrice dimensione rxc */
+unsigned int is_in(int r,int c,tcampo t);/* check if the coordinates are inside the matrix */
 
-unsigned int ped_noblock(tplayer p1,tplayer p2,tcampo t,unsigned int nped,unsigned int npl);/*determinare se la pedina è bloccata o no*/
+unsigned int check_spot(tcampo t,unsigned int r,unsigned int c,unsigned int cifre);/* check if in a board's spot there is a pawn */
 
-tcampo *campo_copy(tcampo t ,tcampo *new);/*creare un nuovo campo copiando dalla variabile t */
+int is_empty(tplayer p);/* check if a pawn on the array has the grade = 0 */
 
-tplayer *player_copy(tplayer p,tplayer *n,unsigned int cifre);/* creare un nuovo player copiando da player p già esistente*/
+unsigned int is_selected(tplayer p1,tplayer p2,unsigned int np,unsigned int npl);/* check if the pawn np can be selected */
 
-unsigned int controllo_pedina(tplayer *p,tplayer *p2,unsigned int np);/* aggiunge una pedina all'altro player in base alla pedina mangiata*/
+unsigned int max_pawns(unsigned int r,unsigned int c);/* calculate the number of pawns that can be placed in an rxc dimension matrix */
 
-unsigned int sposta_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/* spostare una pedina pl1 verso un posizione */
+unsigned int is_notstuck(tplayer *p1,tplayer *p2,tcampo t,unsigned int nped,unsigned int npl);/* check if the pawn is stuck */
 
-unsigned int sposta_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *p1);/* spostare una pedina pl2 verso un posizione */
+tcampo* copy_board(tcampo t ,tcampo *new);/* create a new board  copying from the variable t */
 
-void togli_pedina(tcampo *t,unsigned int r,unsigned int c,unsigned int cifre);/* modificare posizione prima di spostare la pedina*/
+tplayer* player_copy(tplayer p,tplayer *n,unsigned int cifre);/* create a new player copying an existing player */
 
-void promuovi_pedina(tplayer *p,unsigned int np,unsigned int numpl,unsigned int meta);/* promozione di una pedina*/
+unsigned int add_pawn(tplayer *p1,tplayer *p2,unsigned int np,char ap);/* add a pawn to the other player based on the pawn eaten */
 
-unsigned int mangia(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsigned int num);/* conquistare una pedina veros una certa posizone*/
+unsigned int move_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/* move a player1's pawn to a direction */
 
-unsigned int convert(tcampo t,unsigned int r,unsigned int c,unsigned int dim,unsigned int cifre);/* converte il numero in da char ad int */
+unsigned int move_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *p1);/* move a player2's pawn to a direction */
 
-unsigned int ricerca_pl(tplayer p1,tplayer p2,unsigned int x,unsigned int y);/*trovare se una pedina in una posizione è del player 1 o 2*/
+void remove_pawn(tcampo *t,unsigned int r,unsigned int c,unsigned int cifre);/* modify the position before to move the pawn */
 
-unsigned int is_victory(tplayer p1,tplayer p2);/* controlla se un giocatore o l'altro ha vinto oppure no*/
+void pawn_promotion(tplayer *p,unsigned int np,unsigned int numpl,unsigned int meta);/* pawn promotion */
 
-unsigned int scelta_turno();/* decidere a chi va il primo turno */
+unsigned int eat(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsigned int num,unsigned int npl);/* eat an enemy pawn */
 
-unsigned int turno_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl);/* turno dei vari  player */
+unsigned int char_converter(tcampo t,unsigned int r,unsigned int c,unsigned int dim,unsigned int cifre);/* convert from char to int */
 
-int player_vs_player(unsigned int x );/* modalità giocatore vs giocatore */
+char int_converter(unsigned int num,unsigned int index);/* convert num in pos from int to char*/
 
-unsigned int ia(tplayer *p,tcampo *t);
+unsigned int check_player(tplayer p1,tplayer p2,unsigned int x,unsigned int y);/* check if a pawn is a player1's pawn or if is a player2's pawn */
+
+unsigned int is_victory(tplayer p1,tplayer p2,tcampo t);/* check if there is a winner */
+
+unsigned int all_blocked(tplayer p1,tplayer p2,tcampo t,unsigned int npl);/* check if all pawns are blocked */
+
+unsigned int round_choice();/* choose who starts */
+
+unsigned int round_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl);/* round of the player */
+
+int player_vs_player(unsigned int x );/* mode player vs player */
+
+void player_vs_ia();/*mode player vs ia */
+
+unsigned int round_ia(tplayer *p1,tplayer *ia,tcampo *t,unsigned int npl);
 
 int minimax();
 
-void destroy_player (tplayer *p); /* liberare spazio di memoria allocata da player*/
+int round_ia_minimax(tplayer *p1, tplayer *p2, tcampo *board);
 
-void destroy_campo(tcampo *t);/* liberare spazio di memoria allocata da campo*/
+void set_moves_pawn(tplayer *pl1, tplayer *pl2, tcampo t, int nPl,int nPawn);
+
+void reset_moves_paws(tplayer *pl,int nPawn);
+
+unsigned int check_canMove(tplayer p, int nPed);
+
+void destroy_player (tplayer *p); /* free up memory space allocated by player */
+
+void destroy_board(tcampo *t);/* free up memory space allocated by board */
+
+unsigned int check_while(tplayer pl1, tplayer pl2, unsigned int nPlayer, unsigned int nPawn);
+
+int last_move(tplayer p);

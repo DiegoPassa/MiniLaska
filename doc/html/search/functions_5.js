@@ -1,0 +1,10 @@
+var searchData=
+[
+  ['initialize_5fboard_81',['initialize_board',['../supporto_8c.html#a9bebec4622d89e69e845dda90b782bcf',1,'initialize_board(tcampo *t, unsigned int cifre):&#160;supporto.c'],['../supporto_8h.html#a9bebec4622d89e69e845dda90b782bcf',1,'initialize_board(tcampo *t, unsigned int cifre):&#160;supporto.c']]],
+  ['int_5fconverter_82',['int_converter',['../supporto_8c.html#a7082b2f18b8eebe86c5a0da55d792df2',1,'int_converter(unsigned int num, unsigned int index):&#160;supporto.c'],['../supporto_8h.html#a7082b2f18b8eebe86c5a0da55d792df2',1,'int_converter(unsigned int num, unsigned int index):&#160;supporto.c']]],
+  ['is_5fempty_83',['is_empty',['../supporto_8c.html#ad0b249d0604a36c24742cee6f4819ccf',1,'is_empty(tplayer p):&#160;supporto.c'],['../supporto_8h.html#ad0b249d0604a36c24742cee6f4819ccf',1,'is_empty(tplayer p):&#160;supporto.c']]],
+  ['is_5fin_84',['is_in',['../supporto_8c.html#a1bda86cdcd668572e34d8efc0ebf73fe',1,'is_in(int r, int c, tcampo t):&#160;supporto.c'],['../supporto_8h.html#a1bda86cdcd668572e34d8efc0ebf73fe',1,'is_in(int r, int c, tcampo t):&#160;supporto.c']]],
+  ['is_5fnotstuck_85',['is_notstuck',['../supporto_8c.html#a4d3969ebd9f51ce44f7184bfd28fb7c8',1,'is_notstuck(tplayer p1, tplayer p2, tcampo t, unsigned int nped, unsigned int npl):&#160;supporto.c'],['../supporto_8h.html#a4d3969ebd9f51ce44f7184bfd28fb7c8',1,'is_notstuck(tplayer p1, tplayer p2, tcampo t, unsigned int nped, unsigned int npl):&#160;supporto.c']]],
+  ['is_5fselected_86',['is_selected',['../supporto_8c.html#a6f65590ae83d869a3bec216de6368113',1,'is_selected(tplayer p1, tplayer p2, unsigned int np, unsigned int npl):&#160;supporto.c'],['../supporto_8h.html#a6f65590ae83d869a3bec216de6368113',1,'is_selected(tplayer p1, tplayer p2, unsigned int np, unsigned int npl):&#160;supporto.c']]],
+  ['is_5fvictory_87',['is_victory',['../supporto_8c.html#aaf7e6ccff2cc4d299c57e594b4a51ee3',1,'is_victory(tplayer p1, tplayer p2, tcampo t):&#160;supporto.c'],['../supporto_8h.html#aaf7e6ccff2cc4d299c57e594b4a51ee3',1,'is_victory(tplayer p1, tplayer p2, tcampo t):&#160;supporto.c']]]
+];
