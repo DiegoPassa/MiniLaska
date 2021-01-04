@@ -112,15 +112,23 @@ int player_vs_player(unsigned int x );/* mode player vs player */
 
 void player_vs_ia();/*mode player vs ia */
 
-unsigned int round_ia(tplayer *p1,tplayer *ia,tcampo *t,unsigned int npl);
+unsigned int round_ia_random(tplayer *p1,tplayer *ia,tcampo *t,unsigned int npl);
 
 int minimax(tcampo board, tplayer p1, tplayer p2, int depth, int nPed, int nPl,tvalue *v);
+
+int call_minimax(tcampo *board_copy, tplayer *p1_copy, tplayer *p2_copy, int depth, int nPed, int nPl,tvalue *v,char *str,int maxEval);
 
 void restore_copy(tcampo *board_copy, tplayer *p1_copy, tplayer *p2_copy, tcampo board, tplayer p1, tplayer p2);
 
 int evaluate_score(tcampo board, tplayer p1, tplayer p2);
 
-int round_ia_minimax(tplayer *p1, tplayer *p2, tcampo *board);
+unsigned int check_string(char *str);
+
+unsigned int max(tvalue *arr,unsigned int dim);
+
+void print_minimax(tvalue *arr,unsigned int dim);
+
+int round_ia_minimax(tplayer *p1, tplayer *p2, tcampo *board,unsigned int nPl);
 
 void set_moves_pawn(tplayer *pl1, tplayer *pl2, tcampo t, int nPl,int nPawn);
 
@@ -131,6 +139,8 @@ unsigned int check_canMove(tplayer p, int nPed);
 void destroy_player (tplayer *p); /* free up memory space allocated by player */
 
 void destroy_board(tcampo *t);/* free up memory space allocated by board */
+
+void destroy_value_minimax(tvalue *arr,unsigned int dim); /* free up memory space allocated by value_minimax*/
 
 unsigned int check_while(tplayer pl1, tplayer pl2, unsigned int nPlayer, unsigned int nPawn);
 

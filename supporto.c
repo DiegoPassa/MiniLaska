@@ -1559,7 +1559,7 @@ int player_vs_player(unsigned int x ){
     return 1;
 }
 
-unsigned int round_ia(tplayer *p1,tplayer *ia,tcampo *t,unsigned int npl){
+unsigned int round_ia_random(tplayer *p1,tplayer *ia,tcampo *t,unsigned int npl){
     int np = -1, dim = 2;
     int newMove;
     char* move;
@@ -1621,31 +1621,14 @@ void player_vs_ia(){
     initialize_board(t,conta+3+1);
     p1 = create_pawns(11,'B',1,conta,*t);/* creare n pedine di carattere c */
     ia = create_pawns(11,'N',2,conta,*t);/* creare n pedine di carattere c */
-
     update_board(t, *p1, *ia);
 
-    set_moves_pawn(p1, ia, *t, 1,-1);
-    set_moves_pawn(p1, ia, *t, 2,-1);
 
-  /*   printf("\n\n*** MINIMAX : %d ***\n\n", minimax(*t, *p1, *ia, 3, 0, 1));
-    printf("\n\n*** MINIMAX : %d ***\n\n", minimax(*t, *p1, *ia, 3, 1, 1));
-    printf("\n\n*** MINIMAX : %d ***\n\n", minimax(*t, *p1, *ia, 3, 2, 1));
-    printf("\n\n*** MINIMAX : %d ***\n\n", minimax(*t, *p1, *ia, 3, 3, 1));
-    printf("\n\n*** MINIMAX : %d ***\n\n", minimax(*t, *p1, *ia, 3, 4, 1));
-    printf("\n\n*** MINIMAX : %d ***\n\n", minimax(*t, *p1, *ia, 3, 5, 1));
-    printf("\n\n*** MINIMAX : %d ***\n\n", minimax(*t, *p1, *ia, 3, 6, 1));
-    printf("\n\n*** MINIMAX : %d ***\n\n", minimax(*t, *p1, *ia, 3, 7, 1));
-    printf("\n\n*** MINIMAX : %d ***\n\n", minimax(*t, *p1, *ia, 3, 8, 2));
-
-     printf("\n\n*** MINIMAX : %d ***\n\n", minimax(*t, *p1, *ia, 3, 9, 1));
-    printf("\n\n*** MINIMAX : %d ***\n\n", minimax(*t, *p1, *ia, 3, 10, 1)); */
-
-
-     turno = round_choice();
+    turno = round_choice();
     printf("Il player che inizia e' %d\n",turno);
     while((exit == 0)&&(!is_victory(*p1,*ia,*t))) {
-        set_moves_pawn(p1, ia, *t, 1,-1);
-        set_moves_pawn(p1, ia, *t, 2,-1);
+        set_moves_pawn(p1, ia, *t, 1, -1);
+        set_moves_pawn(p1, ia, *t, 2, -1);
         if (all_blocked(*p1, *ia, *t, turno) == 1 && turno == 1) {
             exit = 2;
         }
@@ -1653,33 +1636,23 @@ void player_vs_ia(){
             exit = 1;
         }
         if (!exit) {
-            int i;
+
             printf("Round numero : %u\n", round);
             if (turno == 1) {
-                exit = round_ia(ia,p1,t,turno);
-               /* exit = round_player(p1, ia, t, turno);*/
+                /*exit = round_ia(ia, p1, t, turno);*/
+                /* exit = round_player(p1, ia, t, turno);*/
+                exit = round_ia_minimax(p1,ia,t,turno);
                 turno = 2;
             } else {
-                exit = round_ia(p1, ia, t, turno);
+                exit = round_player(p1, ia, t, turno);
                 turno = 1;
             }
-            for(i = 0 ; i < p1->dim ; ++i){
-                tvalue *v;
-                v = (tvalue*)calloc(1,sizeof(tvalue));
-                if(!check_canMove(*ia,i)&&(ia->arr[i].grado > 0)){
-                    printf("\n\n*** MINIMAX : %d ***\n\n", -17);
-                }else{
-                    v->direction = calloc(10,sizeof(char));
-                    printf("\n\n*** MINIMAX : %d e %s***\n\n", minimax(*t, *p1, *ia, 3, i, 2,v),v->direction);
-                }
-                free(v->direction);
-                free(v);
-            }
-           /* getchar();*/
-            /*sleep(5);*/
-            update_board(t,*p1,*ia);
-            print_board(*t,6,1);
-            ++round;
+
+        /* getchar();*/
+        update_board(t, *p1, *ia);
+        print_board(*t, 6, 1);
+        /*sleep(5);*/
+        ++round;
         }
     }
     if(exit == 3){
@@ -1725,6 +1698,13 @@ void destroy_board(tcampo *t) {
     }
     free(t->mat);
     free(t);
+}
+void destroy_value_minimax(tvalue *arr,unsigned int dim){
+    unsigned int i;
+    for(i = 0 ; i < dim ; ++i){
+        free(arr[i].direction);
+    }
+    free(arr);
 }
 void reset_moves_paws(tplayer *pl,int nPawn){
     unsigned int i;
@@ -1846,34 +1826,73 @@ unsigned int check_while(tplayer pl1, tplayer pl2, unsigned int nPlayer, unsigne
         return 1;
     }
 }
-int round_ia_minimax(tplayer *p1, tplayer *p2, tcampo *board){
-/*     int *score;
-
-    score =(int*)calloc(p2->dim,sizeof(int));
-    if(score){
-        unsigned int i,max = 0,pos;
-        for(i = 0 ; i < p2->dim ; ++i){
-            if(check_canMove(*p2,i)){
-                applicazione della minimax
-            }
-        }
-        for(i = 0 ; i < p2->dim ; ++i){
-            if(max < score[i]){
-                max = score[i];
+unsigned int check_string(char *str){
+    unsigned int flag = 0;
+    if(!strcmp(str,"sx")){
+        flag = 1;
+    }
+    if(!strcmp(str,"dx")){
+        flag = 1;
+    }
+    if(!strcmp(str,"bassosx")){
+        flag = 1;
+    }
+    if(!strcmp(str,"bassodx")){
+        flag = 1;
+    }
+    return flag;
+}
+unsigned int max(tvalue *arr,unsigned int dim){
+    unsigned int i,pos = 0;
+    int max;
+    max = arr[0].value;
+    for(i = 1 ; i < dim ; ++i){
+        if(arr[i].value != -17){
+            if((check_string(arr[i].direction))&&(max < arr[i].value)){
+                max = arr[i].value;
                 pos = i;
             }
         }
-
-        free(score);
-        return pos;
-    }else{
-        return -1;
-    } */
-
-    /*return minimax(*board, *p1, *p2, 3, 8, 1);*/
-    return 1;
+    }
+    return pos;
 }
+int round_ia_minimax(tplayer *p1, tplayer *p2, tcampo *board,unsigned int nPl){
+    tvalue *arr;
+    unsigned int pos;
+    arr = (tvalue*)calloc(p1->dim,sizeof(tvalue));
+    for(pos = 0 ; pos < p1->dim ; ++pos){
+        arr[pos].direction = calloc(7,sizeof(char));
+    }
+    if(arr){
+        for(pos = 0; pos < p1->dim ; ++pos){
+            if(!check_canMove(*p1,pos)|| p1->arr[pos].grado < 1){
+                arr[pos].value = -17;
+            }else{
+                minimax(*board,*p1,*p2,3,pos,1,&(arr[pos]));
+            }
+        }
+        print_minimax(arr,p1->dim);
+        pos = max(arr,p1->dim);
+        printf("Pos e dir : %u e %s\n",pos,arr[pos].direction);
+        move_p1(p1,pos,arr[pos].direction,board,p2,nPl);
+        destroy_value_minimax(arr,p1->dim);
+        return 0;
+    }else{
+        printf("Errore calloc round_ia_minimax\n");
+        return 3;
+    }
 
+}
+void print_minimax(tvalue *arr,unsigned int dim){
+    unsigned int i;
+    for(i = 0 ; i < dim ; ++i){
+        if(arr[i].value == -17){
+            printf("\n\n*** MINIMAX ped. %u: %d ***\n\n",i,arr[i].value);
+        }else{
+            printf("\n\n*** MINIMAX ped. %u: %d e %s***\n\n",i,arr[i].value,arr[i].direction );
+        }
+    }
+}
 int evaluate_score(tcampo board, tplayer p1, tplayer p2){
     int i, val = 0;
     for ( i = 0; i < p1.dim; i++){
@@ -1894,121 +1913,175 @@ void restore_copy(tcampo *board_copy, tplayer *p1_copy, tplayer *p2_copy, tcampo
     p1_copy = player_copy(p1, p1_copy, 6);
     p2_copy = player_copy(p2, p2_copy, 6);
 }
+int call_minimax(tcampo *board_copy, tplayer *p1_copy, tplayer *p2_copy, int depth, int nPed, int nPl,tvalue *v,char *str,int maxEval){
+    int x,eval;
+    if(nPl == 1){
+        x = move_p1(p1_copy, nPed, str, board_copy, p2_copy, 1);
+    }else{
+        x = move_p2(p2_copy, nPed, str, board_copy, p1_copy);
+    }
 
+    update_board(board_copy, *p1_copy, *p2_copy);
+
+    if(nPl == 1){
+        set_moves_pawn(p1_copy, p2_copy, *board_copy, 1, nPed);
+        if (x > -1 && x < p1_copy->dim) {
+            set_moves_pawn(p1_copy, p2_copy, *board_copy, 2, x);
+        }
+        eval = minimax(*board_copy, *p1_copy, *p2_copy, depth - 1, nPed, 2, v);
+        if ( maxEval < eval ) {
+            maxEval = eval;
+            v->value = eval;
+            strcpy(v->direction, str);
+            return eval;
+        }
+    }else{
+        set_moves_pawn(p1_copy, p2_copy, *board_copy, 2, nPed);
+        if(x > -1 && x < p2_copy->dim){
+            set_moves_pawn(p1_copy, p2_copy, *board_copy, 1, x);
+        }
+        eval = minimax(*board_copy, *p1_copy, *p2_copy, depth-1, nPed, 1,v);
+        if ( maxEval > eval ) {
+            maxEval = eval;
+            v->value = eval;
+            strcpy(v->direction, str);
+            return eval;
+        }
+    }
+    return -1;
+}
 int minimax(tcampo board, tplayer p1, tplayer p2, int depth, int nPed, int nPl,tvalue *v){
-    tcampo* board_copy = NULL;
-    tplayer* p1_copy = NULL;
-    tplayer* p2_copy = NULL;
+    tcampo *board_copy = NULL;
+    tplayer *p1_copy = NULL;
+    tplayer *p2_copy = NULL;
 
-    if (depth == 0 || (!check_canMove(p1, nPed) && nPl == 1) || (!check_canMove(p2, nPed) && nPl == 2)){
+    if (depth == 0 || ( (!check_canMove(p1, nPed)||(p1.arr[nPed].grado<1)) && nPl == 1)|| ( (!check_canMove(p2, nPed)||(p2.arr[nPed].grado<1)) && nPl == 2)){
         v->value = evaluate_score(board, p1, p2);
         return v->value;
         /*return evaluate_score(board, p1, p2);*/
     }
 
     board_copy = copy_board(board, board_copy);
-
     p1_copy = player_copy(p1, p1_copy, 6);
     p2_copy = player_copy(p2, p2_copy, 6);
+
     if (nPl == 1){
 
-        int maxEval = -9999;
-        int eval;
-        
-        if (p1_copy->arr[nPed].canMove[0] == 1){
-            int x;
-            x = move_p1(p1_copy, nPed, "sx", board_copy, p2_copy, 1);
-            update_board(board_copy, *p1_copy, *p2_copy);
-            set_moves_pawn(p1_copy, p2_copy, *board_copy, 1, nPed);
-            if(x > -1 && x < p2.dim){
-                set_moves_pawn(p1_copy, p2_copy, *board_copy, 2, x);
-            }
-            eval = minimax(*board_copy, *p1_copy, *p2_copy, depth-1, nPed, 2,v);
-            if(maxEval < eval){
-                maxEval = eval;
-                v->value = eval;
-                strcpy( v->direction,"sx");
-                /*v->direction = "sx";*/
-            }
+        int maxEval;
 
-        }
-        restore_copy(board_copy, p1_copy, p2_copy, board, p1, p2);
+        maxEval = -9999;
 
-        if (p1_copy->arr[nPed].canMove[1] == 1){
-            int x;
-            x = move_p1(p1_copy, nPed, "dx", board_copy, p2_copy, 1);
-            update_board(board_copy, *p1_copy, *p2_copy);
-            set_moves_pawn(p1_copy, p2_copy, *board_copy, 1, nPed);
-            if(x > -1 && x < p2.dim){
-                set_moves_pawn(p1_copy, p2_copy, *board_copy, 2, x);
-            }
-            eval = minimax(*board_copy, *p1_copy, *p2_copy, depth-1, nPed, 2,v);
-            /*maxEval < eval ? maxEval = eval : maxEval;*/
-            if(maxEval < eval){
-                maxEval = eval;
-                v->value = eval;
-                strcpy( v->direction,"dx");
-                /*v->direction = "dx";*/
-            }
-        }
-        restore_copy(board_copy, p1_copy, p2_copy, board, p1, p2);
-
-        if (p1_copy->arr[nPed].isPromoted == 1){
-            if (p1_copy->arr[nPed].canMove[2] == 1){
+            if (p1_copy->arr[nPed].canMove[0] == 1) {
                 int x;
-                x = move_p1(p1_copy, nPed, "bassosx", board_copy, p2_copy, 1);
+                x = call_minimax(board_copy,p1_copy,p2_copy,depth,nPed,1,v,"sx",maxEval);
+                maxEval < x ?  maxEval = x : maxEval ;
+                /*int x;
+                x = move_p1(p1_copy, nPed, "sx", board_copy, p2_copy, 1);
                 update_board(board_copy, *p1_copy, *p2_copy);
                 set_moves_pawn(p1_copy, p2_copy, *board_copy, 1, nPed);
-                if(x > -1 && x < p2.dim){
+                if (x > -1 && x < p2.dim) {
                     set_moves_pawn(p1_copy, p2_copy, *board_copy, 2, x);
                 }
-                eval = minimax(*board_copy, *p1_copy, *p2_copy, depth-1, nPed, 2,v);
-               /* maxEval < eval ? maxEval = eval : maxEval;*/
-                if(maxEval < eval){
+                eval = minimax(*board_copy, *p1_copy, *p2_copy, depth - 1, nPed, 2, v);
+                if (maxEval < eval) {
                     maxEval = eval;
                     v->value = eval;
-                    strcpy( v->direction,"bassosx");
-                    /*v->direction = "bassosx";*/
-                }
+                    strcpy(v->direction, "sx");
+
+                }*/
+
             }
             restore_copy(board_copy, p1_copy, p2_copy, board, p1, p2);
 
-            if (p1_copy->arr[nPed].canMove[3] == 1){
+            if (p1_copy->arr[nPed].canMove[1] == 1) {
                 int x;
-                x = move_p1(p1_copy, nPed, "bassodx", board_copy, p2_copy, 1);
+                x = call_minimax(board_copy,p1_copy,p2_copy,depth,nPed,1,v,"dx",maxEval);
+                maxEval < x ?  maxEval = x : maxEval ;
+                /*int x;
+                x = move_p1(p1_copy, nPed, "dx", board_copy, p2_copy, 1);
                 update_board(board_copy, *p1_copy, *p2_copy);
                 set_moves_pawn(p1_copy, p2_copy, *board_copy, 1, nPed);
-                if(x > -1 && x < p2.dim){
+                if (x > -1 && x < p2.dim) {
                     set_moves_pawn(p1_copy, p2_copy, *board_copy, 2, x);
                 }
-                eval = minimax(*board_copy, *p1_copy, *p2_copy, depth-1, nPed, 2,v);
-                /*maxEval < eval ? maxEval = eval : maxEval;*/
-                if(maxEval < eval){
+                eval = minimax(*board_copy, *p1_copy, *p2_copy, depth - 1, nPed, 2, v);
+
+                if (maxEval < eval ) {
                     maxEval = eval;
                     v->value = eval;
-                    strcpy( v->direction,"bassodx");
-                    /*v->direction = "bassodx";*/
-                }
+                    strcpy(v->direction, "dx");
+
+                }*/
             }
             restore_copy(board_copy, p1_copy, p2_copy, board, p1, p2);
-        }
+
+            if (p1_copy->arr[nPed].isPromoted == 1) {
+                if (p1_copy->arr[nPed].canMove[2] == 1) {
+                    int x;
+                    x = call_minimax(board_copy,p1_copy,p2_copy,depth,nPed,1,v,"bassosx",maxEval);
+                    maxEval < x ?  maxEval =x : maxEval ;
+                    /*int x;
+                    x = move_p1(p1_copy, nPed, "bassosx", board_copy, p2_copy, 1);
+                    update_board(board_copy, *p1_copy, *p2_copy);
+                    set_moves_pawn(p1_copy, p2_copy, *board_copy, 1, nPed);
+                    if (x > -1 && x < p2.dim) {
+                        set_moves_pawn(p1_copy, p2_copy, *board_copy, 2, x);
+                    }
+                    eval = minimax(*board_copy, *p1_copy, *p2_copy, depth - 1, nPed, 2, v);
+
+                    if (maxEval < eval ) {
+                        maxEval = eval;
+                        v->value = eval;
+                        strcpy(v->direction, "bassosx");
+
+                    }*/
+                }
+                restore_copy(board_copy, p1_copy, p2_copy, board, p1, p2);
+
+                if (p1_copy->arr[nPed].canMove[3] == 1) {
+                    int x;
+                    x = call_minimax(board_copy,p1_copy,p2_copy,depth,nPed,1,v,"bassodx",maxEval);
+                    maxEval < x  ?  maxEval = x : maxEval ;
+                    /*int x;
+                    x = move_p1(p1_copy, nPed, "bassodx", board_copy, p2_copy, 1);
+                    update_board(board_copy, *p1_copy, *p2_copy);
+                    set_moves_pawn(p1_copy, p2_copy, *board_copy, 1, nPed);
+                    if (x > -1 && x < p2.dim) {
+                        set_moves_pawn(p1_copy, p2_copy, *board_copy, 2, x);
+                    }
+                    eval = minimax(*board_copy, *p1_copy, *p2_copy, depth - 1, nPed, 2, v);
+
+                    if (maxEval < eval ) {
+                        maxEval = eval;
+                        v->value = eval;
+                        strcpy(v->direction, "bassodx");
+
+                    }*/
+                }
+                restore_copy(board_copy, p1_copy, p2_copy, board, p1, p2);
+            }
+
         destroy_player(p1_copy);
         destroy_player(p2_copy);
         destroy_board(board_copy);
 
         return maxEval;
+
     }else{
-        int maxEval = +9999;
-        int eval;
-        int i;
+        int maxEval,i;
+
+        maxEval = +9999;
 
         restore_copy(board_copy, p1_copy, p2_copy, board, p1, p2);
 
         for (i = 0; i < p2_copy->dim; i++){
             
-            if (p2_copy->arr[i].grado>0){
+            if (p2_copy->arr[i].grado > 0 ){
                 if (p2_copy->arr[i].canMove[0] == 1){
                     int x;
+                    x = call_minimax(board_copy,p1_copy,p2_copy,depth,nPed,2,v,"sx",maxEval);
+                    maxEval > x  ?  maxEval = x : maxEval ;
+                    /*int x;
                     x = move_p2(p2_copy, i, "sx", board_copy, p1_copy);
                     update_board(board_copy, *p1_copy, *p2_copy);
                     if(x > -1 && x < p1.dim){
@@ -2016,18 +2089,21 @@ int minimax(tcampo board, tplayer p1, tplayer p2, int depth, int nPed, int nPl,t
                     }
                     set_moves_pawn(p1_copy, p2_copy, *board_copy, 2, i);
                     eval = minimax(*board_copy, *p1_copy, *p2_copy, depth-1, nPed, 1,v);
-                   /* maxEval > eval ? maxEval = eval : maxEval;*/
-                    if(maxEval > eval){
+
+                    if(maxEval > eval ){
                         maxEval = eval;
                         v->value = eval;
                         strcpy( v->direction,"sx");
-                        /*v->direction = "sx";*/
-                    }
+
+                    }*/
                 }
                 restore_copy(board_copy, p1_copy, p2_copy, board, p1, p2);
 
                 if (p2_copy->arr[i].canMove[1] == 1){
                     int x;
+                    x = call_minimax(board_copy,p1_copy,p2_copy,depth,nPed,2,v,"sx",maxEval);
+                    maxEval > x  ?  maxEval = x : maxEval ;
+                    /*int x;
                     x = move_p2(p2_copy, i, "dx", board_copy, p1_copy);
                     update_board(board_copy, *p1_copy, *p2_copy);
                     if(x > -1 && x < p1.dim){
@@ -2035,19 +2111,22 @@ int minimax(tcampo board, tplayer p1, tplayer p2, int depth, int nPed, int nPl,t
                     }
                     set_moves_pawn(p1_copy, p2_copy, *board_copy, 2, i);
                     eval = minimax(*board_copy, *p1_copy, *p2_copy, depth-1, nPed, 1,v);
-                   /* maxEval > eval ? maxEval = eval : maxEval;*/
+
                     if(maxEval > eval){
                         maxEval = eval;
                         v->value = eval;
                         strcpy( v->direction,"dx");
-                       /* v->direction = "dx";*/
-                    }
+
+                    }*/
                 }
                 restore_copy(board_copy, p1_copy, p2_copy, board, p1, p2);
 
                 if (p2_copy->arr[i].isPromoted == 1){
                     if (p2_copy->arr[i].canMove[2] == 1){
                         int x;
+                        x = call_minimax(board_copy,p1_copy,p2_copy,depth,nPed,2,v,"sx",maxEval);
+                        maxEval > x  ?  maxEval = x : maxEval ;
+                        /*int x;
                         x = move_p2(p2_copy, i, "bassosx", board_copy, p1_copy);
                         update_board(board_copy, *p1_copy, *p2_copy);
                         if(x > -1 && x < p1.dim){
@@ -2055,43 +2134,46 @@ int minimax(tcampo board, tplayer p1, tplayer p2, int depth, int nPed, int nPl,t
                         }
                         set_moves_pawn(p1_copy, p2_copy, *board_copy, 2, i);
                         eval = minimax(*board_copy, *p1_copy, *p2_copy, depth-1, nPed, 1,v);
-                        /*maxEval > eval ? maxEval = eval : maxEval;*/
-                        if(maxEval > eval){
+
+                        if(maxEval > eval ){
                             maxEval = eval;
                             v->value = eval;
                             strcpy( v->direction,"bassosx");
-                            /*v->direction = "bassosx";*/
-                        }
+
+                        }*/
                     }
                     restore_copy(board_copy, p1_copy, p2_copy, board, p1, p2);
 
                     if (p2_copy->arr[i].canMove[3] == 1){
-                        move_p2(p2_copy, i, "bassodx", board_copy, p1_copy);
+                        int x;
+                        x = call_minimax(board_copy,p1_copy,p2_copy,depth,nPed,2,v,"sx",maxEval);
+                        maxEval > x ?  maxEval = x : maxEval ;
+                        /*int x;
+                        x = move_p2(p2_copy, i, "bassodx", board_copy, p1_copy);
                         update_board(board_copy, *p1_copy, *p2_copy);
-                        set_moves_pawn(p1_copy, p2_copy, *board_copy, 1, -1);
+                        if(x > -1 && x < p1.dim){
+                            set_moves_pawn(p1_copy, p2_copy, *board_copy, 1, x);
+                        }
                         set_moves_pawn(p1_copy, p2_copy, *board_copy, 2, i);
                         eval = minimax(*board_copy, *p1_copy, *p2_copy, depth-1, nPed, 1,v);
-                        /*maxEval > eval ? maxEval = eval : maxEval;*/
-                        if(maxEval > eval){
+
+                        if(maxEval > eval ){
                             maxEval = eval;
                             v->value = eval;
                             strcpy( v->direction,"bassodx");
-                            /*v->direction = "bassodx";*/
-                        }
+
+                        }*/
                     }
                     restore_copy(board_copy, p1_copy, p2_copy, board, p1, p2);
                 }
-
-
-            }           
+            }
         }
         destroy_player(p1_copy);
         destroy_player(p2_copy);
         destroy_board(board_copy);
        
-
-
         return maxEval;
+
     }
 }
     
