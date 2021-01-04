@@ -28,7 +28,11 @@ struct player
     unsigned int dim;
 };
 typedef struct player tplayer;
-
+struct value_minmax{
+    int value;
+    char* direction;
+};
+typedef struct value_minmax tvalue;
 /**
  * @brief Creazione del campo di gioco.
  * 
@@ -80,9 +84,9 @@ tplayer* player_copy(tplayer p,tplayer *n,unsigned int cifre);/* create a new pl
 
 unsigned int add_pawn(tplayer *p1,tplayer *p2,unsigned int np,char ap);/* add a pawn to the other player based on the pawn eaten */
 
-unsigned int move_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/* move a player1's pawn to a direction */
+int move_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/* move a player1's pawn to a direction */
 
-unsigned int move_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *p1);/* move a player2's pawn to a direction */
+int move_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *p1);/* move a player2's pawn to a direction */
 
 void remove_pawn(tcampo *t,unsigned int r,unsigned int c,unsigned int cifre);/* modify the position before to move the pawn */
 
@@ -110,7 +114,11 @@ void player_vs_ia();/*mode player vs ia */
 
 unsigned int round_ia(tplayer *p1,tplayer *ia,tcampo *t,unsigned int npl);
 
-int minimax();
+int minimax(tcampo board, tplayer p1, tplayer p2, int depth, int nPed, int nPl,tvalue *v);
+
+void restore_copy(tcampo *board_copy, tplayer *p1_copy, tplayer *p2_copy, tcampo board, tplayer p1, tplayer p2);
+
+int evaluate_score(tcampo board, tplayer p1, tplayer p2);
 
 int round_ia_minimax(tplayer *p1, tplayer *p2, tcampo *board);
 
