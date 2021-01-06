@@ -10,8 +10,22 @@ int main()
 
 
 
-    player_vs_ia();
+    /*player_vs_ia();*/
 
+    board_t *board;
+    player_t *players;
+
+    board = create_board(7,7,6);
+    initialize_board(board, 6);
+
+    players = create_pawns(11, 'B', 'N', 2, *board);
+
+    update_board(board, players);
+
+    print_player(players[0]);
+    print_player(players[1]);
+
+    print_board(*board, 6, 0);
 /*  tcampo *board;
 
     tplayer *p1;
