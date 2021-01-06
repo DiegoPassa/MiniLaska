@@ -98,9 +98,11 @@ void print_board(tcampo t,unsigned int cifre, unsigned npl){
                     if (topPl[j/cifre] == 'N' || topPl[j/cifre] == 'B'){
                         setBlack();
                         if (topPl[j/cifre] == 'N'){
-                            setRed(2);
+                            /*setRed(2);*/
+                            printColor('G'); /** TEST */
                         }else if (topPl[j/cifre] == 'B'){
-                            setYellow(2);
+                            /*setYellow(2);*/
+                            printColor('C'); /** TEST */
                         }
                         printf(" ");
                         for (z = 0; z < cifre; z++){
@@ -1241,7 +1243,7 @@ tplayer *player_copy(tplayer p,tplayer *n,unsigned int cifre){
             }
             /**/
             for(l = 0 ; l < p.dim ; ++l){
-                unsigned int dim = 2;
+                /*unsigned int dim = 2;*/
             /*    if(p.arr[l].isPromoted == 1){
                     dim = 4;
                 }*/
