@@ -7,8 +7,8 @@ struct board{
 } typedef board_t;
 
 struct point{
-    coord x;
-    coord y;
+    coord x; /* cols */
+    coord y; /* rows */
 } typedef point_t;
 
 struct pawn{
