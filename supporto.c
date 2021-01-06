@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include <unistd.h>
 #include<stdlib.h>
-#include"supporto-prototipo.h"
+#include"supporto.h"
 #include<string.h>
 #include<time.h>
 #include <math.h>
@@ -66,12 +66,12 @@ void print_board(board_t t,unsigned int cifre, unsigned npl){
     printf("\n");
 
     /* parte centrale */
-    if(npl == 1){
+    if(npl == 0){
         i = 0;
     }else{
         i = t.n_rows-1;
     }
-    while( (((npl == 1)&&(i < t.n_rows))||((npl == 2)&&(i >= 0))) ){
+    while( (((npl == 0)&&(i < t.n_rows))||((npl == 1)&&(i >= 0))) ){
         for (l = 0; l < t.n_cols; l+=cifre)
         {
             /* controllo dov'è la cima */      
@@ -166,7 +166,7 @@ void print_board(board_t t,unsigned int cifre, unsigned npl){
         
 
         /* stampa separatore tra righe */
-        if(((npl == 1)&&(i != t.n_rows-1))||((npl == 2)&&(i != 0))){
+        if(((npl == 0)&&(i != t.n_rows-1))||((npl == 1)&&(i != 0))){
             printf("|");
             for(j=0; j<t.n_cols; j +=cifre){
                 if(j != 0){
@@ -179,7 +179,7 @@ void print_board(board_t t,unsigned int cifre, unsigned npl){
             printf("|\n");
         }
 
-        if(npl == 1){
+        if(npl == 0){
             ++i;
         }else{
             --i;
@@ -490,11 +490,11 @@ void must_eat(player_t *players, board_t board, unsigned int n_pawn, unsigned in
         unsigned int flag = 1; 
         if( ((nPl == 0)&&(can_eat(players,n_pawn,"sx",&board, 0) >= 0)) || ((nPl == 0)&&(can_eat(players, n_pawn, "bassosx", &board,1)>=0))  ){
             if(nPl == 0 && flag == 1){
-                reset_moves_paws(players, n_pawn, nPl);
+                reset_moves_pawns(players, n_pawn, nPl);
                 flag = 0;
             }
             if(nPl == 0 && flag == 1){
-                reset_moves_paws(players, n_pawn, nPl);
+                reset_moves_pawns(players, n_pawn, nPl);
                 flag = 0;
             }
             players[nPl].pawns[n_pawn].canMove[0] = 1;
@@ -502,11 +502,11 @@ void must_eat(player_t *players, board_t board, unsigned int n_pawn, unsigned in
 
         if( ((nPl == 0)&&(can_eat(players,n_pawn,"dx",&board, 0) >= 0)) || ((nPl == 0)&&(can_eat(players, n_pawn, "bassodx", &board,1)>=0))  ){
             if(nPl == 0 && flag == 1){
-                reset_moves_paws(players, n_pawn, nPl);
+                reset_moves_pawns(players, n_pawn, nPl);
                 flag = 0;
             }
             if(nPl == 0 && flag == 1){
-                reset_moves_paws(players, n_pawn, nPl);
+                reset_moves_pawns(players, n_pawn, nPl);
                 flag = 0;
             }
             players[nPl].pawns[n_pawn].canMove[1] = 1;
@@ -516,11 +516,11 @@ void must_eat(player_t *players, board_t board, unsigned int n_pawn, unsigned in
 
             if( ((nPl == 0)&&(can_eat(players,n_pawn,"bassodx",&board, 0) >= 0)) || ((nPl == 0)&&(can_eat(players, n_pawn, "dx", &board,1)>=0))  ){
                 if(nPl == 0 && flag == 1){
-                    reset_moves_paws(players, n_pawn, nPl);
+                    reset_moves_pawns(players, n_pawn, nPl);
                     flag = 0;
                 }
                 if(nPl == 0 && flag == 1){
-                    reset_moves_paws(players, n_pawn, nPl);
+                    reset_moves_pawns(players, n_pawn, nPl);
                     flag = 0;
                 }
                 players[nPl].pawns[n_pawn].canMove[2] = 1;
@@ -528,11 +528,11 @@ void must_eat(player_t *players, board_t board, unsigned int n_pawn, unsigned in
 
             if( ((nPl == 0)&&(can_eat(players,n_pawn,"bassosx",&board, 0) >= 0)) || ((nPl == 0)&&(can_eat(players, n_pawn, "sx", &board,1)>=0))){
                 if(nPl == 0 && flag == 1){
-                    reset_moves_paws(players, n_pawn, nPl);
+                    reset_moves_pawns(players, n_pawn, nPl);
                     flag = 0;
                 }
                 if(nPl == 0 && flag == 1){
-                    reset_moves_paws(players, n_pawn, nPl);
+                    reset_moves_pawns(players, n_pawn, nPl);
                     flag = 0;
                 }
                 players[nPl].pawns[n_pawn].canMove[3] = 1;
@@ -1616,7 +1616,7 @@ void destroy_value_minimax(valueMinimax_t *arr,unsigned int dim){
     free(arr);
 }
 
-void reset_moves_paws(player_t *players, int nPawn, unsigned int nPl){
+void reset_moves_pawns(player_t *players, int nPawn, unsigned int nPl){
     unsigned int i;
     if (nPawn == -1){
         for(i = 0 ; i < players[nPl].dim_pawns ; ++i){
@@ -1647,7 +1647,7 @@ void reset_moves_paws(player_t *players, int nPawn, unsigned int nPl){
 void set_moves_pawn(player_t *players, board_t board, int nPl, int nPawn){
 
     if(nPawn < 0){
-        reset_moves_paws(players, -1, nPl);
+        reset_moves_pawns(players, -1, nPl);
         unsigned int i;
         for(i = 0; i < players[nPl].dim_pawns; ++i){
             if(players[nPl].pawns[i].grade > 0){
@@ -1657,7 +1657,7 @@ void set_moves_pawn(player_t *players, board_t board, int nPl, int nPawn){
         }
     }
     if(nPawn > 0 && nPawn < players[nPl].dim_pawns){
-        reset_moves_paws(players, nPawn, nPl);
+        reset_moves_pawns(players, nPawn, nPl);
         if(players[nPl].pawns[nPawn].grade > 0){
             is_notstuck(players, board, nPawn, nPl);
             must_eat(players, board, nPawn, nPl);

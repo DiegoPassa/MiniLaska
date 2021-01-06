@@ -1,147 +1,145 @@
-/**
- * @brief Struttura campo.
- * 
- */
-struct campo
-{
+typedef unsigned int dim_board, coord, flag;
+
+struct board{
     char **mat; /*!< Detailed description after the member */
-    unsigned int r;
-    unsigned int c;
-};
-typedef struct campo tcampo;
-struct pedina
-{
-    char *et; /* etichetta della pedina Es.|  BN07 | */
-    unsigned int dim;
+    dim_board n_rows;
+    dim_board n_cols;
+} typedef board_t;
+
+struct point{
+    coord x; /* cols */
+    coord y; /* rows */
+} typedef point_t;
+
+struct pawn{
+    char *label; /* etichetta della pedina Es.|  BN07 | */
+    unsigned int dim_label;
+    point_t coordinate;
     unsigned int cima;
-    unsigned int grado;
-    unsigned int r;
-    unsigned int c;
-    unsigned int isPromoted; /* Es: |  BN07^ | */
+    unsigned int grade;
+    flag isPromoted; /* Es: |  BN07^ | */
     unsigned int *canMove; /* 0010 -> bassodx */
-};
-typedef struct pedina tpedina;
-struct player
-{
-    char colore;
-    tpedina *arr;
-    unsigned int dim;
-};
-typedef struct player tplayer;
-struct value_minmax{
+} typedef pawn_t;
+
+struct player{
+    char color;
+    pawn_t *pawns;
+    unsigned int dim_pawns;
+} typedef player_t;
+
+struct valueMinimax{
     int value;
-    char* direction;
-};
-typedef struct value_minmax tvalue;
+    char* directions;
+} typedef valueMinimax_t;
 /**
  * @brief Creazione del campo di gioco.
  * 
- * Crea una matrice r*c e per ogni "cella" alloca abbastanza spazio da rappresentare correttamente la pedina.
+ * Crea una matrice row*col e per ogni "cella" alloca abbastanza spazio da rappresentare correttamente la pedina.
  * Lo spazio è dato da "altezza massima della torre(3)" + "spazio per la promozione(1)" + "spazio per rappresentare le cifre(variabile)"
  * 
- * @param r Numero di righe della schacchiera.
- * @param c Numero di colonne della scacchiera.
+ * @param row Numero di righe della schacchiera.
+ * @param col Numero di colonne della scacchiera.
  * @param cifre Numero di cifre da allocare in modo da rappresentare il numero delle pedine nella scacchiera.
- * @return tcampo* Ritorna il puntatore al campo.
+ * @return board_t* Ritorna il puntatore al campo.
  */
-tcampo* create_board(unsigned int r,unsigned int c,unsigned int cifre); /* matrix creation */
+board_t* create_board(unsigned int n_rows,unsigned int n_cols,unsigned int cifre);/* matrix creation */
 
-void initialize_board(tcampo *t,unsigned int cifre); /* initialize matrix as a chessboard */
+void initialize_board(board_t *board,unsigned int cifre); /* initialize matrix as a chessboard */
 
-void print_board(tcampo t,unsigned int cifre,unsigned int npl); /* print the matrix changing the view according to the player */
+void print_board(board_t t,unsigned int cifre, unsigned npl); /* print the matrix changing the view according to the player */
 
-tplayer *create_pawns(unsigned int n,char ped,unsigned int np,unsigned int cifre,tcampo t);/* player creation */
+player_t *create_pawns(unsigned int totPawns,char player1, char player2,unsigned int cifre,board_t board);/* player creation */
 
-void print_player(tplayer p); /* print the player's pawns */
+void print_player(player_t player); /* print the player's pawns */
 
 void print_directions(unsigned int *arr,unsigned int dim,unsigned int np);/* print the directions when the soldier must jump over/eat an enemy */
 
-void update_board(tcampo *t,tplayer p1,tplayer p2);/* update the pawns position on the board */
+void update_board(board_t *t,player_t *player);/* update the pawns position on the board */
 
-int can_eat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/* check before eating another pawn, if the pawn is an eney then you can eat it */
+int can_eat(player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl);/* check before eating another pawn, if the pawn is an eney then you can eat it */
 
-void must_eat(tplayer *p1,tplayer *p2,tcampo t,unsigned int np,unsigned int npl);/* the pawn must eat the enemy */
+void must_eat(player_t *players, board_t board, unsigned int n_pawn, unsigned int nPl);/* the pawn must eat the enemy */
 
-unsigned int check_directions(unsigned int *arr,unsigned int dim,char *str);/* compare the string with the mandatory directions */
+unsigned int check_directions(unsigned int *canMove_arr, unsigned int dim_canMove, char *str);/* compare the string with the mandatory directions */
 
-unsigned int move_noeat(tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/* moves the pawn without eating */
+unsigned int move_noeat(player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl);/* moves the pawn without eating */
 
-unsigned int is_in(int r,int c,tcampo t);/* check if the coordinates are inside the matrix */
+unsigned int is_in(int r, int c, board_t board);/* check if the coordinates are inside the matrix */
 
-unsigned int check_spot(tcampo t,unsigned int r,unsigned int c,unsigned int cifre);/* check if in a board's spot there is a pawn */
+unsigned int check_spot(board_t board,unsigned int row,unsigned int col,unsigned int dim_label);/* check if in a board's spot there is a pawn */
 
-int is_empty(tplayer p);/* check if a pawn on the array has the grade = 0 */
+int is_empty(player_t p);/* check if a pawn on the array has the grade = 0 */
 
-unsigned int is_selected(tplayer p1,tplayer p2,unsigned int np,unsigned int npl);/* check if the pawn np can be selected */
+unsigned int is_selected(player_t *player, unsigned int num_pawn, unsigned int nPl);/* check if the pawn np can be selected */
 
 unsigned int max_pawns(unsigned int r,unsigned int c);/* calculate the number of pawns that can be placed in an rxc dimension matrix */
 
-unsigned int is_notstuck(tplayer *p1,tplayer *p2,tcampo t,unsigned int nped,unsigned int npl);/* check if the pawn is stuck */
+unsigned int is_notstuck(player_t *players, board_t board, unsigned int nPawn, unsigned int nPl);/* check if the pawn is stuck */
 
-tcampo* copy_board(tcampo t ,tcampo *new);/* create a new board  copying from the variable t */
+board_t *copy_board(board_t board ,board_t *newBoard);/* create a new board  copying from the variable t */
 
-tplayer* player_copy(tplayer p,tplayer *n,unsigned int cifre);/* create a new player copying an existing player */
+player_t *player_copy(player_t *players, player_t *newPlayers, unsigned int dim_label);/* create a new player copying an existing player */
 
-unsigned int add_pawn(tplayer *p1,tplayer *p2,unsigned int np,char ap);/* add a pawn to the other player based on the pawn eaten */
+unsigned int add_pawn(player_t *players, unsigned int enemy_pawn, unsigned int nPl);/* add a pawn to the other player based on the pawn eaten */
 
-int move_p1 (tplayer *p1,unsigned int np,char *str,tcampo *t,tplayer *p2,unsigned int pl);/* move a player1's pawn to a direction */
+int move_p1 (player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl);/* move a player1's pawn to a direction */
 
-int move_p2(tplayer *p2,unsigned int np,char *str,tcampo *t,tplayer *p1);/* move a player2's pawn to a direction */
+int move_p2(player_t *players,unsigned int num_pawn,char *str,board_t *board);/* move a player2's pawn to a direction */
 
-void remove_pawn(tcampo *t,unsigned int r,unsigned int c,unsigned int cifre);/* modify the position before to move the pawn */
+void remove_pawn(board_t *board, unsigned int row, unsigned int col, unsigned dim_label);/* modify the position before to move the pawn */
 
-void pawn_promotion(tplayer *p,unsigned int np,unsigned int numpl,unsigned int meta);/* pawn promotion */
+void pawn_promotion(player_t *players, unsigned int num_pawn, unsigned int nPl, unsigned int last_row);/* pawn promotion */
 
-unsigned int eat(tplayer *p1,tplayer *p2,char *str,unsigned int np,tcampo t,unsigned int num,unsigned int npl);/* eat an enemy pawn */
+unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t board, unsigned int enemy_pawn, unsigned int nPl);/* eat an enemy pawn */
 
-unsigned int char_converter(tcampo t,unsigned int r,unsigned int c,unsigned int dim,unsigned int cifre);/* convert from char to int */
+unsigned int char_converter(board_t board, unsigned int r, unsigned int c, unsigned int dim_label);/* convert from char to int */
 
 char int_converter(unsigned int num,unsigned int index);/* convert num in pos from int to char*/
 
-unsigned int check_player(tplayer p1,tplayer p2,unsigned int x,unsigned int y);/* check if a pawn is a player1's pawn or if is a player2's pawn */
+int check_player(player_t *players, unsigned int x, unsigned int y);/* check if a pawn is a player1's pawn or if is a player2's pawn */
 
-unsigned int is_victory(tplayer p1,tplayer p2,tcampo t);/* check if there is a winner */
+unsigned int is_victory(player_t *players);/* check if there is a winner */
 
-unsigned int all_blocked(tplayer p1,tplayer p2,tcampo t,unsigned int npl);/* check if all pawns are blocked */
+unsigned int all_blocked(player_t *players, board_t board, unsigned int nPl);/* check if all pawns are blocked */
 
 unsigned int round_choice();/* choose who starts */
 
-unsigned int round_player(tplayer *p1,tplayer *p2,tcampo *t,unsigned int npl);/* round of the player */
+unsigned int round_player(player_t *p1,player_t *p2,board_t *t,unsigned int npl);/* round of the player */
 
 int player_vs_player(unsigned int x );/* mode player vs player */
 
 void player_vs_ia();/*mode player vs ia */
 
-unsigned int round_ia_random(tplayer *p1,tplayer *ia,tcampo *t,unsigned int npl);
+unsigned int round_ia_random(player_t *p1,player_t *ia,board_t *t,unsigned int npl);
 
-int minimax(tcampo board, tplayer p1, tplayer p2, int depth, int nPed, int nPl,tvalue *v);
+int minimax(board_t board, player_t p1, player_t p2, int depth, int nPed, int nPl,valueMinimax_t *v);
 
-int call_minimax(tcampo *board_copy, tplayer *p1_copy, tplayer *p2_copy, int depth, int nPed, int nPl,tvalue *v,char *str,int maxEval);
+int call_minimax(board_t *board_copy, player_t *p1_copy, player_t *p2_copy, int depth, int nPed, int nPl,valueMinimax_t *v,char *str,int maxEval);
 
-void restore_copy(tcampo *board_copy, tplayer *p1_copy, tplayer *p2_copy, tcampo board, tplayer p1, tplayer p2);
+void restore_copy(board_t *board_copy, player_t *p1_copy, player_t *p2_copy, board_t board, player_t p1, player_t p2);
 
-int evaluate_score(tcampo board, tplayer p1, tplayer p2);
+int evaluate_score(board_t board, player_t p1, player_t p2);
 
 unsigned int check_string(char *str);
 
-unsigned int max(tvalue *arr,unsigned int dim);
+unsigned int max(valueMinimax_t *arr,unsigned int dim);
 
-void print_minimax(tvalue *arr,unsigned int dim);
+void print_minimax(valueMinimax_t *arr,unsigned int dim);
 
-int round_ia_minimax(tplayer *p1, tplayer *p2, tcampo *board,unsigned int nPl);
+int round_ia_minimax(player_t *p1, player_t *p2, board_t *board,unsigned int nPl);
 
-void set_moves_pawn(tplayer *pl1, tplayer *pl2, tcampo t, int nPl,int nPawn);
+void set_moves_pawn(player_t *players, board_t board, int nPl, int nPawn);
 
-void reset_moves_paws(tplayer *pl,int nPawn);
+void reset_moves_pawns(player_t *players, int nPawn, unsigned int nPl);
 
-unsigned int check_canMove(tplayer p, int nPed);
+unsigned int check_canMove(player_t player, int nPed);
 
-void destroy_player (tplayer *p); /* free up memory space allocated by player */
+void destroy_player (player_t *players); /* free up memory space allocated by player */
 
-void destroy_board(tcampo *t);/* free up memory space allocated by board */
+void destroy_board(board_t *board);/* free up memory space allocated by board */
 
-void destroy_value_minimax(tvalue *arr,unsigned int dim); /* free up memory space allocated by value_minimax*/
+void destroy_value_minimax(valueMinimax_t *arr,unsigned int dim); /* free up memory space allocated by value_minimax*/
 
-unsigned int check_while(tplayer pl1, tplayer pl2, unsigned int nPlayer, unsigned int nPawn);
+unsigned int check_while(player_t pl1, player_t pl2, unsigned int nPlayer, unsigned int nPawn);
 
-int last_move(tplayer p);
+int last_move(player_t p);
