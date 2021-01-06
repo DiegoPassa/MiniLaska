@@ -1,5 +1,15 @@
 #include<stdio.h>
 
+/* Regular background */
+#define BLKB "\033[40m" /*  black   */
+#define REDB "\033[41m" /*  red     */
+#define GRNB "\033[42m" /*  green   */
+#define YELB "\033[43m" /*  yellow  */
+#define BLUB "\033[44m" /*  blue    */
+#define MAGB "\033[45m" /*  magenta */
+#define CYNB "\033[46m" /*  cyano   */
+#define WHTB "\033[47m" /*  white   */
+
 /*
     **********************
     *    1 = Testo       *
@@ -12,7 +22,7 @@ void setRed (int n) {
         printf("\033[0;31m");
     }
     if (n == 2){
-        printf("\033[41m");
+        printf(REDB);
     }
 }
 
@@ -22,6 +32,27 @@ void setYellow (int n){
     }
     if (n == 2){
         printf("\033[43m");
+    }
+}
+
+void printColor(char color){
+    if (color == 'R'){
+        printf(REDB);
+    }
+    if (color == 'Y'){
+        printf(YELB);
+    }
+    if (color == 'G'){
+        printf(GRNB);
+    }
+    if (color == 'C'){
+        printf(CYNB);
+    }
+    if (color == 'M'){
+        printf(MAGB);
+    }
+    if (color == 'B'){
+        printf(BLUB);
     }
 }
 
