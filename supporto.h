@@ -104,7 +104,7 @@ unsigned int all_blocked(player_t *players, board_t board, unsigned int nPl);/* 
 
 unsigned int round_choice();/* choose who starts */
 
-unsigned int round_player(player_t *p1,player_t *p2,board_t *t,unsigned int npl);/* round of the player */
+unsigned int round_player(player_t *players,board_t *t,unsigned int nPl);/* round of the player */
 
 int player_vs_player(unsigned int x );/* mode player vs player */
 
@@ -128,7 +128,7 @@ void print_minimax(valueMinimax_t *arr,unsigned int dim);
 
 int round_ia_minimax(player_t *p1, player_t *p2, board_t *board,unsigned int nPl);
 
-void set_moves_pawn(player_t *players, board_t board, int nPl, int nPawn);
+void set_moves_pawn(player_t *players, board_t board, unsigned int nPl,int nPawn);
 
 void reset_moves_pawns(player_t *players, int nPawn, unsigned int nPl);
 
@@ -140,6 +140,6 @@ void destroy_board(board_t *board);/* free up memory space allocated by board */
 
 void destroy_value_minimax(valueMinimax_t *arr,unsigned int dim); /* free up memory space allocated by value_minimax*/
 
-unsigned int check_while(player_t pl1, player_t pl2, unsigned int nPlayer, unsigned int nPawn);
+unsigned int check_while(player_t *players, unsigned int nPl, unsigned int nPawn);
 
 int last_move(player_t p);

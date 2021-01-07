@@ -6,13 +6,13 @@ int main()
 {
 
 
-   /*  player_vs_player(1);*/
+     player_vs_player(1);
 
 
 
     /*player_vs_ia();*/
 
-    board_t *board;
+    /*board_t *board;
     player_t *players;
 
     board = create_board(7,7,6);
@@ -25,7 +25,7 @@ int main()
     print_player(players[0]);
     print_player(players[1]);
 
-    print_board(*board, 6, 0);
+    print_board(*board, 6, 0);*/
 /*  tcampo *board;
 
     tplayer *p1;
