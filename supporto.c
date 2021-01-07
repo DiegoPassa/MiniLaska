@@ -6,7 +6,6 @@
 #include<time.h>
 #include <math.h>
 #include "src/colors/colors.h"
-#include <ncurses.h>
 
 
 board_t* create_board(unsigned int n_rows,unsigned int n_cols,unsigned int cifre){
@@ -1321,46 +1320,30 @@ int player_vs_player(unsigned int x ){
     player_t *players = NULL;
     unsigned int exit = 4,turno,round = 0;
     unsigned int cifre,conta = 2,numped = 11;
-    refresh();
     if(x == 0){
         t = create_board(7,7,3+conta+1);
         initialize_board(t,3+conta+1);
         players = create_pawns(11,'B','N',conta,*t); /* create array[2] of player_t type */
     }else{
         unsigned int w,h,max_ped = 0;
-        char m;
         conta = 0;
-        addstr("Ehi bello\n");
-        printw("Altezza della scacchiera : ");
-        scanw("%u",&h);
-        /*getstr(&m);
-        h = m-'0';*/
-        /*scanw("%u",&h);*/
-        printf("ciao %u",h);
-        printw("Larghezza della scacchiera : ");
-        /*getstr(&m);
-        h = m-'0';*/
-        scanw("%u",&w);
-        printw("ciao %u\n",w);
-        addstr("%d e BN0\n");
-        printw("Ciao %d\n",17);
+        printf("Altezza della scacchiera : ");
+        scanf("%u",&h);
+        printf("Larghezza della scacchiera : ");
+        scanf("%u",&w);
+
         while(w < 3 || h < 3){
-            printw("Larghezza e altezza della scacchiera non soddisfa requisiti minimi(h >= 3,w >= 3)\n");
-            printw("Reinserire altezza e larghezza\n ");
-            printw("Altezza della scacchiera : ");
-            /*scanf("%u",&h);*/
-            scanw("%u",&h);
-            printw("Larghezza della scacchiera : ");
-            /*scanf("%u",&w);*/
-            scanw("%u",&w);
-            printw("ciao %u\n",w);
+            printf("Larghezza e altezza della scacchiera non soddisfa requisiti minimi(h >= 3,w >= 3)\n");
+            printf("Reinserire altezza e larghezza\n ");
+            printf("Altezza della scacchiera : ");
+            scanf("%u",&h);
+            printf("Larghezza della scacchiera : ");
+            scanf("%u",&w);
         }
         max_ped = max_pawns(h,w);
-        printw("Numero di pedine massimo per giocatore : %u\n",max_ped);
-        printw("Numero pedine ?(ovviamente minore o guale al massimo numero) : ");
-        scanw("%u",&cifre);
-        printf("ciao %u\n",cifre);
-        /*scanf("%u",&cifre);*/
+        printf("Numero di pedine massimo per giocatore : %u\n",max_ped);
+        printf("Numero pedine ?(ovviamente minore o guale al massimo numero) : ");
+        scanf("%u",&cifre);
         while(cifre > max_ped){
             printf("Reinserire numero pedine : ");
             scanf("%u",&cifre);
