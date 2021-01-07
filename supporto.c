@@ -908,19 +908,11 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
     int y = -2;
 
     update_board(t,players);
-    if(nPl == 0){
-        printPlayerTurn(players[0].color);
-        printf("Turno player 1 : \n");
-        resetColor();
-        print_board(*t,(players[0].pawns[0].dim_label+3)+1,0, players[0].color, players[1].color);
-    }else{
-        printPlayerTurn(players[1].color);
-        printf("Turno player 2 : \n");
-        resetColor();
-        print_board(*t,(players[1].pawns[0].dim_label+3)+1,1, players[0].color, players[1].color);
-    }
 
-
+    printTextColor(players[nPl].color);
+    printf("Turno Player %d\n", nPl+1);
+    resetColor();
+    print_board(*t,(players[0].pawns[0].dim_label+3)+1,nPl, players[0].color, players[1].color);
 
     printf("Vuoi uscire dal gioco ? ");
     scanf("%s",str);
@@ -1364,10 +1356,12 @@ int player_vs_player(unsigned int x ){
             t = create_board(h,w,3+conta+1);
             initialize_board(t,3+conta+1);
 
-            printf("Seleziona colore pedina Player1: [" RED "R" reset "] [" GRN "G" reset "] ["MAG "M" reset "] ["BLU "B" reset "] ["CYN "C" reset "] ["YEL "Y" reset "] : ");
+            printf("[" RED "R" reset "] [" GRN "G" reset "] ["MAG "M" reset "] ["BLU "B" reset "] ["CYN "C" reset "] ["YEL "Y" reset "]\n");
+
+            printf("Seleziona colore pedina Player1: ");
             scanf("%s", &char_p1);
 
-            printf("Seleziona colore pedina Player2: [" RED "R" reset "] [" GRN "G" reset "] ["MAG "M" reset "] ["BLU "B" reset "] ["CYN "C" reset "] ["YEL "Y" reset "] : ");
+            printf("Seleziona colore pedina Player2: ");
             scanf("%s", &char_p2);
 
             players = create_pawns(numped,char_p1, char_p2, conta,*t); /* create array[2] of player_t type */

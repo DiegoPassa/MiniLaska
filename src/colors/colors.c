@@ -26,6 +26,27 @@ void setYellow (int n){
     }
 }
 
+void printTextColor(char color){
+    if (color == 'R'){
+        printf(RED);
+    }
+    if (color == 'Y'){
+        printf(YEL);
+    }
+    if (color == 'G'){
+        printf(GRN);
+    }
+    if (color == 'C'){
+        printf(CYN);
+    }
+    if (color == 'M'){
+        printf(MAG);
+    }
+    if (color == 'B'){
+        printf(BLU);
+    }
+}
+
 void printColor(char color){
     if (color == 'R'){
         printf(REDB);
