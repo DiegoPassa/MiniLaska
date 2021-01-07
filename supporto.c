@@ -52,7 +52,7 @@ void initialize_board(board_t *board,unsigned int cifre){
     }
 }
 
-void print_board(board_t t,unsigned int cifre, unsigned npl){
+void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char char_p2){
     int i, j, k = 0, z, l;
     char *topPl = (char*) malloc((t.n_cols)*sizeof(char));
     int *cime = (int*) malloc((t.n_cols)*sizeof(int));
@@ -76,7 +76,7 @@ void print_board(board_t t,unsigned int cifre, unsigned npl){
         for (l = 0; l < t.n_cols; l+=cifre)
         {
             /* controllo dov'è la cima */      
-            while (t.mat[i][l+k] != 'N' && t.mat[i][l+k] != 'B' && k<3){
+            while (t.mat[i][l+k] != char_p2 && t.mat[i][l+k] != char_p1 && k<3){
                 k++;
             }
             cime[l/cifre] = k;
@@ -90,14 +90,14 @@ void print_board(board_t t,unsigned int cifre, unsigned npl){
                 printf("|");
                 /* stampa le torri */
                 if (cime[j/cifre]==l){
-                    if (topPl[j/cifre] == 'N' || topPl[j/cifre] == 'B'){
+                    if (topPl[j/cifre] == char_p2 || topPl[j/cifre] == char_p1){
                         setBlack();
-                        if (topPl[j/cifre] == 'N'){
+                        if (topPl[j/cifre] == char_p2){
                             /*setRed(2);*/
-                            printColor('G'); /** TEST */
-                        }else if (topPl[j/cifre] == 'B'){
+                            printColor(char_p2); /** TEST */
+                        }else if (topPl[j/cifre] == char_p1){
                             /*setYellow(2);*/
-                            printColor('C'); /** TEST */
+                            printColor(char_p1); /** TEST */
                         }
                         printf(" ");
                         for (z = 0; z < cifre; z++){
@@ -108,22 +108,22 @@ void print_board(board_t t,unsigned int cifre, unsigned npl){
                     }
                 }else{
                     if (cime[j/cifre]<l){
-                        if ((t.mat[i][j+l] == 'B' || t.mat[i][j+l] == 'N') && t.mat[i][j+l] != topPl[j/cifre]){
-                            if (topPl[j/cifre] == 'N'){
+                        if ((t.mat[i][j+l] == char_p1 || t.mat[i][j+l] == char_p2) && t.mat[i][j+l] != topPl[j/cifre]){
+                            if (topPl[j/cifre] == char_p2){
                                 /*setYellow(2);*/
-                                printColor('C'); /** TEST */
-                            }else if (topPl[j/cifre] == 'B'){
+                                printColor(char_p1); /** TEST */
+                            }else if (topPl[j/cifre] == char_p1){
                                 /*setRed(2);*/
-                                printColor('G'); /** TEST */
+                                printColor(char_p2); /** TEST */
                             }
                             /* altrimenti stampa il colore del proprietario */
                         }else{
-                            if (topPl[j/cifre] == 'N'){
+                            if (topPl[j/cifre] == char_p2){
                                 /*setRed(2);*/
-                                printColor('G'); /** TEST */
-                            }else if (topPl[j/cifre] == 'B'){
+                                printColor(char_p2); /** TEST */
+                            }else if (topPl[j/cifre] == char_p1){
                                 /*setYellow(2);*/
-                                printColor('C'); /** TEST */
+                                printColor(char_p1); /** TEST */
                             }
                         }
                         for(z = 0 ; z < cifre+2; ++z){
@@ -912,12 +912,12 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
         printPlayerTurn(players[0].color);
         printf("Turno player 1 : \n");
         resetColor();
-        print_board(*t,(players[0].pawns[0].dim_label+3)+1,0);
+        print_board(*t,(players[0].pawns[0].dim_label+3)+1,0, players[0].color, players[1].color);
     }else{
         printPlayerTurn(players[1].color);
         printf("Turno player 2 : \n");
         resetColor();
-        print_board(*t,(players[1].pawns[0].dim_label+3)+1,1);
+        print_board(*t,(players[1].pawns[0].dim_label+3)+1,1, players[0].color, players[1].color);
     }
 
 
@@ -1048,7 +1048,7 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
     }
     update_board(t,players);
     if(nPl == 1 || nPl == 0){
-        print_board(*t,(players[nPl].pawns[num_Pawn].dim_label+3)+1,1);
+        print_board(*t,(players[nPl].pawns[num_Pawn].dim_label+3)+1,1, players[0].color, players[1].color);
     }
 
     return 4;
@@ -1320,10 +1320,11 @@ int player_vs_player(unsigned int x ){
     player_t *players = NULL;
     unsigned int exit = 4,turno,round = 0;
     unsigned int cifre,conta = 2,numped = 11;
+    char char_p1, char_p2;
     if(x == 0){
         t = create_board(7,7,3+conta+1);
         initialize_board(t,3+conta+1);
-        players = create_pawns(11,'B','N',conta,*t); /* create array[2] of player_t type */
+        players = create_pawns(11,'Y','R',conta,*t); /* create array[2] of player_t type */
     }else{
         unsigned int w,h,max_ped = 0;
         conta = 0;
@@ -1348,7 +1349,10 @@ int player_vs_player(unsigned int x ){
             printf("Reinserire numero pedine : ");
             scanf("%u",&cifre);
         }
+
+
         numped = cifre;
+        
         if(cifre > 0) {
             while (cifre != 0) {
                 cifre /= 10;
@@ -1359,7 +1363,16 @@ int player_vs_player(unsigned int x ){
             }
             t = create_board(h,w,3+conta+1);
             initialize_board(t,3+conta+1);
-            players = create_pawns(numped,'B','N',conta,*t); /* create array[2] of player_t type */
+
+            printf("Seleziona colore pedina Player1: [" RED "R" reset "] [" GRN "G" reset "] ["MAG "M" reset "] ["BLU "B" reset "] ["CYN "C" reset "] ["YEL "Y" reset "] : ");
+            scanf("%s", &char_p1);
+
+            printf("Seleziona colore pedina Player2: [" RED "R" reset "] [" GRN "G" reset "] ["MAG "M" reset "] ["BLU "B" reset "] ["CYN "C" reset "] ["YEL "Y" reset "] : ");
+            scanf("%s", &char_p2);
+
+            players = create_pawns(numped,char_p1, char_p2, conta,*t); /* create array[2] of player_t type */
+            print_player(players[0]);
+            print_player(players[1]);
 
         }else{
             printf("Non ha senso giocare con %u pedine !\n",cifre);

@@ -46,7 +46,7 @@ board_t* create_board(unsigned int n_rows,unsigned int n_cols,unsigned int cifre
 
 void initialize_board(board_t *board,unsigned int cifre); /* initialize matrix as a chessboard */
 
-void print_board(board_t t,unsigned int cifre, unsigned npl); /* print the matrix changing the view according to the player */
+void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char char_p2); /* print the matrix changing the view according to the player */
 
 player_t *create_pawns(unsigned int totPawns,char player1, char player2,unsigned int cifre,board_t board);/* player creation */
 
