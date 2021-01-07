@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include<colors.h>
+#include <stdio.h>
+#include "colors.h"
 
 /*
     **********************

@@ -83,11 +83,6 @@ void print_board(board_t t,unsigned int cifre, unsigned npl){
             topPl[l/cifre] = t.mat[i][l+k];
             k=0;
         }
-        /*
-        for (l = 0; l < 7; l++)
-        {
-            printf("%d %n_cols\n",cime[l], topPl[l]);
-        }*/
         
         for (l = 0; l < 3; l++){
             for(j=0; j<t.n_cols; j +=cifre){
@@ -114,16 +109,20 @@ void print_board(board_t t,unsigned int cifre, unsigned npl){
                     if (cime[j/cifre]<l){
                         if ((t.mat[i][j+l] == 'B' || t.mat[i][j+l] == 'N') && t.mat[i][j+l] != topPl[j/cifre]){
                             if (topPl[j/cifre] == 'N'){
-                                setYellow(2);
+                                /*setYellow(2);*/
+                                printColor('C'); /** TEST */
                             }else if (topPl[j/cifre] == 'B'){
-                                setRed(2);
+                                /*setRed(2);*/
+                                printColor('G'); /** TEST */
                             }
                             /* altrimenti stampa il colore del proprietario */
                         }else{
                             if (topPl[j/cifre] == 'N'){
-                                setRed(2);
+                                /*setRed(2);*/
+                                printColor('G'); /** TEST */
                             }else if (topPl[j/cifre] == 'B'){
-                                setYellow(2);
+                                /*setYellow(2);*/
+                                printColor('C'); /** TEST */
                             }
                         }
                         for(z = 0 ; z < cifre+2; ++z){
@@ -144,27 +143,12 @@ void print_board(board_t t,unsigned int cifre, unsigned npl){
                             printf(" ");
                         }
                     }
-                    
-                    
-                    /*
-                    else
-                    {
-                        setWhite();
-                        for(z = 0 ; z < cifre+2; ++z){
-                            printf(" ");
-                        }
-                        resetColor();
-                    }*/
-                    
-                    
-                }
-                  
+                }          
             }
             printf("|\n");
 
         }
         
-
         /* stampa separatore tra righe */
         if(((npl == 0)&&(i != t.n_rows-1))||((npl == 1)&&(i != 0))){
             printf("|");
