@@ -132,7 +132,7 @@ void set_moves_pawn(player_t *players, board_t board, unsigned int nPl,int nPawn
 
 void reset_moves_pawns(player_t *players, int nPawn, unsigned int nPl);
 
-unsigned int check_canMove(player_t player, int nPed);
+unsigned int check_canMove(player_t *players, unsigned int nPed,unsigned int nPl);
 
 void destroy_player (player_t *players); /* free up memory space allocated by player */
 
@@ -142,4 +142,4 @@ void destroy_value_minimax(valueMinimax_t *arr,unsigned int dim); /* free up mem
 
 unsigned int check_while(player_t *players, unsigned int nPl, unsigned int nPawn);
 
-int last_move(player_t p);
+int last_move(player_t *players,unsigned int nPl);

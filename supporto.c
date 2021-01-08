@@ -101,7 +101,17 @@ void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char 
                         }
                         printf(" ");
                         for (z = 0; z < cifre; z++){
-                            printf("%c",t.mat[i][j+z]);
+                            /*printf("%c",t.mat[i][j+z]);*/ /* STAMPA CARATTERI DELLA MATRICE */
+                            if(t.mat[i][j+z] == char_p1){
+                                printf("%c",'B');
+                            }else{
+                                if(t.mat[i][j+z] == char_p2){ /* STAMPA SEMPRE CARATTERI B/N A SECONDA DEL PLAYER*/
+                                    printf("%c",'N');
+                                }else{
+                                    printf("%c",t.mat[i][j+z]);
+                                }
+                            }
+
                         }
                         printf(" ");
                         resetColor();
@@ -348,12 +358,13 @@ void print_player(player_t player){
 /* DONE */
 void update_board(board_t *t,player_t *player){
     unsigned int i;
-    int pl;
-    for (pl = 0; pl < 2; pl++){
+    unsigned int pl;
+
+    for (pl = 0; pl < 2; ++pl){
         for(i = 0 ; i < player[pl].dim_pawns ; ++i){
-            if(player[pl].pawns[i].grade > 0){
+            if(is_selected(player,i,pl)){
                 unsigned int j;
-                for(j = 0 ; j < 3+player[pl].pawns[i].dim_label+1 ; ++j){
+                for(j = 0 ; j < player[pl].pawns[i].dim_label+3+1 ; ++j){
                     t->mat[player[pl].pawns[i].coordinate.y][player[pl].pawns[i].coordinate.x+j] = player[pl].pawns[i].label[j];
                 }
             }
@@ -375,7 +386,7 @@ unsigned int check_spot(board_t board,unsigned int row,unsigned int col,unsigned
 
 /* DONE */
 unsigned int is_selected(player_t *player, unsigned int num_pawn, unsigned int nPl){
-    if(player[nPl].pawns[num_pawn].grade > 0 && (nPl == 0 || nPl == 0)){
+    if( ( (nPl == 0) || (nPl == 1) ) && (player[nPl].pawns[num_pawn].grade > 0)  ){
         return 1;
     }else{
         return 0;
@@ -723,16 +734,14 @@ unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t bo
                 players[nPl].pawns[pos].cima = players[nPl2].pawns[enemy_pawn].cima;
                 players[nPl].pawns[pos].grade = players[nPl2].pawns[enemy_pawn].grade;
                 players[nPl2].pawns[enemy_pawn].grade = 0;
-                players[nPl].pawns[pos].coordinate.y = players[nPl2].pawns[pos].coordinate.y;
-                players[nPl].pawns[pos].coordinate.x = players[nPl2].pawns[pos].coordinate.x;
+                players[nPl].pawns[pos].coordinate.y = players[nPl2].pawns[enemy_pawn].coordinate.y;
+                players[nPl].pawns[pos].coordinate.x = players[nPl2].pawns[enemy_pawn].coordinate.x;
                 index = players[nPl].pawns[pos].dim_label;
                 for(i = 3 ; i < players[nPl].pawns[pos].dim_label+3 ; ++i){
                     int_converter(pos,index);
                     --index;
                 }
-                if(players[nPl2].pawns[enemy_pawn].grade < 1){
-                    remove_pawn(&board,players[nPl2].pawns[pos].coordinate.y,players[nPl2].pawns[pos].coordinate.x,players[nPl2].pawns[enemy_pawn].dim_label+3+1);
-                }
+
             }
         }
         if(((is_empty(players[nPl]) != -1)||(players[nPl2].pawns[enemy_pawn].grade < 3)) && players[nPl].pawns[num_pawn].grade  < 3){
@@ -744,6 +753,9 @@ unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t bo
                 --players[nPl].pawns[num_pawn].cima;
             }
         }
+    }
+    if(players[nPl2].pawns[enemy_pawn].grade < 1){
+        remove_pawn(&board,players[nPl2].pawns[enemy_pawn].coordinate.y,players[nPl2].pawns[enemy_pawn].coordinate.x,players[nPl2].pawns[enemy_pawn].dim_label+3+1);
     }
     if(!strcmp(str,"sx")){
         players[nPl].pawns[num_pawn].coordinate.y -= 2;
@@ -830,7 +842,7 @@ int move_p2(player_t *players,unsigned int num_pawn,char *str,board_t *board){
 unsigned int all_blocked(player_t *players, board_t board, unsigned int nPl){
     unsigned int i, flag = 1;
     for(i = 0 ; i < players[nPl].dim_pawns ; ++i){
-        if(players[nPl].pawns[i].grade > 0 && check_canMove(players[nPl], i)){
+        if(players[nPl].pawns[i].grade > 0 && check_canMove(players, i,nPl)){
             flag = 0;
         }
     }
@@ -855,9 +867,6 @@ unsigned int is_victory(player_t *players){
 
     if(winner_p1 == winner_p2){
         flag = 0;
-    }else{
-        winner_p1 > winner_p2 ? flag = 1 : flag;
-        winner_p2 > winner_p1 ? flag = 2 : flag;
     }
 
     return flag;
@@ -923,19 +932,20 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
     printf("Numero di pedina da selezionare : ");
     scanf("%u",&num_Pawn);
     
-    while(!check_while(players, nPl, num_Pawn)){
+    while(!check_while(players, nPl, num_Pawn) ){
         unsigned int flag = 1;
         if (nPl == 1 || nPl == 0 ){
-            flag = check_canMove(players[nPl], num_Pawn);
+            flag = check_canMove(players, num_Pawn,nPl);
         }
         if(!flag){
             printf("La pedina %u non puo' muoversi!\n",num_Pawn);
+            printf("Numero di pedina da selezionare : ");
+            scanf("%u",&num_Pawn);
         }
         /*else{
             printf("Non puoi selezionare la pedina n. %u\n",num_Pawn);
         }*/
-        printf("Numero di pedina da selezionare : ");
-        scanf("%u",&num_Pawn);
+
     }
     printf("Vuoi selezionare questa pedina %u ? ",num_Pawn);
     scanf("%s",str);
@@ -957,16 +967,17 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
         while(!check_while(players, nPl, num_Pawn)){
             unsigned int flag = 1;
             if (nPl == 1 || nPl == 0){
-                flag = check_canMove(players[nPl], num_Pawn);
+                flag = check_canMove(players, num_Pawn,nPl);
             }
             if(!flag){
                 printf("La pedina %u non puo' muoversi!\n",num_Pawn);
+                printf("Numero di pedina da selezionare : ");
+                scanf("%u",&num_Pawn);
             }
             /*else{
                 printf("Non puoi selezionare la pedina n. %u\n",num_Pawn);
             }*/
-            printf("Numero di pedina da selezionare : ");
-            scanf("%u",&num_Pawn);
+
         }
         printf("Vuoi selezionare questa pedina %u ? ",num_Pawn);
         scanf("%s",str);
@@ -1003,15 +1014,17 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
             while(!check_while(players, nPl, num_Pawn)){
                 unsigned int flag = 1;
                 if (nPl == 1 || nPl == 0 ){
-                    flag = check_canMove(players[nPl], num_Pawn);
+                    flag =  check_canMove(players, num_Pawn,nPl) ;
                 }
                 if(!flag){
                     printf("La pedina %u non puo' muoversi!\n",num_Pawn);
-                }else{
-                    printf("Non puoi selezionare la pedina n. %u\n",num_Pawn);
+                    printf("Numero di pedina da selezionare : ");
+                    scanf("%u",&num_Pawn);
                 }
-                printf("Numero di pedina da selezionare : ");
-                scanf("%u",&num_Pawn);
+                /*else{
+                    printf("Non puoi selezionare la pedina n. %u\n",num_Pawn);
+                }*/
+
             }
 
             printf("Vuoi selezionare questa pedina %d ? ",num_Pawn);
@@ -1023,15 +1036,17 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
                 while(!check_while(players, nPl, num_Pawn)){
                     unsigned int flag = 1;
                     if (nPl == 1 || nPl == 0){
-                        flag = check_canMove(players[nPl], num_Pawn);
+                        flag =  check_canMove(players, num_Pawn,nPl);
                     }
                     if(!flag){
                         printf("La pedina %u non puo' muoversi!\n",num_Pawn);
-                    }else{
-                        printf("Non puoi selezionare la pedina n. %u\n",num_Pawn);
+                        printf("Numero di pedina da selezionare : ");
+                        scanf("%u",&num_Pawn);
                     }
-                    printf("Numero di pedina da selezionare : ");
-                    scanf("%u",&num_Pawn);
+                    /*else{
+                        printf("Non puoi selezionare la pedina n. %u\n",num_Pawn);
+                    }*/
+
                 }
                 printf("Vuoi selezionare questa pedina %u ? ",num_Pawn);
                 scanf("%s",str);
@@ -1263,7 +1278,7 @@ unsigned int add_pawn(player_t *players, unsigned int enemy_pawn, unsigned int n
         unsigned int i,index;
         char temp[3];
 
-
+/*
         for(i = 0 ; i < 3-players[nPl2].pawns[enemy_pawn].grade ; ++i ){
             temp[i] = ' ';
         }
@@ -1272,7 +1287,7 @@ unsigned int add_pawn(player_t *players, unsigned int enemy_pawn, unsigned int n
         while(i < 3){
             temp[i] = players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima+i];
             ++i;
-        }
+        }*/
 
 
         players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima]= ' ';
@@ -1312,7 +1327,7 @@ int player_vs_player(unsigned int x ){
     player_t *players = NULL;
     unsigned int exit = 4,turno,round = 0;
     unsigned int cifre,conta = 2,numped = 11;
-    char char_p1, char_p2;
+    /*char char_p1, char_p2;*/
     if(x == 0){
         t = create_board(7,7,3+conta+1);
         initialize_board(t,3+conta+1);
@@ -1356,15 +1371,17 @@ int player_vs_player(unsigned int x ){
             t = create_board(h,w,3+conta+1);
             initialize_board(t,3+conta+1);
 
+            /*
             printf("[" RED "R" reset "] [" GRN "G" reset "] ["MAG "M" reset "] ["BLU "B" reset "] ["CYN "C" reset "] ["YEL "Y" reset "]\n");
 
             printf("Seleziona colore pedina Player1: ");
             scanf("%s", &char_p1);
 
             printf("Seleziona colore pedina Player2: ");
-            scanf("%s", &char_p2);
+            scanf("%s", &char_p2);*/
+            /*  IMPLEMENTARE CONTROLLI CARATTERI*/
 
-            players = create_pawns(numped,char_p1, char_p2, conta,*t); /* create array[2] of player_t type */
+            players = create_pawns(numped,'C', 'R', conta,*t); /* create array[2] of player_t type */
             print_player(players[0]);
             print_player(players[1]);
 
@@ -1380,12 +1397,12 @@ int player_vs_player(unsigned int x ){
     while((exit == 4)){
         set_moves_pawn(players,*t,0,-1);
         set_moves_pawn(players,*t,1,-1);
-        /*if(all_blocked(players,*t,turno) == 0 && turno == 0){
-            exit = 1;
-        }
-        if(all_blocked(players,*t,turno) == 1 && turno ==1){
+        if(all_blocked(players,*t,turno)  && (turno == 0 || turno == 1)){
             exit = 0;
-        }*/
+            if(!turno){
+                exit = 1;
+            }
+        }
         if(exit == 4 ){
             printf("Round numero : %u\n",round);
             exit = round_player(players,t,turno);
@@ -1610,6 +1627,7 @@ void set_moves_pawn(player_t *players, board_t board, unsigned int nPl, int nPaw
 
             }
         }
+
     }else{
         if(nPawn > 0 && nPawn < players[nPl].dim_pawns){
             reset_moves_pawns(players, nPawn, nPl);
@@ -1628,13 +1646,13 @@ void set_moves_pawn(player_t *players, board_t board, unsigned int nPl, int nPaw
  * @param nPed 
  * @return unsigned int 
  */
-unsigned int check_canMove(player_t player, int nPed){
+unsigned int check_canMove(player_t *players, unsigned int nPed,unsigned int nPl){
     unsigned int i = 0, dim = 2, flag = 0;
-    if (player.pawns[nPed].isPromoted == 1){
+    if (players[nPl].pawns[nPed].isPromoted == 1){
         dim = 4;
     }
-    while (i < dim && flag == 0){
-        if (player.pawns[nPed].canMove[i] == 1){
+    while (i < dim){
+        if (players[nPl].pawns[nPed].canMove[i] == 1){
             flag = 1;
         }
 
@@ -1643,10 +1661,10 @@ unsigned int check_canMove(player_t player, int nPed){
     return flag;
 }
 
-int last_move(player_t player){
+int last_move(player_t *players,unsigned int nPl){
     unsigned int flag = 0 ,pos = 0,i;
-    for(i = 0 ; i < player.dim_pawns ; ++i){
-        if(check_canMove(player,i)){
+    for(i = 0 ; i < players[nPl].dim_pawns ; ++i){
+        if(check_canMove(players,i,nPl)){
             ++flag ;
             pos = i;
         }
@@ -1660,12 +1678,11 @@ int last_move(player_t player){
 
 
 unsigned int check_while(player_t *players, unsigned int nPl, unsigned int nPawn){
-
-    if (  (nPl == 0 || nPl ==1) && ( nPawn > -1 && nPawn < players[nPl].dim_pawns)  ){
-        return check_canMove(players[nPl], nPawn);
-    }else{
-        return 1;
+    unsigned int flag = 0;
+    if ( ( (nPawn >= 0) && (nPawn < players[nPl].dim_pawns)) && (is_selected(players,nPawn,nPl)) ){
+        flag  = check_canMove(players, nPawn,nPl);
     }
+    return flag;
 }
 
 unsigned int check_string(char *str){

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "colors.h"
-
+#include <ncurses.h>
 /*
     **********************
     *    1 = Testo       *
