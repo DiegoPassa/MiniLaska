@@ -412,14 +412,15 @@ void pawn_promotion(player_t *players, unsigned int num_pawn, unsigned int nPl, 
 }
 
 /* DONE */
-int check_player(player_t *players, unsigned int x, unsigned int y){
-    unsigned int nPl, i;
+int check_player(player_t *players, unsigned int x, unsigned int y,unsigned int nPl){
+    unsigned int  i,j = 1;
     int flag = -1;
-    for (nPl = 0; nPl < 2 ; nPl++){
-        for(i = 0 ; i < players[nPl].dim_pawns ; ++i){
-            if((players[nPl].pawns[i].coordinate.y == x)&&(players[nPl].pawns[i].coordinate.x == y)){
-                return flag = nPl;
-            }
+    if(nPl == 1){
+        j = 0;
+    }
+    for(i = 0 ; i < players[j].dim_pawns ; ++i){
+        if((players[j].pawns[i].coordinate.y == x)&&(players[j].pawns[i].coordinate.x == y) && j != nPl){
+            flag = j;
         }
     }
     return flag;
@@ -524,11 +525,11 @@ int can_eat(player_t *players, unsigned int num_pawn, char *str, board_t *board,
         if ((!strcmp(str, "sx"))) {
             if ((is_in(players[nPl].pawns[num_pawn].coordinate.y - 2, players[nPl].pawns[num_pawn].coordinate.x - ((players[nPl].pawns[num_pawn].dim_label + 3 + 1) * 2), *board)) &&
                 ((is_in(players[nPl].pawns[num_pawn].coordinate.y - 1, players[nPl].pawns[num_pawn].coordinate.x - (players[nPl].pawns[num_pawn].dim_label + 3 + 1), *board)))) {
-                unsigned x, y, z;
+                 int x, y, z;
                 x = players[nPl].pawns[num_pawn].coordinate.y - 1;
                 y = players[nPl].pawns[num_pawn].coordinate.x - (players[nPl].pawns[num_pawn].dim_label + 3 + 1);
-                z = check_player(players, x, y);
-                if ((z == nPl2 && z != nPl ) &&
+                z = check_player(players, x, y,nPl);
+                if ((z == nPl2  ) &&
                     (check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y - 1, players[nPl].pawns[num_pawn].coordinate.x - (players[nPl].pawns[num_pawn].dim_label + 3 + 1),
                                 (players[nPl].pawns[num_pawn].dim_label + 3 + 1))) &&
                     (!check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y - 2, players[nPl].pawns[num_pawn].coordinate.x - ((players[nPl].pawns[num_pawn].dim_label + 3 + 1) * 2),
@@ -551,11 +552,11 @@ int can_eat(player_t *players, unsigned int num_pawn, char *str, board_t *board,
         if ((!strcmp(str, "dx"))) {
             if ((is_in(players[nPl].pawns[num_pawn].coordinate.y - 2, players[nPl].pawns[num_pawn].coordinate.x + ((players[nPl].pawns[num_pawn].dim_label + 3) * 3), *board)) &&
                 ((is_in(players[nPl].pawns[num_pawn].coordinate.y - 1, players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3 + 1), *board)))) {
-                unsigned x, y, z;
+                 int x, y, z;
                 x = players[nPl].pawns[num_pawn].coordinate.y - 1;
                 y = players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3 + 1);
-                z = check_player(players, x, y);
-                if ((z ==  nPl2 && z != nPl) &&
+                z = check_player(players, x, y,nPl);
+                if ((z ==  nPl2 ) &&
                     (check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y - 1, players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3 + 1),
                                 players[nPl].pawns[num_pawn].dim_label + 3 + 1)) &&
                     (!check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y - 2, players[nPl].pawns[num_pawn].coordinate.x + ((players[nPl].pawns[num_pawn].dim_label + 3 + 1) * 2),
@@ -581,11 +582,11 @@ int can_eat(player_t *players, unsigned int num_pawn, char *str, board_t *board,
         if ((!strcmp(str, "bassosx")) ) {
             if ((is_in(players[nPl].pawns[num_pawn].coordinate.y + 2, players[nPl].pawns[num_pawn].coordinate.x - ((players[nPl].pawns[num_pawn].dim_label + 3 + 1) * 2), *board)) &&
                 ((is_in(players[nPl].pawns[num_pawn].coordinate.y + 1, players[nPl].pawns[num_pawn].coordinate.x - (players[nPl].pawns[num_pawn].dim_label + 3 + 1), *board)))) {
-                unsigned x, y, z;
+                 int x, y, z;
                 x = players[nPl].pawns[num_pawn].coordinate.y + 1;
                 y = players[nPl].pawns[num_pawn].coordinate.x - (players[nPl].pawns[num_pawn].dim_label + 3 + 1);
-                z = check_player(players, x, y);
-                if ((z ==  nPl2 && z != nPl) && (check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y + 1, players[nPl].pawns[num_pawn].coordinate.x - (players[nPl].pawns[num_pawn].dim_label + 3 + 1),
+                z = check_player(players, x, y,nPl);
+                if ((z ==  nPl2 ) && (check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y + 1, players[nPl].pawns[num_pawn].coordinate.x - (players[nPl].pawns[num_pawn].dim_label + 3 + 1),
                                            (players[nPl].pawns[num_pawn].dim_label + 3 + 1))) &&
                     (!check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y + 2, players[nPl].pawns[num_pawn].coordinate.x - ((players[nPl].pawns[num_pawn].dim_label + 3 + 1) * 2),
                                 (players[nPl].pawns[num_pawn].dim_label + 3 + 1)))) {
@@ -606,11 +607,11 @@ int can_eat(player_t *players, unsigned int num_pawn, char *str, board_t *board,
         if ((!strcmp(str, "bassodx")) ) {
             if ((is_in(players[nPl].pawns[num_pawn].coordinate.y + 2, players[nPl].pawns[num_pawn].coordinate.x + ((players[nPl].pawns[num_pawn].dim_label + 3) * 3), *board)) &&
                 ((is_in(players[nPl].pawns[num_pawn].coordinate.y + 1, players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3 + 1), *board)))) {
-                unsigned x, y, z;
+                 int x, y, z;
                 x = players[nPl].pawns[num_pawn].coordinate.y + 1;
                 y = players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3 + 1);
-                z = check_player(players, x, y);
-                if ((z ==  nPl2 && z != nPl) && (check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y + 1, players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3 + 1),
+                z = check_player(players, x, y,nPl);
+                if ((z ==  nPl2 ) && (check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y + 1, players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3 + 1),
                                            (players[nPl].pawns[num_pawn].dim_label + 3 + 1)) &&
                                  (!check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y + 2, players[nPl].pawns[num_pawn].coordinate.x + ((players[nPl].pawns[num_pawn].dim_label + 3 + 1) * 2),
                                              (players[nPl].pawns[num_pawn].dim_label + 3 + 1))))) {
@@ -1404,7 +1405,8 @@ int player_vs_player(unsigned int x ){
                 exit = round_ia_random(players, t, 1);
                 turno = 0;
             }
-            printf("%u\n", exit);
+            print_player(players[0]);
+            print_player(players[1]);
             update_board(t, players);
             print_board(*t, 6, 0, players[0].color, players[1].color);
             printMatrix(*t);

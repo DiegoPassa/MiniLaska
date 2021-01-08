@@ -97,7 +97,7 @@ unsigned int char_converter(board_t board, unsigned int r, unsigned int c, unsig
 
 char int_converter(unsigned int num,unsigned int index);/* convert num in pos from int to char*/
 
-int check_player(player_t *players, unsigned int x, unsigned int y);/* check if a pawn is a player1's pawn or if is a player2's pawn */
+int check_player(player_t *players, unsigned int x, unsigned int y,unsigned int nPl);/* check if a pawn is a player1's pawn or if is a player2's pawn */
 
 unsigned int is_victory(player_t *players);/* check if there is a winner */
 
