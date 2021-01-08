@@ -403,7 +403,7 @@ void remove_pawn(board_t *board, unsigned int row, unsigned int col, unsigned di
 
 /* DONE */
 void pawn_promotion(player_t *players, unsigned int num_pawn, unsigned int nPl, unsigned int last_row){
-    if(((nPl == 0)&&(players[nPl].pawns[num_pawn].coordinate.y == 0)) || ((nPl == 0)&&(players[nPl].pawns[num_pawn].coordinate.y == last_row))){
+    if(((nPl == 0)&&(players[nPl].pawns[num_pawn].coordinate.y == 0)) || ((nPl == 1)&&(players[nPl].pawns[num_pawn].coordinate.y == last_row))){
         players[nPl].pawns[num_pawn].isPromoted = 1;
         players[nPl].pawns[num_pawn].label[players[nPl].pawns[num_pawn].dim_label+3] = '^';
         free(players[nPl].pawns[num_pawn].canMove);
@@ -415,10 +415,10 @@ void pawn_promotion(player_t *players, unsigned int num_pawn, unsigned int nPl, 
 int check_player(player_t *players, unsigned int x, unsigned int y){
     unsigned int nPl, i;
     int flag = -1;
-    for (nPl = 0; nPl < 2; nPl++){
+    for (nPl = 0; nPl < 2 ; nPl++){
         for(i = 0 ; i < players[nPl].dim_pawns ; ++i){
             if((players[nPl].pawns[i].coordinate.y == x)&&(players[nPl].pawns[i].coordinate.x == y)){
-                flag = nPl;
+                return flag = nPl;
             }
         }
     }
@@ -528,7 +528,7 @@ int can_eat(player_t *players, unsigned int num_pawn, char *str, board_t *board,
                 x = players[nPl].pawns[num_pawn].coordinate.y - 1;
                 y = players[nPl].pawns[num_pawn].coordinate.x - (players[nPl].pawns[num_pawn].dim_label + 3 + 1);
                 z = check_player(players, x, y);
-                if ((z == nPl2) &&
+                if ((z == nPl2 && z != nPl ) &&
                     (check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y - 1, players[nPl].pawns[num_pawn].coordinate.x - (players[nPl].pawns[num_pawn].dim_label + 3 + 1),
                                 (players[nPl].pawns[num_pawn].dim_label + 3 + 1))) &&
                     (!check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y - 2, players[nPl].pawns[num_pawn].coordinate.x - ((players[nPl].pawns[num_pawn].dim_label + 3 + 1) * 2),
@@ -555,7 +555,7 @@ int can_eat(player_t *players, unsigned int num_pawn, char *str, board_t *board,
                 x = players[nPl].pawns[num_pawn].coordinate.y - 1;
                 y = players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3 + 1);
                 z = check_player(players, x, y);
-                if ((z ==  nPl2) &&
+                if ((z ==  nPl2 && z != nPl) &&
                     (check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y - 1, players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3 + 1),
                                 players[nPl].pawns[num_pawn].dim_label + 3 + 1)) &&
                     (!check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y - 2, players[nPl].pawns[num_pawn].coordinate.x + ((players[nPl].pawns[num_pawn].dim_label + 3 + 1) * 2),
@@ -585,7 +585,7 @@ int can_eat(player_t *players, unsigned int num_pawn, char *str, board_t *board,
                 x = players[nPl].pawns[num_pawn].coordinate.y + 1;
                 y = players[nPl].pawns[num_pawn].coordinate.x - (players[nPl].pawns[num_pawn].dim_label + 3 + 1);
                 z = check_player(players, x, y);
-                if ((z ==  nPl2) && (check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y + 1, players[nPl].pawns[num_pawn].coordinate.x - (players[nPl].pawns[num_pawn].dim_label + 3 + 1),
+                if ((z ==  nPl2 && z != nPl) && (check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y + 1, players[nPl].pawns[num_pawn].coordinate.x - (players[nPl].pawns[num_pawn].dim_label + 3 + 1),
                                            (players[nPl].pawns[num_pawn].dim_label + 3 + 1))) &&
                     (!check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y + 2, players[nPl].pawns[num_pawn].coordinate.x - ((players[nPl].pawns[num_pawn].dim_label + 3 + 1) * 2),
                                 (players[nPl].pawns[num_pawn].dim_label + 3 + 1)))) {
@@ -610,7 +610,7 @@ int can_eat(player_t *players, unsigned int num_pawn, char *str, board_t *board,
                 x = players[nPl].pawns[num_pawn].coordinate.y + 1;
                 y = players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3 + 1);
                 z = check_player(players, x, y);
-                if ((z ==  nPl2) && (check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y + 1, players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3 + 1),
+                if ((z ==  nPl2 && z != nPl) && (check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y + 1, players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3 + 1),
                                            (players[nPl].pawns[num_pawn].dim_label + 3 + 1)) &&
                                  (!check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y + 2, players[nPl].pawns[num_pawn].coordinate.x + ((players[nPl].pawns[num_pawn].dim_label + 3 + 1) * 2),
                                              (players[nPl].pawns[num_pawn].dim_label + 3 + 1))))) {
@@ -663,7 +663,7 @@ unsigned int move_noeat(player_t *players, unsigned int num_pawn, char *str, boa
                 remove_pawn(board,players[nPl].pawns[num_pawn].coordinate.y,players[nPl].pawns[num_pawn].coordinate.x,(players[nPl].pawns[num_pawn].dim_label+3+1));
                 players[nPl].pawns[num_pawn].coordinate.y++;
                 players[nPl].pawns[num_pawn].coordinate.x -= (players[nPl].pawns[num_pawn].dim_label+3+1);
-                if(nPl == 0){
+                if(nPl == 1){
                     pawn_promotion(players,num_pawn,nPl,board->n_rows-1);
                 }
                 return 1;
@@ -676,7 +676,7 @@ unsigned int move_noeat(player_t *players, unsigned int num_pawn, char *str, boa
                 remove_pawn(board,players[nPl].pawns[num_pawn].coordinate.y,players[nPl].pawns[num_pawn].coordinate.x,(players[nPl].pawns[num_pawn].dim_label+3+1));
                 players[nPl].pawns[num_pawn].coordinate.y++;
                 players[nPl].pawns[num_pawn].coordinate.x += (players[nPl].pawns[num_pawn].dim_label+3+1);
-                if(nPl == 0){
+                if(nPl == 1){
                     pawn_promotion(players,num_pawn,nPl,board->n_rows-1);
                 }
                 return 1;
@@ -712,9 +712,9 @@ unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t bo
             --players[nPl2].pawns[enemy_pawn].grade;
         }else{
             if (is_empty(players[nPl]) == -1) {
-                add_pawn(players, enemy_pawn, nPl);
-                /*remove_pawn(&board,players[nPl2].pawns[pos].coordinate.y,players[nPl2].pawns[pos].coordinate.x,players[nPl2].pawns[enemy_pawn].dim_label+3+1);
-                players[nPl2].pawns[enemy_pawn].grade = 0;*/
+                /*add_pawn(players, enemy_pawn, nPl);*/
+                remove_pawn(&board,players[nPl2].pawns[enemy_pawn].coordinate.y,players[nPl2].pawns[enemy_pawn].coordinate.x,players[nPl2].pawns[enemy_pawn].dim_label+3+1);
+                players[nPl2].pawns[enemy_pawn].grade = 0;
             } else {
                 unsigned int pos, i,index;
 
@@ -799,23 +799,14 @@ int move_p1 (player_t *players, unsigned int num_pawn, char *str, board_t *board
     if(enemy_pawn > -1){
         eat(players, str, num_pawn, *board, enemy_pawn, nPl);
         return enemy_pawn;
+    }else if(enemy_pawn == -4){
+        printf("Errore nella can_eat\n");
+    }else if(move_noeat(players, num_pawn, str, board, nPl)){
+        return -1;
     }else{
-        if(enemy_pawn == -1){
-            printf("Errore nella char_convert\n");
-            return -2;
-        }else{
-            if(enemy_pawn == -4){
-                printf("Errore nella can_eat\n");
-            }else{
-                if(move_noeat(players, num_pawn, str, board, nPl)){
-                    return -1;
-                }else{
-                    return -2;
-                }
-
-            }
-        }
+        return -2;
     }
+
     return 0;
 }
 
@@ -1381,7 +1372,7 @@ int player_vs_player(unsigned int x ){
             scanf("%s", &char_p2);*/
             /*  IMPLEMENTARE CONTROLLI CARATTERI*/
 
-            players = create_pawns(numped,'C', 'R', conta,*t); /* create array[2] of player_t type */
+            players = create_pawns(numped,'M', 'G', conta,*t); /* create array[2] of player_t type */
             print_player(players[0]);
             print_player(players[1]);
 
@@ -1403,14 +1394,27 @@ int player_vs_player(unsigned int x ){
                 exit = 1;
             }
         }
-        if(exit == 4 ){
+        if(exit == 4){
             printf("Round numero : %u\n",round);
-            exit = round_player(players,t,turno);
+            if (turno == 0){
+                /*exit = round_player(players,t,turno);*/
+                exit = round_ia_random(players, t, 0);
+                turno = 1;
+            }else{
+                exit = round_ia_random(players, t, 1);
+                turno = 0;
+            }
+            printf("%u\n", exit);
+            update_board(t, players);
+            print_board(*t, 6, 0, players[0].color, players[1].color);
+            printMatrix(*t);
+            /*sleep(1);*/
+            /*  
             if(turno == 1){
                 turno = 0;
             }else{
                 turno = 1;
-            }
+            }*/
             ++round;
         }
     }
@@ -1431,31 +1435,30 @@ int player_vs_player(unsigned int x ){
     return 1;
 }
 
-/*
-unsigned int round_ia_random(player_t *p1,player_t *ia,board_t *t,unsigned int npl){
-    int np = -1, dim = 2;
+unsigned int round_ia_random(player_t *players, board_t *board, unsigned int nPl){
+    int num_pawn = -1, dim_canMove = 2, flag;
     int newMove;
     char* move;
     srand(time(NULL));
-    np = rand()%(ia->dim);
+    num_pawn = rand()%(players[nPl].dim_pawns);
 
-    while (!check_canMove(*ia,np) ||(!is_selected(*p1,*ia,np,npl))){
-        if(last_move(*ia) == -1){
-            np = rand()%(ia->dim);
+    while (!check_while(players, nPl, num_pawn)){
+        if(last_move(players, nPl) == -1){
+            num_pawn = rand()%(players[nPl].dim_pawns);
         }else{
-            np = last_move(*ia);
+            num_pawn = last_move(players,nPl);
         }
 
     }
 
-    if (ia->arr[np].isPromoted){
-        dim = 4;
+    if (players[nPl].pawns[num_pawn].isPromoted){
+        dim_canMove = 4;
     }
 
-    newMove = rand()%(dim);
+    newMove = rand()%(dim_canMove);
 
-    while(ia->arr[np].canMove[newMove] == 0){
-        newMove = rand()%(dim);    
+    while(players[nPl].pawns[num_pawn].canMove[newMove] == 0){
+        newMove = rand()%(dim_canMove);    
     }
 
     if (newMove == 0){
@@ -1467,24 +1470,25 @@ unsigned int round_ia_random(player_t *p1,player_t *ia,board_t *t,unsigned int n
     }else if (newMove == 3){
         move = "bassosx";
     }
-    if(npl == 2){
-        move_p2(ia,np,move,t,p1);
+
+    if(nPl == 1){
+        flag = move_p2(players, num_pawn, move, board);
     }else{
-        move_p1(ia,np,move,t,p1,npl);
+        flag = move_p1(players, num_pawn, move, board, nPl);
     }
 
-
-    if( (move_p2(ia,np,"sx",t,p1)) || (move_p2(ia,np,"dx",t,p1))){
-        return 0;
+    if (flag > -2){
+        return 4;
     }else{
-        return 1;
-    }*//*
-    printf("Num ped : %u\n",np);
+        return 2;
+    }
+
+    printf("Num ped : %u\n",num_pawn);
 
     return 0;
 
 }
-*/
+
 /*
 void player_vs_ia(){
     board_t *t = NULL;
@@ -1639,13 +1643,6 @@ void set_moves_pawn(player_t *players, board_t board, unsigned int nPl, int nPaw
     }
 }
 
-/**
- * @brief Ritorna 0 se tutti gli elementi di canMove sono 0. 
- * 
- * @param p 
- * @param nPed 
- * @return unsigned int 
- */
 unsigned int check_canMove(player_t *players, unsigned int nPed,unsigned int nPl){
     unsigned int i = 0, dim = 2, flag = 0;
     if (players[nPl].pawns[nPed].isPromoted == 1){
@@ -2117,3 +2114,94 @@ return 0;*/
 
 
 /* liberare punt e pos con free*/
+
+void printMatrix(board_t board){
+ unsigned int j ;
+    int i;
+    int cifre = 6;
+    int npl = 1;
+
+    for(j=0; j<board.n_cols; j +=cifre)
+    {
+        int z;
+        for(z = 0 ; z < cifre ; ++z){
+            printf("-");
+        }
+        printf("---");
+    }
+    printf("-");/* recupero angolo dx */
+
+    printf("\n");
+
+    /* parte centrale */
+    if(npl == 1){
+        i = 0;
+    }else{
+        i = board.n_rows-1;
+    }
+
+    while( (((npl == 1)&&(i < board.n_rows))||((npl == 2)&&(i >= 0))) )
+    {
+
+        for(j=0; j<board.n_cols;j +=cifre)
+        {
+            unsigned int z;
+            for(z = 0 ; z < cifre; ++z){
+                if(z == 0){
+                    printf("| %c",board.mat[i][j]);
+                }else{
+                    if(z == cifre-1){
+                        printf("%c ",board.mat[i][j+z]);
+                    }else{
+                        printf("%c",board.mat[i][j+z]);
+                    }
+                }
+
+            }
+        }
+
+        printf("|\n");
+        if(((npl == 1)&&(i != board.n_rows-1))||((npl == 2)&&(i != 0)))
+        {
+            printf("|");
+            for(j=0; j<board.n_cols; j +=cifre)
+            {
+                if(j != 0){
+                    unsigned int z;
+                    for(z = 0 ; z < cifre ; ++z){
+                        printf("-");
+                    }
+                    printf("---");
+                }else{
+                    unsigned int z;
+                    for(z = 1 ; z < cifre ; ++z){
+                        printf("-");
+                    }
+                    printf("---");
+                }
+
+            }
+            printf("|\n");
+        }
+
+        if(npl == 1){
+            ++i;
+        }else{
+            --i;
+        }
+    }
+
+    /* e infine la base*/
+
+    for(j=0; j<board.n_cols; j +=cifre)
+    {
+        int z;
+        for(z = 0 ; z < cifre ; ++z){
+            printf("-");
+        }
+        printf("---");
+    }
+    printf("-");/* recupero angolo dx */
+
+    printf("\n");
+}

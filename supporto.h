@@ -31,6 +31,7 @@ struct valueMinimax{
     int value;
     char* directions;
 } typedef valueMinimax_t;
+
 /**
  * @brief Creazione del campo di gioco.
  * 
@@ -110,7 +111,7 @@ int player_vs_player(unsigned int x );/* mode player vs player */
 
 void player_vs_ia();/*mode player vs ia */
 
-unsigned int round_ia_random(player_t *p1,player_t *ia,board_t *t,unsigned int npl);
+unsigned int round_ia_random(player_t *players, board_t *board, unsigned int nPl);
 
 int minimax(board_t board, player_t p1, player_t p2, int depth, int nPed, int nPl,valueMinimax_t *v);
 
@@ -141,5 +142,7 @@ void destroy_board(board_t *board);/* free up memory space allocated by board */
 void destroy_value_minimax(valueMinimax_t *arr,unsigned int dim); /* free up memory space allocated by value_minimax*/
 
 unsigned int check_while(player_t *players, unsigned int nPl, unsigned int nPawn);
+
+void printMatrix(board_t board);
 
 int last_move(player_t *players,unsigned int nPl);
