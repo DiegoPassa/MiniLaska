@@ -852,19 +852,28 @@ unsigned int is_victory(player_t *players){
 
     for (nPl = 0; nPl < 2; nPl++){
         for(i = 0 ; i < players[nPl].dim_pawns ; ++i){
-            players[nPl].pawns[i].grade == 0 && nPl == 0 ? ++winner_p1 : winner_p1;
-            players[nPl].pawns[i].grade == 0 && nPl == 1 ? ++winner_p2 : winner_p2;
+            players[nPl].pawns[i].grade == 0 && nPl == 1 ? ++winner_p1 : winner_p1;
+            players[nPl].pawns[i].grade == 0 && nPl == 0 ? ++winner_p2 : winner_p2;
         }
     }
-    if(winner_p1 == players[0].dim_pawns){
+    if(winner_p1 == players[1].dim_pawns){
         winner_p1 = 0;
-    }else if (winner_p2 == players[1].dim_pawns){
+        i = 1;
+    }else if (winner_p2 == players[0].dim_pawns ){
         winner_p2 = 1;
+        i = 2;
     }
     if(winner_p1 == 0 && winner_p2 == 1){
-        flag = 0;
+        flag = 17;
+    }else{
+        flag = 17;
+        if(winner_p2 == 1 && i == 2){
+            flag = winner_p2;
+        }
+        if(winner_p1 == 0 && i == 1){
+            flag = winner_p1;
+        }
     }
-
     return flag;
 }
 
@@ -1390,14 +1399,11 @@ int player_vs_player(unsigned int x ){
     turno = round_choice();
     printf("Il player che inizia e' %u\n",turno+1);
     /* &&(!is_victory(players)) */
-    while((exit == 4)&&(!is_victory(players))){
+    while((exit == 4)&&(is_victory(players)>2)){
         set_moves_pawn(players,*t,0,-1);
         set_moves_pawn(players,*t,1,-1);
         if(all_blocked(players,*t,turno)  && (turno == 0 || turno == 1)){
-            exit = 0;
-            if(!turno){
-                exit = 1;
-            }
+            exit = 2;
         }
         if(exit == 4){
             printf("Round numero : %u\n",round);
@@ -1425,7 +1431,9 @@ int player_vs_player(unsigned int x ){
             ++round;
         }
     }
-
+    if(x == 2){
+        printf("Entrambi i giocatori hanno le pedine bloccate\n");
+    }
     if(exit == 3){
         printf("Hai abbandonato la partita\n");
     }else{
