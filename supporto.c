@@ -387,7 +387,7 @@ unsigned int check_spot(board_t board,unsigned int row,unsigned int col,unsigned
 
 /* DONE */
 unsigned int is_selected(player_t *player, int num_pawn, unsigned int nPl){
-    if( ( (nPl == 0) || (nPl == 1) ) && ((num_pawn > -1)&&(num_pawn < player[nPl].dim_pawns))&&(player[nPl].pawns[num_pawn].grade > 0)  ){
+    if(((num_pawn > -1)&&(num_pawn < player[nPl].dim_pawns))&&(player[nPl].pawns[num_pawn].grade > 0)){
         return 1;
     }else{
         return 0;
@@ -715,15 +715,21 @@ unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t bo
     }else{
         int newPos = is_empty(players[nPl]);
         if (newPos == -1){
-            /*add_pawn(players, enemy_pawn, nPl);*/
+            add_pawn(players, enemy_pawn, nPl);
             remove_pawn(&board,players[nPl2].pawns[enemy_pawn].coordinate.y,players[nPl2].pawns[enemy_pawn].coordinate.x,players[nPl2].pawns[enemy_pawn].dim_label+3+1);
             players[nPl2].pawns[enemy_pawn].grade = 0;
-        }else if(newPos >= 0){
+        }else if(newPos >= 0 && players[nPl2].pawns[enemy_pawn].grade > 1){
             int newPos_copy, index;
-            players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima] = ' ';
-            players[nPl2].pawns[enemy_pawn].cima+=1;
-            players[nPl2].pawns[enemy_pawn].grade-=1;
 
+            if (players[nPl2].pawns[enemy_pawn].grade > 1){
+                players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima] = ' ';
+                players[nPl2].pawns[enemy_pawn].cima+=1;
+                players[nPl2].pawns[enemy_pawn].grade-=1;
+            }else{
+                players[nPl2].pawns[enemy_pawn].grade = 0;
+            }
+            
+            
             players[nPl].pawns[newPos].grade = players[nPl2].pawns[enemy_pawn].grade;
             players[nPl2].pawns[enemy_pawn].grade = 0;
             players[nPl].pawns[newPos].cima = players[nPl2].pawns[enemy_pawn].cima;
@@ -1068,14 +1074,13 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
 
 
 int is_empty(player_t p){
-    int pos = -1;
-    unsigned int i;
+    int i;
     for(i = 0 ; i < p.dim_pawns ; ++i){
-        if((p.pawns[i].grade == 0)&&(pos == -1)){
-            pos = i;
+        if(p.pawns[i].grade == 0){
+            return i;
         }
     }
-    return pos;
+    return -1;
 }
 
 unsigned int max_pawns(unsigned int r,unsigned int c){
