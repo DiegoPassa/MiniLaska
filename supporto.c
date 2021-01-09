@@ -694,108 +694,104 @@ unsigned int move_noeat(player_t *players, unsigned int num_pawn, char *str, boa
 
 /* DONE */
 unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t board, unsigned int enemy_pawn, unsigned int nPl){
-    unsigned int nPl2 = 0;
-    if (nPl == 0){
-        nPl2 = 1;
+
+    unsigned int nPl2 = 1, i;
+    char temp[3];
+
+    if (nPl == 1){
+        nPl2 = 0;
     }
-    if(players[nPl2].pawns[enemy_pawn].cima< 2 && players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima] == players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima+1]) {
+
+    temp[0] = players[nPl].pawns[num_pawn].label[1];
+    temp[1] = players[nPl].pawns[num_pawn].label[2];
+    temp[2] = players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima]; /* 012 */
+
+    if (players[nPl2].pawns[enemy_pawn].grade == 1){
+        players[nPl2].pawns[enemy_pawn].grade = 0;
+    }else if((players[nPl2].pawns[enemy_pawn].grade > 1) && players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima] == players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima+1]){
         players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima] = ' ';
-        ++players[nPl2].pawns[enemy_pawn].cima;
-        --players[nPl2].pawns[enemy_pawn].grade;
+        players[nPl2].pawns[enemy_pawn].cima+=1;
+        players[nPl2].pawns[enemy_pawn].grade-=1;
     }else{
-        char temp[3];
-        unsigned int f;
-        temp[0] = players[nPl].pawns[num_pawn].label[1];
-        temp[1] = players[nPl].pawns[num_pawn].label[2];
-        temp[2] = players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima];
-
-       /* if(players[nPl2].pawns[enemy_pawn].grade == 1){
+        int newPos = is_empty(players[nPl]);
+        if (newPos == -1){
+            /*add_pawn(players, enemy_pawn, nPl);*/
+            remove_pawn(&board,players[nPl2].pawns[enemy_pawn].coordinate.y,players[nPl2].pawns[enemy_pawn].coordinate.x,players[nPl2].pawns[enemy_pawn].dim_label+3+1);
             players[nPl2].pawns[enemy_pawn].grade = 0;
-        }else{*/
-            if (is_empty(players[nPl]) == -1) {
-                /*add_pawn(players, enemy_pawn, nPl);*/
-                remove_pawn(&board,players[nPl2].pawns[enemy_pawn].coordinate.y,players[nPl2].pawns[enemy_pawn].coordinate.x,players[nPl2].pawns[enemy_pawn].dim_label+3+1);
-                players[nPl2].pawns[enemy_pawn].grade = 0;
-            } else {
-                unsigned int pos, i,index;
+        }else if(newPos >= 0){
+            int newPos_copy, index;
+            players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima] = ' ';
+            players[nPl2].pawns[enemy_pawn].cima+=1;
+            players[nPl2].pawns[enemy_pawn].grade-=1;
 
-                pos = is_empty(players[nPl]);
-                if(players[nPl2].pawns[enemy_pawn].grade > 1){
-                    players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima]= ' ';
-                    ++players[nPl2].pawns[enemy_pawn].cima;
-                    --players[nPl2].pawns[enemy_pawn].grade;
-                }else{
-                    players[nPl2].pawns[enemy_pawn].grade = 0;
-                }
-                for (i = 0; i < 3; ++i) {
-                    players[nPl].pawns[pos].label[i] = players[nPl2].pawns[enemy_pawn].label[i];
-                }
-                players[nPl2].pawns[enemy_pawn].isPromoted = 0;
-                players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].dim_label+3] = ' ';
-                players[nPl].pawns[pos].isPromoted = 0;
-                players[nPl].pawns[pos].label[players[nPl2].pawns[enemy_pawn].dim_label+3] = ' ';
+            players[nPl].pawns[newPos].grade = players[nPl2].pawns[enemy_pawn].grade;
+            players[nPl2].pawns[enemy_pawn].grade = 0;
+            players[nPl].pawns[newPos].cima = players[nPl2].pawns[enemy_pawn].cima;
 
-                players[nPl].pawns[pos].dim_label = players[nPl2].pawns[enemy_pawn].dim_label;
-                players[nPl].pawns[pos].cima = players[nPl2].pawns[enemy_pawn].cima;
-                if(players[nPl2].pawns[enemy_pawn].grade == 0){
-                    players[nPl].pawns[pos].grade = 1;
-                }else{
-                    players[nPl].pawns[pos].grade = players[nPl2].pawns[enemy_pawn].grade;
-                    players[nPl2].pawns[enemy_pawn].grade = 0;
-                }
-                players[nPl].pawns[pos].coordinate.y = players[nPl2].pawns[enemy_pawn].coordinate.y;
-                players[nPl].pawns[pos].coordinate.x = players[nPl2].pawns[enemy_pawn].coordinate.x;
-                index = players[nPl].pawns[pos].dim_label;
-                for(i = 3 ; i < players[nPl].pawns[pos].dim_label+3 ; ++i){
-                    players[nPl].pawns[pos].label[i] = int_converter(pos,index);
-                    --index;
-                }
+            players[nPl].pawns[newPos].coordinate.x = players[nPl2].pawns[enemy_pawn].coordinate.x;
+            players[nPl].pawns[newPos].coordinate.y = players[nPl2].pawns[enemy_pawn].coordinate.y;
 
+            players[nPl].pawns[newPos].dim_label = players[nPl2].pawns[enemy_pawn].dim_label;
+
+            players[nPl].pawns[newPos].isPromoted = players[nPl2].pawns[enemy_pawn].isPromoted = 0;
+
+            players[nPl].pawns[newPos].label[players[nPl].pawns[newPos].dim_label+3] = ' ';
+            players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].dim_label+3] = ' ';
+
+            for (i = 0; i < 3; i++){
+                players[nPl].pawns[newPos].label[i] = players[nPl2].pawns[enemy_pawn].label[i];
             }
-        /*}*/
-        if(((is_empty(players[nPl]) != -1)||(players[nPl2].pawns[enemy_pawn].grade < 3)) && players[nPl].pawns[num_pawn].grade  < 3){
-            if(players[nPl].pawns[num_pawn].grade  < 3){
-                for(f = 0 ; f < 3 ; ++f ){
-                    players[nPl].pawns[num_pawn].label[f] = temp[f];
-                }
-                ++players[nPl].pawns[num_pawn].grade;
-                --players[nPl].pawns[num_pawn].cima;
+            index = players[nPl].pawns[newPos].label[i]-1;
+            newPos_copy = newPos;
+
+            for (i = 3; i < players[nPl].pawns[newPos].dim_label+3; i++){
+                players[nPl].pawns[newPos].label[i] = int_converter(newPos_copy, index);
+                newPos_copy -= pow(10, index)*players[nPl].pawns[newPos].label[i] - '0';
+                index--;
             }
+
         }
+        
     }
+    if (players[nPl].pawns[num_pawn].grade < 3){
+        for (i = 0; i < 3; i++){
+            players[nPl].pawns[num_pawn].label[i] = temp[i];
+        }
+        players[nPl].pawns[num_pawn].cima-=1;
+        players[nPl].pawns[num_pawn].grade+=1;
+    }
+
     if(players[nPl2].pawns[enemy_pawn].grade < 1){
         remove_pawn(&board,players[nPl2].pawns[enemy_pawn].coordinate.y,players[nPl2].pawns[enemy_pawn].coordinate.x,players[nPl2].pawns[enemy_pawn].dim_label+3+1);
     }
     if(!strcmp(str,"sx")){
         players[nPl].pawns[num_pawn].coordinate.y -= 2;
         players[nPl].pawns[num_pawn].coordinate.x -= (players[nPl].pawns[num_pawn].dim_label+3+1)*2;
-    }else{
-        if(!strcmp(str,"dx")){
-            players[nPl].pawns[num_pawn].coordinate.y -= 2;
-            players[nPl].pawns[num_pawn].coordinate.x += (players[nPl].pawns[num_pawn].dim_label+3+1)*2;
-        }
-        if(!strcmp(str,"bassosx")){
-            players[nPl].pawns[num_pawn].coordinate.y += 2;
-            players[nPl].pawns[num_pawn].coordinate.x -= (players[nPl].pawns[num_pawn].dim_label+3+1)*2;
-        }
-        if(!strcmp(str,"bassodx")){
-            players[nPl].pawns[num_pawn].coordinate.y += 2;
-            players[nPl].pawns[num_pawn].coordinate.x += (players[nPl].pawns[num_pawn].dim_label+3+1)*2;
-        }
-
     }
+    if(!strcmp(str,"dx")){
+        players[nPl].pawns[num_pawn].coordinate.y -= 2;
+        players[nPl].pawns[num_pawn].coordinate.x += (players[nPl].pawns[num_pawn].dim_label+3+1)*2;
+    }
+    if(!strcmp(str,"bassosx")){
+        players[nPl].pawns[num_pawn].coordinate.y += 2;
+        players[nPl].pawns[num_pawn].coordinate.x -= (players[nPl].pawns[num_pawn].dim_label+3+1)*2;
+    }
+    if(!strcmp(str,"bassodx")){
+        players[nPl].pawns[num_pawn].coordinate.y += 2;
+        players[nPl].pawns[num_pawn].coordinate.x += (players[nPl].pawns[num_pawn].dim_label+3+1)*2;
+    }
+
     if(!strcmp(str,"sx")){
         remove_pawn(&board,players[nPl].pawns[num_pawn].coordinate.y+2,players[nPl].pawns[num_pawn].coordinate.x+((players[nPl].pawns[num_pawn].dim_label+3+1)*2),players[nPl].pawns[num_pawn].dim_label+3+1);
-    }else{
-        if(!strcmp(str,"dx")){
-            remove_pawn(&board,players[nPl].pawns[num_pawn].coordinate.y+2,players[nPl].pawns[num_pawn].coordinate.x-((players[nPl].pawns[num_pawn].dim_label+3+1)*2),(players[nPl].pawns[num_pawn].dim_label+3+1));
-        }
-        if(!strcmp(str,"bassosx")){
-            remove_pawn(&board,players[nPl].pawns[num_pawn].coordinate.y-2,players[nPl].pawns[num_pawn].coordinate.x+((players[nPl].pawns[num_pawn].dim_label+3+1)*2),players[nPl].pawns[num_pawn].dim_label+3+1);
-        }
-        if(!strcmp(str,"bassodx")){
-            remove_pawn(&board,players[nPl].pawns[num_pawn].coordinate.y-2,players[nPl].pawns[num_pawn].coordinate.x-((players[nPl].pawns[num_pawn].dim_label+3+1)*2),(players[nPl].pawns[num_pawn].dim_label+3+1));
-        }
+    }
+    if(!strcmp(str,"dx")){
+        remove_pawn(&board,players[nPl].pawns[num_pawn].coordinate.y+2,players[nPl].pawns[num_pawn].coordinate.x-((players[nPl].pawns[num_pawn].dim_label+3+1)*2),(players[nPl].pawns[num_pawn].dim_label+3+1));
+    }
+    if(!strcmp(str,"bassosx")){
+        remove_pawn(&board,players[nPl].pawns[num_pawn].coordinate.y-2,players[nPl].pawns[num_pawn].coordinate.x+((players[nPl].pawns[num_pawn].dim_label+3+1)*2),players[nPl].pawns[num_pawn].dim_label+3+1);
+    }
+    if(!strcmp(str,"bassodx")){
+        remove_pawn(&board,players[nPl].pawns[num_pawn].coordinate.y-2,players[nPl].pawns[num_pawn].coordinate.x-((players[nPl].pawns[num_pawn].dim_label+3+1)*2),(players[nPl].pawns[num_pawn].dim_label+3+1));
     }
     pawn_promotion(players,num_pawn,nPl,board.n_rows-1);
     return 1;
@@ -1340,7 +1336,7 @@ int player_vs_player(unsigned int x ){
     if(x == 0){
         t = create_board(7,7,3+conta+1);
         initialize_board(t,3+conta+1);
-        players = create_pawns(11,'Y','R',conta,*t); /* create array[2] of player_t type */
+        players = create_pawns(11,'C','M',conta,*t); /* create array[2] of player_t type */
     }else{
         unsigned int w,h,max_ped = 0;
         conta = 0;
@@ -1420,12 +1416,12 @@ int player_vs_player(unsigned int x ){
                 turno = 0;
             }
 
-            /*print_player(players,0);
-            print_player(players,1);*/
+            /* print_player(players,0);
+            print_player(players,1); */
             update_board(t, players);
             print_board(*t, 6, 0, players[0].color, players[1].color);
             printMatrix(*t);
-           /* sleep(2);*/
+            /*sleep(2);*/
             /*  
             if(turno == 1){
                 turno = 0;
