@@ -71,7 +71,7 @@ unsigned int check_spot(board_t board,unsigned int row,unsigned int col,unsigned
 
 int is_empty(player_t p);/* check if a pawn on the array has the grade = 0 */
 
-unsigned int is_selected(player_t *player, unsigned int num_pawn, unsigned int nPl);/* check if the pawn np can be selected */
+unsigned int is_selected(player_t *player,int num_pawn, unsigned int nPl);/* check if the pawn np can be selected */
 
 unsigned int max_pawns(unsigned int r,unsigned int c);/* calculate the number of pawns that can be placed in an rxc dimension matrix */
 
@@ -113,21 +113,21 @@ void player_vs_ia();/*mode player vs ia */
 
 unsigned int round_ia_random(player_t *players, board_t *board, unsigned int nPl);
 
-int minimax(board_t board, player_t p1, player_t p2, int depth, int nPed, int nPl,valueMinimax_t *v);
+int minimax(board_t board, player_t *players, int depth,unsigned  int nPed,unsigned int nPl,valueMinimax_t *v);
 
-int call_minimax(board_t *board_copy, player_t *p1_copy, player_t *p2_copy, int depth, int nPed, int nPl,valueMinimax_t *v,char *str,int maxEval);
+int call_minimax(board_t *board_copy, player_t *players_copy,unsigned int depth, unsigned int nPed,unsigned int nPl,valueMinimax_t *v,char *str,int maxEval);
 
-void restore_copy(board_t *board_copy, player_t *p1_copy, player_t *p2_copy, board_t board, player_t p1, player_t p2);
+void restore_copy(board_t board, player_t *players, board_t *board_copy, player_t *players_copy);
 
-int evaluate_score(board_t board, player_t p1, player_t p2);
+int evaluate_score(board_t board, player_t *players);
 
 unsigned int check_string(char *str);
 
 unsigned int max(valueMinimax_t *arr,unsigned int dim);
 
-void print_minimax(valueMinimax_t *arr,unsigned int dim);
+void print_minimax(valueMinimax_t *value_arr,unsigned int dim_arr);
 
-int round_ia_minimax(player_t *p1, player_t *p2, board_t *board,unsigned int nPl);
+int round_ia_minimax(player_t *players, board_t *board,unsigned int nPl);
 
 void set_moves_pawn(player_t *players, board_t board, unsigned int nPl,int nPawn);
 
