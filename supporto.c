@@ -337,20 +337,21 @@ player_t *create_pawns(unsigned int totPawns,char player1, char player2, unsigne
 }
 
 /* DONE */
-void print_player(player_t player){
+void print_player(player_t *players,unsigned int nPl){
     unsigned int i,j;
-    for(i = 0 ; i < player.dim_pawns ; ++i){
+    for(i = 0 ; i < players[nPl].dim_pawns ; ++i){
 
         printf("Pedina = ");
-        for(j = 0 ; j < 3+player.pawns[i].dim_label+1 ;++j ){
-            printf("%c",player.pawns[i].label[j]);
+        for(j = 0 ; j < 3+players[nPl].pawns[i].dim_label+1 ;++j ){
+            printf("%c",players[nPl].pawns[i].label[j]);
         }
         printf("\n");
-        print_directions(player.pawns[i].canMove, 2, i);
-        printf("Cima = %d\n",player.pawns[i].cima);
-        printf("grade pedina : %d \n",player.pawns[i].grade);
-        printf("Posizione nel campo x: %d, y: %d\n",(player.pawns[i].coordinate.x/6)+1,(player.pawns[i].coordinate.y)+1);
-        printf("Promozione pedina : %u\n",player.pawns[i].isPromoted);
+        print_directions(players[nPl].pawns[i].canMove, 2, i);
+        printf("Cima = %d\n",players[nPl].pawns[i].cima);
+        printf("grade pedina : %d \n",players[nPl].pawns[i].grade);
+        printf("Posizione nel campo x: %d, y: %d\n",players[nPl].pawns[i].coordinate.x,players[nPl].pawns[i].coordinate.y);
+        /*printf("Posizione nel campo x: %d, y: %d\n",(x/6)+1,(y)+1);*/
+        printf("Promozione pedina : %u\n",players[nPl].pawns[i].isPromoted);
         printf("\n");
     }
 }
@@ -697,8 +698,7 @@ unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t bo
     if (nPl == 0){
         nPl2 = 1;
     }
-    
-    if(players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima] == players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima+1]) {
+    if(players[nPl2].pawns[enemy_pawn].cima< 2 && players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima] == players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima+1]) {
         players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima] = ' ';
         ++players[nPl2].pawns[enemy_pawn].cima;
         --players[nPl2].pawns[enemy_pawn].grade;
@@ -709,9 +709,9 @@ unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t bo
         temp[1] = players[nPl].pawns[num_pawn].label[2];
         temp[2] = players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima];
 
-        if(players[nPl2].pawns[enemy_pawn].grade == 1){
-            --players[nPl2].pawns[enemy_pawn].grade;
-        }else{
+       /* if(players[nPl2].pawns[enemy_pawn].grade == 1){
+            players[nPl2].pawns[enemy_pawn].grade = 0;
+        }else{*/
             if (is_empty(players[nPl]) == -1) {
                 /*add_pawn(players, enemy_pawn, nPl);*/
                 remove_pawn(&board,players[nPl2].pawns[enemy_pawn].coordinate.y,players[nPl2].pawns[enemy_pawn].coordinate.x,players[nPl2].pawns[enemy_pawn].dim_label+3+1);
@@ -720,9 +720,13 @@ unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t bo
                 unsigned int pos, i,index;
 
                 pos = is_empty(players[nPl]);
-                players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima]= ' ';
-                ++players[nPl2].pawns[enemy_pawn].cima;
-                --players[nPl2].pawns[enemy_pawn].grade;
+                if(players[nPl2].pawns[enemy_pawn].grade > 1){
+                    players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima]= ' ';
+                    ++players[nPl2].pawns[enemy_pawn].cima;
+                    --players[nPl2].pawns[enemy_pawn].grade;
+                }else{
+                    players[nPl2].pawns[enemy_pawn].grade = 0;
+                }
                 for (i = 0; i < 3; ++i) {
                     players[nPl].pawns[pos].label[i] = players[nPl2].pawns[enemy_pawn].label[i];
                 }
@@ -739,12 +743,12 @@ unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t bo
                 players[nPl].pawns[pos].coordinate.x = players[nPl2].pawns[enemy_pawn].coordinate.x;
                 index = players[nPl].pawns[pos].dim_label;
                 for(i = 3 ; i < players[nPl].pawns[pos].dim_label+3 ; ++i){
-                    int_converter(pos,index);
+                    players[nPl].pawns[pos].label[i] = int_converter(pos,index);
                     --index;
                 }
 
             }
-        }
+        /*}*/
         if(((is_empty(players[nPl]) != -1)||(players[nPl2].pawns[enemy_pawn].grade < 3)) && players[nPl].pawns[num_pawn].grade  < 3){
             if(players[nPl].pawns[num_pawn].grade  < 3){
                 for(f = 0 ; f < 3 ; ++f ){
@@ -797,6 +801,7 @@ unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t bo
 int move_p1 (player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl){
     int enemy_pawn;
     enemy_pawn = can_eat(players,num_pawn,str,board, nPl);
+    /*printf("enemy_pawn : %d,nPl : %u\n",enemy_pawn,nPl);*/
     if(enemy_pawn > -1){
         eat(players, str, num_pawn, *board, enemy_pawn, nPl);
         return enemy_pawn;
@@ -843,21 +848,20 @@ unsigned int all_blocked(player_t *players, board_t board, unsigned int nPl){
 
 /* DONE */
 unsigned int is_victory(player_t *players){
-    int i, nPl, winner_p1 = 0, winner_p2 = 0, flag = -1 ;
+    int i, nPl, winner_p1 = 0, winner_p2 = 0, flag = 0 ;
 
     for (nPl = 0; nPl < 2; nPl++){
         for(i = 0 ; i < players[nPl].dim_pawns ; ++i){
             players[nPl].pawns[i].grade == 0 && nPl == 0 ? ++winner_p1 : winner_p1;
             players[nPl].pawns[i].grade == 0 && nPl == 1 ? ++winner_p2 : winner_p2;
         }
-        if(winner_p1 == players[nPl].dim_pawns && nPl == 0){
-            winner_p1 = 2;
-        }else if (winner_p2 == players[nPl].dim_pawns && nPl == 1){
-            winner_p2 = 1;
-        }   
     }
-
-    if(winner_p1 == winner_p2){
+    if(winner_p1 == players[0].dim_pawns){
+        winner_p1 = 0;
+    }else if (winner_p2 == players[1].dim_pawns){
+        winner_p2 = 1;
+    }
+    if(winner_p1 == 0 && winner_p2 == 1){
         flag = 0;
     }
 
@@ -1374,8 +1378,8 @@ int player_vs_player(unsigned int x ){
             /*  IMPLEMENTARE CONTROLLI CARATTERI*/
 
             players = create_pawns(numped,'M', 'G', conta,*t); /* create array[2] of player_t type */
-            print_player(players[0]);
-            print_player(players[1]);
+            print_player(players,0);
+            print_player(players,1);
 
         }else{
             printf("Non ha senso giocare con %u pedine !\n",cifre);
@@ -1386,7 +1390,7 @@ int player_vs_player(unsigned int x ){
     turno = round_choice();
     printf("Il player che inizia e' %u\n",turno+1);
     /* &&(!is_victory(players)) */
-    while((exit == 4)){
+    while((exit == 4)&&(!is_victory(players))){
         set_moves_pawn(players,*t,0,-1);
         set_moves_pawn(players,*t,1,-1);
         if(all_blocked(players,*t,turno)  && (turno == 0 || turno == 1)){
@@ -1405,12 +1409,13 @@ int player_vs_player(unsigned int x ){
                 exit = round_ia_random(players, t, 1);
                 turno = 0;
             }
-            print_player(players[0]);
-            print_player(players[1]);
+
+            /*print_player(players,0);
+            print_player(players,1);*/
             update_board(t, players);
             print_board(*t, 6, 0, players[0].color, players[1].color);
             printMatrix(*t);
-            /*sleep(1);*/
+           /* sleep(2);*/
             /*  
             if(turno == 1){
                 turno = 0;
@@ -1424,7 +1429,7 @@ int player_vs_player(unsigned int x ){
     if(exit == 3){
         printf("Hai abbandonato la partita\n");
     }else{
-        if(!exit){
+        if(exit == 4 ){
             exit = is_victory(players);
         }
         printf("Round totali della partita : %u\n",round);

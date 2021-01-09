@@ -51,7 +51,7 @@ void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char 
 
 player_t *create_pawns(unsigned int totPawns,char player1, char player2,unsigned int cifre,board_t board);/* player creation */
 
-void print_player(player_t player); /* print the player's pawns */
+void print_player(player_t *players,unsigned int nPl); /* print the player's pawns */
 
 void print_directions(unsigned int *arr,unsigned int dim,unsigned int np);/* print the directions when the soldier must jump over/eat an enemy */
 
