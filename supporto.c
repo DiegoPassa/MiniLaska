@@ -737,8 +737,12 @@ unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t bo
 
                 players[nPl].pawns[pos].dim_label = players[nPl2].pawns[enemy_pawn].dim_label;
                 players[nPl].pawns[pos].cima = players[nPl2].pawns[enemy_pawn].cima;
-                players[nPl].pawns[pos].grade = players[nPl2].pawns[enemy_pawn].grade;
-                players[nPl2].pawns[enemy_pawn].grade = 0;
+                if(players[nPl2].pawns[enemy_pawn].grade == 0){
+                    players[nPl].pawns[pos].grade = 1;
+                }else{
+                    players[nPl].pawns[pos].grade = players[nPl2].pawns[enemy_pawn].grade;
+                    players[nPl2].pawns[enemy_pawn].grade = 0;
+                }
                 players[nPl].pawns[pos].coordinate.y = players[nPl2].pawns[enemy_pawn].coordinate.y;
                 players[nPl].pawns[pos].coordinate.x = players[nPl2].pawns[enemy_pawn].coordinate.x;
                 index = players[nPl].pawns[pos].dim_label;
@@ -868,10 +872,10 @@ unsigned int is_victory(player_t *players){
     }else{
         flag = 17;
         if(winner_p2 == 1 && i == 2){
-            flag = winner_p2;
+            flag = i;
         }
         if(winner_p1 == 0 && i == 1){
-            flag = winner_p1;
+            flag = i;
         }
     }
     return flag;
@@ -1441,7 +1445,7 @@ int player_vs_player(unsigned int x ){
             exit = is_victory(players);
         }
         printf("Round totali della partita : %u\n",round);
-        printf("Il vincitore e' il player %d!\n",exit+1);
+        printf("Il vincitore e' il player %d!\n",exit);
     }
 
     destroy_board(t);
