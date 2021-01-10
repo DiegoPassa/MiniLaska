@@ -418,8 +418,8 @@ void pawn_promotion(player_t *players, unsigned int num_pawn, unsigned int nPl, 
         players[nPl].pawns[num_pawn].canMove = (unsigned int*)calloc(4 ,sizeof(unsigned int));
     }
 }
-void pawn_remove_promotion(player_t *players ,int num_paw,unsigned int nPl){
-    if(players[nPl].pawns[num_paw].isPromoted == 1){
+void pawn_remove_promotion(player_t *players ,int num_pawn,unsigned int nPl){
+    if(players[nPl].pawns[num_pawn].isPromoted == 1){
         players[nPl].pawns[num_pawn].isPromoted = 0;
         players[nPl].pawns[num_pawn].label[players[nPl].pawns[num_pawn].dim_label+3] = ' ';
         free(players[nPl].pawns[num_pawn].canMove);
