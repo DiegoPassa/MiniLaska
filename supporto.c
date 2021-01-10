@@ -2220,3 +2220,35 @@ void printMatrix(board_t board){
 
     printf("\n");
 }
+void menu(){
+    int choice=0;
+    system("clear");
+    while(choice!='3')
+    {
+        printf("\n\t\t\t\t\t\t+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n\t\t\t\t\t\t|M|i|n|i||L|a|s|k|a||G|a|m|e|\n\t\t\t\t\t\t+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
+        printf("\n\n\t\t\t\t\t\t 1. PLAYER VS PLAYER");
+        printf("\n\t\t\t\t\t\t 2. PLAYER VS IA");
+        printf("\n\t\t\t\t\t\t 3. EXIT");
+        printf("\n\n Enter Your Choice: ");
+        choice = getchar();
+        switch(choice)
+        {
+            case '1':
+                system("clear");
+                printf("\n\t\t\t\t\t\tYOU SELECTED OPTION 1 : PLAYER VS PLAYER\n");
+                printf("\t\t\t\t\t\t----------------------------------------\n");
+                break;
+            case '2':
+                system("clear");
+                printf("\n\nYOU SELECTED OPTION 2 : PLAYER VS IA\n");
+                break;
+            case '3':
+                break;
+            default:
+                printf("\n\nINVALID SELECTION...Please try again\n");
+        };
+
+
+
+    }
+}

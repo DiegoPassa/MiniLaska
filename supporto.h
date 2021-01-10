@@ -146,3 +146,5 @@ unsigned int check_while(player_t *players, unsigned int nPl, unsigned int nPawn
 void printMatrix(board_t board);
 
 int last_move(player_t *players,unsigned int nPl);
+
+void menu();

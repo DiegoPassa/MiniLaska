@@ -6,6 +6,8 @@
 
 int main(){
 
+
+    menu();
     player_vs_player(0);
 
     /*player_vs_ia();*/
