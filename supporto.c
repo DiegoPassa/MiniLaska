@@ -411,7 +411,15 @@ void pawn_promotion(player_t *players, unsigned int num_pawn, unsigned int nPl, 
         players[nPl].pawns[num_pawn].canMove = (unsigned int*)calloc(4 ,sizeof(unsigned int));
     }
 }
+void pawn_remove_promotion(player_t *players ,int num_paw,unsigned int nPl){
+    if(players[nPl].pawns[num_paw].isPromoted == 1){
+        players[nPl].pawns[num_pawn].isPromoted = 0;
+        players[nPl].pawns[num_pawn].label[players[nPl].pawns[num_pawn].dim_label+3] = ' ';
+        free(players[nPl].pawns[num_pawn].canMove);
+        players[nPl].pawns[num_pawn].canMove = (unsigned int*)calloc(2 ,sizeof(unsigned int));
+    }
 
+}
 /* DONE */
 int check_player(player_t *players, unsigned int x, unsigned int y,unsigned int nPl){
     unsigned int  i,j = 1;
@@ -740,10 +748,13 @@ unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t bo
 
             players[nPl].pawns[newPos].dim_label = players[nPl2].pawns[enemy_pawn].dim_label;
 
+            pawn_remove_promotion(players,newPos,nPl);
+            pawn_remove_promotion(players,enemy_pawn,nPl2);
+            /*
             players[nPl].pawns[newPos].isPromoted = players[nPl2].pawns[enemy_pawn].isPromoted = 0;
 
             players[nPl].pawns[newPos].label[players[nPl].pawns[newPos].dim_label+3] = ' ';
-            players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].dim_label+3] = ' ';
+            players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].dim_label+3] = ' ';*/
 
             for (i = 0; i < 3; i++){
                 players[nPl].pawns[newPos].label[i] = players[nPl2].pawns[enemy_pawn].label[i];
@@ -1014,7 +1025,7 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
         }else{
             y = move_p2(players,num_Pawn,str,t);
         }
-        if(y == 0){
+        if(y < -1){
             char temp[2];
             printf("La pedina numero %u non si puo' spostare verso %s\n",num_Pawn,str);
 

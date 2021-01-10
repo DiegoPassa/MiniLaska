@@ -91,6 +91,8 @@ void remove_pawn(board_t *board, unsigned int row, unsigned int col, unsigned di
 
 void pawn_promotion(player_t *players, unsigned int num_pawn, unsigned int nPl, unsigned int last_row);/* pawn promotion */
 
+void pawn_remove_promotion(player_t *players ,int num_paw,unsigned int nPl)/* remove promotion of num_pawn pawn*/
+
 unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t board, unsigned int enemy_pawn, unsigned int nPl);/* eat an enemy pawn */
 
 unsigned int char_converter(board_t board, unsigned int r, unsigned int c, unsigned int dim_label);/* convert from char to int */
