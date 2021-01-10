@@ -95,7 +95,7 @@ unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t bo
 
 unsigned int char_converter(board_t board, unsigned int r, unsigned int c, unsigned int dim_label);/* convert from char to int */
 
-char int_converter(unsigned int num,unsigned int index);/* convert num in pos from int to char*/
+char int_converter(int num,unsigned int index);/* convert num in pos from int to char*/
 
 int check_player(player_t *players, unsigned int x, unsigned int y,unsigned int nPl);/* check if a pawn is a player1's pawn or if is a player2's pawn */
 
