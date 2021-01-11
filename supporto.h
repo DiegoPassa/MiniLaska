@@ -77,9 +77,9 @@ unsigned int max_pawns(unsigned int r,unsigned int c);/* calculate the number of
 
 unsigned int is_notstuck(player_t *players, board_t board, unsigned int nPawn, unsigned int nPl);/* check if the pawn is stuck */
 
-board_t *copy_board(board_t board ,board_t *newBoard);/* create a new board  copying from the variable t */
+board_t *copy_board(board_t board ,board_t *newBoard,unsigned int cifre,unsigned int set);/* create a new board  copying from the variable t */
 
-player_t *player_copy(player_t *players, player_t *newPlayers, unsigned int dim_label);/* create a new player copying an existing player */
+player_t *player_copy(player_t *players, player_t *newPlayers, unsigned int dim_label,unsigned int set);/* create a new player copying an existing player */
 
 unsigned int add_pawn(player_t *players, unsigned int enemy_pawn, unsigned int nPl);/* add a pawn to the other player based on the pawn eaten */
 
