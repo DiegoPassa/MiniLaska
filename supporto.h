@@ -87,7 +87,7 @@ int move_p1 (player_t *players, unsigned int num_pawn, char *str, board_t *board
 
 int move_p2(player_t *players,unsigned int num_pawn,char *str,board_t *board);/* move a player2's pawn to a direction */
 
-void remove_pawn(board_t *board, unsigned int row, unsigned int col, unsigned dim_label);/* modify the position before to move the pawn */
+void remove_pawn(board_t *board, unsigned int row, unsigned int col, unsigned int dim_label);/* modify the position before to move the pawn */
 
 void pawn_promotion(player_t *players, unsigned int num_pawn, unsigned int nPl, unsigned int last_row);/* pawn promotion */
 

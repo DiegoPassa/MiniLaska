@@ -11,15 +11,14 @@
 board_t* create_board(unsigned int n_rows,unsigned int n_cols,unsigned int cifre){
     board_t *t = NULL;
 
-    t = (board_t*)calloc(1,sizeof(board_t));
+    t = (board_t*)malloc(sizeof(board_t));
     if(t != NULL){
         unsigned int i;
         t->n_rows = n_rows;
         t->n_cols = (n_cols*cifre);
         t->mat = (char**)calloc((t->n_rows),sizeof(char*));
         for(i = 0 ; i < t->n_rows ; ++i){
-            t->mat[i] = (char*)calloc((t->n_cols),sizeof(char));
-
+            t->mat[i] = calloc((t->n_cols),sizeof(char));
         }
 
         return t;
@@ -373,7 +372,9 @@ void update_board(board_t *t,player_t *player){
             if(is_selected(player,i,pl)){
                 unsigned int j;
                 for(j = 0 ; j < player[pl].pawns[i].dim_label+3+1 ; ++j){
-                    t->mat[player[pl].pawns[i].coordinate.y][player[pl].pawns[i].coordinate.x+j] = player[pl].pawns[i].label[j];
+                    if(player[pl].pawns[i].coordinate.y < t->n_rows && player[pl].pawns[i].coordinate.x < t->n_cols ){
+                        t->mat[player[pl].pawns[i].coordinate.y][player[pl].pawns[i].coordinate.x+j] = player[pl].pawns[i].label[j];
+                    }
                 }
             }
         }
@@ -383,14 +384,16 @@ void update_board(board_t *t,player_t *player){
 
 /* DONE */
 unsigned int check_spot(board_t board,unsigned int row,unsigned int col,unsigned int dim_label){
-    unsigned int i,flag = 0;
-    for(i = 0 ; i < dim_label; ++i){
-        /* (board.mat[row][col+i] != ' ')&& */
-        if( (board.mat[row][col+i] != '#') ){
-            flag = 1;
+    unsigned int i;
+    if(row < board.n_rows && col < board.n_cols){
+        for(i = 0 ; i < dim_label; ++i){
+            /* (board.mat[row][col+i] != ' ')&& */
+            if( (board.mat[row][col+i] != '#' ) ){
+                return 1;
+            }
         }
     }
-    return flag;
+    return 0;
 }
 
 /* DONE */
@@ -403,11 +406,14 @@ unsigned int is_selected(player_t *player, int num_pawn, unsigned int nPl){
 }
 
 /* DONE */
-void remove_pawn(board_t *board, unsigned int row, unsigned int col, unsigned dim_label){
+void remove_pawn(board_t *board, unsigned int row, unsigned int col, unsigned int dim_label){
     unsigned int i;
-    for(i = 0 ; i < dim_label ; ++i){
-        board->mat[row][col+i] = '#';
+    if(row < board->n_rows && col < board->n_cols){
+        for(i = 0 ; i < dim_label ; ++i){
+            board->mat[row][col+i] = '#';
+        }
     }
+
 }
 
 /* DONE */
@@ -1130,7 +1136,7 @@ unsigned int max_pawns(unsigned int r,unsigned int c){
 }
 
 board_t *copy_board(board_t board ,board_t *newBoard,unsigned int cifre,unsigned int set){
-    if(set == 1){
+   /* if(set == 1){
         newBoard = create_board(board.n_rows,(board.n_cols/cifre),cifre);
     }
     if(newBoard){
@@ -1145,8 +1151,8 @@ board_t *copy_board(board_t board ,board_t *newBoard,unsigned int cifre,unsigned
         printf("Errore nella campo_copy (malloc di newBoard)");
         return NULL;
     }
-}
-    /*
+}*/
+
     if(set){
         newBoard = (board_t*)malloc(sizeof(board_t));
     }
@@ -1175,7 +1181,7 @@ board_t *copy_board(board_t board ,board_t *newBoard,unsigned int cifre,unsigned
         printf("Errore nella campo_copy (malloc di newBoard)");
         return NULL;
     }
-}*/
+}
 
 /* DONE
    ricordarsi canMove !! */
@@ -1186,7 +1192,7 @@ player_t *player_copy(player_t *players, player_t *newPlayers, unsigned int dim_
         for(nPl = 0 ; nPl < 2 ; ++nPl){
             newPlayers[nPl].pawns = (pawn_t*)calloc(players[nPl].dim_pawns,sizeof(pawn_t));
             for(l = 0 ; l < players[nPl].dim_pawns ; ++l){
-                newPlayers[nPl].pawns[l].label = (char*)calloc(dim_label,sizeof(char));
+                newPlayers[nPl].pawns[l].label = (char*)malloc(dim_label*sizeof(char));
             }
             for(l = 0 ; l < players[nPl].dim_pawns ; ++l){
                 unsigned int dim = 4;
@@ -1249,41 +1255,31 @@ unsigned int is_notstuck(player_t *players, board_t board, unsigned int nPawn, u
         if( ( (nPl == 0)&&(move_p1(newPlayers, nPawn, "sx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(newPlayers, nPawn, "sx",  newBoard) > -2)) ){
             players[nPl].pawns[nPawn].canMove[0] = 1;
             flag = 1;
-            newBoard = copy_board(board, newBoard,dim_label,0);
-            newPlayers =  player_copy(players,newPlayers, dim_label,0);
-           /* newBoard = copy_board(board, newBoard,dim_label,0);
-            printf("NewPlayers PRIMA: \n");
-            print_player(newPlayers,0);
-            printf("Players PRIMA\n: ");
-            print_player(players,0);
-            players =  player_copy(newPlayers, players, dim_label,0);
-            printf("NewPlayers DOPO: \n");
-            print_player(newPlayers,0);
-            printf("Players DOPO\n ");
-            print_player(players,0);*/
+            copy_board(board, newBoard,dim_label,0);
+            player_copy(players,newPlayers, dim_label,0);
         }
-/*
-        if( ((nPl == 0)&&(move_p1(players, nPawn, "dx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(players, nPawn, "dx", newBoard) > -2))){
-            players[nPl].pawns[nPawn].canMove[1] = 1;
+
+        if( ((nPl == 0)&&(move_p1(newPlayers, nPawn, "dx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(newPlayers, nPawn, "dx", newBoard) > -2))){
+             players[nPl].pawns[nPawn].canMove[1] = 1;
             flag = 1;
             copy_board(board, newBoard,dim_label,0);
-            players =  player_copy(newPlayers, players, dim_label,0);
+            player_copy(players,newPlayers, dim_label,0);
         }
 
         if (newPlayers[nPl].pawns[nPawn].isPromoted){
-            if( ((nPl == 0)&&(move_p1(players, nPawn, "bassodx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(players, nPawn, "bassodx", newBoard) > -2))){
+            if( ((nPl == 0)&&(move_p1(newPlayers, nPawn, "bassodx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(newPlayers, nPawn, "bassodx", newBoard) > -2))){
                 players[nPl].pawns[nPawn].canMove[2] = 1;
                 flag = 1;
                 copy_board(board, newBoard,dim_label,0);
-                players =  player_copy(newPlayers, players, dim_label,0);
+                player_copy(players,newPlayers, dim_label,0);
             }
-            if( ((nPl == 0)&&(move_p1(players, nPawn, "bassosx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(players, nPawn, "bassosx", newBoard) > -2))){
+            if( ((nPl == 0)&&(move_p1(newPlayers, nPawn, "bassosx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(newPlayers, nPawn, "bassosx", newBoard) > -2))){
                 players[nPl].pawns[nPawn].canMove[3] = 1;
                 flag = 1;
                 copy_board(board, newBoard,dim_label,0);
-                players =  player_copy(newPlayers, players, dim_label,0);
+                player_copy(players,newPlayers, dim_label,0);
             }
-        }*/
+        }
         destroy_board(newBoard);
         destroy_player(newPlayers);
         return flag;
