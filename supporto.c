@@ -11,7 +11,7 @@
 board_t* create_board(unsigned int n_rows,unsigned int n_cols,unsigned int cifre){
     board_t *t = NULL;
 
-    t = (board_t*)malloc(sizeof(board_t));
+    t = (board_t*)calloc(1,sizeof(board_t));
     if(t != NULL){
         unsigned int i;
         t->n_rows = n_rows;
@@ -423,8 +423,8 @@ void pawn_remove_promotion(player_t *players ,int num_pawn,unsigned int nPl){
     if(players[nPl].pawns[num_pawn].isPromoted == 1){
         players[nPl].pawns[num_pawn].isPromoted = 0;
         players[nPl].pawns[num_pawn].label[players[nPl].pawns[num_pawn].dim_label+3] = ' ';
-        /*free(players[nPl].pawns[num_pawn].canMove);*/
-        players[nPl].pawns[num_pawn].canMove = (unsigned int*)realloc( players[nPl].pawns[num_pawn].canMove,2*sizeof(unsigned int));
+        free(players[nPl].pawns[num_pawn].canMove);
+        players[nPl].pawns[num_pawn].canMove = (unsigned int*)calloc( 2,sizeof(unsigned int));
     }
 
 }
@@ -494,19 +494,19 @@ unsigned int check_directions(unsigned int *canMove_arr, unsigned int dim_canMov
 }
 
 /* DONE */
-void must_eat(player_t *players, board_t board, unsigned int n_pawn, unsigned int nPl){
+void must_eat(player_t *players, board_t *board, unsigned int n_pawn, unsigned int nPl){
 
     unsigned int flag = 1; 
-    if( ((nPl == 0)&&(can_eat(players,n_pawn,"sx",&board, 0) >= 0)) || ((nPl == 1)&&(can_eat(players, n_pawn, "bassosx", &board,1)>=0))  ){
-        if((nPl == 0 || nPl == 1) && flag == 1){
+    if( ((nPl == 0)&&(can_eat(players,n_pawn,"sx",board, 0) >= 0)) || ((nPl == 1)&&(can_eat(players, n_pawn, "bassosx", board,1)>=0))  ){
+        if(is_selected(players,n_pawn,nPl) && flag == 1){
             reset_moves_pawns(players, n_pawn, nPl);
             flag = 0;
         }
         players[nPl].pawns[n_pawn].canMove[0] = 1;
     }
 
-    if( ((nPl == 0)&&(can_eat(players,n_pawn,"dx",&board, 0) >= 0)) || ((nPl == 1)&&(can_eat(players, n_pawn, "bassodx", &board,1)>=0))  ){
-        if((nPl == 0 || nPl == 1) && flag == 1){
+    if( ((nPl == 0)&&(can_eat(players,n_pawn,"dx",board, 0) >= 0)) || ((nPl == 1)&&(can_eat(players, n_pawn, "bassodx", board,1)>=0))  ){
+        if(is_selected(players,n_pawn,nPl) && flag == 1){
             reset_moves_pawns(players, n_pawn, nPl);
             flag = 0;
         }
@@ -515,16 +515,16 @@ void must_eat(player_t *players, board_t board, unsigned int n_pawn, unsigned in
 
     if ((players[nPl].pawns[n_pawn].isPromoted)){
 
-        if( ((nPl == 0)&&(can_eat(players,n_pawn,"bassodx",&board, 0) >= 0)) || ((nPl == 1)&&(can_eat(players, n_pawn, "dx", &board,1)>=0))  ){
-            if((nPl == 0 || nPl == 1) && flag == 1){
+        if( ((nPl == 0)&&(can_eat(players,n_pawn,"bassodx",board, 0) >= 0)) || ((nPl == 1)&&(can_eat(players, n_pawn, "dx", board,1)>=0))  ){
+            if(is_selected(players,n_pawn,nPl) && flag == 1){
                 reset_moves_pawns(players, n_pawn, nPl);
                 flag = 0;
             }
             players[nPl].pawns[n_pawn].canMove[2] = 1;
         }
 
-        if( ((nPl == 0)&&(can_eat(players,n_pawn,"bassosx",&board, 0) >= 0)) || ((nPl == 1)&&(can_eat(players, n_pawn, "sx", &board,1)>=0))){
-            if((nPl == 0 || nPl == 1) && flag == 1){
+        if( ((nPl == 0)&&(can_eat(players,n_pawn,"bassosx",board, 0) >= 0)) || ((nPl == 1)&&(can_eat(players, n_pawn, "sx", board,1)>=0))){
+            if(is_selected(players,n_pawn,nPl) && flag == 1){
                 reset_moves_pawns(players, n_pawn, nPl);
                 flag = 0;
             }
@@ -759,13 +759,13 @@ unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t bo
 
             players[nPl].pawns[newPos].dim_label = players[nPl2].pawns[enemy_pawn].dim_label;
 
-            pawn_remove_promotion(players,newPos,nPl);
-            pawn_remove_promotion(players,enemy_pawn,nPl2);
-            /*
-            players[nPl].pawns[newPos].isPromoted = players[nPl2].pawns[enemy_pawn].isPromoted = 0;
+            /*pawn_remove_promotion(players,newPos,nPl);
+            pawn_remove_promotion(players,enemy_pawn,nPl2);*/
 
+            players[nPl].pawns[newPos].isPromoted = players[nPl2].pawns[enemy_pawn].isPromoted = 0;
+            players[nPl2].pawns[newPos].label[players[nPl].pawns[newPos].dim_label+3] = ' ';
             players[nPl].pawns[newPos].label[players[nPl].pawns[newPos].dim_label+3] = ' ';
-            players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].dim_label+3] = ' ';*/
+            players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].dim_label+3] = ' ';
 
             for (i = 0; i < 3; i++){
                 players[nPl].pawns[newPos].label[i] = players[nPl2].pawns[enemy_pawn].label[i];
@@ -1180,58 +1180,53 @@ board_t *copy_board(board_t board ,board_t *newBoard,unsigned int cifre,unsigned
 /* DONE
    ricordarsi canMove !! */
 player_t *player_copy(player_t *players, player_t *newPlayers, unsigned int dim_label,unsigned int set){
-    if(set){
+    if(set == 1){
+        unsigned int l,nPl;
         newPlayers = (player_t*)calloc(2, sizeof(player_t));
+        for(nPl = 0 ; nPl < 2 ; ++nPl){
+            newPlayers[nPl].pawns = (pawn_t*)calloc(players[nPl].dim_pawns,sizeof(pawn_t));
+            for(l = 0 ; l < players[nPl].dim_pawns ; ++l){
+                newPlayers[nPl].pawns[l].label = (char*)calloc(dim_label,sizeof(char));
+            }
+            for(l = 0 ; l < players[nPl].dim_pawns ; ++l){
+                unsigned int dim = 4;
+                newPlayers[nPl].pawns[l].canMove = (unsigned int*)calloc(dim,sizeof(unsigned int));
+            }
+        }
+
     }
-    if(newPlayers != NULL){
+    if(newPlayers != NULL  ){
         unsigned int  nPl;
-        for (nPl = 0; nPl < 2; nPl++){
-            unsigned int i,j;
+        for (nPl = 0; nPl < 2; nPl++) {
+            unsigned int i, j;
+
             newPlayers[nPl].dim_pawns = players[nPl].dim_pawns;
             newPlayers[nPl].color = players[nPl].color;
-            if(set){
-                unsigned int l;
-                newPlayers[nPl].pawns = (pawn_t*)calloc(players[nPl].dim_pawns,sizeof(pawn_t));
-                for(l = 0 ; l < players[nPl].dim_pawns ; ++l){
-                    newPlayers[nPl].pawns[l].label = (char*)calloc(dim_label,sizeof(char));
-                }
-                /**/
-                for(l = 0 ; l < players[nPl].dim_pawns ; ++l){
-                   /* unsigned int dim = 2;
-                    if(players[nPl].pawns[l].isPromoted == 1){
-                        dim = 4;
-                    }*/
-                    newPlayers[nPl].pawns[l].canMove = (unsigned int*)calloc(4,sizeof(unsigned int));
-                }
-                /**/
 
-            }
-            for(i = 0 ; i < players[nPl].dim_pawns ; ++i){
+            for (i = 0; i < players[nPl].dim_pawns; ++i) {
                 unsigned int dim = 2;
-                if(players[nPl].pawns[i].isPromoted == 1){
-                    dim = 4;
-                }
-
-                /**/
-                for(j = 0 ; j < dim ; ++j){
-                    newPlayers[nPl].pawns[i].canMove[j] = players[nPl].pawns[i].canMove[j];
-                }
-                /**/
-
-                for(j = 0 ; j < dim_label ; ++j){
-                    newPlayers[nPl].pawns[i].label[j] = players[nPl].pawns[i].label[j];
-                }
                 newPlayers[nPl].pawns[i].dim_label = players[nPl].pawns[i].dim_label;
                 newPlayers[nPl].pawns[i].cima = players[nPl].pawns[i].cima;
                 newPlayers[nPl].pawns[i].grade = players[nPl].pawns[i].grade;
                 newPlayers[nPl].pawns[i].coordinate.y = players[nPl].pawns[i].coordinate.y;
                 newPlayers[nPl].pawns[i].coordinate.x = players[nPl].pawns[i].coordinate.x;
                 newPlayers[nPl].pawns[i].isPromoted = players[nPl].pawns[i].isPromoted;
+
+                if (players[nPl].pawns[i].isPromoted == 1) {
+                    dim = 4;
+                }
+                for (j = 0; j < dim; ++j) {
+                    newPlayers[nPl].pawns[i].canMove[j] = players[nPl].pawns[i].canMove[j];
+                }
+                for (j = 0; j < dim_label; ++j) {
+                    newPlayers[nPl].pawns[i].label[j] = players[nPl].pawns[i].label[j];
+                }
             }
-        }       
+        }
+
         return newPlayers;
     }else{
-        printf("Errore calloc player_copy");
+        printf("Errore player_copy");
         return NULL;
     }
 }
@@ -1241,49 +1236,59 @@ unsigned int is_notstuck(player_t *players, board_t board, unsigned int nPawn, u
     player_t *newPlayers = NULL;
     unsigned int dim_label = 0;
 
-    dim_label = (players[nPl].pawns[0].dim_label+3+1);
+    dim_label = (players[0].pawns[0].dim_label+3+1);
   
     newBoard = copy_board(board, newBoard,dim_label,1);
 
-    newPlayers = player_copy(players, newPlayers, dim_label,1);
+    newPlayers =  player_copy(players, newPlayers, dim_label,1);
+    newPlayers =  player_copy(players, newPlayers, dim_label,0);
 
     if(newBoard != NULL && newPlayers != NULL){
         unsigned int flag = 0;
         update_board(newBoard, newPlayers);
-        if( ( (nPl == 0)&&(move_p1(newPlayers, nPawn, "sx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(newPlayers, nPawn, "sx", newBoard) > -2)) ){
+        if( ( (nPl == 0)&&(move_p1(newPlayers, nPawn, "sx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(newPlayers, nPawn, "sx",  newBoard) > -2)) ){
             players[nPl].pawns[nPawn].canMove[0] = 1;
             flag = 1;
-            copy_board(board, newBoard,dim_label,0);
-            player_copy(players, newPlayers, dim_label,0);
+            newBoard = copy_board(board, newBoard,dim_label,0);
+            newPlayers =  player_copy(players,newPlayers, dim_label,0);
+           /* newBoard = copy_board(board, newBoard,dim_label,0);
+            printf("NewPlayers PRIMA: \n");
+            print_player(newPlayers,0);
+            printf("Players PRIMA\n: ");
+            print_player(players,0);
+            players =  player_copy(newPlayers, players, dim_label,0);
+            printf("NewPlayers DOPO: \n");
+            print_player(newPlayers,0);
+            printf("Players DOPO\n ");
+            print_player(players,0);*/
         }
-
-        if( ((nPl == 0)&&(move_p1(newPlayers, nPawn, "dx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(newPlayers, nPawn, "dx", newBoard) > -2))){
+/*
+        if( ((nPl == 0)&&(move_p1(players, nPawn, "dx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(players, nPawn, "dx", newBoard) > -2))){
             players[nPl].pawns[nPawn].canMove[1] = 1;
             flag = 1;
             copy_board(board, newBoard,dim_label,0);
-            player_copy(players, newPlayers, dim_label,0);
+            players =  player_copy(newPlayers, players, dim_label,0);
         }
 
         if (newPlayers[nPl].pawns[nPawn].isPromoted){
-            if( ((nPl == 0)&&(move_p1(newPlayers, nPawn, "bassodx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(newPlayers, nPawn, "bassodx", newBoard) > -2))){
+            if( ((nPl == 0)&&(move_p1(players, nPawn, "bassodx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(players, nPawn, "bassodx", newBoard) > -2))){
                 players[nPl].pawns[nPawn].canMove[2] = 1;
                 flag = 1;
                 copy_board(board, newBoard,dim_label,0);
-                player_copy(players, newPlayers, dim_label,0);
+                players =  player_copy(newPlayers, players, dim_label,0);
             }
-            if( ((nPl == 0)&&(move_p1(newPlayers, nPawn, "bassosx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(newPlayers, nPawn, "bassosx", newBoard) > -2))){
+            if( ((nPl == 0)&&(move_p1(players, nPawn, "bassosx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(players, nPawn, "bassosx", newBoard) > -2))){
                 players[nPl].pawns[nPawn].canMove[3] = 1;
                 flag = 1;
                 copy_board(board, newBoard,dim_label,0);
-                player_copy(players, newPlayers, dim_label,0);
+                players =  player_copy(newPlayers, players, dim_label,0);
             }
-        }       
+        }*/
         destroy_board(newBoard);
         destroy_player(newPlayers);
         return flag;
-
     }else{
-        printf("Errore nella ped_noblock\n");
+        printf("Errore nella is_notstuck\n");
         if(newBoard != NULL){
             destroy_board(newBoard);
         }
@@ -1438,8 +1443,8 @@ int player_vs_player(unsigned int x ){
     printf("Il player che inizia e' %u\n",turno+1);
     /* &&(!is_victory(players)) */
     while((exit == 4)&&(is_victory(players)>2)){
-        set_moves_pawn(players,*t,0,-1);
-        set_moves_pawn(players,*t,1,-1);
+        set_moves_pawn(players,t,0,-1);
+        set_moves_pawn(players,t,1,-1);
         if(all_blocked(players,*t,turno)  && (turno == 0 || turno == 1)){
             exit = 2;
         }
@@ -1677,14 +1682,14 @@ void reset_moves_pawns(player_t *players, int nPawn, unsigned int nPl){
 }
 
 /* DONE */
-void set_moves_pawn(player_t *players, board_t board, unsigned int nPl, int nPawn){
+void set_moves_pawn(player_t *players, board_t *board, unsigned int nPl, int nPawn){
 
     if(nPawn == -1){
         int i;
         reset_moves_pawns(players, -1, nPl);
         for(i = 0; i < players[nPl].dim_pawns; ++i){
             if(is_selected(players,i,nPl)){
-                is_notstuck(players, board, i, nPl);
+                is_notstuck(players, *board, i, nPl);
                 must_eat(players, board, i, nPl);
 
             }
@@ -1694,7 +1699,7 @@ void set_moves_pawn(player_t *players, board_t board, unsigned int nPl, int nPaw
         if(nPawn > 0 && nPawn < players[nPl].dim_pawns){
             reset_moves_pawns(players, nPawn, nPl);
             if(is_selected(players,nPawn,nPl)){
-                is_notstuck(players, board, nPawn, nPl);
+                is_notstuck(players, *board, nPawn, nPl);
                 must_eat(players, board, nPawn, nPl);
             }
         }
@@ -1771,7 +1776,7 @@ unsigned int max(valueMinimax_t *arr,unsigned int dim){
     }
     return pos;
 }
-
+/*
 int round_ia_minimax(player_t *players, board_t *board,unsigned int nPl, unsigned int depth){
     valueMinimax_t *value_arr;
     unsigned int pos;
@@ -1834,8 +1839,8 @@ int evaluate_score(board_t board, player_t *players){
         }
     }
     return val;
-}
-
+}*/
+/*
 void restore_copy(board_t board, player_t *players, board_t *board_copy, player_t *players_copy){
     board_copy = copy_board(board, board_copy,players[0].pawns[0].dim_label+3+1,0);
     players_copy = player_copy(players, players_copy, players[0].pawns[0].dim_label+3+1,0);
@@ -1852,9 +1857,9 @@ int call_minimax(board_t *board_copy, player_t *players_copy,unsigned int depth,
     update_board(board_copy,players_copy);
 
     if(cheat == 1){
-        set_moves_pawn(players_copy, *board_copy, 0, -1);
+        set_moves_pawn(players_copy, board_copy, 0, -1);
         if ( is_selected(players_copy,x,1) ) {
-            set_moves_pawn(players_copy, *board_copy, 1,-1);
+            set_moves_pawn(players_copy, board_copy, 1,-1);
         }
         eval = minimax(*board_copy, players_copy, depth - 1, nPed, 1, v, 0);
         if ( maxEval < eval ) {
@@ -1866,9 +1871,9 @@ int call_minimax(board_t *board_copy, player_t *players_copy,unsigned int depth,
             return maxEval;
         }
     }else{
-        set_moves_pawn(players_copy, *board_copy, 1, -1);
+        set_moves_pawn(players_copy, board_copy, 1, -1);
         if(is_selected(players_copy,x,0) ){
-            set_moves_pawn(players_copy, *board_copy, 0, -1);
+            set_moves_pawn(players_copy, board_copy, 0, -1);
         }
         eval = minimax(*board_copy, players_copy, depth-1, nPed, 0,v, 1);
         if ( maxEval > eval ) {
@@ -1983,7 +1988,7 @@ int minimax(board_t board, player_t *players, int depth,unsigned  int nPed,unsig
 
     }
 }
-    
+    */
     
 
 /*

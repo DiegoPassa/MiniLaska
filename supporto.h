@@ -59,7 +59,7 @@ void update_board(board_t *t,player_t *player);/* update the pawns position on t
 
 int can_eat(player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl);/* check before eating another pawn, if the pawn is an eney then you can eat it */
 
-void must_eat(player_t *players, board_t board, unsigned int n_pawn, unsigned int nPl);/* the pawn must eat the enemy */
+void must_eat(player_t *players, board_t *board, unsigned int n_pawn, unsigned int nPl);/* the pawn must eat the enemy */
 
 unsigned int check_directions(unsigned int *canMove_arr, unsigned int dim_canMove, char *str);/* compare the string with the mandatory directions */
 
@@ -131,7 +131,7 @@ void print_minimax(valueMinimax_t *value_arr,unsigned int dim_arr);
 
 int round_ia_minimax(player_t *players, board_t *board,unsigned int nPl,unsigned int depth);
 
-void set_moves_pawn(player_t *players, board_t board, unsigned int nPl,int nPawn);
+void set_moves_pawn(player_t *players, board_t *board, unsigned int nPl,int nPawn);
 
 void reset_moves_pawns(player_t *players, int nPawn, unsigned int nPl);
 
