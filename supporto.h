@@ -81,7 +81,7 @@ board_t *copy_board(board_t board ,board_t *newBoard,unsigned int cifre,unsigned
 
 player_t *player_copy(player_t *players, player_t *newPlayers, unsigned int dim_label,unsigned int set);/* create a new player copying an existing player */
 
-unsigned int add_pawn(player_t *players, unsigned int enemy_pawn, unsigned int nPl);/* add a pawn to the other player based on the pawn eaten */
+unsigned int add_pawn(player_t *players, unsigned int enemy_pawn, unsigned int nPl,char c);/* add a pawn to the other player based on the pawn eaten */
 
 int move_p1 (player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl);/* move a player1's pawn to a direction */
 
@@ -115,9 +115,11 @@ void player_vs_ia();/*mode player vs ia */
 
 unsigned int round_ia_random(player_t *players, board_t *board, unsigned int nPl);
 
-int minimax(board_t board, player_t *players, int depth,unsigned  int nPed,unsigned int nPl,valueMinimax_t *v, int cheat);
+unsigned int interropt_minimax(int *alpha ,int *beta);
 
-int call_minimax(board_t *board_copy, player_t *players_copy,unsigned int depth, unsigned int nPed,unsigned int nPl,valueMinimax_t *v,char *str,int maxEval, int cheat);
+int minimax(board_t board, player_t *players, int depth,unsigned  int nPed,unsigned int nPl,valueMinimax_t *v, int cheat,int *alpha,int *beta);
+
+int call_minimax(board_t *board_copy, player_t *players_copy,unsigned int depth, unsigned int nPed,unsigned int nPl,valueMinimax_t *v,char *str,int maxEval, int cheat,int *alpha,int *beta);
 
 void restore_copy(board_t board, player_t *players, board_t *board_copy, player_t *players_copy);
 
