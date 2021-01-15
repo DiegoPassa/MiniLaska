@@ -33,8 +33,7 @@ void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char 
         i = t.n_rows-1;
     }
     while( (((npl == 0)&&(i < t.n_rows))||((npl == 1)&&(i >= 0))) ){
-        for (l = 0; l < t.n_cols; l+=cifre)
-        {
+        for (l = 0; l < t.n_cols; l+=cifre){
             /* controllo dov'è la cima */      
             while (t.mat[i][l+k] != char_p2 && t.mat[i][l+k] != char_p1 && k<3){
                 k++;
@@ -53,11 +52,9 @@ void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char 
                     if (topPl[j/cifre] == char_p2 || topPl[j/cifre] == char_p1){
                         setBlack();
                         if (topPl[j/cifre] == char_p2){
-                            /*setRed(2);*/
-                            printColor(char_p2); /** TEST */
+                            printColor(char_p2);
                         }else if (topPl[j/cifre] == char_p1){
-                            /*setYellow(2);*/
-                            printColor(char_p1); /** TEST */
+                            printColor(char_p1);
                         }
                         printf(" ");
                         for (z = 0; z < cifre; z++){
@@ -80,20 +77,16 @@ void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char 
                     if (cime[j/cifre]<l){
                         if ((t.mat[i][j+l] == char_p1 || t.mat[i][j+l] == char_p2) && t.mat[i][j+l] != topPl[j/cifre]){
                             if (topPl[j/cifre] == char_p2){
-                                /*setYellow(2);*/
-                                printColor(char_p1); /** TEST */
+                                printColor(char_p1);
                             }else if (topPl[j/cifre] == char_p1){
-                                /*setRed(2);*/
-                                printColor(char_p2); /** TEST */
+                                printColor(char_p2);
                             }
                             /* altrimenti stampa il colore del proprietario */
                         }else{
                             if (topPl[j/cifre] == char_p2){
-                                /*setRed(2);*/
-                                printColor(char_p2); /** TEST */
+                                printColor(char_p2);
                             }else if (topPl[j/cifre] == char_p1){
-                                /*setYellow(2);*/
-                                printColor(char_p1); /** TEST */
+                                printColor(char_p1);
                             }
                         }
                         for(z = 0 ; z < cifre+2; ++z){
@@ -117,7 +110,6 @@ void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char 
                 }          
             }
             printf("|\n");
-
         }
         
         /* stampa separatore tra righe */
@@ -187,10 +179,6 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
     int y = -2;
 
     update_board(t,players);
-
-    printTextColor(players[nPl].color);
-    printf("Turno Player %d\n", nPl+1);
-    resetColor();
     print_board(*t,(players[0].pawns[0].dim_label+3)+1,nPl, players[0].color, players[1].color);
 
     printf("Vuoi uscire dal gioco ? ");
@@ -306,16 +294,49 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
     return 4;
 }
 
-int player_vs_player(unsigned int x ){
+int game(unsigned int gameMode){
     board_t *t = NULL;
     player_t *players = NULL;
+    int isCustom, depth;
     unsigned int exit = 4,turno = 0,round = 0;
     unsigned int cifre,conta = 2,numped = 11;
 
     srand(time(0));
+
+    if (gameMode){
+        printf("\n\tSelect difficulty: \n\n");
+        printf(" [0] "GRN"Easy"reset"   (random IA)\n");
+        printf(" [1] "YEL"Medium"reset" (low-depth minimax)\n");
+        printf(" [2] "RED"Hard"reset"   (high-depth minimax)\n");
+        printf(" [3] Custom (custom-depth minimax)\n");
+        printf("\n Selection: ");
+
+        scanf("%d", &depth);
+        if (depth == 1){
+            depth = 5;
+            printf(" Selected "YEL"medium"reset".\n");
+        }else if(depth == 2){
+            depth = 11;
+            printf(" Selected "RED"hard"reset".\n");
+        }else if (depth == 3){
+            printf(" Select depth: ");
+            scanf("%d", &depth);
+        }else{
+            depth = 0;
+            printf(" Selected"GRN"easy"reset".\n");
+        }
+    
+    }
+    
+    printf("\n\tSelect gamemode:\n");
+    printf(" [0] Classic (11 vs 11, board 7x7)\n");
+    printf(" [1] Custom\n");
+    printf("\n Selection: ");
+
+    scanf("%d", &isCustom);
     
     /*char char_p1, char_p2;*/
-    if(x == 0){
+    if(isCustom == 0){
         t = create_board(7,7,3+conta+1);
         initialize_board(t,3+conta+1);
         players = create_pawns(11,'Y','R',conta,*t); /* create array[2] of player_t type */
@@ -388,18 +409,24 @@ int player_vs_player(unsigned int x ){
         }
         if(exit == 4){
             printf("Round numero : %u\n",round);
+            printTextColor(players[turno].color);
+            printf("Turno Player %d\n", turno+1);
+            resetColor();
             if (turno == 0){
-                /* exit = round_player(players,t,turno); */
-                exit = round_ia_minimax(players,t,turno, 11);
-                /* exit = round_ia_random(players, t, 0); */
+                round_player(players,t,turno);           
                 turno = 1;
             }else{
-                /* exit = round_player(players,t,turno); */
-                /*exit = round_ia_minimax(players,t,turno, 3);*/
-                 exit = round_ia_random(players, t, 1);
+                if (gameMode){
+                    if (depth == 0){
+                        exit = round_ia_random(players, t, turno);
+                    }else{
+                        exit = round_ia_minimax(players,t,turno, depth);                
+                    }                
+                }else{            
+                    exit = round_player(players,t,turno);
+                }
                 turno = 0;
             }
-            printPlayerTurn(players[turno].color);
             /* print_player(players,0);
             print_player(players,1); */
             update_board(t, players);
@@ -409,7 +436,7 @@ int player_vs_player(unsigned int x ){
             ++round;
         }
     }
-    if(x == 2){
+    if(exit == 2){
         printf("Entrambi i giocatori hanno le pedine bloccate\n");
     }
     if(exit == 3){
@@ -429,34 +456,36 @@ int player_vs_player(unsigned int x ){
 }
 
 void menu(){
-    int choice=0;
+    int choice = 0;
     system("clear");
-    while(choice!='3')
-    {
-        printf("\n\t\t\t\t\t\t+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n\t\t\t\t\t\t|M|i|n|i||L|a|s|k|a||G|a|m|e|\n\t\t\t\t\t\t+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
-        printf("\n\n\t\t\t\t\t\t 1. PLAYER VS PLAYER");
-        printf("\n\t\t\t\t\t\t 2. PLAYER VS IA");
-        printf("\n\t\t\t\t\t\t 3. EXIT");
-        printf("\n\n Enter Your Choice: ");
-        choice = getchar();
-        switch(choice)
-        {
-            case '1':
+    printf(" #886711 Diego    Passarella\n");
+    printf(" #882082 Davide   Pasqual\n");
+    printf(" #881493 Michelle Ravagnan\n");
+    printf("\n\t+-+-+-+-+-+-+-+-+-+-+-+-+-+\n"
+             "\t|M|i|n|i||L|a|s|k|a|  |5|1|\n"
+             "\t+-+-+-+-+-+-+-+-+-+-+-+-+-+");
+    printf("\n\n [1] Player vs. Player");
+    printf("\n [2] Player vs. IA");
+    printf("\n [3] Exit");
+    while(choice != 1 && choice != 2 && choice != 3){
+        printf("\n\n Select mode: ");
+        scanf("%d", &choice);
+        switch(choice){
+            case 1:
                 system("clear");
-                printf("\n\t\t\t\t\t\tYOU SELECTED OPTION 1 : PLAYER VS PLAYER\n");
-                printf("\t\t\t\t\t\t----------------------------------------\n");
+                printf("\nSelected Player vs. Player\n");
+                game(0);
                 break;
-            case '2':
+            case 2:
+                printf("\nSelected Player vs. IA\n");
                 system("clear");
-                printf("\n\nYOU SELECTED OPTION 2 : PLAYER VS IA\n");
+                game(1);
                 break;
-            case '3':
+            case 3:
+                system("clear");
                 break;
             default:
-                printf("\n\nINVALID SELECTION...Please try again\n");
+                printf("\nINVALID SELECTION...Please try again\n");
         };
-
-
-
     }
 }

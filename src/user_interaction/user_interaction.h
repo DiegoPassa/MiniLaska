@@ -7,7 +7,7 @@ void print_player(player_t *players,unsigned int nPl);
 
 unsigned int round_player(player_t *players,board_t *t,unsigned int nPl);
 
-int player_vs_player(unsigned int x);
+int game(unsigned int x);
 
 void menu();
 
