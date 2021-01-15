@@ -1,14 +1,16 @@
 #include <stdio.h>
-#include <unistd.h> /* sleep() */
 #include <stdlib.h>
-#include "ia.h"
-
-#include<stdio.h>
-#include <unistd.h>
-#include<stdlib.h>
-#include<string.h>
-#include<time.h>
 #include <math.h>
+#include <string.h>
+#include <time.h>
+#include <unistd.h>
+
+#include "../colors/colors.h"
+#include "../game_engine/game_engine.h"
+#include "ia.h"
+#include "../memory_management/memory_management.h"
+#include "../movement/movement.h"
+#include "../user_interaction/user_interaction.h"
 
 struct valueMinimax{
     int value;
@@ -141,7 +143,7 @@ int minimax(board_t board, player_t *players, int depth,unsigned  int nPed,unsig
         maxEval = -9999;
 
         if (players_copy[nPl].pawns[nPed].canMove[0] == 1) {
-            if((!interropt_minimax(alpha,beta) ) ){
+            if((!interrupt_minimax(alpha,beta) ) ){
                 int x;
                 x = call_minimax(board_copy,players_copy,depth,nPed,nPl,v,"sx",maxEval, cheat,alpha,beta);
                 maxEval < x  ?  maxEval = x : maxEval ;
@@ -152,7 +154,7 @@ int minimax(board_t board, player_t *players, int depth,unsigned  int nPed,unsig
         restore_copy(board,players,board_copy,players_copy);
 
         if (players_copy[nPl].pawns[nPed].canMove[1]) {
-            if((!interropt_minimax(alpha,beta) ) ){
+            if((!interrupt_minimax(alpha,beta) ) ){
                 int x;
                 x = call_minimax(board_copy,players_copy,depth,nPed,nPl,v,"dx",maxEval, cheat,alpha,beta);
                 maxEval < x  ?  maxEval = x : maxEval ;
@@ -164,7 +166,7 @@ int minimax(board_t board, player_t *players, int depth,unsigned  int nPed,unsig
 
         if (players_copy[nPl].pawns[nPed].isPromoted  ) {
             if (players_copy[nPl].pawns[nPed].canMove[2] ) {
-                if((!interropt_minimax(alpha,beta) ) ){
+                if((!interrupt_minimax(alpha,beta) ) ){
                     int x;
                     x = call_minimax(board_copy,players_copy,depth,nPed,nPl,v,"bassodx",maxEval, cheat,alpha,beta);
                     maxEval < x  ?  maxEval = x : maxEval ;
@@ -174,8 +176,8 @@ int minimax(board_t board, player_t *players, int depth,unsigned  int nPed,unsig
             }
             restore_copy(board,players,board_copy,players_copy);
 
-            if (players_copy[nPl].pawns[nPed].canMove[3]&& (!interropt_minimax(alpha,beta) )) {
-                if((!interropt_minimax(alpha,beta) ) ){
+            if (players_copy[nPl].pawns[nPed].canMove[3]&& (!interrupt_minimax(alpha,beta) )) {
+                if((!interrupt_minimax(alpha,beta) ) ){
                     int x;
                     x = call_minimax(board_copy,players_copy,depth,nPed,nPl,v,"bassosx",maxEval, cheat,alpha,beta);
                     maxEval < x  ?  maxEval = x : maxEval ;
@@ -200,7 +202,7 @@ int minimax(board_t board, player_t *players, int depth,unsigned  int nPed,unsig
             
             if (is_selected(players_copy,i,nPl) ){
                 if (players_copy[nPl].pawns[i].canMove[0] == 1) {
-                    if((!interropt_minimax(alpha,beta) ) ){
+                    if((!interrupt_minimax(alpha,beta) ) ){
                         int x;
                         x = call_minimax(board_copy,players_copy,depth,i,nPl,v,"sx",maxEval, cheat,alpha,beta);
                         maxEval > x  ?  maxEval = x : maxEval ;
@@ -210,8 +212,8 @@ int minimax(board_t board, player_t *players, int depth,unsigned  int nPed,unsig
                 }
                 restore_copy(board,players,board_copy,players_copy);
 
-                if (players_copy[nPl].pawns[i].canMove[1] == 1 && (!interropt_minimax(alpha,beta) )){
-                    if((!interropt_minimax(alpha,beta) ) ){
+                if (players_copy[nPl].pawns[i].canMove[1] == 1 && (!interrupt_minimax(alpha,beta) )){
+                    if((!interrupt_minimax(alpha,beta) ) ){
                         int x;
                         x = call_minimax(board_copy,players_copy,depth,i,nPl,v,"dx",maxEval, cheat,alpha,beta);
                         maxEval > x  ?  maxEval = x : maxEval ;
@@ -222,8 +224,8 @@ int minimax(board_t board, player_t *players, int depth,unsigned  int nPed,unsig
                 restore_copy(board,players,board_copy,players_copy);
 
                 if (players_copy[nPl].pawns[i].isPromoted){
-                    if (players_copy[nPl].pawns[i].canMove[2] == 1 && (!interropt_minimax(alpha,beta) )){
-                        if((!interropt_minimax(alpha,beta) ) ){
+                    if (players_copy[nPl].pawns[i].canMove[2] == 1 && (!interrupt_minimax(alpha,beta) )){
+                        if((!interrupt_minimax(alpha,beta) ) ){
                             int x;
                             x = call_minimax(board_copy,players_copy,depth,i,nPl,v,"bassodx",maxEval, cheat,alpha,beta);
                             maxEval > x  ?  maxEval = x : maxEval ;
@@ -233,8 +235,8 @@ int minimax(board_t board, player_t *players, int depth,unsigned  int nPed,unsig
                     }
                     restore_copy(board,players,board_copy,players_copy);
 
-                    if (players_copy[nPl].pawns[i].canMove[3] == 1 && (!interropt_minimax(alpha,beta) )) {
-                        if((!interropt_minimax(alpha,beta) ) ){
+                    if (players_copy[nPl].pawns[i].canMove[3] == 1 && (!interrupt_minimax(alpha,beta) )) {
+                        if((!interrupt_minimax(alpha,beta) ) ){
                             int x;
                             x = call_minimax(board_copy,players_copy,depth,i,nPl,v,"bassosx",maxEval, cheat,alpha,beta);
                             maxEval > x  ?  maxEval = x : maxEval ;

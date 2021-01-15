@@ -1,12 +1,17 @@
+#include <stdio.h>
 #include <stdlib.h>
-#include "memory_management.h"
-
-#include<stdio.h>
-#include <unistd.h>
-#include<stdlib.h>
-#include<string.h>
-#include<time.h>
 #include <math.h>
+#include <string.h>
+#include <time.h>
+#include <unistd.h>
+
+#include "../colors/colors.h"
+#include "../game_engine/game_engine.h"
+#include "../ia/ia.h"
+#include "memory_management.h"
+#include "../movement/movement.h"
+#include "../user_interaction/user_interaction.h"
+
 
 board_t* create_board(unsigned int n_rows,unsigned int n_cols,unsigned int cifre){
     board_t *t = NULL;

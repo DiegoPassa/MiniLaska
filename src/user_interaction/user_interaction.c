@@ -1,12 +1,16 @@
 #include <stdio.h>
-#include "user_interaction.h"
-
-#include<stdio.h>
-#include <unistd.h>
-#include<stdlib.h>
-#include<string.h>
-#include<time.h>
+#include <stdlib.h>
 #include <math.h>
+#include <string.h>
+#include <time.h>
+#include <unistd.h>
+
+#include "../colors/colors.h"
+#include "../game_engine/game_engine.h"
+#include "../ia/ia.h"
+#include "../memory_management/memory_management.h"
+#include "../movement/movement.h"
+#include "user_interaction.h"
 
 void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char char_p2){
     int i, j, k = 0, z, l;

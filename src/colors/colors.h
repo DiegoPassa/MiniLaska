@@ -1,3 +1,6 @@
+#ifndef COLORS_H
+#define COLORS_H
+
 /* Regular text */
 #define BLK "\033[0;30m"
 #define RED "\033[0;31m"
@@ -78,3 +81,5 @@ void printTextColor(char color);
 void printColor(char color);
 void printPlayerTurn(char nPl);
 void resetColor();
+
+#endif

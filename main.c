@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "src/user_interaction/user_interaction.h"
+#include <math.h>
 
+#include "src/colors/colors.h"
+#include "src/game_engine/game_engine.h"
+#include "src/ia/ia.h"
+#include "src/memory_management/memory_management.h"
+#include "src/movement/movement.h"
+#include "src/user_interaction/user_interaction.h"
 
 int main(){
 

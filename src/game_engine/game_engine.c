@@ -1,35 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
+#include <time.h>
+#include <unistd.h>
+
+#include "../colors/colors.h"
 #include "game_engine.h"
-
-struct board{
-    char **mat; /*!< Detailed description after the member */
-    dim_board n_rows;
-    dim_board n_cols;
-};
-
-struct point{
-    coord x; /* cols */
-    coord y; /* rows */
-};
-
-struct pawn{
-    char *label; /* etichetta della pedina Es.|  BN07 | */
-    unsigned int dim_label;
-    point_t coordinate;
-    unsigned int cima;
-    unsigned int grade;
-    flag isPromoted; /* Es: |  BN07^ | */
-    unsigned int *canMove; /* 0010 -> bassodx */
-};
-
-struct player{
-    char color;
-    pawn_t *pawns;
-    unsigned int dim_pawns;
-};
-
+#include "../ia/ia.h"
+#include "../memory_management/memory_management.h"
+#include "../movement/movement.h"
+#include "../user_interaction/user_interaction.h"
 
 void initialize_board(board_t *board,unsigned int cifre){
     unsigned int i,j;

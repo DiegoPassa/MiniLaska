@@ -1,13 +1,33 @@
+#ifndef GAME_ENGINE_H
+#define GAME_ENGINE_H
 
 typedef unsigned int dim_board, coord, flag;
+struct board{
+    char **mat; /*!< Detailed description after the member */
+    dim_board n_rows;
+    dim_board n_cols;
+}typedef board_t;
 
-typedef struct board board_t;
+struct point{
+    coord x; /* cols */
+    coord y; /* rows */
+}typedef point_t;
 
-typedef struct point point_t;
+struct pawn{
+    char *label; /* etichetta della pedina Es.|  BN07 | */
+    unsigned int dim_label;
+    point_t coordinate;
+    unsigned int cima;
+    unsigned int grade;
+    flag isPromoted; /* Es: |  BN07^ | */
+    unsigned int *canMove; /* 0010 -> bassodx */
+}typedef pawn_t;
+struct player{
+    char color;
+    pawn_t *pawns;
+    unsigned int dim_pawns;
+}typedef player_t;
 
-typedef struct pawn pawn_t;
-
-typedef struct player player_t;
 
 void initialize_board(board_t *board,unsigned int cifre);
 
@@ -60,3 +80,5 @@ unsigned int check_string(char *str);
 unsigned int char_converter(board_t board, unsigned int r, unsigned int c, unsigned int dim_label);
 
 char int_converter(int num,unsigned int index);
+
+#endif

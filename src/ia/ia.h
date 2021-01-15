@@ -1,3 +1,5 @@
+#ifndef IA_H
+#define IA_H
 
 typedef struct valueMinimax valueMinimax_t;
 
@@ -20,3 +22,5 @@ void print_minimax(valueMinimax_t *value_arr,unsigned int dim_arr);
 unsigned int max(valueMinimax_t *arr,unsigned int dim);
 
 void destroy_value_minimax(valueMinimax_t *arr,unsigned int dim);
+
+#endif

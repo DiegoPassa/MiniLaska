@@ -1,5 +1,16 @@
-#include "movement/movement.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+#include <time.h>
+#include <unistd.h>
 
+#include "../colors/colors.h"
+#include "../game_engine/game_engine.h"
+#include "../ia/ia.h"
+#include "../memory_management/memory_management.h"
+#include "movement.h"
+#include "../user_interaction/user_interaction.h"
 
 unsigned int move_noeat(player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl){
     if(!strcmp(str,"sx")){

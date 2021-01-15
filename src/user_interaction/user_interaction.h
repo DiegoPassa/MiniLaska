@@ -1,3 +1,5 @@
+#ifndef USER_INTERACTION_H
+#define USER_INTERACTION_H
 
 void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char char_p2);
 
@@ -8,3 +10,5 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl);
 int player_vs_player(unsigned int x);
 
 void menu();
+
+#endif
