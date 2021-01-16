@@ -531,7 +531,7 @@ void menu(){
     printf(" #882082 Davide   Pasqual\n");
     printf(" #881493 Michelle Ravagnan\n");
     printf("\n\t+-+-+-+-+-+-+-+-+-+-+-+-+-+\n"
-             "\t|M|i|n|i||L|a|s|k|a|  |5|1|\n"
+             "\t|""M|""i|""n|""i||""L|""a|""s|""k|""a|  |""5|""1|""\n"
              "\t+-+-+-+-+-+-+-+-+-+-+-+-+-+");
     printf("\n\n [1] Player vs. Player");
     printf("\n [2] Player vs. IA");

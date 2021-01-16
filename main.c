@@ -1,10 +1,8 @@
-/*
-    ID gruppo : 51
-
+/*  ID gruppo : 51
     886711 Passarella-Diego | 882082 Pasqual-Davide | 881493 Ravagnan-Michelle
-
  */
 #include <stdio.h>
+#include "src/game_engine/game_engine.h"
 #include "src/user_interaction/user_interaction.h"
 
 int main(){
@@ -13,4 +11,3 @@ int main(){
 
     return 0;
 }
-
