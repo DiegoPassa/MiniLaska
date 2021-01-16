@@ -1,0 +1,145 @@
+\hypertarget{user__interaction_8h}{}\doxysection{src/user\+\_\+interaction/user\+\_\+interaction.h File Reference}
+\label{user__interaction_8h}\index{src/user\_interaction/user\_interaction.h@{src/user\_interaction/user\_interaction.h}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{user__interaction_8h_a9c2af248c709bb8d1d4f48e6250d3ec2}{print\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} t, unsigned int cifre, unsigned npl, char char\+\_\+p1, char char\+\_\+p2)
+\item 
+void \mbox{\hyperlink{user__interaction_8h_a368be0a595d675d3cfc0f7267aa566cf}{print\+\_\+player}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int n\+Pl)
+\item 
+unsigned int \mbox{\hyperlink{user__interaction_8h_ac1a039ae674b3b4176e96d2e96be9434}{while\+\_\+select\+\_\+n\+Pawn}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int n\+Pl)
+\item 
+unsigned int \mbox{\hyperlink{user__interaction_8h_ad9c6d4f44123dccc8c06128c637cd00f}{round\+\_\+player}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$t, unsigned int n\+Pl)
+\item 
+unsigned int \mbox{\hyperlink{user__interaction_8h_ad0f3596ada5da999aca1ba3923d6814f}{round\+\_\+choice}} ()
+\item 
+int \mbox{\hyperlink{user__interaction_8h_a1b65f628f6ab84d4b1cf52d6d0e732a6}{game}} (unsigned int x)
+\item 
+void \mbox{\hyperlink{user__interaction_8h_a2a0e843767aeea4f433a28b9c54f573a}{menu}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{user__interaction_8h_a1b65f628f6ab84d4b1cf52d6d0e732a6}\label{user__interaction_8h_a1b65f628f6ab84d4b1cf52d6d0e732a6}} 
+\index{user\_interaction.h@{user\_interaction.h}!game@{game}}
+\index{game@{game}!user\_interaction.h@{user\_interaction.h}}
+\doxysubsubsection{\texorpdfstring{game()}{game()}}
+{\footnotesize\ttfamily int game (\begin{DoxyParamCaption}\item[{unsigned int}]{x }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 327 of file user\+\_\+interaction.\+c.
+
+\mbox{\Hypertarget{user__interaction_8h_a2a0e843767aeea4f433a28b9c54f573a}\label{user__interaction_8h_a2a0e843767aeea4f433a28b9c54f573a}} 
+\index{user\_interaction.h@{user\_interaction.h}!menu@{menu}}
+\index{menu@{menu}!user\_interaction.h@{user\_interaction.h}}
+\doxysubsubsection{\texorpdfstring{menu()}{menu()}}
+{\footnotesize\ttfamily void menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 542 of file user\+\_\+interaction.\+c.
+
+\mbox{\Hypertarget{user__interaction_8h_a9c2af248c709bb8d1d4f48e6250d3ec2}\label{user__interaction_8h_a9c2af248c709bb8d1d4f48e6250d3ec2}} 
+\index{user\_interaction.h@{user\_interaction.h}!print\_board@{print\_board}}
+\index{print\_board@{print\_board}!user\_interaction.h@{user\_interaction.h}}
+\doxysubsubsection{\texorpdfstring{print\_board()}{print\_board()}}
+{\footnotesize\ttfamily void print\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{t,  }\item[{unsigned int}]{cifre,  }\item[{unsigned}]{npl,  }\item[{char}]{char\+\_\+p1,  }\item[{char}]{char\+\_\+p2 }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \\
+\hline
+{\em cifre} & \\
+\hline
+{\em npl} & number of the player \\
+\hline
+{\em char\+\_\+p1} & color of the first player \\
+\hline
+{\em char\+\_\+p2} & color of the second player \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 21 of file user\+\_\+interaction.\+c.
+
+\mbox{\Hypertarget{user__interaction_8h_a368be0a595d675d3cfc0f7267aa566cf}\label{user__interaction_8h_a368be0a595d675d3cfc0f7267aa566cf}} 
+\index{user\_interaction.h@{user\_interaction.h}!print\_player@{print\_player}}
+\index{print\_player@{print\_player}!user\_interaction.h@{user\_interaction.h}}
+\doxysubsubsection{\texorpdfstring{print\_player()}{print\_player()}}
+{\footnotesize\ttfamily void print\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & array wich contains the two players \\
+\hline
+{\em n\+Pl} & number that identify the player \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 168 of file user\+\_\+interaction.\+c.
+
+\mbox{\Hypertarget{user__interaction_8h_ad0f3596ada5da999aca1ba3923d6814f}\label{user__interaction_8h_ad0f3596ada5da999aca1ba3923d6814f}} 
+\index{user\_interaction.h@{user\_interaction.h}!round\_choice@{round\_choice}}
+\index{round\_choice@{round\_choice}!user\_interaction.h@{user\_interaction.h}}
+\doxysubsubsection{\texorpdfstring{round\_choice()}{round\_choice()}}
+{\footnotesize\ttfamily unsigned int round\+\_\+choice (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}
+
+
+Definition at line 289 of file user\+\_\+interaction.\+c.
+
+\mbox{\Hypertarget{user__interaction_8h_ad9c6d4f44123dccc8c06128c637cd00f}\label{user__interaction_8h_ad9c6d4f44123dccc8c06128c637cd00f}} 
+\index{user\_interaction.h@{user\_interaction.h}!round\_player@{round\_player}}
+\index{round\_player@{round\_player}!user\_interaction.h@{user\_interaction.h}}
+\doxysubsubsection{\texorpdfstring{round\_player()}{round\_player()}}
+{\footnotesize\ttfamily unsigned int round\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{t,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em t} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}
+
+
+Definition at line 213 of file user\+\_\+interaction.\+c.
+
+\mbox{\Hypertarget{user__interaction_8h_ac1a039ae674b3b4176e96d2e96be9434}\label{user__interaction_8h_ac1a039ae674b3b4176e96d2e96be9434}} 
+\index{user\_interaction.h@{user\_interaction.h}!while\_select\_nPawn@{while\_select\_nPawn}}
+\index{while\_select\_nPawn@{while\_select\_nPawn}!user\_interaction.h@{user\_interaction.h}}
+\doxysubsubsection{\texorpdfstring{while\_select\_nPawn()}{while\_select\_nPawn()}}
+{\footnotesize\ttfamily unsigned int while\+\_\+select\+\_\+n\+Pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}
+
+
+Definition at line 194 of file user\+\_\+interaction.\+c.
+

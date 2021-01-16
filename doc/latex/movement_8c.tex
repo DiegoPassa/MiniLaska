@@ -1,0 +1,132 @@
+\hypertarget{movement_8c}{}\doxysection{src/movement/movement.c File Reference}
+\label{movement_8c}\index{src/movement/movement.c@{src/movement/movement.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../colors/colors.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../game\+\_\+engine/game\+\_\+engine.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../ia/ia.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../memory\+\_\+management/memory\+\_\+management.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}movement.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../user\+\_\+interaction/user\+\_\+interaction.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{movement_8c_af98c2d7ebb2b146df09e8df4422e9243}{move\+\_\+noeat}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int num\+\_\+pawn, char $\ast$str, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl)
+\item 
+unsigned int \mbox{\hyperlink{movement_8c_a5ed734f105ad05ffb03d2f437a928b2d}{eat}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, char $\ast$str, unsigned int num\+\_\+pawn, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, unsigned int enemy\+\_\+pawn, unsigned int n\+Pl)
+\item 
+int \mbox{\hyperlink{movement_8c_a06455c5400852e2b70952a4c5c6006f9}{move\+\_\+p1}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int num\+\_\+pawn, char $\ast$str, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl)
+\item 
+int \mbox{\hyperlink{movement_8c_ac4876db3570725fc49e344af21021c7b}{move\+\_\+p2}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int num\+\_\+pawn, char $\ast$str, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{movement_8c_a5ed734f105ad05ffb03d2f437a928b2d}\label{movement_8c_a5ed734f105ad05ffb03d2f437a928b2d}} 
+\index{movement.c@{movement.c}!eat@{eat}}
+\index{eat@{eat}!movement.c@{movement.c}}
+\doxysubsubsection{\texorpdfstring{eat()}{eat()}}
+{\footnotesize\ttfamily unsigned int eat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{char $\ast$}]{str,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{unsigned int}]{enemy\+\_\+pawn,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em str} & \\
+\hline
+{\em num\+\_\+pawn} & \\
+\hline
+{\em board} & \\
+\hline
+{\em enemy\+\_\+pawn} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}
+
+
+Definition at line 76 of file movement.\+c.
+
+\mbox{\Hypertarget{movement_8c_af98c2d7ebb2b146df09e8df4422e9243}\label{movement_8c_af98c2d7ebb2b146df09e8df4422e9243}} 
+\index{movement.c@{movement.c}!move\_noeat@{move\_noeat}}
+\index{move\_noeat@{move\_noeat}!movement.c@{movement.c}}
+\doxysubsubsection{\texorpdfstring{move\_noeat()}{move\_noeat()}}
+{\footnotesize\ttfamily unsigned int move\+\_\+noeat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em num\+\_\+pawn} & \\
+\hline
+{\em str} & \\
+\hline
+{\em board} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file movement.\+c.
+
+\mbox{\Hypertarget{movement_8c_a06455c5400852e2b70952a4c5c6006f9}\label{movement_8c_a06455c5400852e2b70952a4c5c6006f9}} 
+\index{movement.c@{movement.c}!move\_p1@{move\_p1}}
+\index{move\_p1@{move\_p1}!movement.c@{movement.c}}
+\doxysubsubsection{\texorpdfstring{move\_p1()}{move\_p1()}}
+{\footnotesize\ttfamily int move\+\_\+p1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em num\+\_\+pawn} & \\
+\hline
+{\em str} & \\
+\hline
+{\em board} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 175 of file movement.\+c.
+
+\mbox{\Hypertarget{movement_8c_ac4876db3570725fc49e344af21021c7b}\label{movement_8c_ac4876db3570725fc49e344af21021c7b}} 
+\index{movement.c@{movement.c}!move\_p2@{move\_p2}}
+\index{move\_p2@{move\_p2}!movement.c@{movement.c}}
+\doxysubsubsection{\texorpdfstring{move\_p2()}{move\_p2()}}
+{\footnotesize\ttfamily int move\+\_\+p2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em num\+\_\+pawn} & \\
+\hline
+{\em str} & \\
+\hline
+{\em board} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 192 of file movement.\+c.
+

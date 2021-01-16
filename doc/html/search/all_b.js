@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['tcampo_56',['tcampo',['../supporto_8h.html#ad95f14493ade4e851620d5aea786ad10',1,'supporto.h']]],
-  ['tpedina_57',['tpedina',['../supporto_8h.html#a3943deebda0fce5d57ef7c1a4018896d',1,'supporto.h']]],
-  ['tplayer_58',['tplayer',['../supporto_8h.html#a766577430ab8c3dd291621a95fc90c61',1,'supporto.h']]]
+  ['n_5fcols_107',['n_cols',['../structboard.html#a5a7ca2d53f94946e191b01fde1652a9b',1,'board']]],
+  ['n_5frows_108',['n_rows',['../structboard.html#a06d4c1caaceea6d33d83ef84803d6683',1,'board']]]
 ];

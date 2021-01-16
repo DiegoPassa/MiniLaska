@@ -1,0 +1,278 @@
+\hypertarget{ia_8h}{}\doxysection{src/ia/ia.h File Reference}
+\label{ia_8h}\index{src/ia/ia.h@{src/ia/ia.h}}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structvalue_minimax}{value\+Minimax}} \mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{ia_8h_ab9533ccf304c2028b15cd68ad22a9ad5}{round\+\_\+ia\+\_\+random}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl)
+\item 
+int \mbox{\hyperlink{ia_8h_a04c98e99a199fcfc80fefa3a33699707}{last\+\_\+move}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int n\+Pl)
+\item 
+int \mbox{\hyperlink{ia_8h_a84662d50a743b387f2e8ac427dd17424}{round\+\_\+ia\+\_\+minimax}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl, unsigned int depth)
+\item 
+int \mbox{\hyperlink{ia_8h_ab304981f61da05ef06335cd557446d08}{minimax}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, int depth, unsigned int n\+Ped, unsigned int n\+Pl, \mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$v, int cheat, int $\ast$alpha, int $\ast$beta)
+\item 
+int \mbox{\hyperlink{ia_8h_a82180885d90f464ccd27de484d0e786a}{call\+\_\+minimax}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$board\+\_\+copy, \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players\+\_\+copy, unsigned int depth, unsigned int n\+Ped, unsigned int n\+Pl, \mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$v, char $\ast$str, int max\+Eval, int cheat, int $\ast$alpha, int $\ast$beta)
+\item 
+unsigned int \mbox{\hyperlink{ia_8h_abc43d8c30252b175795eb6514c2e79f8}{interrupt\+\_\+minimax}} (int $\ast$alpha, int $\ast$beta)
+\item 
+int \mbox{\hyperlink{ia_8h_a0ba8ad8f657d084b47a08e8da7f58f6d}{evaluate\+\_\+score}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players)
+\item 
+void \mbox{\hyperlink{ia_8h_a290c05f1dd7d30ae62ab3593e0e39786}{print\+\_\+minimax}} (\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$value\+\_\+arr, unsigned int dim\+\_\+arr)
+\item 
+unsigned int \mbox{\hyperlink{ia_8h_a314d84d04c7347f8e51b42bc3caf20fd}{max}} (\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$arr, unsigned int dim)
+\item 
+void \mbox{\hyperlink{ia_8h_a53075eb6ea08340d6a611d2ff6473035}{destroy\+\_\+value\+\_\+minimax}} (\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$arr, unsigned int dim)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}\label{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}} 
+\index{ia.h@{ia.h}!valueMinimax\_t@{valueMinimax\_t}}
+\index{valueMinimax\_t@{valueMinimax\_t}!ia.h@{ia.h}}
+\doxysubsubsection{\texorpdfstring{valueMinimax\_t}{valueMinimax\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvalue_minimax}{value\+Minimax}} \mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}}}
+
+
+
+Definition at line 1 of file ia.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ia_8h_a82180885d90f464ccd27de484d0e786a}\label{ia_8h_a82180885d90f464ccd27de484d0e786a}} 
+\index{ia.h@{ia.h}!call\_minimax@{call\_minimax}}
+\index{call\_minimax@{call\_minimax}!ia.h@{ia.h}}
+\doxysubsubsection{\texorpdfstring{call\_minimax()}{call\_minimax()}}
+{\footnotesize\ttfamily int call\+\_\+minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board\+\_\+copy,  }\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players\+\_\+copy,  }\item[{unsigned int}]{depth,  }\item[{unsigned int}]{n\+Ped,  }\item[{unsigned int}]{n\+Pl,  }\item[{\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$}]{v,  }\item[{char $\ast$}]{str,  }\item[{int}]{max\+Eval,  }\item[{int}]{cheat,  }\item[{int $\ast$}]{alpha,  }\item[{int $\ast$}]{beta }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em board\+\_\+copy} & \\
+\hline
+{\em players\+\_\+copy} & \\
+\hline
+{\em depth} & \\
+\hline
+{\em n\+Ped} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+{\em v} & \\
+\hline
+{\em str} & \\
+\hline
+{\em max\+Eval} & \\
+\hline
+{\em cheat} & \\
+\hline
+{\em alpha} & \\
+\hline
+{\em beta} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 262 of file ia.\+c.
+
+\mbox{\Hypertarget{ia_8h_a53075eb6ea08340d6a611d2ff6473035}\label{ia_8h_a53075eb6ea08340d6a611d2ff6473035}} 
+\index{ia.h@{ia.h}!destroy\_value\_minimax@{destroy\_value\_minimax}}
+\index{destroy\_value\_minimax@{destroy\_value\_minimax}!ia.h@{ia.h}}
+\doxysubsubsection{\texorpdfstring{destroy\_value\_minimax()}{destroy\_value\_minimax()}}
+{\footnotesize\ttfamily void destroy\+\_\+value\+\_\+minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$}]{arr,  }\item[{unsigned int}]{dim }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & \\
+\hline
+{\em dim} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 361 of file ia.\+c.
+
+\mbox{\Hypertarget{ia_8h_a0ba8ad8f657d084b47a08e8da7f58f6d}\label{ia_8h_a0ba8ad8f657d084b47a08e8da7f58f6d}} 
+\index{ia.h@{ia.h}!evaluate\_score@{evaluate\_score}}
+\index{evaluate\_score@{evaluate\_score}!ia.h@{ia.h}}
+\doxysubsubsection{\texorpdfstring{evaluate\_score()}{evaluate\_score()}}
+{\footnotesize\ttfamily int evaluate\+\_\+score (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & \\
+\hline
+{\em players} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 313 of file ia.\+c.
+
+\mbox{\Hypertarget{ia_8h_abc43d8c30252b175795eb6514c2e79f8}\label{ia_8h_abc43d8c30252b175795eb6514c2e79f8}} 
+\index{ia.h@{ia.h}!interrupt\_minimax@{interrupt\_minimax}}
+\index{interrupt\_minimax@{interrupt\_minimax}!ia.h@{ia.h}}
+\doxysubsubsection{\texorpdfstring{interrupt\_minimax()}{interrupt\_minimax()}}
+{\footnotesize\ttfamily unsigned int interrupt\+\_\+minimax (\begin{DoxyParamCaption}\item[{int $\ast$}]{alpha,  }\item[{int $\ast$}]{beta }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em alpha} & \\
+\hline
+{\em beta} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}
+
+
+Definition at line 306 of file ia.\+c.
+
+\mbox{\Hypertarget{ia_8h_a04c98e99a199fcfc80fefa3a33699707}\label{ia_8h_a04c98e99a199fcfc80fefa3a33699707}} 
+\index{ia.h@{ia.h}!last\_move@{last\_move}}
+\index{last\_move@{last\_move}!ia.h@{ia.h}}
+\doxysubsubsection{\texorpdfstring{last\_move()}{last\_move()}}
+{\footnotesize\ttfamily int last\+\_\+move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 77 of file ia.\+c.
+
+\mbox{\Hypertarget{ia_8h_a314d84d04c7347f8e51b42bc3caf20fd}\label{ia_8h_a314d84d04c7347f8e51b42bc3caf20fd}} 
+\index{ia.h@{ia.h}!max@{max}}
+\index{max@{max}!ia.h@{ia.h}}
+\doxysubsubsection{\texorpdfstring{max()}{max()}}
+{\footnotesize\ttfamily unsigned int max (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$}]{arr,  }\item[{unsigned int}]{dim }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & \\
+\hline
+{\em dim} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}
+
+
+Definition at line 346 of file ia.\+c.
+
+\mbox{\Hypertarget{ia_8h_ab304981f61da05ef06335cd557446d08}\label{ia_8h_ab304981f61da05ef06335cd557446d08}} 
+\index{ia.h@{ia.h}!minimax@{minimax}}
+\index{minimax@{minimax}!ia.h@{ia.h}}
+\doxysubsubsection{\texorpdfstring{minimax()}{minimax()}}
+{\footnotesize\ttfamily int minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{int}]{depth,  }\item[{unsigned int}]{n\+Ped,  }\item[{unsigned int}]{n\+Pl,  }\item[{\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$}]{v,  }\item[{int}]{cheat,  }\item[{int $\ast$}]{alpha,  }\item[{int $\ast$}]{beta }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & \\
+\hline
+{\em players} & \\
+\hline
+{\em depth} & \\
+\hline
+{\em n\+Ped} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+{\em v} & \\
+\hline
+{\em cheat} & \\
+\hline
+{\em alpha} & \\
+\hline
+{\em beta} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 130 of file ia.\+c.
+
+\mbox{\Hypertarget{ia_8h_a290c05f1dd7d30ae62ab3593e0e39786}\label{ia_8h_a290c05f1dd7d30ae62ab3593e0e39786}} 
+\index{ia.h@{ia.h}!print\_minimax@{print\_minimax}}
+\index{print\_minimax@{print\_minimax}!ia.h@{ia.h}}
+\doxysubsubsection{\texorpdfstring{print\_minimax()}{print\_minimax()}}
+{\footnotesize\ttfamily void print\+\_\+minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$}]{value\+\_\+arr,  }\item[{unsigned int}]{dim\+\_\+arr }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em value\+\_\+arr} & \\
+\hline
+{\em dim\+\_\+arr} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 335 of file ia.\+c.
+
+\mbox{\Hypertarget{ia_8h_a84662d50a743b387f2e8ac427dd17424}\label{ia_8h_a84662d50a743b387f2e8ac427dd17424}} 
+\index{ia.h@{ia.h}!round\_ia\_minimax@{round\_ia\_minimax}}
+\index{round\_ia\_minimax@{round\_ia\_minimax}!ia.h@{ia.h}}
+\doxysubsubsection{\texorpdfstring{round\_ia\_minimax()}{round\_ia\_minimax()}}
+{\footnotesize\ttfamily int round\+\_\+ia\+\_\+minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl,  }\item[{unsigned int}]{depth }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em board} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+{\em depth} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 92 of file ia.\+c.
+
+\mbox{\Hypertarget{ia_8h_ab9533ccf304c2028b15cd68ad22a9ad5}\label{ia_8h_ab9533ccf304c2028b15cd68ad22a9ad5}} 
+\index{ia.h@{ia.h}!round\_ia\_random@{round\_ia\_random}}
+\index{round\_ia\_random@{round\_ia\_random}!ia.h@{ia.h}}
+\doxysubsubsection{\texorpdfstring{round\_ia\_random()}{round\_ia\_random()}}
+{\footnotesize\ttfamily unsigned int round\+\_\+ia\+\_\+random (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em board} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file ia.\+c.
+

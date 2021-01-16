@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['main_2ec_63',['main.c',['../main_8c.html',1,'']]],
-  ['menu_2ec_64',['menu.c',['../menu_8c.html',1,'']]]
+  ['colors_2ec_177',['colors.c',['../colors_8c.html',1,'']]],
+  ['colors_2eh_178',['colors.h',['../colors_8h.html',1,'']]]
 ];

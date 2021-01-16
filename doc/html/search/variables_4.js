@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['grado_113',['grado',['../structpedina.html#a8d861474c7910c3a26c1edbdee37b962',1,'pedina']]]
+  ['ispromoted_271',['isPromoted',['../structpawn.html#a08f5591a36ab66721f3e2360abb67a75',1,'pawn']]]
 ];
