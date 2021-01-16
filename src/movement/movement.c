@@ -19,7 +19,7 @@
 #include "../user_interaction/user_interaction.h"
 
 unsigned int move_noeat(player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl){
-    if(!strcmp(str,"sx")){
+    if(!strcmp(str,"l")){
         if((is_in(players[nPl].pawns[num_pawn].coordinate.y-1,players[nPl].pawns[num_pawn].coordinate.x-(players[nPl].pawns[num_pawn].dim_label+3+1),*board))&&(!check_spot(*board,players[nPl].pawns[num_pawn].coordinate.y-1,players[nPl].pawns[num_pawn].coordinate.x-(players[nPl].pawns[num_pawn].dim_label+3+1),(players[nPl].pawns[num_pawn].dim_label+3+1)))){
             remove_pawn(board,players[nPl].pawns[num_pawn].coordinate.y,players[nPl].pawns[num_pawn].coordinate.x,(players[nPl].pawns[num_pawn].dim_label+3+1));
             --players[nPl].pawns[num_pawn].coordinate.y;
@@ -30,7 +30,7 @@ unsigned int move_noeat(player_t *players, unsigned int num_pawn, char *str, boa
             return 0;
         }
     }else{
-        if (!strcmp(str, "dx")) {
+        if (!strcmp(str, "r")) {
             if((is_in(players[nPl].pawns[num_pawn].coordinate.y-1, players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3+1), *board))&&(!check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y - 1, players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3+1),players[nPl].pawns[num_pawn].dim_label+3+1))){
                 remove_pawn(board,players[nPl].pawns[num_pawn].coordinate.y,players[nPl].pawns[num_pawn].coordinate.x,(players[nPl].pawns[num_pawn].dim_label+3+1));
                 --players[nPl].pawns[num_pawn].coordinate.y;
@@ -41,7 +41,7 @@ unsigned int move_noeat(player_t *players, unsigned int num_pawn, char *str, boa
                 return 0;
             }
         }
-        if (!strcmp(str, "bassosx") && ((nPl == 1) || (players[nPl].pawns[num_pawn].isPromoted))) {
+        if (!strcmp(str, "botl") && ((nPl == 1) || (players[nPl].pawns[num_pawn].isPromoted))) {
             if((is_in(players[nPl].pawns[num_pawn].coordinate.y+1,players[nPl].pawns[num_pawn].coordinate.x-(players[nPl].pawns[num_pawn].dim_label+3+1),*board))&&(!check_spot(*board,players[nPl].pawns[num_pawn].coordinate.y+1,players[nPl].pawns[num_pawn].coordinate.x-(players[nPl].pawns[num_pawn].dim_label+3+1),(players[nPl].pawns[num_pawn].dim_label+3+1)))){
                 remove_pawn(board,players[nPl].pawns[num_pawn].coordinate.y,players[nPl].pawns[num_pawn].coordinate.x,(players[nPl].pawns[num_pawn].dim_label+3+1));
                 players[nPl].pawns[num_pawn].coordinate.y++;
@@ -54,7 +54,7 @@ unsigned int move_noeat(player_t *players, unsigned int num_pawn, char *str, boa
                 return 0;
             }
         }
-        if (!strcmp(str, "bassodx") && ((nPl == 1) || (players[nPl].pawns[num_pawn].isPromoted))) {
+        if (!strcmp(str, "botr") && ((nPl == 1) || (players[nPl].pawns[num_pawn].isPromoted))) {
             if((is_in(players[nPl].pawns[num_pawn].coordinate.y+1, players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3+1), *board))&&(!check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y+1, players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3+1),players[nPl].pawns[num_pawn].dim_label + 3+1))){
                 remove_pawn(board,players[nPl].pawns[num_pawn].coordinate.y,players[nPl].pawns[num_pawn].coordinate.x,(players[nPl].pawns[num_pawn].dim_label+3+1));
                 players[nPl].pawns[num_pawn].coordinate.y++;
@@ -139,33 +139,33 @@ unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t bo
         players[nPl].pawns[num_pawn].grade+=1;
     }
     remove_pawn(&board,players[nPl2].pawns[enemy_pawn].coordinate.y,players[nPl2].pawns[enemy_pawn].coordinate.x,players[nPl2].pawns[enemy_pawn].dim_label+3+1);
-    if(!strcmp(str,"sx")){
+    if(!strcmp(str,"l")){
         players[nPl].pawns[num_pawn].coordinate.y -= 2;
         players[nPl].pawns[num_pawn].coordinate.x -= (players[nPl].pawns[num_pawn].dim_label+3+1)*2;
     }
-    if(!strcmp(str,"dx")){
+    if(!strcmp(str,"r")){
         players[nPl].pawns[num_pawn].coordinate.y -= 2;
         players[nPl].pawns[num_pawn].coordinate.x += (players[nPl].pawns[num_pawn].dim_label+3+1)*2;
     }
-    if(!strcmp(str,"bassosx")){
+    if(!strcmp(str,"botl")){
         players[nPl].pawns[num_pawn].coordinate.y += 2;
         players[nPl].pawns[num_pawn].coordinate.x -= (players[nPl].pawns[num_pawn].dim_label+3+1)*2;
     }
-    if(!strcmp(str,"bassodx")){
+    if(!strcmp(str,"botr")){
         players[nPl].pawns[num_pawn].coordinate.y += 2;
         players[nPl].pawns[num_pawn].coordinate.x += (players[nPl].pawns[num_pawn].dim_label+3+1)*2;
     }
 
-    if(!strcmp(str,"sx")){
+    if(!strcmp(str,"l")){
         remove_pawn(&board,players[nPl].pawns[num_pawn].coordinate.y+2,players[nPl].pawns[num_pawn].coordinate.x+((players[nPl].pawns[num_pawn].dim_label+3+1)*2),players[nPl].pawns[num_pawn].dim_label+3+1);
     }
-    if(!strcmp(str,"dx")){
+    if(!strcmp(str,"r")){
         remove_pawn(&board,players[nPl].pawns[num_pawn].coordinate.y+2,players[nPl].pawns[num_pawn].coordinate.x-((players[nPl].pawns[num_pawn].dim_label+3+1)*2),(players[nPl].pawns[num_pawn].dim_label+3+1));
     }
-    if(!strcmp(str,"bassosx")){
+    if(!strcmp(str,"botl")){
         remove_pawn(&board,players[nPl].pawns[num_pawn].coordinate.y-2,players[nPl].pawns[num_pawn].coordinate.x+((players[nPl].pawns[num_pawn].dim_label+3+1)*2),players[nPl].pawns[num_pawn].dim_label+3+1);
     }
-    if(!strcmp(str,"bassodx")){
+    if(!strcmp(str,"botr")){
         remove_pawn(&board,players[nPl].pawns[num_pawn].coordinate.y-2,players[nPl].pawns[num_pawn].coordinate.x-((players[nPl].pawns[num_pawn].dim_label+3+1)*2),(players[nPl].pawns[num_pawn].dim_label+3+1));
     }
     pawn_promotion(players,num_pawn,nPl,board.n_rows-1);
@@ -190,17 +190,17 @@ int move_p1 (player_t *players, unsigned int num_pawn, char *str, board_t *board
 }
 
 int move_p2(player_t *players,unsigned int num_pawn,char *str,board_t *board){
-    if(!strcmp(str,"sx")) {
-        return move_p1(players,num_pawn,"bassosx",board,1);
+    if(!strcmp(str,"l")) {
+        return move_p1(players,num_pawn,"botl",board,1);
     }else{
-        if(!strcmp(str,"dx")){
-            return move_p1(players,num_pawn,"bassodx",board,1);
+        if(!strcmp(str,"r")){
+            return move_p1(players,num_pawn,"botr",board,1);
         }
-        if(!strcmp(str,"bassodx")&&(players[1].pawns[num_pawn].isPromoted)) {
-            return move_p1(players,num_pawn,"dx",board,1);
+        if(!strcmp(str,"botr")&&(players[1].pawns[num_pawn].isPromoted)) {
+            return move_p1(players,num_pawn,"r",board,1);
         }
-        if(!strcmp(str,"bassosx")&&(players[1].pawns[num_pawn].isPromoted)) {
-            return move_p1(players,num_pawn,"sx",board,1);
+        if(!strcmp(str,"botl")&&(players[1].pawns[num_pawn].isPromoted)) {
+            return move_p1(players,num_pawn,"l",board,1);
         }
     }
 

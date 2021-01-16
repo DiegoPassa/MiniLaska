@@ -520,6 +520,8 @@ int game(unsigned int gameMode){
     }
     if(exit == 3){
         printf(" You left the game\n");
+        sleep(3);
+        system("clear");
     }else{
         if(exit == 1 || exit  == 0){
             ++exit;

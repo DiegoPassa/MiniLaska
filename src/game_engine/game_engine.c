@@ -50,22 +50,22 @@ void print_directions(unsigned int *arr,unsigned int dim,unsigned int np){
     }
     if(flag != 0){
         if(flag == 1){
-            printf("La pedina %u puo' muoversi solo in questa direzione : \n",np);
+            printf(" Pawn no. %u can move only in this direction: \n",np);
         }else{
-            printf("La pedina %u puo' muoversi in queste direzioni : \n",np);
+            printf(" Pawn no. %u can move in these directions : \n",np);
         }
         for(i = 0 ; i < dim ; ++i){
             if(i == 0 && arr[0] == 1){
-                printf("-> sx\n");
+                printf(" -> left [l]\n");
             }
             if(i == 1 && arr[1] == 1){
-                printf("-> dx\n");
+                printf(" -> right [r]\n");
             }
             if(i == 2 && arr[2] == 1){
-                printf("-> bassodx\n");
+                printf(" -> bottom right [botr]\n");
             }
             if(i == 3 && arr[3] == 1){
-                printf("-> bassosx\n");
+                printf(" -> bottom left [botl]\n");
             }
         }
     }
@@ -161,16 +161,16 @@ unsigned int check_directions(unsigned int *canMove_arr, unsigned int dim_canMov
     if(!flag){
         return 1;
     }
-    if(!strcmp(str, "sx")){
+    if(!strcmp(str, "l")){
         index = 0;
     }
-    if(!strcmp(str, "dx")){
+    if(!strcmp(str, "r")){
         index = 1;
     }
-    if(!strcmp(str, "bassodx")){
+    if(!strcmp(str, "botr")){
         index = 2;
     }
-    if(!strcmp(str, "bassosx")){
+    if(!strcmp(str, "botl")){
         index = 3;
     }
     if( index < dim_canMove && canMove_arr[index] == 1 ){
@@ -183,7 +183,7 @@ unsigned int check_directions(unsigned int *canMove_arr, unsigned int dim_canMov
 void must_eat(player_t *players, board_t *board, unsigned int n_pawn, unsigned int nPl){
 
     unsigned int flag = 1; 
-    if( ((nPl == 0)&&(can_eat(players,n_pawn,"sx",board, 0) >= 0)) || ((nPl == 1)&&(can_eat(players, n_pawn, "bassosx", board,1)>=0))  ){
+    if( ((nPl == 0)&&(can_eat(players,n_pawn,"l",board, 0) >= 0)) || ((nPl == 1)&&(can_eat(players, n_pawn, "botl", board,1)>=0))  ){
         if(is_selected(players,n_pawn,nPl) && flag == 1){
             reset_moves_pawns(players, n_pawn, nPl);
             flag = 0;
@@ -191,7 +191,7 @@ void must_eat(player_t *players, board_t *board, unsigned int n_pawn, unsigned i
         players[nPl].pawns[n_pawn].canMove[0] = 1;
     }
 
-    if( ((nPl == 0)&&(can_eat(players,n_pawn,"dx",board, 0) >= 0)) || ((nPl == 1)&&(can_eat(players, n_pawn, "bassodx", board,1)>=0))  ){
+    if( ((nPl == 0)&&(can_eat(players,n_pawn,"r",board, 0) >= 0)) || ((nPl == 1)&&(can_eat(players, n_pawn, "botr", board,1)>=0))  ){
         if(is_selected(players,n_pawn,nPl) && flag == 1){
             reset_moves_pawns(players, n_pawn, nPl);
             flag = 0;
@@ -201,7 +201,7 @@ void must_eat(player_t *players, board_t *board, unsigned int n_pawn, unsigned i
 
     if ((players[nPl].pawns[n_pawn].isPromoted)){
 
-        if( ((nPl == 0)&&(can_eat(players,n_pawn,"bassodx",board, 0) >= 0)) || ((nPl == 1)&&(can_eat(players, n_pawn, "dx", board,1)>=0))  ){
+        if( ((nPl == 0)&&(can_eat(players,n_pawn,"botr",board, 0) >= 0)) || ((nPl == 1)&&(can_eat(players, n_pawn, "r", board,1)>=0))  ){
             if(is_selected(players,n_pawn,nPl) && flag == 1){
                 reset_moves_pawns(players, n_pawn, nPl);
                 flag = 0;
@@ -209,7 +209,7 @@ void must_eat(player_t *players, board_t *board, unsigned int n_pawn, unsigned i
             players[nPl].pawns[n_pawn].canMove[2] = 1;
         }
 
-        if( ((nPl == 0)&&(can_eat(players,n_pawn,"bassosx",board, 0) >= 0)) || ((nPl == 1)&&(can_eat(players, n_pawn, "sx", board,1)>=0))){
+        if( ((nPl == 0)&&(can_eat(players,n_pawn,"botl",board, 0) >= 0)) || ((nPl == 1)&&(can_eat(players, n_pawn, "l", board,1)>=0))){
             if(is_selected(players,n_pawn,nPl) && flag == 1){
                 reset_moves_pawns(players, n_pawn, nPl);
                 flag = 0;
@@ -228,7 +228,7 @@ int can_eat(player_t *players, unsigned int num_pawn, char *str, board_t *board,
         return -1;
     }
     if((nPl == 0)||(players[nPl].pawns[num_pawn].isPromoted)) {
-        if ((!strcmp(str, "sx"))) {
+        if ((!strcmp(str, "l"))) {
             if ((is_in(players[nPl].pawns[num_pawn].coordinate.y-2, players[nPl].pawns[num_pawn].coordinate.x - ((players[nPl].pawns[num_pawn].dim_label + 3 + 1) * 2), *board)) &&
                 ((is_in(players[nPl].pawns[num_pawn].coordinate.y - 1, players[nPl].pawns[num_pawn].coordinate.x - (players[nPl].pawns[num_pawn].dim_label + 3 + 1), *board)))) {
                  int x, y, z;
@@ -255,7 +255,7 @@ int can_eat(player_t *players, unsigned int num_pawn, char *str, board_t *board,
                 return -3;
             }
         }
-        if ((!strcmp(str, "dx"))) {
+        if ((!strcmp(str, "r"))) {
             if ((is_in(players[nPl].pawns[num_pawn].coordinate.y - 2, players[nPl].pawns[num_pawn].coordinate.x + ((players[nPl].pawns[num_pawn].dim_label + 3 + 1) * 2), *board)) &&
                 ((is_in(players[nPl].pawns[num_pawn].coordinate.y - 1, players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3 + 1), *board)))) {
                  int x, y, z;
@@ -285,7 +285,7 @@ int can_eat(player_t *players, unsigned int num_pawn, char *str, board_t *board,
         }
     }
     if (((nPl == 1) || (players[nPl].pawns[num_pawn].isPromoted))) {
-        if ((!strcmp(str, "bassosx")) ) {
+        if ((!strcmp(str, "botl")) ) {
             if ((is_in(players[nPl].pawns[num_pawn].coordinate.y + 2, players[nPl].pawns[num_pawn].coordinate.x - ((players[nPl].pawns[num_pawn].dim_label + 3 + 1) * 2), *board)) &&
                 ((is_in(players[nPl].pawns[num_pawn].coordinate.y + 1, players[nPl].pawns[num_pawn].coordinate.x - (players[nPl].pawns[num_pawn].dim_label + 3 + 1), *board)))) {
                  int x, y, z;
@@ -310,7 +310,7 @@ int can_eat(player_t *players, unsigned int num_pawn, char *str, board_t *board,
                 return -3;
             }
         }
-        if ((!strcmp(str, "bassodx")) ) {
+        if ((!strcmp(str, "botr")) ) {
             if ((is_in(players[nPl].pawns[num_pawn].coordinate.y + 2, players[nPl].pawns[num_pawn].coordinate.x + ((players[nPl].pawns[num_pawn].dim_label + 3 + 1) * 2), *board)) &&
                 ((is_in(players[nPl].pawns[num_pawn].coordinate.y + 1, players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3 + 1), *board)))) {
                  int x, y, z;
@@ -431,14 +431,14 @@ unsigned int is_notstuck(player_t *players, board_t board, unsigned int nPawn, u
     if(newBoard != NULL && newPlayers != NULL){
         unsigned int flag = 0;
         update_board(newBoard, newPlayers);
-        if( ( (nPl == 0)&&(move_p1(newPlayers, nPawn, "sx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(newPlayers, nPawn, "sx",  newBoard) > -2)) ){
+        if( ( (nPl == 0)&&(move_p1(newPlayers, nPawn, "l", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(newPlayers, nPawn, "l",  newBoard) > -2)) ){
             players[nPl].pawns[nPawn].canMove[0] = 1;
             flag = 1;
             newBoard = copy_board(board, newBoard,dim_label,0);
             newPlayers = player_copy(players,newPlayers, dim_label,0);
         }
 
-        if( ((nPl == 0)&&(move_p1(newPlayers, nPawn, "dx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(newPlayers, nPawn, "dx", newBoard) > -2))){
+        if( ((nPl == 0)&&(move_p1(newPlayers, nPawn, "r", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(newPlayers, nPawn, "r", newBoard) > -2))){
              players[nPl].pawns[nPawn].canMove[1] = 1;
             flag = 1;
             newBoard = copy_board(board, newBoard,dim_label,0);
@@ -446,13 +446,13 @@ unsigned int is_notstuck(player_t *players, board_t board, unsigned int nPawn, u
         }
 
         if (newPlayers[nPl].pawns[nPawn].isPromoted){
-            if( ((nPl == 0)&&(move_p1(newPlayers, nPawn, "bassodx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(newPlayers, nPawn, "bassodx", newBoard) > -2))){
+            if( ((nPl == 0)&&(move_p1(newPlayers, nPawn, "botr", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(newPlayers, nPawn, "botr", newBoard) > -2))){
                 players[nPl].pawns[nPawn].canMove[2] = 1;
                 flag = 1;
                 newBoard = copy_board(board, newBoard,dim_label,0);
                 newPlayers = player_copy(players,newPlayers, dim_label,0);
             }
-            if( ((nPl == 0)&&(move_p1(newPlayers, nPawn, "bassosx", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(newPlayers, nPawn, "bassosx", newBoard) > -2))){
+            if( ((nPl == 0)&&(move_p1(newPlayers, nPawn, "botl", newBoard, 0) > -2)) || ((nPl == 1)&&(move_p2(newPlayers, nPawn, "botl", newBoard) > -2))){
                 players[nPl].pawns[nPawn].canMove[3] = 1;
                 flag = 1;
                 newBoard = copy_board(board, newBoard,dim_label,0);
@@ -463,7 +463,7 @@ unsigned int is_notstuck(player_t *players, board_t board, unsigned int nPawn, u
         destroy_player(newPlayers);
         return flag;
     }else{
-        printf("Errore nella is_notstuck\n");
+        printf(" Error in the is_notstuck function\n");
         if(newBoard != NULL){
             destroy_board(newBoard);
         }
@@ -523,7 +523,7 @@ unsigned int add_pawn(player_t *players, unsigned int enemy_pawn, unsigned int n
         ++players[nPl].dim_pawns;
         return 1;
     }else{
-        printf("Errore nella realloc\n");
+        printf(" Error in the realloc\n");
         return 0;
     }
 }
@@ -604,16 +604,16 @@ unsigned int check_while(player_t *players, unsigned int nPl, unsigned int nPawn
 
 unsigned int check_string(char *str){
     unsigned int flag = 0;
-    if(!strcmp(str,"sx")){
+    if(!strcmp(str,"l")){
         flag = 1;
     }
-    if(!strcmp(str,"dx")){
+    if(!strcmp(str,"r")){
         flag = 1;
     }
-    if(!strcmp(str,"bassosx")){
+    if(!strcmp(str,"botl")){
         flag = 1;
     }
-    if(!strcmp(str,"bassodx")){
+    if(!strcmp(str,"botr")){
         flag = 1;
     }
     return flag;
@@ -641,6 +641,7 @@ char int_converter(int num,unsigned int index){
 char uppercase(char c){
     return ((c-'a')+'A');
 }
+
 unsigned int check_char_color(char c){
     char new_c = c;
     unsigned int flag = 1;
