@@ -19,7 +19,7 @@
 void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char char_p2);
 
 /**
- * @brief  
+ * @brief
  * 
  * @param players array wich contains the two players
  * @param nPl number that identify the player

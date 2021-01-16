@@ -10,7 +10,7 @@
 /**
  * @brief Create a board object
  * 
- * @param n_rows 
+ * @param n_rows
  * @param n_cols 
  * @param cifre 
  * @return board_t* 

@@ -23,7 +23,11 @@ void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char 
     char *topPl = (char*) malloc((t.n_cols)*sizeof(char));
     int *cime = (int*) malloc((t.n_cols)*sizeof(int));
     /* stampo prima riga */
-    for(j=0; j<t.n_cols; j +=cifre){
+    printf(" +");
+    for(z = 0 ; z < cifre+2; ++z){ /* 2 = spazio a destra e sinistra */
+        printf("-");
+    }
+    for(j=1; j<t.n_cols-cifre; j +=cifre){
         printf("+");
         for(z = 0 ; z < cifre+2; ++z){ /* 2 = spazio a destra e sinistra */
             printf("-");
@@ -52,7 +56,12 @@ void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char 
         
         for (l = 0; l < 3; l++){
             for(j=0; j<t.n_cols; j +=cifre){
-                printf("|");
+                if (j == 0){
+                    printf(" |");
+                }else{
+                    printf("|");
+                }
+                
                 /* stampa le torri */
                 if (cime[j/cifre]==l){
                     if (topPl[j/cifre] == char_p2 || topPl[j/cifre] == char_p1){
@@ -74,7 +83,6 @@ void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char 
                                     printf("%c",t.mat[i][j+z]);
                                 }
                             }
-
                         }
                         printf(" ");
                         resetColor();
@@ -120,7 +128,7 @@ void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char 
         
         /* stampa separatore tra righe */
         if(((npl == 0)&&(i != t.n_rows-1))||((npl == 1)&&(i != 0))){
-            printf("|");
+            printf(" |");
             for(j=0; j<t.n_cols; j +=cifre){
                 if(j != 0){
                     printf("+");
@@ -140,7 +148,11 @@ void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char 
     }
 
     /* stampa la base */
-    for(j=0; j<t.n_cols; j +=cifre){
+    printf(" +");
+    for(z = 0 ; z < cifre+2 ; ++z){
+        printf("-");
+    }
+    for(j=1; j<t.n_cols-cifre; j +=cifre){
         printf("+");
         for(z = 0 ; z < cifre+2 ; ++z){
             printf("-");
@@ -178,9 +190,10 @@ void print_player(player_t *players,unsigned int nPl){
         }
     }
 }
+
 unsigned int while_select_nPawn(player_t *players,unsigned int nPl){
     unsigned int nPawn;
-    printf("Numero di pedina da selezionare : ");
+    printf(" Select no. pawn to move : ");
     scanf("%u",&nPawn);
 
     while(!check_while(players, nPl,nPawn) ){
@@ -189,8 +202,8 @@ unsigned int while_select_nPawn(player_t *players,unsigned int nPl){
             flag = check_canMove(players, nPawn,nPl);
         }
         if(!flag){
-            printf("La pedina %u non puo' muoversi!\n",nPawn);
-            printf("Numero di pedina da selezionare : ");
+            printf(" Pawn no. %u is unable to move!\n",nPawn);
+            printf(" Select no. pawn to move : ");
             scanf("%u",&nPawn);
         }
 
@@ -205,19 +218,19 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
     update_board(t,players);
     print_board(*t,(players[0].pawns[0].dim_label+3)+1,nPl, players[0].color, players[1].color);
 
-    printf("Vuoi uscire dal gioco ? ");
+    printf(" Surrender? (y/n): ");
     scanf("%s",str);
-    if((!strcmp(str,"si"))||(!strcmp(str,"Si"))||(!strcmp(str,"SI"))){
+    if((!strcmp(str,"y"))||(!strcmp(str,"yes"))||(!strcmp(str,"Y"))||(!strcmp(str,"YES"))){
         return 3;
     }
 
     num_Pawn = while_select_nPawn(players,nPl);
-    printf("Vuoi selezionare questa pedina %u ? ",num_Pawn);
+    printf(" Confirm selection? (y/n): ");
     scanf("%s",str);
 
-    while( (!strcmp(str,"no"))||(!strcmp(str,"NO"))||(!strcmp(str,"No")) ){
+    while((!strcmp(str,"n"))||(!strcmp(str,"NO"))||(!strcmp(str,"No")) ||(!strcmp(str,"no"))){
         num_Pawn = while_select_nPawn(players,nPl);
-        printf("Vuoi selezionare questa pedina %u ? ",num_Pawn);
+        printf(" Confirm selection? (y/n): ");
         scanf("%s",str);
     }
 
@@ -228,14 +241,14 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
             players[nPl].pawns[num_Pawn].isPromoted ? index = 4 : index;
             print_directions(players[nPl].pawns[num_Pawn].canMove,index,num_Pawn);
         }
-        printf("Verso che direzione vuoi spostare la pedina %u? ",num_Pawn);
+        printf(" Which direction you want to move? ");
         scanf("%s",str);
         if(nPl == 1 || nPl == 0){
             unsigned int index = 2;
             players[nPl].pawns[num_Pawn].isPromoted ? index = 4 : index;
             while(!check_directions(players[nPl].pawns[num_Pawn].canMove,index,str) && tentativi != 0){
-                printf("Tentativi rimasti prima di selezione un'altra pedina : %u\n",tentativi);
-                printf("Verso che direzione vuoi spostare la pedina %u? ",num_Pawn);
+                printf(" Number of attempts remained : %u\n",tentativi);
+                printf(" Which direction you want to move?");
                 scanf("%s",str);
                 --tentativi;
             }
@@ -252,15 +265,15 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
         if(y < -1){
             char temp[2];
             y = -2;
-            printf("Seleziona un'altra pedina\n");
+            printf(" Select another pawn..\n");
             num_Pawn = while_select_nPawn(players,nPl);
 
-            printf("Vuoi selezionare questa pedina %d ? ",num_Pawn);
+            printf(" Confirm selection? (y/n): ");
             scanf("%s",temp);
 
-            while( (!strcmp(str,"no"))||(!strcmp(str,"NO"))||(!strcmp(str,"No")) ){
+            while((!strcmp(str,"no"))||(!strcmp(str,"NO"))||(!strcmp(str,"No"))){
                 num_Pawn = while_select_nPawn(players,nPl);
-                printf("Vuoi selezionare questa pedina %u ? ",num_Pawn);
+                printf(" Confirm selection? (y/n): ");
                 scanf("%s",str);
             }
         }
@@ -272,28 +285,29 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
 
     return 4;
 }
+
 unsigned int round_choice(){
     char str[2];
 
-    printf("Inizia il turno come da predefinito (quindi primo giocatore)? ");
+    printf(" Start as first player? (y/n): ");
     scanf("%s",str);
-    if((!strcmp(str,"si"))||(!strcmp(str,"Si"))||(!strcmp(str,"SI"))){
+    if((!strcmp(str,"y"))||(!strcmp(str,"yes"))||(!strcmp(str,"Y"))||(!strcmp(str,"YES"))){
         return 0;
     }else{
-        printf("Lancio monetina ? ");
+        printf(" Flip coin (y/n): ? ");
         scanf("%s",str);
-        if((!strcmp(str,"no"))||(!strcmp(str,"NO"))||(!strcmp(str,"No")) ){
+        if((!strcmp(str,"n"))||(!strcmp(str,"NO"))||(!strcmp(str,"No")) ||(!strcmp(str,"no"))){
             unsigned int npl = 0;
-            printf("Giocatore 1 o 2 inizia per primo? : ");
+            printf(" Which player goes first? (1/2): ");
             scanf("%u",&npl);
             while(npl != 1 && npl != 2){
-                printf("Quale giocatore inizia per primo(1/2) ? ");
+                printf(" Invalid input..\n Which player goes first? (1/2): ");
                 scanf("%u",&npl);
             }
 
             return npl-1;
         }
-        if((!strcmp(str,"si"))||(!strcmp(str,"Si"))||(!strcmp(str,"SI"))){
+        if((!strcmp(str,"y"))||(!strcmp(str,"yes"))||(!strcmp(str,"Y"))||(!strcmp(str,"YES"))){
             int x = 0 ;
             srand(time(NULL));
             while(x == 0){
@@ -338,13 +352,13 @@ int game(unsigned int gameMode){
             printf(" Select depth: ");
             scanf("%d", &depth);
             while(depth%2 == 0 ){
-                printf(" Depth deve essere numero dispari\n");
+                printf(" Depth must to be an odd number\n");
                 printf(" Select depth: ");
                 scanf("%d", &depth);
             }
         }else{
             depth = 0;
-            printf(" Selected"GRN"easy"reset".\n");
+            printf(" Selected "GRN"easy"reset".\n");
         }
     
     }
@@ -365,25 +379,25 @@ int game(unsigned int gameMode){
         unsigned int w,h,max_ped = 0;
         char char_p1, char_p2;
         conta = 0;
-        printf("Altezza della scacchiera : ");
+        printf(" Board height : ");
         scanf("%u",&h);
-        printf("Larghezza della scacchiera : ");
+        printf(" Board width : ");
         scanf("%u",&w);
 
         while(w < 3 || h < 3){
-            printf("Larghezza e altezza della scacchiera non soddisfa requisiti minimi(h >= 3,w >= 3)\n");
-            printf("Reinserire altezza e larghezza\n ");
-            printf("Altezza della scacchiera : ");
+            printf(" The board must be high and wide at least 3\n");
+            printf(" Reselect board size.. \n");
+            printf(" Board height : ");
             scanf("%u",&h);
-            printf("Larghezza della scacchiera : ");
+            printf(" Board width : ");
             scanf("%u",&w);
         }
         max_ped = max_pawns(h,w);
-        printf("Numero di pedine massimo per giocatore : %u\n",max_ped);
-        printf("Numero pedine ?(ovviamente minore o guale al massimo numero) : ");
+        printf(" Maximum number of pawns : %u\n",max_ped);
+        printf(" Select number of pawns : ");
         scanf("%u",&cifre);
         while(cifre > max_ped){
-            printf("Reinserire numero pedine : ");
+            printf(" Reselect number of pawns : ");
             scanf("%u",&cifre);
         }
 
@@ -402,9 +416,9 @@ int game(unsigned int gameMode){
             initialize_board(t,3+conta+1);
 
 
-            printf("[" RED "R" reset "] [" GRN "G" reset "] ["MAG "M" reset "] ["BLU "B" reset "] ["CYN "C" reset "] ["YEL "Y" reset "]\n");
+            printf("\n [" RED "R" reset "] [" GRN "G" reset "] ["MAG "M" reset "] ["BLU "B" reset "] ["CYN "C" reset "] ["YEL "Y" reset "]\n");
 
-            printf("Seleziona colore pedina Player1: ");
+            printf(" Choose player 1 pawn color: ");
             scanf("%s", &char_p1);
             if(check_char_color(char_p1) == 2){
                 char temp;
@@ -412,7 +426,7 @@ int game(unsigned int gameMode){
                 char_p1 = temp;
             }
 
-            printf("Seleziona colore pedina Player2: ");
+            printf(" Choose player 2 pawn color: ");
             scanf("%s", &char_p2);
             if(check_char_color(char_p2) == 2){
                 char temp;
@@ -423,8 +437,7 @@ int game(unsigned int gameMode){
 
             while(check_char_color(char_p1)!=1 || check_char_color(char_p2)!=1){
                 if(!check_char_color(char_p1) ){
-                    printf("Hai sbagliato ad inserire carattere Player 1\n");
-                    printf("Seleziona colore pedina Player1: ");
+                    printf(" Invalid input.. \n Choose another color for player 1's pawns: ");
                     scanf("%s", &char_p1);
                 }else{
                     if(check_char_color(char_p1) == 2){
@@ -434,8 +447,7 @@ int game(unsigned int gameMode){
                     }
                 }
                 if(!check_char_color(char_p2)){
-                    printf("Hai sbagliato ad inserire carattere Player n\n");
-                    printf("Seleziona colore pedina Player2: ");
+                    printf(" Invalid input.. \n Choose another color for player 2's pawns: ");
                     scanf("%s", &char_p2);
                 }else{
                     printf("%u",check_char_color(char_p2));
@@ -448,17 +460,18 @@ int game(unsigned int gameMode){
             }
 
             players = create_pawns(numped,char_p1, char_p2, conta,*t); /* create array[2] of player_t type */
+            /* 
             print_player(players,0);
-            print_player(players,1);
+            print_player(players,1); */
 
         }else{
-            printf("Non ha senso giocare con %u pedine !\n",cifre);
+            printf(" It doesn't have any sense playing with %d pawns",cifre);
             return 0;
         }
     }
 
-     turno = round_choice();
-    printf("Il player che inizia e' %u\n",turno+1);
+    turno = round_choice();
+    printf(" Starting player is %u\n",turno+1);
     while((exit == 4)&&(is_victory(players)>2)){
         set_moves_pawn(players,t,0,-1);
         set_moves_pawn(players,t,1,-1);
@@ -474,9 +487,9 @@ int game(unsigned int gameMode){
             }
         }
         if(exit == 4){
-            printf("Round numero : %u\n",round);
+            printf(" Round number : %u\n",round);
             printTextColor(players[turno].color);
-            printf("Turno Player %d\n", turno+1);
+            printf(" Player %d turn\n", turno+1);
             resetColor();
             if (turno == 0 ){
                 exit = round_player(players,t,turno);
@@ -503,10 +516,10 @@ int game(unsigned int gameMode){
         }
     }
     if(exit == 2){
-        printf("Entrambi i giocatori hanno le pedine bloccate\n");
+        printf(" Both players are unable to move\n");
     }
     if(exit == 3){
-        printf("Hai abbandonato la partita\n");
+        printf(" You left the game\n");
     }else{
         if(exit == 1 || exit  == 0){
             ++exit;
@@ -514,8 +527,8 @@ int game(unsigned int gameMode){
         if(exit == 4){
             exit = is_victory(players);
         }
-        printf("Round totali della partita : %u\n",round);
-        printf("Il vincitore e' il player %d!\n",exit);
+        printf(" Total rounds : %u\n",round);
+        printf(" Player %d won!\n",exit);
     }
 
     destroy_board(t);
@@ -530,10 +543,11 @@ void menu(){
     printf(" #886711 Diego    Passarella\n");
     printf(" #882082 Davide   Pasqual\n");
     printf(" #881493 Michelle Ravagnan\n");
-    printf("\n\t+-+-+-+-+-+-+-+-+-+-+-+-+-+\n"
-             "\t|""M|""i|""n|""i||""L|""a|""s|""k|""a|  |""5|""1|""\n"
-             "\t+-+-+-+-+-+-+-+-+-+-+-+-+-+");
-    printf("\n\n [1] Player vs. Player");
+    printf("\n\t"RED"+-+"YEL"-+"GRN"-+"CYN"-+-+"BLU"-+-+-+-+-+-+-+-+\n"
+             "\t"RED"|M|"YEL"i|"GRN"n|"CYN"i| |"BLU"L|"MAG"a|"RED"s|"YEL"k|"GRN"a| |"CYN"5|"BLU"1|\n"
+             "\t"CYN"+-+-+-+-+-+"BLU"-+"MAG"-+"RED"-+"YEL"-+"GRN"-+-+"CYN"-+"BLU"-+"reset"\n");
+             
+    printf("\n [1] Player vs. Player");
     printf("\n [2] Player vs. IA");
     printf("\n [3] Exit");
     while(choice != 1 && choice != 2 && choice != 3){
@@ -542,11 +556,11 @@ void menu(){
         switch(choice){
             case 1:
                 system("clear");
-                printf("\nSelected Player vs. Player\n");
+                printf("\n Selected Player vs. Player\n");
                 game(0);
                 break;
             case 2:
-                printf("\nSelected Player vs. IA\n");
+                printf("\n Selected Player vs. IA\n");
                 system("clear");
                 game(1);
                 break;
