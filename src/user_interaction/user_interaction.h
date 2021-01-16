@@ -1,3 +1,9 @@
+/*
+    ID gruppo : 51
+
+    886711 Passarella-Diego | 882082 Pasqual-Davide | 881493 Ravagnan-Michelle
+
+ */
 #ifndef USER_INTERACTION_H
 #define USER_INTERACTION_H
 
@@ -21,6 +27,15 @@ void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char 
 void print_player(player_t *players,unsigned int nPl);
 
 /**
+ * @brief
+ *
+ * @param players
+ * @param nPl
+ * @return unsigned int
+ */
+
+unsigned int while_select_nPawn(player_t *players,unsigned int nPl);
+/**
  * @brief 
  * 
  * @param players 
@@ -29,6 +44,13 @@ void print_player(player_t *players,unsigned int nPl);
  * @return unsigned int 
  */
 unsigned int round_player(player_t *players,board_t *t,unsigned int nPl);
+
+/**
+ * @brief
+ *
+ * @return unsigned int
+ */
+unsigned int round_choice();
 
 /**
  * @brief 

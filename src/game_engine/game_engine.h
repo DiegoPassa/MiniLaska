@@ -1,6 +1,11 @@
+/*
+    ID gruppo : 51
+
+    886711 Passarella-Diego | 882082 Pasqual-Davide | 881493 Ravagnan-Michelle
+
+ */
 #ifndef GAME_ENGINE_H
 #define GAME_ENGINE_H
-
 typedef unsigned int dim_board, coord, flag;
 
 /**
@@ -173,7 +178,7 @@ int can_eat(player_t *players, unsigned int num_pawn, char *str, board_t *board,
  * @param nPl 
  * @return unsigned int 
  */
-unsigned int all_blocked(player_t *players, board_t board, unsigned int nPl);
+unsigned int all_blocked(player_t *players, unsigned int nPl);
 
 /**
  * @brief 
@@ -199,13 +204,6 @@ int is_empty(player_t p);
  * @return unsigned int 
  */
 unsigned int max_pawns(unsigned int r,unsigned int c);
-
-/**
- * @brief 
- * 
- * @return unsigned int 
- */
-unsigned int round_choice();
 
 /**
  * @brief 
@@ -295,5 +293,21 @@ unsigned int char_converter(board_t board, unsigned int r, unsigned int c, unsig
  * @return char 
  */
 char int_converter(int num,unsigned int index);
+
+/**
+ * @brief
+ *
+ * @param c
+ * @return char
+ */
+char uppercase(char c);
+/**
+ * @brief
+ *
+ * @param c
+ * @return unsigned int
+ */
+unsigned int check_char_color(char c);
+
 
 #endif

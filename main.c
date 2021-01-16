@@ -1,6 +1,10 @@
-#include <stdio.h>
+/*
+    ID gruppo : 51
 
-#include "src/game_engine/game_engine.h"
+    886711 Passarella-Diego | 882082 Pasqual-Davide | 881493 Ravagnan-Michelle
+
+ */
+#include <stdio.h>
 #include "src/user_interaction/user_interaction.h"
 
 int main(){

@@ -1,3 +1,9 @@
+/*
+    ID gruppo : 51
+
+    886711 Passarella-Diego | 882082 Pasqual-Davide | 881493 Ravagnan-Michelle
+
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -41,7 +47,6 @@ void print_directions(unsigned int *arr,unsigned int dim,unsigned int np){
         if(arr[i]){
             ++flag;
         }
-        printf("Move %u : %u\n",i,arr[i]);
     }
     if(flag != 0){
         if(flag == 1){
@@ -336,7 +341,7 @@ int can_eat(player_t *players, unsigned int num_pawn, char *str, board_t *board,
     return -3;
 }
 
-unsigned int all_blocked(player_t *players, board_t board, unsigned int nPl){
+unsigned int all_blocked(player_t *players, unsigned int nPl){
     unsigned int i, flag = 1;
     for(i = 0 ; i < players[nPl].dim_pawns ; ++i){
         if(players[nPl].pawns[i].grade > 0 && check_canMove(players, i,nPl)){
@@ -410,44 +415,6 @@ unsigned int max_pawns(unsigned int r,unsigned int c){
     }
 
     return numped;
-}
-
-unsigned int round_choice(){
-    char str[2];
-
-    printf("Inizia il turno come da predefinito (quindi primo giocatore)? ");
-    scanf("%s",str);
-    if((!strcmp(str,"si"))||(!strcmp(str,"Si"))||(!strcmp(str,"SI"))){
-        return 0;
-    }else{
-        printf("Lancio monetina ? ");
-        scanf("%s",str);
-        if((!strcmp(str,"no"))||(!strcmp(str,"NO"))||(!strcmp(str,"No")) ){
-            unsigned int npl = 0;
-            printf("Giocatore 1 o 2 inizia per primo? : ");
-            scanf("%u",&npl);
-            while(npl != 1 && npl != 2){
-                printf("Quale giocatore inizia per primo(1/2) ? ");
-                scanf("%u",&npl);
-            }
-
-            return npl-1;
-        }
-        if((!strcmp(str,"si"))||(!strcmp(str,"Si"))||(!strcmp(str,"SI"))){
-            int x = 0 ;
-            srand(time(NULL));
-            while(x == 0){
-                x = rand()%10;
-            }
-            if(x%2 == 0){
-                x = 0;
-            }else{
-                x = 1;
-            }
-            return x;
-        }
-    }
-    return 0;
 }
 
 unsigned int is_notstuck(player_t *players, board_t board, unsigned int nPawn, unsigned int nPl){
@@ -669,5 +636,21 @@ char int_converter(int num,unsigned int index){
         return (let+(num/pow(10,index)));
     }else{
         return '0';
+    }
+}
+char uppercase(char c){
+    return ((c-'a')+'A');
+}
+unsigned int check_char_color(char c){
+    char new_c = c;
+    unsigned int flag = 1;
+    if(c >= 'a' && c <= 'z'){
+        new_c = uppercase(c);
+        flag = 2 ;
+    }
+    if( new_c == 'R'|| new_c == 'G' || new_c == 'M' || new_c == 'B' || new_c == 'C' || new_c == 'Y' ){
+        return flag;
+    }else{
+        return 0;
     }
 }

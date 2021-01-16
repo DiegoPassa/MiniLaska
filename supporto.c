@@ -5,7 +5,7 @@
 #include<string.h>
 #include<time.h>
 #include <math.h>
-#include "src/colors/colors.h"
+/*#include "src/colors/colors.h"*/
 
 /* void pawn_remove_promotion(player_t *players ,int num_pawn,unsigned int nPl){
     if (num_pawn > -1 && num_pawn < players[nPl].dim_pawns && (nPl == 0 || nPl == 1)){

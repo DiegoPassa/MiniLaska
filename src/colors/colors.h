@@ -1,3 +1,9 @@
+/*
+    ID gruppo : 51
+
+    886711 Passarella-Diego | 882082 Pasqual-Davide | 881493 Ravagnan-Michelle
+
+ */
 #ifndef COLORS_H
 #define COLORS_H
 

@@ -1,6 +1,11 @@
+/*
+    ID gruppo : 51
+
+    886711 Passarella-Diego | 882082 Pasqual-Davide | 881493 Ravagnan-Michelle
+
+ */
 #ifndef MOVEMENT_H
 #define MOVEMENT_H
-
 /**
  * @brief 
  * 
@@ -48,5 +53,6 @@ int move_p1 (player_t *players, unsigned int num_pawn, char *str, board_t *board
  * @return int 
  */
 int move_p2(player_t *players,unsigned int num_pawn,char *str,board_t *board);
+
 
 #endif

@@ -1,3 +1,9 @@
+/*
+    ID gruppo : 51
+
+    886711 Passarella-Diego | 882082 Pasqual-Davide | 881493 Ravagnan-Michelle
+
+ */
 #ifndef MEMORY_MANAGEMENT_H
 #define MEMORY_MANAGEMENT_H
 

@@ -1,4 +1,6 @@
 
+ID_gruppo : 51
+
 #Matricola  Nome       Cognome
 
  886711     Diego      Passarella
