@@ -43,11 +43,11 @@ struct point{
  * @param cima : it is the position of the highest pawn int he label.
  * @param grade : if 0 then the label doesn't appear in the board,else it represents the height of the pawn tower.
  * @param is_promoted : if 1 then the pawn can move to bottom right or bottom left respect the pawn ,else the pawn can move only left or right respect the pawn.
- * @param canMove : it is a int pointer,so where it set to 1 the pawn can move in that direction :
- *              -> canMove[0]  = left.
- *              -> canMove[1]  = right.
- *              -> canMove[2]  = bottom right.
- *              -> canMove[3]  = bottom left.
+ * @param canMove : it is a int pointer,so where it set to 1 the pawn can move in that direction :<br>
+ *              -> canMove[0]  = left.<br>
+ *              -> canMove[1]  = right.<br>
+ *              -> canMove[2]  = bottom right.<br>
+ *              -> canMove[3]  = bottom left.<br>
  */
 struct pawn{
     char *label; /*!< label of the pawn ex.|  BN07 | */
@@ -76,8 +76,8 @@ struct player{
 /**
  * @brief Set char on the board.
  * 
- * '#' white cell, it's where pawns can move <br>
- * ' ' black cell, it's where pawns cannot move
+ * '#' white cell, it's where pawns can move<br>
+ * ' ' black cell, it's where pawns cannot move<br>
  * 
  * @param board Pointer to the board.
  * @param cifre Number of colums for the label.
@@ -252,9 +252,9 @@ unsigned int is_notstuck(player_t *players, board_t board, unsigned int nPawn, u
 unsigned int add_pawn(player_t *players, unsigned int enemy_pawn, unsigned int nPl,char c );
 
 /**
- * @brief Set possible movements of a given pawn and set mandatory eat.
+ * @brief Set possible movements of a given pawn and set mandatory eat.<br>
  * 
- * Calls to is_notstuck, must_eat and reset_moves_pawns.
+ * Calls to is_notstuck, must_eat and reset_moves_pawns.<br>
  * 
  * @param players Pointer to the players array.
  * @param board Pointer to the board.

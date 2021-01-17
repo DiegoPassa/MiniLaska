@@ -8,9 +8,9 @@
 #define IA_H
 
 /**
- * @brief Auxiliary struct for the minimax.
+ * @brief Auxiliary struct for the minimax.<br>
  * 
- * In order to improve the efficiency of the minimax function we preferred to create a new struct instead of calling another function similar to minimax.
+ * In order to improve the efficiency of the minimax function we preferred to create a new struct instead of calling another function similar to minimax.<br>
  * 
  * @param value Evaluated score of the minimax or -9017 if the pawn is blocked.
  * @param directions Array containing the string of the direction.
