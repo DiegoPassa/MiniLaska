@@ -2,40 +2,75 @@
 \label{structplayer}\index{player@{player}}
 
 
-{\ttfamily \#include $<$supporto.\+h$>$}
+Description of struct player \+:  
+
+
+
+
+{\ttfamily \#include $<$game\+\_\+engine.\+h$>$}
 
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-char \mbox{\hyperlink{structplayer_aa0491580a5a1350d76bc61c8969d9799}{colore}}
+char \mbox{\hyperlink{structplayer_ae2d77c102b2d2d3f0881c0e2bcdbe777}{color}}
 \item 
-\mbox{\hyperlink{supporto_8h_a3943deebda0fce5d57ef7c1a4018896d}{tpedina}} $\ast$ \mbox{\hyperlink{structplayer_a1d6c9f8ec5f0ee5b49e82e05cb568c8b}{arr}}
+\mbox{\hyperlink{game__engine_8h_a1c6b7df941af4fef6ee59bb8a15f30e9}{pawn\+\_\+t}} $\ast$ \mbox{\hyperlink{structplayer_a8b4f2f81b4021ff7259be78274a36c34}{pawns}}
 \item 
-unsigned int \mbox{\hyperlink{structplayer_ad335dc2821e58000fb6d0f0ed6ba835f}{dim}}
+unsigned int \mbox{\hyperlink{structplayer_ac4fc743c196b412152492e9b5a393c5e}{dim\+\_\+pawns}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Description of struct player \+: 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & \+: it represents the character of the player,eventually the color when the board is printed. \\
+\hline
+{\em $\ast$pawns} & \+: it is a pointer of struct pawn,so it is the pawn array. \\
+\hline
+{\em dim\+\_\+pawns} & \+: it is the number of pawns of the player,so it is the dimension of pawns array. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 74 of file game\+\_\+engine.\+h.
+
+
+
 \doxysubsection{Field Documentation}
-\mbox{\Hypertarget{structplayer_a1d6c9f8ec5f0ee5b49e82e05cb568c8b}\label{structplayer_a1d6c9f8ec5f0ee5b49e82e05cb568c8b}} 
-\index{player@{player}!arr@{arr}}
-\index{arr@{arr}!player@{player}}
-\doxysubsubsection{\texorpdfstring{arr}{arr}}
-{\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_a3943deebda0fce5d57ef7c1a4018896d}{tpedina}}$\ast$ arr}
+\mbox{\Hypertarget{structplayer_ae2d77c102b2d2d3f0881c0e2bcdbe777}\label{structplayer_ae2d77c102b2d2d3f0881c0e2bcdbe777}} 
+\index{player@{player}!color@{color}}
+\index{color@{color}!player@{player}}
+\doxysubsubsection{\texorpdfstring{color}{color}}
+{\footnotesize\ttfamily char color}
 
-\mbox{\Hypertarget{structplayer_aa0491580a5a1350d76bc61c8969d9799}\label{structplayer_aa0491580a5a1350d76bc61c8969d9799}} 
-\index{player@{player}!colore@{colore}}
-\index{colore@{colore}!player@{player}}
-\doxysubsubsection{\texorpdfstring{colore}{colore}}
-{\footnotesize\ttfamily char colore}
 
-\mbox{\Hypertarget{structplayer_ad335dc2821e58000fb6d0f0ed6ba835f}\label{structplayer_ad335dc2821e58000fb6d0f0ed6ba835f}} 
-\index{player@{player}!dim@{dim}}
-\index{dim@{dim}!player@{player}}
-\doxysubsubsection{\texorpdfstring{dim}{dim}}
-{\footnotesize\ttfamily unsigned int dim}
+
+Definition at line 75 of file game\+\_\+engine.\+h.
+
+\mbox{\Hypertarget{structplayer_ac4fc743c196b412152492e9b5a393c5e}\label{structplayer_ac4fc743c196b412152492e9b5a393c5e}} 
+\index{player@{player}!dim\_pawns@{dim\_pawns}}
+\index{dim\_pawns@{dim\_pawns}!player@{player}}
+\doxysubsubsection{\texorpdfstring{dim\_pawns}{dim\_pawns}}
+{\footnotesize\ttfamily unsigned int dim\+\_\+pawns}
+
+
+
+Definition at line 77 of file game\+\_\+engine.\+h.
+
+\mbox{\Hypertarget{structplayer_a8b4f2f81b4021ff7259be78274a36c34}\label{structplayer_a8b4f2f81b4021ff7259be78274a36c34}} 
+\index{player@{player}!pawns@{pawns}}
+\index{pawns@{pawns}!player@{player}}
+\doxysubsubsection{\texorpdfstring{pawns}{pawns}}
+{\footnotesize\ttfamily \mbox{\hyperlink{game__engine_8h_a1c6b7df941af4fef6ee59bb8a15f30e9}{pawn\+\_\+t}}$\ast$ pawns}
+
+
+
+Definition at line 76 of file game\+\_\+engine.\+h.
 
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{supporto_8h}{supporto.\+h}}\end{DoxyCompactItemize}
+src/game\+\_\+engine/\mbox{\hyperlink{game__engine_8h}{game\+\_\+engine.\+h}}\end{DoxyCompactItemize}

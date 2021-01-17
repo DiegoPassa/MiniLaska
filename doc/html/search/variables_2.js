@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['dim_111',['dim',['../structpedina.html#ad335dc2821e58000fb6d0f0ed6ba835f',1,'pedina::dim()'],['../structplayer.html#ad335dc2821e58000fb6d0f0ed6ba835f',1,'player::dim()']]]
+  ['dim_5flabel_241',['dim_label',['../structpawn.html#ab70e87cd9d6d91fab3b9bcb0237c83e6',1,'pawn']]],
+  ['dim_5fpawns_242',['dim_pawns',['../structplayer.html#ac4fc743c196b412152492e9b5a393c5e',1,'player']]],
+  ['directions_243',['directions',['../structvalue_minimax.html#ab226d2093f1adfbd841e41af5c224b78',1,'valueMinimax']]]
 ];

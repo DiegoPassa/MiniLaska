@@ -1,47 +1,49 @@
-#include<stdio.h>
 
-/*
-    **********************
-    *    1 = Testo       *
-    *    2 = Sfondo      *
-    **********************
-*/
+#include <stdio.h>
+#include "colors.h"
 
-void setRed (int n) {
-    if (n == 1){
-        printf("\033[0;31m");
+void printTextColor(char color){
+    if (color == 'R'){
+        printf(RED);
     }
-    if (n == 2){
-        printf("\033[41m");
+    if (color == 'Y'){
+        printf(YEL);
+    }
+    if (color == 'G'){
+        printf(GRN);
+    }
+    if (color == 'C'){
+        printf(CYN);
+    }
+    if (color == 'M'){
+        printf(MAG);
+    }
+    if (color == 'B'){
+        printf(BLU);
     }
 }
 
-void setYellow (int n){
-    if (n == 1){
-        printf("\033[0;33m");
+void printColor(char color){
+    if (color == 'R'){
+        printf(REDB);
     }
-    if (n == 2){
-        printf("\033[43m");
+    if (color == 'Y'){
+        printf(YELB);
     }
-}
-
-void printPlayerTurn(char nPl){
-    if (nPl == 'B'){
-        setYellow(1);
+    if (color == 'G'){
+        printf(GRNB);
     }
-    if (nPl == 'N'){
-        setRed(1);
+    if (color == 'C'){
+        printf(CYNB);
     }
-}
-
-void setBlack (){
-    printf("\033[0;30m");
+    if (color == 'M'){
+        printf(MAGB);
+    }
+    if (color == 'B'){
+        printf(BLUB);
+    }
 }
 
 void setWhite (){
     printf("\033[7m");
-}
-
-void resetColor () {
-    printf("\033[0m");
 }

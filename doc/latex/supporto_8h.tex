@@ -1,263 +1,912 @@
 \hypertarget{supporto_8h}{}\doxysection{supporto.\+h File Reference}
 \label{supporto_8h}\index{supporto.h@{supporto.h}}
-\doxysubsection*{Data Structures}
-\begin{DoxyCompactItemize}
-\item 
-struct \mbox{\hyperlink{structcampo}{campo}}
-\begin{DoxyCompactList}\small\item\em Struttura campo. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{structpedina}{pedina}}
-\item 
-struct \mbox{\hyperlink{structplayer}{player}}
-\end{DoxyCompactItemize}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef struct \mbox{\hyperlink{structcampo}{campo}} \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}
+typedef unsigned int \mbox{\hyperlink{supporto_8h_af55319a5d5f5161b855177c9e2c00fd0}{dim\+\_\+board}}
 \item 
-typedef struct \mbox{\hyperlink{structpedina}{pedina}} \mbox{\hyperlink{supporto_8h_a3943deebda0fce5d57ef7c1a4018896d}{tpedina}}
+typedef unsigned int \mbox{\hyperlink{supporto_8h_a9d52fc079c0e3d3767e033fec3a3f794}{coord}}
 \item 
-typedef struct \mbox{\hyperlink{structplayer}{player}} \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}
+typedef unsigned int \mbox{\hyperlink{supporto_8h_a1e136e020b4a3ab89e91221a40e8f28d}{flag}}
+\item 
+typedef struct \mbox{\hyperlink{structboard}{board}} \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}
+\item 
+typedef struct \mbox{\hyperlink{structpoint}{point}} \mbox{\hyperlink{supporto_8h_abce73ee21c48ee71e33e591a250c5af4}{point\+\_\+t}}
+\item 
+typedef struct \mbox{\hyperlink{structpawn}{pawn}} \mbox{\hyperlink{supporto_8h_aed5061f0635fec2d4cb5caebc696efec}{pawn\+\_\+t}}
+\item 
+typedef struct \mbox{\hyperlink{structplayer}{player}} \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}}
+\item 
+typedef struct \mbox{\hyperlink{structvalue_minimax}{value\+Minimax}} \mbox{\hyperlink{supporto_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$ \mbox{\hyperlink{supporto_8h_a45c407702e9be0abc15eaf0ca385fa10}{create\+\_\+board}} (unsigned int r, unsigned int c, unsigned int cifre)
+\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$ \mbox{\hyperlink{supporto_8h_a59717829a891932b9087821edba6c9ba}{create\+\_\+board}} (unsigned int n\+\_\+rows, unsigned int n\+\_\+cols, unsigned int cifre)
 \begin{DoxyCompactList}\small\item\em Creazione del campo di gioco. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{supporto_8h_a9bebec4622d89e69e845dda90b782bcf}{initialize\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, unsigned int cifre)
+void \mbox{\hyperlink{supporto_8h_a1e000b0af6247b246effb9ef89df1dc7}{initialize\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int cifre)
+\begin{DoxyCompactList}\small\item\em Set char on the board. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{supporto_8h_a9c2af248c709bb8d1d4f48e6250d3ec2}{print\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} t, unsigned int cifre, unsigned npl, char char\+\_\+p1, char char\+\_\+p2)
 \item 
-void \mbox{\hyperlink{supporto_8h_a94c7c50bc7d3a9dffc1354c289bd682d}{print\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t, unsigned int cifre, unsigned int npl)
-\item 
-\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$ \mbox{\hyperlink{supporto_8h_ad8dd92d796029b9e2a02a8e446dfe69a}{create\+\_\+pawns}} (unsigned int n, char ped, unsigned int np, unsigned int cifre, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t)
-\item 
-void \mbox{\hyperlink{supporto_8h_a600f606f3b2109510e79b7cb0fc77c62}{print\+\_\+player}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p)
+\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$ \mbox{\hyperlink{supporto_8h_a78a40143a6e01b942333cbad61af46f9}{create\+\_\+pawns}} (unsigned int tot\+Pawns, char player1, char player2, unsigned int cifre, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}})
+\begin{DoxyCompactList}\small\item\em Create a pawns object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{supporto_8h_a368be0a595d675d3cfc0f7267aa566cf}{print\+\_\+player}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int n\+Pl)
 \item 
 void \mbox{\hyperlink{supporto_8h_ade0653b2e42848b6f90ae0cd27e2cd42}{print\+\_\+directions}} (unsigned int $\ast$arr, unsigned int dim, unsigned int np)
+\begin{DoxyCompactList}\small\item\em Print hints for the movements of a given pawn. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{supporto_8h_a55b6e9e1926c718eedf6e9d916822d11}{update\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$t, \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$\mbox{\hyperlink{structplayer}{player}})
+\begin{DoxyCompactList}\small\item\em Update the board after a player move. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{supporto_8h_acd4a1e5e343482fb4152900f25886736}{can\+\_\+eat}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int num\+\_\+pawn, char $\ast$str, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl)
+\begin{DoxyCompactList}\small\item\em Check enemy pawns in a given direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{supporto_8h_a6a24af5cc31ae6fc596da667a229dc3a}{must\+\_\+eat}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+\_\+pawn, unsigned int n\+Pl)
+\begin{DoxyCompactList}\small\item\em Set mandatory eat if possible. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{supporto_8h_a00374686d02b15fa8b62ba0b1a0a0e2e}{check\+\_\+directions}} (unsigned int $\ast$can\+Move\+\_\+arr, unsigned int dim\+\_\+can\+Move, char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Check if a given string is setted in the pawn\textquotesingle{}s possible movements. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{supporto_8h_af98c2d7ebb2b146df09e8df4422e9243}{move\+\_\+noeat}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int num\+\_\+pawn, char $\ast$str, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl)
 \item 
-void \mbox{\hyperlink{supporto_8h_a871cb258dda2536b6de44bc691911c49}{update\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p2)
-\item 
-int \mbox{\hyperlink{supporto_8h_acc4625a3f4b1fe971d82d3e0fb2db07a}{can\+\_\+eat}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p1, unsigned int np, char $\ast$str, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p2, unsigned int pl)
-\item 
-unsigned int $\ast$ \mbox{\hyperlink{supporto_8h_a74b79a62b552ea48c2ddb28febb445fd}{must\+\_\+eat}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p2, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t, unsigned int np, unsigned int npl)
-\item 
-unsigned int \mbox{\hyperlink{supporto_8h_a666e0c221817bf8d09c0708bd147050f}{check\+\_\+directions}} (unsigned int $\ast$arr, unsigned int dim, char $\ast$str)
-\item 
-unsigned int \mbox{\hyperlink{supporto_8h_a8001bec87945745ccef27e03a874213c}{move\+\_\+noeat}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p1, unsigned int np, char $\ast$str, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p2, unsigned int pl)
-\item 
-unsigned int \mbox{\hyperlink{supporto_8h_a1bda86cdcd668572e34d8efc0ebf73fe}{is\+\_\+in}} (int r, int c, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t)
-\item 
-unsigned int \mbox{\hyperlink{supporto_8h_a4cc6078ed777b67a77218e2bef4ebd10}{check\+\_\+spot}} (\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t, unsigned int r, unsigned int c, unsigned int cifre)
-\item 
-int \mbox{\hyperlink{supporto_8h_ad0b249d0604a36c24742cee6f4819ccf}{is\+\_\+empty}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p)
-\item 
-unsigned int \mbox{\hyperlink{supporto_8h_a6f65590ae83d869a3bec216de6368113}{is\+\_\+selected}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p2, unsigned int np, unsigned int npl)
-\item 
+unsigned int \mbox{\hyperlink{supporto_8h_ad95a591d93c5394a13d2d45fb856b3ab}{is\+\_\+in}} (int r, int c, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}})
+\begin{DoxyCompactList}\small\item\em Check if a given coordinate are included in the board. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{supporto_8h_acbcad48fef30836ddcd28ef5aa651961}{check\+\_\+spot}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, unsigned int row, unsigned int col, unsigned int dim\+\_\+label)
+\begin{DoxyCompactList}\small\item\em Check if in a given coordinate on the board there is a pawn or not. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{supporto_8h_a0b8736bf8d03748b3eb4c3cf5bd19138}{is\+\_\+empty}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} p)
+\begin{DoxyCompactList}\small\item\em Check if in the player\textquotesingle{}s array there is an unused pawn. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{supporto_8h_ac3d6435119a6f0271f67d07bb9798c1f}{is\+\_\+selected}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$\mbox{\hyperlink{structplayer}{player}}, int num\+\_\+pawn, unsigned int n\+Pl)
+\begin{DoxyCompactList}\small\item\em Check if a given pawn exists in the board. \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{supporto_8h_a0bd4d9ad7b168fa5a30645559b5173bf}{max\+\_\+pawns}} (unsigned int r, unsigned int c)
+\begin{DoxyCompactList}\small\item\em Calculate the max number of pawns in a given space. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{supporto_8h_a263b347172288a57651b3482c0d8dbc9}{is\+\_\+notstuck}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pawn, unsigned int n\+Pl)
+\begin{DoxyCompactList}\small\item\em Set possible movements of a given pawn. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$ \mbox{\hyperlink{supporto_8h_a756df69ef86d001e387271af896b5078}{copy\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$new\+Board, unsigned int cifre, unsigned int set)
 \item 
-unsigned int \mbox{\hyperlink{supporto_8h_a4d3969ebd9f51ce44f7184bfd28fb7c8}{is\+\_\+notstuck}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p2, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t, unsigned int nped, unsigned int npl)
+\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$ \mbox{\hyperlink{supporto_8h_a7f9bac937dc0ea682379dce48f23cdfd}{player\+\_\+copy}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$new\+Players, unsigned int dim\+\_\+label, unsigned int set)
 \item 
-\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$ \mbox{\hyperlink{supporto_8h_afa07018b01c41707db9ad8bcb5f2eba0}{copy\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$new)
+unsigned int \mbox{\hyperlink{supporto_8h_a107a0bfe72f29a205eb704cfec1e68df}{add\+\_\+pawn}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int enemy\+\_\+pawn, unsigned int n\+Pl, char c)
 \item 
-\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$ \mbox{\hyperlink{supporto_8h_a430b311c67c575e4b0b7be78ee0f7221}{player\+\_\+copy}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$n, unsigned int cifre)
+int \mbox{\hyperlink{supporto_8h_a06455c5400852e2b70952a4c5c6006f9}{move\+\_\+p1}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int num\+\_\+pawn, char $\ast$str, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl)
 \item 
-unsigned int \mbox{\hyperlink{supporto_8h_a0dbb798af8981e4d2eb5f3a1dca2350b}{add\+\_\+pawn}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p2, unsigned int np)
+int \mbox{\hyperlink{supporto_8h_ac4876db3570725fc49e344af21021c7b}{move\+\_\+p2}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int num\+\_\+pawn, char $\ast$str, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}})
 \item 
-unsigned int \mbox{\hyperlink{supporto_8h_a9753032031107e08ce2cdeab8e32d021}{move\+\_\+p1}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p1, unsigned int np, char $\ast$str, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p2, unsigned int pl)
+void \mbox{\hyperlink{supporto_8h_a2b2ccf60f065b91670f5c440cc615e2e}{remove\+\_\+pawn}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int row, unsigned int col, unsigned int dim\+\_\+label)
+\begin{DoxyCompactList}\small\item\em Reset label from a given coordinate. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{supporto_8h_abbf532f4b90267a4b5fa0f92a7b290f6}{pawn\+\_\+promotion}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int num\+\_\+pawn, unsigned int n\+Pl, unsigned int last\+\_\+row)
+\begin{DoxyCompactList}\small\item\em Promote a given pawn. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{supporto_8h_a9978b5c1f3bf1c49bd306d513b41918a}{pawn\+\_\+remove\+\_\+promotion}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, int num\+\_\+pawn, unsigned int n\+Pl)
 \item 
-unsigned int \mbox{\hyperlink{supporto_8h_a67a27daf195ef004a26f202207be9d39}{move\+\_\+p2}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p2, unsigned int np, char $\ast$str, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p1)
+unsigned int \mbox{\hyperlink{supporto_8h_a5ed734f105ad05ffb03d2f437a928b2d}{eat}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, char $\ast$str, unsigned int num\+\_\+pawn, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, unsigned int enemy\+\_\+pawn, unsigned int n\+Pl)
 \item 
-void \mbox{\hyperlink{supporto_8h_ae4fdfba8aa0074821ab82c5fe9359846}{remove\+\_\+pawn}} (\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, unsigned int r, unsigned int c, unsigned int cifre)
-\item 
-void \mbox{\hyperlink{supporto_8h_ab67187e14285d24a161877b62c7b945b}{pawn\+\_\+promotion}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p, unsigned int np, unsigned int numpl, unsigned int meta)
-\item 
-unsigned int \mbox{\hyperlink{supporto_8h_a17e15008fea16e23d403ca1b340d8610}{eat}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p2, char $\ast$str, unsigned int np, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t, unsigned int num, unsigned int npl)
-\item 
-unsigned int \mbox{\hyperlink{supporto_8h_a1512ab1980abe9a7fcd4dd513c948a06}{char\+\_\+converter}} (\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t, unsigned int r, unsigned int c, unsigned int dim, unsigned int cifre)
-\item 
-char \mbox{\hyperlink{supporto_8h_a7082b2f18b8eebe86c5a0da55d792df2}{int\+\_\+converter}} (unsigned int num, unsigned int index)
-\item 
-unsigned int \mbox{\hyperlink{supporto_8h_a57235c5f4283c975b5374478b124686f}{check\+\_\+player}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p2, unsigned int x, unsigned int y)
-\item 
-unsigned int \mbox{\hyperlink{supporto_8h_aaf7e6ccff2cc4d299c57e594b4a51ee3}{is\+\_\+victory}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p2, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t)
-\item 
-unsigned int \mbox{\hyperlink{supporto_8h_ab70152d716bc2a0320e6c3f1c30dde9f}{all\+\_\+blocked}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} p2, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} t, unsigned int npl)
+unsigned int \mbox{\hyperlink{supporto_8h_aa3c132e96baafe05bc8ae89beff5313c}{char\+\_\+converter}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, unsigned int r, unsigned int c, unsigned int dim\+\_\+label)
+\begin{DoxyCompactList}\small\item\em Convert a given char on a label to int. \end{DoxyCompactList}\item 
+char \mbox{\hyperlink{supporto_8h_a00edfa0b11cbdf464431c6f3b3b3eb27}{int\+\_\+converter}} (int num, unsigned int index)
+\begin{DoxyCompactList}\small\item\em Convert a given int to a char. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{supporto_8h_aa7661789f3fc8585f07e049bfdfbbf52}{check\+\_\+player}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int x, unsigned int y, unsigned int n\+Pl)
+\begin{DoxyCompactList}\small\item\em Check if in a given coordinate there is an enemy pawn. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{supporto_8h_ad913753d69ed13ad3bcff7a80b1fa4e3}{is\+\_\+victory}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players)
+\begin{DoxyCompactList}\small\item\em Check if there is a winner. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{supporto_8h_a152d259bcb19351582c85abbab09ba50}{all\+\_\+blocked}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl)
 \item 
 unsigned int \mbox{\hyperlink{supporto_8h_ad0f3596ada5da999aca1ba3923d6814f}{round\+\_\+choice}} ()
 \item 
-unsigned int \mbox{\hyperlink{supporto_8h_add3f5f3eb41cdcad84e5d63c2b70c920}{round\+\_\+player}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p2, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, unsigned int npl)
+unsigned int \mbox{\hyperlink{supporto_8h_ad9c6d4f44123dccc8c06128c637cd00f}{round\+\_\+player}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$t, unsigned int n\+Pl)
 \item 
 int \mbox{\hyperlink{supporto_8h_a47b10bbd5a55138c5589d579f88ad609}{player\+\_\+vs\+\_\+player}} (unsigned int x)
 \item 
 void \mbox{\hyperlink{supporto_8h_af132ad3ea6d429831047325e8ad017f2}{player\+\_\+vs\+\_\+ia}} ()
 \item 
-unsigned int \mbox{\hyperlink{supporto_8h_a356f1511e00a9bf2d02ae8c229fcaaac}{round\+\_\+ia}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p1, \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$ia, \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t, unsigned int npl)
+unsigned int \mbox{\hyperlink{supporto_8h_ab9533ccf304c2028b15cd68ad22a9ad5}{round\+\_\+ia\+\_\+random}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl)
 \item 
-int \mbox{\hyperlink{supporto_8h_ac3f283521df86b7a058cdf50de4c2044}{minimax}} ()
+unsigned int \mbox{\hyperlink{supporto_8h_a3827e885638fbf4608abb22613b7c260}{interropt\+\_\+minimax}} (int $\ast$alpha, int $\ast$beta)
 \item 
-void \mbox{\hyperlink{supporto_8h_a3f4fff539fe0fdfccfff1619561c9975}{destroy\+\_\+player}} (\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$p)
+int \mbox{\hyperlink{supporto_8h_ab304981f61da05ef06335cd557446d08}{minimax}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, int depth, unsigned int n\+Ped, unsigned int n\+Pl, \mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$v, int cheat, int $\ast$alpha, int $\ast$beta)
 \item 
-void \mbox{\hyperlink{supporto_8h_a24106889ed5727d00c0cbea018d4290a}{destroy\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$t)
+int \mbox{\hyperlink{supporto_8h_a82180885d90f464ccd27de484d0e786a}{call\+\_\+minimax}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$board\+\_\+copy, \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players\+\_\+copy, unsigned int depth, unsigned int n\+Ped, unsigned int n\+Pl, \mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$v, char $\ast$str, int max\+Eval, int cheat, int $\ast$alpha, int $\ast$beta)
+\item 
+void \mbox{\hyperlink{supporto_8h_ae7bc18f77d401b9b34cd20bea551c49b}{restore\+\_\+copy}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$board\+\_\+copy, \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players\+\_\+copy)
+\item 
+int \mbox{\hyperlink{supporto_8h_a0ba8ad8f657d084b47a08e8da7f58f6d}{evaluate\+\_\+score}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8h_a3fab312a910163e9634d12fe728f1d70}{check\+\_\+string}} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Compare if the a given string equals to a valid movement. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{supporto_8h_a314d84d04c7347f8e51b42bc3caf20fd}{max}} (\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$arr, unsigned int dim)
+\item 
+void \mbox{\hyperlink{supporto_8h_a290c05f1dd7d30ae62ab3593e0e39786}{print\+\_\+minimax}} (\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$value\+\_\+arr, unsigned int dim\+\_\+arr)
+\item 
+int \mbox{\hyperlink{supporto_8h_a84662d50a743b387f2e8ac427dd17424}{round\+\_\+ia\+\_\+minimax}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl, unsigned int depth)
+\item 
+void \mbox{\hyperlink{supporto_8h_a501e49904d4a110a0f433447c45cd135}{set\+\_\+moves\+\_\+pawn}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl, int n\+Pawn)
+\begin{DoxyCompactList}\small\item\em Set possible movements of a given pawn and set mandatory eat. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{supporto_8h_a570fd3c27f9fff1e0b771dc6ed57edfd}{reset\+\_\+moves\+\_\+pawns}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, int n\+Pawn, unsigned int n\+Pl)
+\begin{DoxyCompactList}\small\item\em Reset possible movements of a given pawn. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{supporto_8h_a8fec67377eed54d06d8001375ac7ad74}{check\+\_\+can\+Move}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int n\+Ped, unsigned int n\+Pl)
+\begin{DoxyCompactList}\small\item\em Check if a pawn is able to move. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{supporto_8h_ac609f664beb8147e2372bc173b30af32}{destroy\+\_\+player}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players)
+\item 
+void \mbox{\hyperlink{supporto_8h_aeef99ca7f1dc371d786f261cd7a73fef}{destroy\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}})
+\item 
+void \mbox{\hyperlink{supporto_8h_a53075eb6ea08340d6a611d2ff6473035}{destroy\+\_\+value\+\_\+minimax}} (\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$arr, unsigned int dim)
+\item 
+unsigned int \mbox{\hyperlink{supporto_8h_af3109f8954897ba3feb48475cc5566cf}{check\+\_\+while}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int n\+Pl, unsigned int n\+Pawn)
+\begin{DoxyCompactList}\small\item\em Check if a pawn is selectable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{supporto_8h_ad448528144b2bc631ec5c433e0e14bc0}{print\+Matrix}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}})
+\item 
+int \mbox{\hyperlink{supporto_8h_a04c98e99a199fcfc80fefa3a33699707}{last\+\_\+move}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int n\+Pl)
+\item 
+void \mbox{\hyperlink{supporto_8h_a2a0e843767aeea4f433a28b9c54f573a}{menu}} ()
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Typedef Documentation}
-\mbox{\Hypertarget{supporto_8h_ad95f14493ade4e851620d5aea786ad10}\label{supporto_8h_ad95f14493ade4e851620d5aea786ad10}} 
-\index{supporto.h@{supporto.h}!tcampo@{tcampo}}
-\index{tcampo@{tcampo}!supporto.h@{supporto.h}}
-\doxysubsubsection{\texorpdfstring{tcampo}{tcampo}}
-{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structcampo}{campo}} \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}
+\mbox{\Hypertarget{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}\label{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}} 
+\index{supporto.h@{supporto.h}!board\_t@{board\_t}}
+\index{board\_t@{board\_t}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{board\_t}{board\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structboard}{board}} \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}
 
-\mbox{\Hypertarget{supporto_8h_a3943deebda0fce5d57ef7c1a4018896d}\label{supporto_8h_a3943deebda0fce5d57ef7c1a4018896d}} 
-\index{supporto.h@{supporto.h}!tpedina@{tpedina}}
-\index{tpedina@{tpedina}!supporto.h@{supporto.h}}
-\doxysubsubsection{\texorpdfstring{tpedina}{tpedina}}
-{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structpedina}{pedina}} \mbox{\hyperlink{supporto_8h_a3943deebda0fce5d57ef7c1a4018896d}{tpedina}}}
 
-\mbox{\Hypertarget{supporto_8h_a766577430ab8c3dd291621a95fc90c61}\label{supporto_8h_a766577430ab8c3dd291621a95fc90c61}} 
-\index{supporto.h@{supporto.h}!tplayer@{tplayer}}
-\index{tplayer@{tplayer}!supporto.h@{supporto.h}}
-\doxysubsubsection{\texorpdfstring{tplayer}{tplayer}}
-{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structplayer}{player}} \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}
+
+Definition at line 1 of file supporto.\+h.
+
+\mbox{\Hypertarget{supporto_8h_a9d52fc079c0e3d3767e033fec3a3f794}\label{supporto_8h_a9d52fc079c0e3d3767e033fec3a3f794}} 
+\index{supporto.h@{supporto.h}!coord@{coord}}
+\index{coord@{coord}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{coord}{coord}}
+{\footnotesize\ttfamily typedef unsigned int \mbox{\hyperlink{game__engine_8h_a9d52fc079c0e3d3767e033fec3a3f794}{coord}}}
+
+
+
+Definition at line 1 of file supporto.\+h.
+
+\mbox{\Hypertarget{supporto_8h_af55319a5d5f5161b855177c9e2c00fd0}\label{supporto_8h_af55319a5d5f5161b855177c9e2c00fd0}} 
+\index{supporto.h@{supporto.h}!dim\_board@{dim\_board}}
+\index{dim\_board@{dim\_board}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{dim\_board}{dim\_board}}
+{\footnotesize\ttfamily typedef unsigned int \mbox{\hyperlink{game__engine_8h_af55319a5d5f5161b855177c9e2c00fd0}{dim\+\_\+board}}}
+
+
+
+Definition at line 1 of file supporto.\+h.
+
+\mbox{\Hypertarget{supporto_8h_a1e136e020b4a3ab89e91221a40e8f28d}\label{supporto_8h_a1e136e020b4a3ab89e91221a40e8f28d}} 
+\index{supporto.h@{supporto.h}!flag@{flag}}
+\index{flag@{flag}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{flag}{flag}}
+{\footnotesize\ttfamily typedef unsigned int \mbox{\hyperlink{game__engine_8h_a1e136e020b4a3ab89e91221a40e8f28d}{flag}}}
+
+
+
+Definition at line 1 of file supporto.\+h.
+
+\mbox{\Hypertarget{supporto_8h_aed5061f0635fec2d4cb5caebc696efec}\label{supporto_8h_aed5061f0635fec2d4cb5caebc696efec}} 
+\index{supporto.h@{supporto.h}!pawn\_t@{pawn\_t}}
+\index{pawn\_t@{pawn\_t}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{pawn\_t}{pawn\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structpawn}{pawn}} \mbox{\hyperlink{supporto_8h_aed5061f0635fec2d4cb5caebc696efec}{pawn\+\_\+t}}}
+
+
+
+Definition at line 1 of file supporto.\+h.
+
+\mbox{\Hypertarget{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}\label{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}} 
+\index{supporto.h@{supporto.h}!player\_t@{player\_t}}
+\index{player\_t@{player\_t}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{player\_t}{player\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structplayer}{player}} \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}}}
+
+
+
+Definition at line 1 of file supporto.\+h.
+
+\mbox{\Hypertarget{supporto_8h_abce73ee21c48ee71e33e591a250c5af4}\label{supporto_8h_abce73ee21c48ee71e33e591a250c5af4}} 
+\index{supporto.h@{supporto.h}!point\_t@{point\_t}}
+\index{point\_t@{point\_t}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{point\_t}{point\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structpoint}{point}} \mbox{\hyperlink{supporto_8h_abce73ee21c48ee71e33e591a250c5af4}{point\+\_\+t}}}
+
+
+
+Definition at line 1 of file supporto.\+h.
+
+\mbox{\Hypertarget{supporto_8h_ad6248e2b2f82af10b452a7753cdde8f2}\label{supporto_8h_ad6248e2b2f82af10b452a7753cdde8f2}} 
+\index{supporto.h@{supporto.h}!valueMinimax\_t@{valueMinimax\_t}}
+\index{valueMinimax\_t@{valueMinimax\_t}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{valueMinimax\_t}{valueMinimax\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvalue_minimax}{value\+Minimax}} \mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}}}
+
+
+
+Definition at line 1 of file supporto.\+h.
 
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{supporto_8h_a0dbb798af8981e4d2eb5f3a1dca2350b}\label{supporto_8h_a0dbb798af8981e4d2eb5f3a1dca2350b}} 
+\mbox{\Hypertarget{supporto_8h_a107a0bfe72f29a205eb704cfec1e68df}\label{supporto_8h_a107a0bfe72f29a205eb704cfec1e68df}} 
 \index{supporto.h@{supporto.h}!add\_pawn@{add\_pawn}}
 \index{add\_pawn@{add\_pawn}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{add\_pawn()}{add\_pawn()}}
-{\footnotesize\ttfamily unsigned int add\+\_\+pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p2,  }\item[{unsigned int}]{np }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int add\+\_\+pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{enemy\+\_\+pawn,  }\item[{unsigned int}]{n\+Pl,  }\item[{char}]{c }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_ab70152d716bc2a0320e6c3f1c30dde9f}\label{supporto_8h_ab70152d716bc2a0320e6c3f1c30dde9f}} 
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em enemy\+\_\+pawn} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+{\em c} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}
+
+
+Definition at line 477 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a152d259bcb19351582c85abbab09ba50}\label{supporto_8h_a152d259bcb19351582c85abbab09ba50}} 
 \index{supporto.h@{supporto.h}!all\_blocked@{all\_blocked}}
 \index{all\_blocked@{all\_blocked}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{all\_blocked()}{all\_blocked()}}
-{\footnotesize\ttfamily unsigned int all\+\_\+blocked (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p2,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t,  }\item[{unsigned int}]{npl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int all\+\_\+blocked (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_acc4625a3f4b1fe971d82d3e0fb2db07a}\label{supporto_8h_acc4625a3f4b1fe971d82d3e0fb2db07a}} 
+\mbox{\Hypertarget{supporto_8h_a82180885d90f464ccd27de484d0e786a}\label{supporto_8h_a82180885d90f464ccd27de484d0e786a}} 
+\index{supporto.h@{supporto.h}!call\_minimax@{call\_minimax}}
+\index{call\_minimax@{call\_minimax}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{call\_minimax()}{call\_minimax()}}
+{\footnotesize\ttfamily int call\+\_\+minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board\+\_\+copy,  }\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players\+\_\+copy,  }\item[{unsigned int}]{depth,  }\item[{unsigned int}]{n\+Ped,  }\item[{unsigned int}]{n\+Pl,  }\item[{\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$}]{v,  }\item[{char $\ast$}]{str,  }\item[{int}]{max\+Eval,  }\item[{int}]{cheat,  }\item[{int $\ast$}]{alpha,  }\item[{int $\ast$}]{beta }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em board\+\_\+copy} & \\
+\hline
+{\em players\+\_\+copy} & \\
+\hline
+{\em depth} & \\
+\hline
+{\em n\+Ped} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+{\em v} & \\
+\hline
+{\em str} & \\
+\hline
+{\em max\+Eval} & \\
+\hline
+{\em cheat} & \\
+\hline
+{\em alpha} & \\
+\hline
+{\em beta} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 262 of file ia.\+c.
+
+\mbox{\Hypertarget{supporto_8h_acd4a1e5e343482fb4152900f25886736}\label{supporto_8h_acd4a1e5e343482fb4152900f25886736}} 
 \index{supporto.h@{supporto.h}!can\_eat@{can\_eat}}
 \index{can\_eat@{can\_eat}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{can\_eat()}{can\_eat()}}
-{\footnotesize\ttfamily int can\+\_\+eat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p1,  }\item[{unsigned int}]{np,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p2,  }\item[{unsigned int}]{pl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int can\+\_\+eat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a1512ab1980abe9a7fcd4dd513c948a06}\label{supporto_8h_a1512ab1980abe9a7fcd4dd513c948a06}} 
+
+
+Check enemy pawns in a given direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & Pointer to the players array. \\
+\hline
+{\em num\+\_\+pawn} & Number of the pawn to check. \\
+\hline
+{\em str} & Direction to check from the player\textquotesingle{}s pawn. \\
+\hline
+{\em board} & Pointer to the board. \\
+\hline
+{\em n\+Pl} & Number of the player. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Return enemy pawn number that can be eaten, else negative numbers. 
+\end{DoxyReturn}
+
+
+Definition at line 222 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_aa3c132e96baafe05bc8ae89beff5313c}\label{supporto_8h_aa3c132e96baafe05bc8ae89beff5313c}} 
 \index{supporto.h@{supporto.h}!char\_converter@{char\_converter}}
 \index{char\_converter@{char\_converter}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{char\_converter()}{char\_converter()}}
-{\footnotesize\ttfamily unsigned int char\+\_\+converter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t,  }\item[{unsigned int}]{r,  }\item[{unsigned int}]{c,  }\item[{unsigned int}]{dim,  }\item[{unsigned int}]{cifre }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int char\+\_\+converter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{unsigned int}]{r,  }\item[{unsigned int}]{c,  }\item[{unsigned int}]{dim\+\_\+label }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a666e0c221817bf8d09c0708bd147050f}\label{supporto_8h_a666e0c221817bf8d09c0708bd147050f}} 
+
+
+Convert a given char on a label to int. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & Instance of the board. \\
+\hline
+{\em r} & Number of the row (y). \\
+\hline
+{\em c} & Number of the column (x). \\
+\hline
+{\em dim\+\_\+label} & Dimension of the label of the pawn. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int Return the conversion of the char to int. 
+\end{DoxyReturn}
+
+
+Definition at line 622 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a8fec67377eed54d06d8001375ac7ad74}\label{supporto_8h_a8fec67377eed54d06d8001375ac7ad74}} 
+\index{supporto.h@{supporto.h}!check\_canMove@{check\_canMove}}
+\index{check\_canMove@{check\_canMove}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{check\_canMove()}{check\_canMove()}}
+{\footnotesize\ttfamily unsigned int check\+\_\+can\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{n\+Ped,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+
+Check if a pawn is able to move. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & Pointer to the players array. \\
+\hline
+{\em n\+Ped} & Number of the pawn to check. \\
+\hline
+{\em n\+Pl} & Number of the player. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int Return 1 if the pawn can move, 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 582 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a00374686d02b15fa8b62ba0b1a0a0e2e}\label{supporto_8h_a00374686d02b15fa8b62ba0b1a0a0e2e}} 
 \index{supporto.h@{supporto.h}!check\_directions@{check\_directions}}
 \index{check\_directions@{check\_directions}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{check\_directions()}{check\_directions()}}
-{\footnotesize\ttfamily unsigned int check\+\_\+directions (\begin{DoxyParamCaption}\item[{unsigned int $\ast$}]{arr,  }\item[{unsigned int}]{dim,  }\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int check\+\_\+directions (\begin{DoxyParamCaption}\item[{unsigned int $\ast$}]{can\+Move\+\_\+arr,  }\item[{unsigned int}]{dim\+\_\+can\+Move,  }\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a57235c5f4283c975b5374478b124686f}\label{supporto_8h_a57235c5f4283c975b5374478b124686f}} 
+
+
+Check if a given string is setted in the pawn\textquotesingle{}s possible movements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em can\+Move\+\_\+arr} & Pointer to the can\+Move array of a pawn. \\
+\hline
+{\em dim\+\_\+can\+Move} & Dimension of the can\+Move array, 4 if the pawn is promoted, 2 else. \\
+\hline
+{\em str} & String of the direction to compare. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int Return 1 if the corresponding string is setted on the can\+Move array, 0 else. 
+\end{DoxyReturn}
+
+
+Definition at line 154 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_aa7661789f3fc8585f07e049bfdfbbf52}\label{supporto_8h_aa7661789f3fc8585f07e049bfdfbbf52}} 
 \index{supporto.h@{supporto.h}!check\_player@{check\_player}}
 \index{check\_player@{check\_player}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{check\_player()}{check\_player()}}
-{\footnotesize\ttfamily unsigned int check\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p2,  }\item[{unsigned int}]{x,  }\item[{unsigned int}]{y }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int check\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{x,  }\item[{unsigned int}]{y,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a4cc6078ed777b67a77218e2bef4ebd10}\label{supporto_8h_a4cc6078ed777b67a77218e2bef4ebd10}} 
+
+
+Check if in a given coordinate there is an enemy pawn. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & Pointer to the players array. \\
+\hline
+{\em x} & Number of the column (x). \\
+\hline
+{\em y} & Number of the row (y). \\
+\hline
+{\em n\+Pl} & Number of the player. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Return -\/1 if a there isn\textquotesingle{}t any enemy pawn, else the number of the enemy player. 
+\end{DoxyReturn}
+
+
+Definition at line 131 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_acbcad48fef30836ddcd28ef5aa651961}\label{supporto_8h_acbcad48fef30836ddcd28ef5aa651961}} 
 \index{supporto.h@{supporto.h}!check\_spot@{check\_spot}}
 \index{check\_spot@{check\_spot}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{check\_spot()}{check\_spot()}}
-{\footnotesize\ttfamily unsigned int check\+\_\+spot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t,  }\item[{unsigned int}]{r,  }\item[{unsigned int}]{c,  }\item[{unsigned int}]{cifre }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int check\+\_\+spot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{unsigned int}]{row,  }\item[{unsigned int}]{col,  }\item[{unsigned int}]{dim\+\_\+label }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_afa07018b01c41707db9ad8bcb5f2eba0}\label{supporto_8h_afa07018b01c41707db9ad8bcb5f2eba0}} 
+
+
+Check if in a given coordinate on the board there is a pawn or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & Instance of the board. \\
+\hline
+{\em row} & Number of the row (y). \\
+\hline
+{\em col} & Number of the column (x). \\
+\hline
+{\em dim\+\_\+label} & Total number of space stored for the label of the pawn. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int Return 1 if there is a pawn, 0 else. 
+\end{DoxyReturn}
+
+
+Definition at line 92 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a3fab312a910163e9634d12fe728f1d70}\label{supporto_8h_a3fab312a910163e9634d12fe728f1d70}} 
+\index{supporto.h@{supporto.h}!check\_string@{check\_string}}
+\index{check\_string@{check\_string}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{check\_string()}{check\_string()}}
+{\footnotesize\ttfamily unsigned int check\+\_\+string (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Compare if the a given string equals to a valid movement. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & String to compare. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int Return 1 if the string correspond, 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 605 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_af3109f8954897ba3feb48475cc5566cf}\label{supporto_8h_af3109f8954897ba3feb48475cc5566cf}} 
+\index{supporto.h@{supporto.h}!check\_while@{check\_while}}
+\index{check\_while@{check\_while}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{check\_while()}{check\_while()}}
+{\footnotesize\ttfamily unsigned int check\+\_\+while (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{n\+Pl,  }\item[{unsigned int}]{n\+Pawn }\end{DoxyParamCaption})}
+
+
+
+Check if a pawn is selectable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & Pointer to the players array. \\
+\hline
+{\em n\+Pl} & Number of the player. \\
+\hline
+{\em n\+Pawn} & Number of the pawn to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int Return 1 if the pawn is selectable, 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 597 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a756df69ef86d001e387271af896b5078}\label{supporto_8h_a756df69ef86d001e387271af896b5078}} 
 \index{supporto.h@{supporto.h}!copy\_board@{copy\_board}}
 \index{copy\_board@{copy\_board}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{copy\_board()}{copy\_board()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}$\ast$ copy\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{new }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}$\ast$ copy\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{new\+Board,  }\item[{unsigned int}]{cifre,  }\item[{unsigned int}]{set }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a45c407702e9be0abc15eaf0ca385fa10}\label{supporto_8h_a45c407702e9be0abc15eaf0ca385fa10}} 
+
+\begin{DoxyParams}{Parameters}
+{\em board} & \\
+\hline
+{\em new\+Board} & \\
+\hline
+{\em cifre} & \\
+\hline
+{\em set} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+board\+\_\+t$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 151 of file memory\+\_\+management.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a59717829a891932b9087821edba6c9ba}\label{supporto_8h_a59717829a891932b9087821edba6c9ba}} 
 \index{supporto.h@{supporto.h}!create\_board@{create\_board}}
 \index{create\_board@{create\_board}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{create\_board()}{create\_board()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}$\ast$ create\+\_\+board (\begin{DoxyParamCaption}\item[{unsigned int}]{r,  }\item[{unsigned int}]{c,  }\item[{unsigned int}]{cifre }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}$\ast$ create\+\_\+board (\begin{DoxyParamCaption}\item[{unsigned int}]{n\+\_\+rows,  }\item[{unsigned int}]{n\+\_\+cols,  }\item[{unsigned int}]{cifre }\end{DoxyParamCaption})}
 
 
 
 Creazione del campo di gioco. 
 
-Crea una matrice r$\ast$c e per ogni \char`\"{}cella\char`\"{} alloca abbastanza spazio da rappresentare correttamente la pedina. Lo spazio è dato da \char`\"{}altezza massima della torre(3)\char`\"{} + \char`\"{}spazio per la promozione(1)\char`\"{} + \char`\"{}spazio per rappresentare le cifre(variabile)\char`\"{}
+Crea una matrice row$\ast$col e per ogni \char`\"{}cella\char`\"{} alloca abbastanza spazio da rappresentare correttamente la pedina. Lo spazio è dato da \char`\"{}altezza massima della torre(3)\char`\"{} + \char`\"{}spazio per la promozione(1)\char`\"{} + \char`\"{}spazio per rappresentare le cifre(variabile)\char`\"{}
 
 
 \begin{DoxyParams}{Parameters}
-{\em r} & Numero di righe della schacchiera. \\
+{\em row} & Numero di righe della schacchiera. \\
 \hline
-{\em c} & Numero di colonne della scacchiera. \\
+{\em col} & Numero di colonne della scacchiera. \\
 \hline
 {\em cifre} & Numero di cifre da allocare in modo da rappresentare il numero delle pedine nella scacchiera. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-tcampo$\ast$ Ritorna il puntatore al campo. 
+board\+\_\+t$\ast$ Ritorna il puntatore al campo.
 \end{DoxyReturn}
-\mbox{\Hypertarget{supporto_8h_ad8dd92d796029b9e2a02a8e446dfe69a}\label{supporto_8h_ad8dd92d796029b9e2a02a8e446dfe69a}} 
+Creazione del campo di gioco.
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+\_\+rows} & \\
+\hline
+{\em n\+\_\+cols} & \\
+\hline
+{\em cifre} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+board\+\_\+t$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file memory\+\_\+management.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a78a40143a6e01b942333cbad61af46f9}\label{supporto_8h_a78a40143a6e01b942333cbad61af46f9}} 
 \index{supporto.h@{supporto.h}!create\_pawns@{create\_pawns}}
 \index{create\_pawns@{create\_pawns}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{create\_pawns()}{create\_pawns()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}$\ast$ create\+\_\+pawns (\begin{DoxyParamCaption}\item[{unsigned int}]{n,  }\item[{char}]{ped,  }\item[{unsigned int}]{np,  }\item[{unsigned int}]{cifre,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}}$\ast$ create\+\_\+pawns (\begin{DoxyParamCaption}\item[{unsigned int}]{tot\+Pawns,  }\item[{char}]{player1,  }\item[{char}]{player2,  }\item[{unsigned int}]{cifre,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a24106889ed5727d00c0cbea018d4290a}\label{supporto_8h_a24106889ed5727d00c0cbea018d4290a}} 
+
+
+Create a pawns object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tot\+Pawns} & \\
+\hline
+{\em player1} & \\
+\hline
+{\em player2} & \\
+\hline
+{\em cifre} & \\
+\hline
+{\em board} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+player\+\_\+t$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 42 of file memory\+\_\+management.\+c.
+
+\mbox{\Hypertarget{supporto_8h_aeef99ca7f1dc371d786f261cd7a73fef}\label{supporto_8h_aeef99ca7f1dc371d786f261cd7a73fef}} 
 \index{supporto.h@{supporto.h}!destroy\_board@{destroy\_board}}
 \index{destroy\_board@{destroy\_board}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{destroy\_board()}{destroy\_board()}}
-{\footnotesize\ttfamily void destroy\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void destroy\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a3f4fff539fe0fdfccfff1619561c9975}\label{supporto_8h_a3f4fff539fe0fdfccfff1619561c9975}} 
+
+\begin{DoxyParams}{Parameters}
+{\em board} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 259 of file memory\+\_\+management.\+c.
+
+\mbox{\Hypertarget{supporto_8h_ac609f664beb8147e2372bc173b30af32}\label{supporto_8h_ac609f664beb8147e2372bc173b30af32}} 
 \index{supporto.h@{supporto.h}!destroy\_player@{destroy\_player}}
 \index{destroy\_player@{destroy\_player}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{destroy\_player()}{destroy\_player()}}
-{\footnotesize\ttfamily void destroy\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void destroy\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a17e15008fea16e23d403ca1b340d8610}\label{supporto_8h_a17e15008fea16e23d403ca1b340d8610}} 
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 242 of file memory\+\_\+management.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a53075eb6ea08340d6a611d2ff6473035}\label{supporto_8h_a53075eb6ea08340d6a611d2ff6473035}} 
+\index{supporto.h@{supporto.h}!destroy\_value\_minimax@{destroy\_value\_minimax}}
+\index{destroy\_value\_minimax@{destroy\_value\_minimax}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{destroy\_value\_minimax()}{destroy\_value\_minimax()}}
+{\footnotesize\ttfamily void destroy\+\_\+value\+\_\+minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$}]{arr,  }\item[{unsigned int}]{dim }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & \\
+\hline
+{\em dim} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 361 of file ia.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a5ed734f105ad05ffb03d2f437a928b2d}\label{supporto_8h_a5ed734f105ad05ffb03d2f437a928b2d}} 
 \index{supporto.h@{supporto.h}!eat@{eat}}
 \index{eat@{eat}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{eat()}{eat()}}
-{\footnotesize\ttfamily unsigned int eat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p2,  }\item[{char $\ast$}]{str,  }\item[{unsigned int}]{np,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t,  }\item[{unsigned int}]{num,  }\item[{unsigned int}]{npl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int eat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{char $\ast$}]{str,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{unsigned int}]{enemy\+\_\+pawn,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a9bebec4622d89e69e845dda90b782bcf}\label{supporto_8h_a9bebec4622d89e69e845dda90b782bcf}} 
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em str} & \\
+\hline
+{\em num\+\_\+pawn} & \\
+\hline
+{\em board} & \\
+\hline
+{\em enemy\+\_\+pawn} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}
+
+
+Definition at line 76 of file movement.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a0ba8ad8f657d084b47a08e8da7f58f6d}\label{supporto_8h_a0ba8ad8f657d084b47a08e8da7f58f6d}} 
+\index{supporto.h@{supporto.h}!evaluate\_score@{evaluate\_score}}
+\index{evaluate\_score@{evaluate\_score}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{evaluate\_score()}{evaluate\_score()}}
+{\footnotesize\ttfamily int evaluate\+\_\+score (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & \\
+\hline
+{\em players} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 313 of file ia.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a1e000b0af6247b246effb9ef89df1dc7}\label{supporto_8h_a1e000b0af6247b246effb9ef89df1dc7}} 
 \index{supporto.h@{supporto.h}!initialize\_board@{initialize\_board}}
 \index{initialize\_board@{initialize\_board}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{initialize\_board()}{initialize\_board()}}
-{\footnotesize\ttfamily void initialize\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t,  }\item[{unsigned int}]{cifre }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void initialize\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{cifre }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a7082b2f18b8eebe86c5a0da55d792df2}\label{supporto_8h_a7082b2f18b8eebe86c5a0da55d792df2}} 
+
+
+Set char on the board. 
+
+\textquotesingle{}\#\textquotesingle{} white cell, it\textquotesingle{}s where pawns can move \textquotesingle{} \textquotesingle{} black cell, it\textquotesingle{}s where pawns cannot move
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & Pointer to the board. \\
+\hline
+{\em cifre} & Number of colums for the label. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 21 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a00edfa0b11cbdf464431c6f3b3b3eb27}\label{supporto_8h_a00edfa0b11cbdf464431c6f3b3b3eb27}} 
 \index{supporto.h@{supporto.h}!int\_converter@{int\_converter}}
 \index{int\_converter@{int\_converter}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{int\_converter()}{int\_converter()}}
-{\footnotesize\ttfamily char int\+\_\+converter (\begin{DoxyParamCaption}\item[{unsigned int}]{num,  }\item[{unsigned int}]{index }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily char int\+\_\+converter (\begin{DoxyParamCaption}\item[{int}]{num,  }\item[{unsigned int}]{index }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_ad0b249d0604a36c24742cee6f4819ccf}\label{supporto_8h_ad0b249d0604a36c24742cee6f4819ccf}} 
+
+
+Convert a given int to a char. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & Number to be converted. \\
+\hline
+{\em index} & Index of the pow of 10. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char Return the conversion of the int to a char. 
+\end{DoxyReturn}
+
+
+Definition at line 631 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a3827e885638fbf4608abb22613b7c260}\label{supporto_8h_a3827e885638fbf4608abb22613b7c260}} 
+\index{supporto.h@{supporto.h}!interropt\_minimax@{interropt\_minimax}}
+\index{interropt\_minimax@{interropt\_minimax}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{interropt\_minimax()}{interropt\_minimax()}}
+{\footnotesize\ttfamily unsigned int interropt\+\_\+minimax (\begin{DoxyParamCaption}\item[{int $\ast$}]{alpha,  }\item[{int $\ast$}]{beta }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8h_a0b8736bf8d03748b3eb4c3cf5bd19138}\label{supporto_8h_a0b8736bf8d03748b3eb4c3cf5bd19138}} 
 \index{supporto.h@{supporto.h}!is\_empty@{is\_empty}}
 \index{is\_empty@{is\_empty}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{is\_empty()}{is\_empty()}}
-{\footnotesize\ttfamily int is\+\_\+empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int is\+\_\+empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}}}]{p }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a1bda86cdcd668572e34d8efc0ebf73fe}\label{supporto_8h_a1bda86cdcd668572e34d8efc0ebf73fe}} 
+
+
+Check if in the player\textquotesingle{}s array there is an unused pawn. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & Instance of a player. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Return the position of the first unused pawn in the array, -\/1 else. 
+\end{DoxyReturn}
+
+
+Definition at line 384 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_ad95a591d93c5394a13d2d45fb856b3ab}\label{supporto_8h_ad95a591d93c5394a13d2d45fb856b3ab}} 
 \index{supporto.h@{supporto.h}!is\_in@{is\_in}}
 \index{is\_in@{is\_in}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{is\_in()}{is\_in()}}
-{\footnotesize\ttfamily unsigned int is\+\_\+in (\begin{DoxyParamCaption}\item[{int}]{r,  }\item[{int}]{c,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int is\+\_\+in (\begin{DoxyParamCaption}\item[{int}]{r,  }\item[{int}]{c,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a4d3969ebd9f51ce44f7184bfd28fb7c8}\label{supporto_8h_a4d3969ebd9f51ce44f7184bfd28fb7c8}} 
+
+
+Check if a given coordinate are included in the board. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & Number of the row (y). \\
+\hline
+{\em c} & Number of the column (x). \\
+\hline
+{\em board} & Instance of the board. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int Return 1 if the coordinate are inside the board, 0 else. 
+\end{DoxyReturn}
+
+
+Definition at line 146 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a263b347172288a57651b3482c0d8dbc9}\label{supporto_8h_a263b347172288a57651b3482c0d8dbc9}} 
 \index{supporto.h@{supporto.h}!is\_notstuck@{is\_notstuck}}
 \index{is\_notstuck@{is\_notstuck}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{is\_notstuck()}{is\_notstuck()}}
-{\footnotesize\ttfamily unsigned int is\+\_\+notstuck (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p2,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t,  }\item[{unsigned int}]{nped,  }\item[{unsigned int}]{npl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int is\+\_\+notstuck (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{unsigned int}]{n\+Pawn,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a6f65590ae83d869a3bec216de6368113}\label{supporto_8h_a6f65590ae83d869a3bec216de6368113}} 
+
+
+Set possible movements of a given pawn. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & Pointer to the players array. \\
+\hline
+{\em board} & Instance of the board. \\
+\hline
+{\em n\+Pawn} & Number of the pawn to set. \\
+\hline
+{\em n\+Pl} & Number of the player. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int Return 1 if the function runs succesfully, 0 else. 
+\end{DoxyReturn}
+
+
+Definition at line 420 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_ac3d6435119a6f0271f67d07bb9798c1f}\label{supporto_8h_ac3d6435119a6f0271f67d07bb9798c1f}} 
 \index{supporto.h@{supporto.h}!is\_selected@{is\_selected}}
 \index{is\_selected@{is\_selected}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{is\_selected()}{is\_selected()}}
-{\footnotesize\ttfamily unsigned int is\+\_\+selected (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p2,  }\item[{unsigned int}]{np,  }\item[{unsigned int}]{npl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int is\+\_\+selected (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{player,  }\item[{int}]{num\+\_\+pawn,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_aaf7e6ccff2cc4d299c57e594b4a51ee3}\label{supporto_8h_aaf7e6ccff2cc4d299c57e594b4a51ee3}} 
+
+
+Check if a given pawn exists in the board. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Pointer to the players array. \\
+\hline
+{\em num\+\_\+pawn} & Number of the pawn to check. \\
+\hline
+{\em n\+Pl} & Number of the player. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int Return 1 if the pawn exists in the board, 0 else. 
+\end{DoxyReturn}
+
+
+Definition at line 104 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_ad913753d69ed13ad3bcff7a80b1fa4e3}\label{supporto_8h_ad913753d69ed13ad3bcff7a80b1fa4e3}} 
 \index{supporto.h@{supporto.h}!is\_victory@{is\_victory}}
 \index{is\_victory@{is\_victory}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{is\_victory()}{is\_victory()}}
-{\footnotesize\ttfamily unsigned int is\+\_\+victory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p2,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int is\+\_\+victory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players }\end{DoxyParamCaption})}
+
+
+
+Check if there is a winner. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & Pointer to the players array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int Return 1 if player1 won, 2 if player2 won, 17 else. 
+\end{DoxyReturn}
+
+
+Definition at line 354 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a04c98e99a199fcfc80fefa3a33699707}\label{supporto_8h_a04c98e99a199fcfc80fefa3a33699707}} 
+\index{supporto.h@{supporto.h}!last\_move@{last\_move}}
+\index{last\_move@{last\_move}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{last\_move()}{last\_move()}}
+{\footnotesize\ttfamily int last\+\_\+move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 77 of file ia.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a314d84d04c7347f8e51b42bc3caf20fd}\label{supporto_8h_a314d84d04c7347f8e51b42bc3caf20fd}} 
+\index{supporto.h@{supporto.h}!max@{max}}
+\index{max@{max}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{max()}{max()}}
+{\footnotesize\ttfamily unsigned int max (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$}]{arr,  }\item[{unsigned int}]{dim }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & \\
+\hline
+{\em dim} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}
+
+
+Definition at line 346 of file ia.\+c.
 
 \mbox{\Hypertarget{supporto_8h_a0bd4d9ad7b168fa5a30645559b5173bf}\label{supporto_8h_a0bd4d9ad7b168fa5a30645559b5173bf}} 
 \index{supporto.h@{supporto.h}!max\_pawns@{max\_pawns}}
@@ -265,47 +914,223 @@ tcampo$\ast$ Ritorna il puntatore al campo.
 \doxysubsubsection{\texorpdfstring{max\_pawns()}{max\_pawns()}}
 {\footnotesize\ttfamily unsigned int max\+\_\+pawns (\begin{DoxyParamCaption}\item[{unsigned int}]{r,  }\item[{unsigned int}]{c }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_ac3f283521df86b7a058cdf50de4c2044}\label{supporto_8h_ac3f283521df86b7a058cdf50de4c2044}} 
+
+
+Calculate the max number of pawns in a given space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & Total number of rows. \\
+\hline
+{\em c} & Total number of columns. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int Return the max number of pawns avaiable. 
+\end{DoxyReturn}
+
+
+Definition at line 394 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a2a0e843767aeea4f433a28b9c54f573a}\label{supporto_8h_a2a0e843767aeea4f433a28b9c54f573a}} 
+\index{supporto.h@{supporto.h}!menu@{menu}}
+\index{menu@{menu}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{menu()}{menu()}}
+{\footnotesize\ttfamily void menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 542 of file user\+\_\+interaction.\+c.
+
+\mbox{\Hypertarget{supporto_8h_ab304981f61da05ef06335cd557446d08}\label{supporto_8h_ab304981f61da05ef06335cd557446d08}} 
 \index{supporto.h@{supporto.h}!minimax@{minimax}}
 \index{minimax@{minimax}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{minimax()}{minimax()}}
-{\footnotesize\ttfamily int minimax (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{int}]{depth,  }\item[{unsigned int}]{n\+Ped,  }\item[{unsigned int}]{n\+Pl,  }\item[{\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$}]{v,  }\item[{int}]{cheat,  }\item[{int $\ast$}]{alpha,  }\item[{int $\ast$}]{beta }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a8001bec87945745ccef27e03a874213c}\label{supporto_8h_a8001bec87945745ccef27e03a874213c}} 
+
+\begin{DoxyParams}{Parameters}
+{\em board} & \\
+\hline
+{\em players} & \\
+\hline
+{\em depth} & \\
+\hline
+{\em n\+Ped} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+{\em v} & \\
+\hline
+{\em cheat} & \\
+\hline
+{\em alpha} & \\
+\hline
+{\em beta} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 130 of file ia.\+c.
+
+\mbox{\Hypertarget{supporto_8h_af98c2d7ebb2b146df09e8df4422e9243}\label{supporto_8h_af98c2d7ebb2b146df09e8df4422e9243}} 
 \index{supporto.h@{supporto.h}!move\_noeat@{move\_noeat}}
 \index{move\_noeat@{move\_noeat}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{move\_noeat()}{move\_noeat()}}
-{\footnotesize\ttfamily unsigned int move\+\_\+noeat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p1,  }\item[{unsigned int}]{np,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p2,  }\item[{unsigned int}]{pl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int move\+\_\+noeat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a9753032031107e08ce2cdeab8e32d021}\label{supporto_8h_a9753032031107e08ce2cdeab8e32d021}} 
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em num\+\_\+pawn} & \\
+\hline
+{\em str} & \\
+\hline
+{\em board} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file movement.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a06455c5400852e2b70952a4c5c6006f9}\label{supporto_8h_a06455c5400852e2b70952a4c5c6006f9}} 
 \index{supporto.h@{supporto.h}!move\_p1@{move\_p1}}
 \index{move\_p1@{move\_p1}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{move\_p1()}{move\_p1()}}
-{\footnotesize\ttfamily unsigned int move\+\_\+p1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p1,  }\item[{unsigned int}]{np,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p2,  }\item[{unsigned int}]{pl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int move\+\_\+p1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a67a27daf195ef004a26f202207be9d39}\label{supporto_8h_a67a27daf195ef004a26f202207be9d39}} 
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em num\+\_\+pawn} & \\
+\hline
+{\em str} & \\
+\hline
+{\em board} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 175 of file movement.\+c.
+
+\mbox{\Hypertarget{supporto_8h_ac4876db3570725fc49e344af21021c7b}\label{supporto_8h_ac4876db3570725fc49e344af21021c7b}} 
 \index{supporto.h@{supporto.h}!move\_p2@{move\_p2}}
 \index{move\_p2@{move\_p2}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{move\_p2()}{move\_p2()}}
-{\footnotesize\ttfamily unsigned int move\+\_\+p2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p2,  }\item[{unsigned int}]{np,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p1 }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int move\+\_\+p2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a74b79a62b552ea48c2ddb28febb445fd}\label{supporto_8h_a74b79a62b552ea48c2ddb28febb445fd}} 
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em num\+\_\+pawn} & \\
+\hline
+{\em str} & \\
+\hline
+{\em board} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 192 of file movement.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a6a24af5cc31ae6fc596da667a229dc3a}\label{supporto_8h_a6a24af5cc31ae6fc596da667a229dc3a}} 
 \index{supporto.h@{supporto.h}!must\_eat@{must\_eat}}
 \index{must\_eat@{must\_eat}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{must\_eat()}{must\_eat()}}
-{\footnotesize\ttfamily unsigned int$\ast$ must\+\_\+eat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p2,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t,  }\item[{unsigned int}]{np,  }\item[{unsigned int}]{npl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void must\+\_\+eat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+\_\+pawn,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_ab67187e14285d24a161877b62c7b945b}\label{supporto_8h_ab67187e14285d24a161877b62c7b945b}} 
+
+
+Set mandatory eat if possible. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & Pointer to the players array. \\
+\hline
+{\em board} & Pointer to the board. \\
+\hline
+{\em n\+\_\+pawn} & Number of the pawn to check. \\
+\hline
+{\em n\+Pl} & Number of the player. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 183 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_abbf532f4b90267a4b5fa0f92a7b290f6}\label{supporto_8h_abbf532f4b90267a4b5fa0f92a7b290f6}} 
 \index{supporto.h@{supporto.h}!pawn\_promotion@{pawn\_promotion}}
 \index{pawn\_promotion@{pawn\_promotion}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{pawn\_promotion()}{pawn\_promotion()}}
-{\footnotesize\ttfamily void pawn\+\_\+promotion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p,  }\item[{unsigned int}]{np,  }\item[{unsigned int}]{numpl,  }\item[{unsigned int}]{meta }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void pawn\+\_\+promotion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{unsigned int}]{n\+Pl,  }\item[{unsigned int}]{last\+\_\+row }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a430b311c67c575e4b0b7be78ee0f7221}\label{supporto_8h_a430b311c67c575e4b0b7be78ee0f7221}} 
+
+
+Promote a given pawn. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & Pointer to the players array. \\
+\hline
+{\em num\+\_\+pawn} & Number of the pawn to promote. \\
+\hline
+{\em n\+Pl} & Number of the player. \\
+\hline
+{\em last\+\_\+row} & Check if a player pawn reaches the end of the board from the perspective of the player. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 122 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a9978b5c1f3bf1c49bd306d513b41918a}\label{supporto_8h_a9978b5c1f3bf1c49bd306d513b41918a}} 
+\index{supporto.h@{supporto.h}!pawn\_remove\_promotion@{pawn\_remove\_promotion}}
+\index{pawn\_remove\_promotion@{pawn\_remove\_promotion}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{pawn\_remove\_promotion()}{pawn\_remove\_promotion()}}
+{\footnotesize\ttfamily void pawn\+\_\+remove\+\_\+promotion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{int}]{num\+\_\+pawn,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8h_a7f9bac937dc0ea682379dce48f23cdfd}\label{supporto_8h_a7f9bac937dc0ea682379dce48f23cdfd}} 
 \index{supporto.h@{supporto.h}!player\_copy@{player\_copy}}
 \index{player\_copy@{player\_copy}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{player\_copy()}{player\_copy()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}$\ast$ player\+\_\+copy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{n,  }\item[{unsigned int}]{cifre }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}}$\ast$ player\+\_\+copy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{new\+Players,  }\item[{unsigned int}]{dim\+\_\+label,  }\item[{unsigned int}]{set }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em new\+Players} & \\
+\hline
+{\em dim\+\_\+label} & \\
+\hline
+{\em set} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+player\+\_\+t$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 182 of file memory\+\_\+management.\+c.
 
 \mbox{\Hypertarget{supporto_8h_af132ad3ea6d429831047325e8ad017f2}\label{supporto_8h_af132ad3ea6d429831047325e8ad017f2}} 
 \index{supporto.h@{supporto.h}!player\_vs\_ia@{player\_vs\_ia}}
@@ -319,11 +1144,28 @@ tcampo$\ast$ Ritorna il puntatore al campo.
 \doxysubsubsection{\texorpdfstring{player\_vs\_player()}{player\_vs\_player()}}
 {\footnotesize\ttfamily int player\+\_\+vs\+\_\+player (\begin{DoxyParamCaption}\item[{unsigned int}]{x }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a94c7c50bc7d3a9dffc1354c289bd682d}\label{supporto_8h_a94c7c50bc7d3a9dffc1354c289bd682d}} 
+\mbox{\Hypertarget{supporto_8h_a9c2af248c709bb8d1d4f48e6250d3ec2}\label{supporto_8h_a9c2af248c709bb8d1d4f48e6250d3ec2}} 
 \index{supporto.h@{supporto.h}!print\_board@{print\_board}}
 \index{print\_board@{print\_board}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{print\_board()}{print\_board()}}
-{\footnotesize\ttfamily void print\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}}}]{t,  }\item[{unsigned int}]{cifre,  }\item[{unsigned int}]{npl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void print\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{t,  }\item[{unsigned int}]{cifre,  }\item[{unsigned}]{npl,  }\item[{char}]{char\+\_\+p1,  }\item[{char}]{char\+\_\+p2 }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \\
+\hline
+{\em cifre} & \\
+\hline
+{\em npl} & number of the player \\
+\hline
+{\em char\+\_\+p1} & color of the first player \\
+\hline
+{\em char\+\_\+p2} & color of the second player \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 21 of file user\+\_\+interaction.\+c.
 
 \mbox{\Hypertarget{supporto_8h_ade0653b2e42848b6f90ae0cd27e2cd42}\label{supporto_8h_ade0653b2e42848b6f90ae0cd27e2cd42}} 
 \index{supporto.h@{supporto.h}!print\_directions@{print\_directions}}
@@ -331,17 +1173,131 @@ tcampo$\ast$ Ritorna il puntatore al campo.
 \doxysubsubsection{\texorpdfstring{print\_directions()}{print\_directions()}}
 {\footnotesize\ttfamily void print\+\_\+directions (\begin{DoxyParamCaption}\item[{unsigned int $\ast$}]{arr,  }\item[{unsigned int}]{dim,  }\item[{unsigned int}]{np }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a600f606f3b2109510e79b7cb0fc77c62}\label{supporto_8h_a600f606f3b2109510e79b7cb0fc77c62}} 
+
+
+Print hints for the movements of a given pawn. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & Array of the avaiable movements of a pawn \\
+\hline
+{\em dim} & Dimension of the array \textquotesingle{}arr\textquotesingle{}, 4 if the pawn is promoted, 2 if the pawn isn\textquotesingle{}t promoted. \\
+\hline
+{\em np} & Number of the pawn. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 44 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a290c05f1dd7d30ae62ab3593e0e39786}\label{supporto_8h_a290c05f1dd7d30ae62ab3593e0e39786}} 
+\index{supporto.h@{supporto.h}!print\_minimax@{print\_minimax}}
+\index{print\_minimax@{print\_minimax}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{print\_minimax()}{print\_minimax()}}
+{\footnotesize\ttfamily void print\+\_\+minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$}]{value\+\_\+arr,  }\item[{unsigned int}]{dim\+\_\+arr }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em value\+\_\+arr} & \\
+\hline
+{\em dim\+\_\+arr} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 335 of file ia.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a368be0a595d675d3cfc0f7267aa566cf}\label{supporto_8h_a368be0a595d675d3cfc0f7267aa566cf}} 
 \index{supporto.h@{supporto.h}!print\_player@{print\_player}}
 \index{print\_player@{print\_player}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{print\_player()}{print\_player()}}
-{\footnotesize\ttfamily void print\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void print\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_ae4fdfba8aa0074821ab82c5fe9359846}\label{supporto_8h_ae4fdfba8aa0074821ab82c5fe9359846}} 
+
+\begin{DoxyParams}{Parameters}
+{\em players} & array wich contains the two players \\
+\hline
+{\em n\+Pl} & number that identify the player \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 168 of file user\+\_\+interaction.\+c.
+
+\mbox{\Hypertarget{supporto_8h_ad448528144b2bc631ec5c433e0e14bc0}\label{supporto_8h_ad448528144b2bc631ec5c433e0e14bc0}} 
+\index{supporto.h@{supporto.h}!printMatrix@{printMatrix}}
+\index{printMatrix@{printMatrix}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{printMatrix()}{printMatrix()}}
+{\footnotesize\ttfamily void print\+Matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{supporto_8h_a2b2ccf60f065b91670f5c440cc615e2e}\label{supporto_8h_a2b2ccf60f065b91670f5c440cc615e2e}} 
 \index{supporto.h@{supporto.h}!remove\_pawn@{remove\_pawn}}
 \index{remove\_pawn@{remove\_pawn}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{remove\_pawn()}{remove\_pawn()}}
-{\footnotesize\ttfamily void remove\+\_\+pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t,  }\item[{unsigned int}]{r,  }\item[{unsigned int}]{c,  }\item[{unsigned int}]{cifre }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void remove\+\_\+pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{row,  }\item[{unsigned int}]{col,  }\item[{unsigned int}]{dim\+\_\+label }\end{DoxyParamCaption})}
+
+
+
+Reset label from a given coordinate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & Pointer to the board. \\
+\hline
+{\em row} & Number of the row (y). \\
+\hline
+{\em col} & Number of the column (x). \\
+\hline
+{\em dim\+\_\+label} & Total number of space stored for the label of the pawn. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 112 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a570fd3c27f9fff1e0b771dc6ed57edfd}\label{supporto_8h_a570fd3c27f9fff1e0b771dc6ed57edfd}} 
+\index{supporto.h@{supporto.h}!reset\_moves\_pawns@{reset\_moves\_pawns}}
+\index{reset\_moves\_pawns@{reset\_moves\_pawns}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{reset\_moves\_pawns()}{reset\_moves\_pawns()}}
+{\footnotesize\ttfamily void reset\+\_\+moves\+\_\+pawns (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{int}]{n\+Pawn,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+
+Reset possible movements of a given pawn. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & Pointer to the players array. \\
+\hline
+{\em n\+Pawn} & If -\/1 reset movements of all pawns of a player, else reset movements of the given pawn. \\
+\hline
+{\em n\+Pl} & Number of the player. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 555 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_ae7bc18f77d401b9b34cd20bea551c49b}\label{supporto_8h_ae7bc18f77d401b9b34cd20bea551c49b}} 
+\index{supporto.h@{supporto.h}!restore\_copy@{restore\_copy}}
+\index{restore\_copy@{restore\_copy}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{restore\_copy()}{restore\_copy()}}
+{\footnotesize\ttfamily void restore\+\_\+copy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board\+\_\+copy,  }\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players\+\_\+copy }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & \\
+\hline
+{\em players} & \\
+\hline
+{\em board\+\_\+copy} & \\
+\hline
+{\em players\+\_\+copy} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 269 of file memory\+\_\+management.\+c.
 
 \mbox{\Hypertarget{supporto_8h_ad0f3596ada5da999aca1ba3923d6814f}\label{supporto_8h_ad0f3596ada5da999aca1ba3923d6814f}} 
 \index{supporto.h@{supporto.h}!round\_choice@{round\_choice}}
@@ -349,21 +1305,126 @@ tcampo$\ast$ Ritorna il puntatore al campo.
 \doxysubsubsection{\texorpdfstring{round\_choice()}{round\_choice()}}
 {\footnotesize\ttfamily unsigned int round\+\_\+choice (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a356f1511e00a9bf2d02ae8c229fcaaac}\label{supporto_8h_a356f1511e00a9bf2d02ae8c229fcaaac}} 
-\index{supporto.h@{supporto.h}!round\_ia@{round\_ia}}
-\index{round\_ia@{round\_ia}!supporto.h@{supporto.h}}
-\doxysubsubsection{\texorpdfstring{round\_ia()}{round\_ia()}}
-{\footnotesize\ttfamily unsigned int round\+\_\+ia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{ia,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t,  }\item[{unsigned int}]{npl }\end{DoxyParamCaption})}
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}
 
-\mbox{\Hypertarget{supporto_8h_add3f5f3eb41cdcad84e5d63c2b70c920}\label{supporto_8h_add3f5f3eb41cdcad84e5d63c2b70c920}} 
+
+Definition at line 289 of file user\+\_\+interaction.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a84662d50a743b387f2e8ac427dd17424}\label{supporto_8h_a84662d50a743b387f2e8ac427dd17424}} 
+\index{supporto.h@{supporto.h}!round\_ia\_minimax@{round\_ia\_minimax}}
+\index{round\_ia\_minimax@{round\_ia\_minimax}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{round\_ia\_minimax()}{round\_ia\_minimax()}}
+{\footnotesize\ttfamily int round\+\_\+ia\+\_\+minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl,  }\item[{unsigned int}]{depth }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em board} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+{\em depth} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 92 of file ia.\+c.
+
+\mbox{\Hypertarget{supporto_8h_ab9533ccf304c2028b15cd68ad22a9ad5}\label{supporto_8h_ab9533ccf304c2028b15cd68ad22a9ad5}} 
+\index{supporto.h@{supporto.h}!round\_ia\_random@{round\_ia\_random}}
+\index{round\_ia\_random@{round\_ia\_random}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{round\_ia\_random()}{round\_ia\_random()}}
+{\footnotesize\ttfamily unsigned int round\+\_\+ia\+\_\+random (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em board} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file ia.\+c.
+
+\mbox{\Hypertarget{supporto_8h_ad9c6d4f44123dccc8c06128c637cd00f}\label{supporto_8h_ad9c6d4f44123dccc8c06128c637cd00f}} 
 \index{supporto.h@{supporto.h}!round\_player@{round\_player}}
 \index{round\_player@{round\_player}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{round\_player()}{round\_player()}}
-{\footnotesize\ttfamily unsigned int round\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}} $\ast$}]{p2,  }\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t,  }\item[{unsigned int}]{npl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int round\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{t,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{supporto_8h_a871cb258dda2536b6de44bc691911c49}\label{supporto_8h_a871cb258dda2536b6de44bc691911c49}} 
+
+\begin{DoxyParams}{Parameters}
+{\em players} & \\
+\hline
+{\em t} & \\
+\hline
+{\em n\+Pl} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int 
+\end{DoxyReturn}
+
+
+Definition at line 213 of file user\+\_\+interaction.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a501e49904d4a110a0f433447c45cd135}\label{supporto_8h_a501e49904d4a110a0f433447c45cd135}} 
+\index{supporto.h@{supporto.h}!set\_moves\_pawn@{set\_moves\_pawn}}
+\index{set\_moves\_pawn@{set\_moves\_pawn}!supporto.h@{supporto.h}}
+\doxysubsubsection{\texorpdfstring{set\_moves\_pawn()}{set\_moves\_pawn()}}
+{\footnotesize\ttfamily void set\+\_\+moves\+\_\+pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl,  }\item[{int}]{n\+Pawn }\end{DoxyParamCaption})}
+
+
+
+Set possible movements of a given pawn and set mandatory eat. 
+
+Calls to is\+\_\+notstuck, must\+\_\+eat and reset\+\_\+moves\+\_\+pawns.
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & Pointer to the players array. \\
+\hline
+{\em board} & Pointer to the board. \\
+\hline
+{\em n\+Pl} & Number of the player. \\
+\hline
+{\em n\+Pawn} & If -\/1 set movements of all pawns of a player, else set movements of the given pawn. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 531 of file game\+\_\+engine.\+c.
+
+\mbox{\Hypertarget{supporto_8h_a55b6e9e1926c718eedf6e9d916822d11}\label{supporto_8h_a55b6e9e1926c718eedf6e9d916822d11}} 
 \index{supporto.h@{supporto.h}!update\_board@{update\_board}}
 \index{update\_board@{update\_board}!supporto.h@{supporto.h}}
 \doxysubsubsection{\texorpdfstring{update\_board()}{update\_board()}}
-{\footnotesize\ttfamily void update\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ad95f14493ade4e851620d5aea786ad10}{tcampo}} $\ast$}]{t,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p1,  }\item[{\mbox{\hyperlink{supporto_8h_a766577430ab8c3dd291621a95fc90c61}{tplayer}}}]{p2 }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void update\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{t,  }\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{player }\end{DoxyParamCaption})}
+
+
+
+Update the board after a player move. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & Pointer to the board. \\
+\hline
+{\em player} & Pointer of players array. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 74 of file game\+\_\+engine.\+c.
 

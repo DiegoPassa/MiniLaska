@@ -1,2 +1,2 @@
-all: main.c supporto.c supporto.h src/colors/colors.h src/colors/colors.c
-	gcc main.c supporto.h supporto.c src/colors/colors.h src/colors/colors.c -o laska.exe -ansi -pedantic -Wall -lm
+all: main.c src/colors/colors.c src/game_engine/game_engine.c src/ia/ia.c src/memory_management/memory_management.c src/movement/movement.c src/user_interaction/user_interaction.c
+	gcc main.c src/colors/colors.c src/game_engine/game_engine.c src/ia/ia.c src/memory_management/memory_management.c src/movement/movement.c src/user_interaction/user_interaction.c -o laska.exe -ansi -pedantic -Wall -lm

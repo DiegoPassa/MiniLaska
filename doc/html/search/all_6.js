@@ -1,11 +1,10 @@
 var searchData=
 [
-  ['initialize_5fboard_22',['initialize_board',['../supporto_8c.html#a9bebec4622d89e69e845dda90b782bcf',1,'initialize_board(tcampo *t, unsigned int cifre):&#160;supporto.c'],['../supporto_8h.html#a9bebec4622d89e69e845dda90b782bcf',1,'initialize_board(tcampo *t, unsigned int cifre):&#160;supporto.c']]],
-  ['int_5fconverter_23',['int_converter',['../supporto_8c.html#a7082b2f18b8eebe86c5a0da55d792df2',1,'int_converter(unsigned int num, unsigned int index):&#160;supporto.c'],['../supporto_8h.html#a7082b2f18b8eebe86c5a0da55d792df2',1,'int_converter(unsigned int num, unsigned int index):&#160;supporto.c']]],
-  ['is_5fempty_24',['is_empty',['../supporto_8c.html#ad0b249d0604a36c24742cee6f4819ccf',1,'is_empty(tplayer p):&#160;supporto.c'],['../supporto_8h.html#ad0b249d0604a36c24742cee6f4819ccf',1,'is_empty(tplayer p):&#160;supporto.c']]],
-  ['is_5fin_25',['is_in',['../supporto_8c.html#a1bda86cdcd668572e34d8efc0ebf73fe',1,'is_in(int r, int c, tcampo t):&#160;supporto.c'],['../supporto_8h.html#a1bda86cdcd668572e34d8efc0ebf73fe',1,'is_in(int r, int c, tcampo t):&#160;supporto.c']]],
-  ['is_5fnotstuck_26',['is_notstuck',['../supporto_8c.html#a4d3969ebd9f51ce44f7184bfd28fb7c8',1,'is_notstuck(tplayer p1, tplayer p2, tcampo t, unsigned int nped, unsigned int npl):&#160;supporto.c'],['../supporto_8h.html#a4d3969ebd9f51ce44f7184bfd28fb7c8',1,'is_notstuck(tplayer p1, tplayer p2, tcampo t, unsigned int nped, unsigned int npl):&#160;supporto.c']]],
-  ['is_5fselected_27',['is_selected',['../supporto_8c.html#a6f65590ae83d869a3bec216de6368113',1,'is_selected(tplayer p1, tplayer p2, unsigned int np, unsigned int npl):&#160;supporto.c'],['../supporto_8h.html#a6f65590ae83d869a3bec216de6368113',1,'is_selected(tplayer p1, tplayer p2, unsigned int np, unsigned int npl):&#160;supporto.c']]],
-  ['is_5fvictory_28',['is_victory',['../supporto_8c.html#aaf7e6ccff2cc4d299c57e594b4a51ee3',1,'is_victory(tplayer p1, tplayer p2, tcampo t):&#160;supporto.c'],['../supporto_8h.html#aaf7e6ccff2cc4d299c57e594b4a51ee3',1,'is_victory(tplayer p1, tplayer p2, tcampo t):&#160;supporto.c']]],
-  ['ispromoted_29',['isPromoted',['../structpedina.html#ad7798d3b3949fe325078e3e301d5eae1',1,'pedina']]]
+  ['game_59',['game',['../user__interaction_8c.html#af9f248b0fbe758010173501a7c5330cd',1,'game(unsigned int gameMode):&#160;user_interaction.c'],['../user__interaction_8h.html#a1b65f628f6ab84d4b1cf52d6d0e732a6',1,'game(unsigned int x):&#160;user_interaction.c']]],
+  ['game_5fengine_2ec_60',['game_engine.c',['../game__engine_8c.html',1,'']]],
+  ['game_5fengine_2eh_61',['game_engine.h',['../game__engine_8h.html',1,'']]],
+  ['grade_62',['grade',['../structpawn.html#af31bbbd64f5a887e723049a8e6143b5d',1,'pawn']]],
+  ['grn_63',['GRN',['../colors_8h.html#aea69ffbacdcdf16c21b8c9961df84448',1,'colors.h']]],
+  ['grnb_64',['GRNB',['../colors_8h.html#a906e1183ece851df294cfd43b14561c8',1,'colors.h']]],
+  ['grnhb_65',['GRNHB',['../colors_8h.html#ad1c69f0fbadaa9bef5acfb1aac37cbbb',1,'colors.h']]]
 ];

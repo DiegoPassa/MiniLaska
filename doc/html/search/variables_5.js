@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ispromoted_114',['isPromoted',['../structpedina.html#ad7798d3b3949fe325078e3e301d5eae1',1,'pedina']]]
+  ['label_246',['label',['../structpawn.html#acf60de4c64d60c1b9449c056bc6bfcf7',1,'pawn']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['pedina_61',['pedina',['../structpedina.html',1,'']]],
-  ['player_62',['player',['../structplayer.html',1,'']]]
+  ['pawn_160',['pawn',['../structpawn.html',1,'']]],
+  ['player_161',['player',['../structplayer.html',1,'']]],
+  ['point_162',['point',['../structpoint.html',1,'']]]
 ];

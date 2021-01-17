@@ -1,0 +1,212 @@
+\hypertarget{user__interaction_8h}{}\doxysection{src/user\+\_\+interaction/user\+\_\+interaction.h File Reference}
+\label{user__interaction_8h}\index{src/user\_interaction/user\_interaction.h@{src/user\_interaction/user\_interaction.h}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{user__interaction_8h_a9c2af248c709bb8d1d4f48e6250d3ec2}{print\+\_\+board}} (\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} t, unsigned int cifre, unsigned npl, char char\+\_\+p1, char char\+\_\+p2)
+\begin{DoxyCompactList}\small\item\em Print the board of game from the prospective of a given number of player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{user__interaction_8h_a368be0a595d675d3cfc0f7267aa566cf}{print\+\_\+player}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, unsigned int n\+Pl)
+\begin{DoxyCompactList}\small\item\em Print the most important fields of a given number of player. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{user__interaction_8h_ac1a039ae674b3b4176e96d2e96be9434}{while\+\_\+select\+\_\+n\+Pawn}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, unsigned int n\+Pl)
+\begin{DoxyCompactList}\small\item\em Ask the player for a pawn number to select. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{user__interaction_8h_ad9c6d4f44123dccc8c06128c637cd00f}{round\+\_\+player}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$t, unsigned int n\+Pl)
+\begin{DoxyCompactList}\small\item\em Run the game round player. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{user__interaction_8h_ad0f3596ada5da999aca1ba3923d6814f}{round\+\_\+choice}} ()
+\begin{DoxyCompactList}\small\item\em Determine which player goes first. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{user__interaction_8h_a1b65f628f6ab84d4b1cf52d6d0e732a6}{game}} (unsigned int x)
+\begin{DoxyCompactList}\small\item\em Allocate memory for structs(with call of create function), use in-\/game memory in any mode, and finally free up memory(with call of destroy function). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{user__interaction_8h_a3e0ab9449aa7ba6e71e75cac9765a089}{check\+Int}} (int scanf\+Value)
+\begin{DoxyCompactList}\small\item\em Check if the inserted value is an integer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{user__interaction_8h_a2a0e843767aeea4f433a28b9c54f573a}{menu}} ()
+\begin{DoxyCompactList}\small\item\em Cleans the terminal and launches the main game menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Diego Passarella, Davide Pasqual, Michelle Ravagnan 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+2 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2021-\/01-\/17
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2021 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{user__interaction_8h_a3e0ab9449aa7ba6e71e75cac9765a089}\label{user__interaction_8h_a3e0ab9449aa7ba6e71e75cac9765a089}} 
+\index{user\_interaction.h@{user\_interaction.h}!checkInt@{checkInt}}
+\index{checkInt@{checkInt}!user\_interaction.h@{user\_interaction.h}}
+\doxysubsubsection{\texorpdfstring{checkInt()}{checkInt()}}
+{\footnotesize\ttfamily int check\+Int (\begin{DoxyParamCaption}\item[{int}]{scanf\+Value }\end{DoxyParamCaption})}
+
+
+
+Check if the inserted value is an integer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scanf\+Value} & Value of return of the scanf. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Return correct value. 
+\end{DoxyReturn}
+
+
+Definition at line 624 of file user\+\_\+interaction.\+c.
+
+\mbox{\Hypertarget{user__interaction_8h_a1b65f628f6ab84d4b1cf52d6d0e732a6}\label{user__interaction_8h_a1b65f628f6ab84d4b1cf52d6d0e732a6}} 
+\index{user\_interaction.h@{user\_interaction.h}!game@{game}}
+\index{game@{game}!user\_interaction.h@{user\_interaction.h}}
+\doxysubsubsection{\texorpdfstring{game()}{game()}}
+{\footnotesize\ttfamily int game (\begin{DoxyParamCaption}\item[{unsigned int}]{x }\end{DoxyParamCaption})}
+
+
+
+Allocate memory for structs(with call of create function), use in-\/game memory in any mode, and finally free up memory(with call of destroy function). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & If 0 the game mode is player vs player ,else is player vs ia. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+Definition at line 359 of file user\+\_\+interaction.\+c.
+
+\mbox{\Hypertarget{user__interaction_8h_a2a0e843767aeea4f433a28b9c54f573a}\label{user__interaction_8h_a2a0e843767aeea4f433a28b9c54f573a}} 
+\index{user\_interaction.h@{user\_interaction.h}!menu@{menu}}
+\index{menu@{menu}!user\_interaction.h@{user\_interaction.h}}
+\doxysubsubsection{\texorpdfstring{menu()}{menu()}}
+{\footnotesize\ttfamily void menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Cleans the terminal and launches the main game menu. 
+
+
+
+Definition at line 637 of file user\+\_\+interaction.\+c.
+
+\mbox{\Hypertarget{user__interaction_8h_a9c2af248c709bb8d1d4f48e6250d3ec2}\label{user__interaction_8h_a9c2af248c709bb8d1d4f48e6250d3ec2}} 
+\index{user\_interaction.h@{user\_interaction.h}!print\_board@{print\_board}}
+\index{print\_board@{print\_board}!user\_interaction.h@{user\_interaction.h}}
+\doxysubsubsection{\texorpdfstring{print\_board()}{print\_board()}}
+{\footnotesize\ttfamily void print\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}}}]{t,  }\item[{unsigned int}]{cifre,  }\item[{unsigned}]{npl,  }\item[{char}]{char\+\_\+p1,  }\item[{char}]{char\+\_\+p2 }\end{DoxyParamCaption})}
+
+
+
+Print the board of game from the prospective of a given number of player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & Instance of the board. \\
+\hline
+{\em cifre} & Total number of space stored for the label of a pawn. \\
+\hline
+{\em npl} & Number of the player. \\
+\hline
+{\em char\+\_\+p1} & Color of the first player. \\
+\hline
+{\em char\+\_\+p2} & Color of the second player. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 15 of file user\+\_\+interaction.\+c.
+
+\mbox{\Hypertarget{user__interaction_8h_a368be0a595d675d3cfc0f7267aa566cf}\label{user__interaction_8h_a368be0a595d675d3cfc0f7267aa566cf}} 
+\index{user\_interaction.h@{user\_interaction.h}!print\_player@{print\_player}}
+\index{print\_player@{print\_player}!user\_interaction.h@{user\_interaction.h}}
+\doxysubsubsection{\texorpdfstring{print\_player()}{print\_player()}}
+{\footnotesize\ttfamily void print\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+
+Print the most important fields of a given number of player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Players} & array wich contains the two players. \\
+\hline
+{\em n\+Pl} & Number that identify the player. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 162 of file user\+\_\+interaction.\+c.
+
+\mbox{\Hypertarget{user__interaction_8h_ad0f3596ada5da999aca1ba3923d6814f}\label{user__interaction_8h_ad0f3596ada5da999aca1ba3923d6814f}} 
+\index{user\_interaction.h@{user\_interaction.h}!round\_choice@{round\_choice}}
+\index{round\_choice@{round\_choice}!user\_interaction.h@{user\_interaction.h}}
+\doxysubsubsection{\texorpdfstring{round\_choice()}{round\_choice()}}
+{\footnotesize\ttfamily unsigned int round\+\_\+choice (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Determine which player goes first. 
+
+\begin{DoxyReturn}{Returns}
+unsigned int Return 0 if Player 1 goes first,1 if Player 2 goes first. 
+\end{DoxyReturn}
+
+
+Definition at line 306 of file user\+\_\+interaction.\+c.
+
+\mbox{\Hypertarget{user__interaction_8h_ad9c6d4f44123dccc8c06128c637cd00f}\label{user__interaction_8h_ad9c6d4f44123dccc8c06128c637cd00f}} 
+\index{user\_interaction.h@{user\_interaction.h}!round\_player@{round\_player}}
+\index{round\_player@{round\_player}!user\_interaction.h@{user\_interaction.h}}
+\doxysubsubsection{\texorpdfstring{round\_player()}{round\_player()}}
+{\footnotesize\ttfamily unsigned int round\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$}]{t,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+
+Run the game round player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & Pointer to the players array. \\
+\hline
+{\em t} & Pointer to the board. \\
+\hline
+{\em n\+Pl} & Number that identify the player. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int Return 4 for continue the while loop to play the game in function game. 
+\end{DoxyReturn}
+
+
+Definition at line 216 of file user\+\_\+interaction.\+c.
+
+\mbox{\Hypertarget{user__interaction_8h_ac1a039ae674b3b4176e96d2e96be9434}\label{user__interaction_8h_ac1a039ae674b3b4176e96d2e96be9434}} 
+\index{user\_interaction.h@{user\_interaction.h}!while\_select\_nPawn@{while\_select\_nPawn}}
+\index{while\_select\_nPawn@{while\_select\_nPawn}!user\_interaction.h@{user\_interaction.h}}
+\doxysubsubsection{\texorpdfstring{while\_select\_nPawn()}{while\_select\_nPawn()}}
+{\footnotesize\ttfamily unsigned int while\+\_\+select\+\_\+n\+Pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+
+Ask the player for a pawn number to select. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & Pointer to the players array. \\
+\hline
+{\em n\+Pl} & Number that identify the player. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int Return a number of a pawn. 
+\end{DoxyReturn}
+
+
+Definition at line 188 of file user\+\_\+interaction.\+c.
+
