@@ -2,6 +2,11 @@
 \label{structpawn}\index{pawn@{pawn}}
 
 
+Description of struct pawn \+:  
+
+
+
+
 {\ttfamily \#include $<$game\+\_\+engine.\+h$>$}
 
 \doxysubsection*{Data Fields}
@@ -11,7 +16,7 @@ char $\ast$ \mbox{\hyperlink{structpawn_acf60de4c64d60c1b9449c056bc6bfcf7}{label
 \item 
 unsigned int \mbox{\hyperlink{structpawn_ab70e87cd9d6d91fab3b9bcb0237c83e6}{dim\+\_\+label}}
 \item 
-\mbox{\hyperlink{supporto_8h_abce73ee21c48ee71e33e591a250c5af4}{point\+\_\+t}} \mbox{\hyperlink{structpawn_aae6df3697f943c8987fa0689b73753cc}{coordinate}}
+\mbox{\hyperlink{game__engine_8h_a22236f7ae4753f6f721f2a3c598e419c}{point\+\_\+t}} \mbox{\hyperlink{structpawn_aae6df3697f943c8987fa0689b73753cc}{coordinate}}
 \item 
 unsigned int \mbox{\hyperlink{structpawn_a64a9ee13696a3d322b352e51b3825ed0}{cima}}
 \item 
@@ -24,9 +29,28 @@ unsigned int $\ast$ \mbox{\hyperlink{structpawn_afcb73c6387e01acc3b2fa71663cda14
 
 
 \doxysubsection{Detailed Description}
+Description of struct pawn \+: 
 
 
-Definition at line 34 of file game\+\_\+engine.\+h.
+\begin{DoxyParams}{Parameters}
+{\em $\ast$label} & \+: it is a char pointer,so it is the label of a pawn in the chessboard. \\
+\hline
+{\em dim\+\_\+label} & \+: it is the number of char that are necessary to represent the number of a pawn in the label. \\
+\hline
+{\em coordinate} & \+: they are the coordinates of a pawn in the board. \\
+\hline
+{\em cima} & \+: it is the position of the highest pawn int he label. \\
+\hline
+{\em grade} & \+: if 0 then the label doesn\textquotesingle{}t appear in the board,else it represents the height of the pawn tower. \\
+\hline
+{\em is\+\_\+promoted} & \+: if 1 then the pawn can move to bottom right or bottom left respect the pawn ,else the pawn can move only left or right respect the pawn. \\
+\hline
+{\em can\+Move} & \+: it is a int pointer,so where it set to 1 the pawn can move in that direction \+: -\/$>$ can\+Move\mbox{[}0\mbox{]} = left. -\/$>$ can\+Move\mbox{[}1\mbox{]} = right. -\/$>$ can\+Move\mbox{[}2\mbox{]} = bottom right. -\/$>$ can\+Move\mbox{[}3\mbox{]} = bottom left. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 56 of file game\+\_\+engine.\+h.
 
 
 
@@ -39,7 +63,7 @@ Definition at line 34 of file game\+\_\+engine.\+h.
 
 
 
-Definition at line 41 of file game\+\_\+engine.\+h.
+Definition at line 63 of file game\+\_\+engine.\+h.
 
 \mbox{\Hypertarget{structpawn_a64a9ee13696a3d322b352e51b3825ed0}\label{structpawn_a64a9ee13696a3d322b352e51b3825ed0}} 
 \index{pawn@{pawn}!cima@{cima}}
@@ -49,17 +73,17 @@ Definition at line 41 of file game\+\_\+engine.\+h.
 
 
 
-Definition at line 38 of file game\+\_\+engine.\+h.
+Definition at line 60 of file game\+\_\+engine.\+h.
 
 \mbox{\Hypertarget{structpawn_aae6df3697f943c8987fa0689b73753cc}\label{structpawn_aae6df3697f943c8987fa0689b73753cc}} 
 \index{pawn@{pawn}!coordinate@{coordinate}}
 \index{coordinate@{coordinate}!pawn@{pawn}}
 \doxysubsubsection{\texorpdfstring{coordinate}{coordinate}}
-{\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_abce73ee21c48ee71e33e591a250c5af4}{point\+\_\+t}} coordinate}
+{\footnotesize\ttfamily \mbox{\hyperlink{game__engine_8h_a22236f7ae4753f6f721f2a3c598e419c}{point\+\_\+t}} coordinate}
 
 
 
-Definition at line 37 of file game\+\_\+engine.\+h.
+Definition at line 59 of file game\+\_\+engine.\+h.
 
 \mbox{\Hypertarget{structpawn_ab70e87cd9d6d91fab3b9bcb0237c83e6}\label{structpawn_ab70e87cd9d6d91fab3b9bcb0237c83e6}} 
 \index{pawn@{pawn}!dim\_label@{dim\_label}}
@@ -69,7 +93,7 @@ Definition at line 37 of file game\+\_\+engine.\+h.
 
 
 
-Definition at line 36 of file game\+\_\+engine.\+h.
+Definition at line 58 of file game\+\_\+engine.\+h.
 
 \mbox{\Hypertarget{structpawn_af31bbbd64f5a887e723049a8e6143b5d}\label{structpawn_af31bbbd64f5a887e723049a8e6143b5d}} 
 \index{pawn@{pawn}!grade@{grade}}
@@ -79,7 +103,7 @@ Definition at line 36 of file game\+\_\+engine.\+h.
 
 
 
-Definition at line 39 of file game\+\_\+engine.\+h.
+Definition at line 61 of file game\+\_\+engine.\+h.
 
 \mbox{\Hypertarget{structpawn_a08f5591a36ab66721f3e2360abb67a75}\label{structpawn_a08f5591a36ab66721f3e2360abb67a75}} 
 \index{pawn@{pawn}!isPromoted@{isPromoted}}
@@ -89,7 +113,7 @@ Definition at line 39 of file game\+\_\+engine.\+h.
 
 
 
-Definition at line 40 of file game\+\_\+engine.\+h.
+Definition at line 62 of file game\+\_\+engine.\+h.
 
 \mbox{\Hypertarget{structpawn_acf60de4c64d60c1b9449c056bc6bfcf7}\label{structpawn_acf60de4c64d60c1b9449c056bc6bfcf7}} 
 \index{pawn@{pawn}!label@{label}}
@@ -97,9 +121,9 @@ Definition at line 40 of file game\+\_\+engine.\+h.
 \doxysubsubsection{\texorpdfstring{label}{label}}
 {\footnotesize\ttfamily char$\ast$ label}
 
+label of the pawn ex.$\vert$ BN07 $\vert$ 
 
-
-Definition at line 35 of file game\+\_\+engine.\+h.
+Definition at line 57 of file game\+\_\+engine.\+h.
 
 
 

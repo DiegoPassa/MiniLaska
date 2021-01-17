@@ -5,10 +5,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: src/movement/movement.c File Reference</title>
+<title>MINILASKA 51: src/movement/movement.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,9 +24,12 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="title.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">MINILASKA 51
+   &#160;<span id="projectnumber">1.0.2</span>
    </div>
+   <div id="projectbrief">Made with love by: Diego Passarella, Davide Pasqual, Michelle Ravagnan</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('movement_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +83,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_3c3b062525f3b887eb50e782b5b052f0.html">movement</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
@@ -88,13 +107,20 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af98c2d7ebb2b146df09e8df4422e9243"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="movement_8c.html#af98c2d7ebb2b146df09e8df4422e9243">move_noeat</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, unsigned int num_pawn, char *str, <a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *<a class="el" href="structboard.html">board</a>, unsigned int nPl)</td></tr>
+<tr class="memitem:af98c2d7ebb2b146df09e8df4422e9243"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="movement_8c.html#af98c2d7ebb2b146df09e8df4422e9243">move_noeat</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, unsigned int num_pawn, char *str, <a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *<a class="el" href="structboard.html">board</a>, unsigned int nPl)</td></tr>
+<tr class="memdesc:af98c2d7ebb2b146df09e8df4422e9243"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move a given number of pawn without eat to a string direction.<br  />
+  <a href="movement_8c.html#af98c2d7ebb2b146df09e8df4422e9243">More...</a><br /></td></tr>
 <tr class="separator:af98c2d7ebb2b146df09e8df4422e9243"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ed734f105ad05ffb03d2f437a928b2d"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="movement_8c.html#a5ed734f105ad05ffb03d2f437a928b2d">eat</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, char *str, unsigned int num_pawn, <a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> <a class="el" href="structboard.html">board</a>, unsigned int enemy_pawn, unsigned int nPl)</td></tr>
+<tr class="memitem:a5ed734f105ad05ffb03d2f437a928b2d"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="movement_8c.html#a5ed734f105ad05ffb03d2f437a928b2d">eat</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, char *str, unsigned int num_pawn, <a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> <a class="el" href="structboard.html">board</a>, unsigned int enemy_pawn, unsigned int nPl)</td></tr>
+<tr class="memdesc:a5ed734f105ad05ffb03d2f437a928b2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eat the enemy pawn respect us.<br  />
+  <a href="movement_8c.html#a5ed734f105ad05ffb03d2f437a928b2d">More...</a><br /></td></tr>
 <tr class="separator:a5ed734f105ad05ffb03d2f437a928b2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06455c5400852e2b70952a4c5c6006f9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="movement_8c.html#a06455c5400852e2b70952a4c5c6006f9">move_p1</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, unsigned int num_pawn, char *str, <a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *<a class="el" href="structboard.html">board</a>, unsigned int nPl)</td></tr>
+<tr class="memitem:a06455c5400852e2b70952a4c5c6006f9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="movement_8c.html#a06455c5400852e2b70952a4c5c6006f9">move_p1</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, unsigned int num_pawn, char *str, <a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *<a class="el" href="structboard.html">board</a>, unsigned int nPl)</td></tr>
+<tr class="memdesc:a06455c5400852e2b70952a4c5c6006f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the main function that allows the pawn to move in the 4 available directions.  <a href="movement_8c.html#a06455c5400852e2b70952a4c5c6006f9">More...</a><br /></td></tr>
 <tr class="separator:a06455c5400852e2b70952a4c5c6006f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4876db3570725fc49e344af21021c7b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="movement_8c.html#ac4876db3570725fc49e344af21021c7b">move_p2</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, unsigned int num_pawn, char *str, <a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *<a class="el" href="structboard.html">board</a>)</td></tr>
+<tr class="memitem:ac4876db3570725fc49e344af21021c7b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="movement_8c.html#ac4876db3570725fc49e344af21021c7b">move_p2</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, unsigned int num_pawn, char *str, <a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *<a class="el" href="structboard.html">board</a>)</td></tr>
+<tr class="memdesc:ac4876db3570725fc49e344af21021c7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move a given number of pawn of the second player.<br  />
+  <a href="movement_8c.html#ac4876db3570725fc49e344af21021c7b">More...</a><br /></td></tr>
 <tr class="separator:ac4876db3570725fc49e344af21021c7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -107,7 +133,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">unsigned int eat </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
@@ -125,7 +151,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a>&#160;</td>
           <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
@@ -147,20 +173,42 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Eat the enemy pawn respect us.<br  />
+ </p>
+<p>There are 4 string directions :<br  />
+ -&gt; "l" which means left respect the num_pawn pawn.<br  />
+ -&gt; "r" which means right respect the num_pawn pawn.<br  />
+ -&gt; "botr" which means bottom right respect the num_pawn pawn.<br  />
+ -&gt; "botl" which means bottom left respect the num_pawn pawn.<br  />
+</p>
+<p>There are 5 steps :<br  />
+ -&gt; 1 step : calculate the number of enemy_player and save with a char array the new characters of the num_pawn(it has length 3 due to the height limitation of the pawn).<br  />
+ -&gt; 2 step : there are 2 main cases that will be analyzed below.<br  />
+ -&gt; 3 step : modify the label of num_pawn pawn (if his height &lt; 3),then modify the other fields such as the new coordinates(according to the string direction).<br  />
+ -&gt; 4 step : remove the pawn at the old coordinates on the board.<br  />
+ -&gt; 5 step : eventually promote the num_pawn pawn.<br  />
+</p>
+<p>Main cases of 2 step :<br  />
+ -&gt; 1 case : the enemy pawn has grade equal to 1 so it just set it to zero to remove it from the board when the update_board("../game_engine/game_engine.h") is done.<br  />
+ -&gt; 2 case : mainly it concerns when the opponent's pawn includes more pieces and we distinguish two main sub-cases :<br  />
+ -&gt; 1 sub cases : when the highest opponent pawn in the tower is the same as the next one, simply the control of the new opponent pawn is maintained by the opposing player who is deprived of the highest pawn of the tower.<br  />
+ -&gt; 2 sub cases : when the highest pawn of the opposing tower is different from the next one, control of the pawn is lost and attributed to the other player.<br  />
+</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">players</td><td></td></tr>
-    <tr><td class="paramname">str</td><td></td></tr>
-    <tr><td class="paramname">num_pawn</td><td></td></tr>
-    <tr><td class="paramname">board</td><td></td></tr>
-    <tr><td class="paramname">enemy_pawn</td><td></td></tr>
-    <tr><td class="paramname">nPl</td><td></td></tr>
+    <tr><td class="paramname">players</td><td>Pointer to the players array. </td></tr>
+    <tr><td class="paramname">str</td><td>String of direction where to move the pawn. </td></tr>
+    <tr><td class="paramname">num_pawn</td><td>Number of the pawn to move and eat the enemy pawn. </td></tr>
+    <tr><td class="paramname">board</td><td>Pointer to the board. </td></tr>
+    <tr><td class="paramname">enemy_pawn</td><td>Number of the enemy pawn that will be eaten. </td></tr>
+    <tr><td class="paramname">nPl</td><td>Number of player of num_pawn. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>unsigned int </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="movement_8c_source.html#l00076">76</a> of file <a class="el" href="movement_8c_source.html">movement.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="movement_8c_source.html#l00071">71</a> of file <a class="el" href="movement_8c_source.html">movement.c</a>.</p>
 
 </div>
 </div>
@@ -173,7 +221,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">unsigned int move_noeat </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
@@ -191,7 +239,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *&#160;</td>
           <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
@@ -207,19 +255,34 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Move a given number of pawn without eat to a string direction.<br  />
+ </p>
+<p>There are 4 steps :<br  />
+ -&gt; 1 step : check with "strcmp" function( string.h library)if the given string is correct.<br  />
+ -&gt; 2 step : check if in that direction there isn't any pawn and the new coordinates of the pawn are inside the chessboard.<br  />
+ -&gt; 3 step : assign new coordinates to the pawn and remove the pawn at the old coordinates on the board.<br  />
+ -&gt; 4 step : eventually promote the num_pawn pawn.<br  />
+</p>
+<p>There are 4 string directions :<br  />
+ -&gt; "l" which means left respect the num_pawn pawn.<br  />
+ -&gt; "r" which means right respect the num_pawn pawn.<br  />
+ -&gt; "botr" which means bottom right respect the num_pawn pawn.<br  />
+ -&gt; "botl" which means bottom left respect the num_pawn pawn.<br  />
+</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">players</td><td></td></tr>
-    <tr><td class="paramname">num_pawn</td><td></td></tr>
-    <tr><td class="paramname">str</td><td></td></tr>
-    <tr><td class="paramname">board</td><td></td></tr>
-    <tr><td class="paramname">nPl</td><td></td></tr>
+    <tr><td class="paramname">players</td><td>Pointer to the players array. </td></tr>
+    <tr><td class="paramname">num_pawn</td><td>Number of the pawn to move. </td></tr>
+    <tr><td class="paramname">str</td><td>String of direction where to move the pawn. </td></tr>
+    <tr><td class="paramname">board</td><td>Pointer to the board. </td></tr>
+    <tr><td class="paramname">nPl</td><td>Number of player of num_pawn. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>unsigned int </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>unsigned int Return 1 if the pawn moves correctly,0 else. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="movement_8c_source.html#l00021">21</a> of file <a class="el" href="movement_8c_source.html">movement.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="movement_8c_source.html#l00016">16</a> of file <a class="el" href="movement_8c_source.html">movement.c</a>.</p>
 
 </div>
 </div>
@@ -232,7 +295,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int move_p1 </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
@@ -250,7 +313,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *&#160;</td>
           <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
@@ -266,19 +329,21 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>This is the main function that allows the pawn to move in the 4 available directions. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">players</td><td></td></tr>
-    <tr><td class="paramname">num_pawn</td><td></td></tr>
-    <tr><td class="paramname">str</td><td></td></tr>
-    <tr><td class="paramname">board</td><td></td></tr>
-    <tr><td class="paramname">nPl</td><td></td></tr>
+    <tr><td class="paramname">players</td><td>Pointer to the players array. </td></tr>
+    <tr><td class="paramname">num_pawn</td><td>Number of the pawn to move. </td></tr>
+    <tr><td class="paramname">str</td><td>String of direction where to move the pawn. </td></tr>
+    <tr><td class="paramname">board</td><td>Pointer to the board. </td></tr>
+    <tr><td class="paramname">nPl</td><td>Number of player of num_pawn. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int Return a number &gt;= 0 if the num_pawn ate and matches to the number of enemy pawn that it was eaten,-1 if the num_pawn move without eat, -2 if did nothing , -4 if there is an error in can_eat function(#include "../game_engine/game_engine.h"); </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="movement_8c_source.html#l00175">175</a> of file <a class="el" href="movement_8c_source.html">movement.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="movement_8c_source.html#l00165">165</a> of file <a class="el" href="movement_8c_source.html">movement.c</a>.</p>
 
 </div>
 </div>
@@ -291,7 +356,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int move_p2 </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
@@ -309,7 +374,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *&#160;</td>
           <td class="paramname"><em>board</em>&#160;</td>
         </tr>
         <tr>
@@ -319,25 +384,46 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Move a given number of pawn of the second player.<br  />
+ </p>
+<p>It is very similar to move_p1 but it is different because the directions of player 2 move inversely with respect to player 1, for example if I have to go in the left direction of player 1, the direction of player 2 is not left, but bottom left. This is due to the fact that in the chessboard player 1 is in the last lines, instead player 2 in the first ones, so if I move to the left of player 1 the y coordinate of the pawn decreases, on the contrary in player 2 that when I have to go on the left the y coordinate increases (as in fact when compared to player 1 I go to the bottom left and then reusing the functions of player 1).<br  />
+</p>
+<p>There are 4 string directions :<br  />
+ -&gt; "l" which means left respect the num_pawn pawn.<br  />
+ -&gt; "r" which means right respect the num_pawn pawn.<br  />
+ -&gt; "botr" which means bottom right respect the num_pawn pawn.<br  />
+ -&gt; "botl" which means bottom left respect the num_pawn pawn.<br  />
+</p>
+<p>The 4 directions of player 2 respect player 1 :<br  />
+ -&gt; "l" that respect player 1 it is "botl".<br  />
+ -&gt; "r" that respect player 1 it is "botr".<br  />
+ -&gt; "botr" that respect player 1 it is "r".<br  />
+ -&gt; "l" that respect player 1 it is "l".<br  />
+</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">players</td><td></td></tr>
-    <tr><td class="paramname">num_pawn</td><td></td></tr>
-    <tr><td class="paramname">str</td><td></td></tr>
-    <tr><td class="paramname">board</td><td></td></tr>
+    <tr><td class="paramname">players</td><td>Pointer to the players array. </td></tr>
+    <tr><td class="paramname">num_pawn</td><td>Number of the pawn to move. </td></tr>
+    <tr><td class="paramname">str</td><td>String of direction where to move the pawn. </td></tr>
+    <tr><td class="paramname">board</td><td>Pointer to the board. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int Return a number &gt;= 0 if the num_pawn ate and matches to the number of enemy pawn that it was eaten,-1 if the num_pawn move without eat, -2 if did nothing , -4 if there is an error in can_eat function(#include "../game_engine/game_engine.h"); </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="movement_8c_source.html#l00192">192</a> of file <a class="el" href="movement_8c_source.html">movement.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="movement_8c_source.html#l00182">182</a> of file <a class="el" href="movement_8c_source.html">movement.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_3c3b062525f3b887eb50e782b5b052f0.html">movement</a></li><li class="navelem"><a class="el" href="movement_8c.html">movement.c</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.0 </li>
+  </ul>
+</div>
 </body>
 </html>

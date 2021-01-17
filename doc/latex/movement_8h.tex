@@ -3,14 +3,32 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-unsigned int \mbox{\hyperlink{movement_8h_af98c2d7ebb2b146df09e8df4422e9243}{move\+\_\+noeat}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int num\+\_\+pawn, char $\ast$str, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl)
-\item 
-unsigned int \mbox{\hyperlink{movement_8h_a5ed734f105ad05ffb03d2f437a928b2d}{eat}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, char $\ast$str, unsigned int num\+\_\+pawn, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, unsigned int enemy\+\_\+pawn, unsigned int n\+Pl)
-\item 
-int \mbox{\hyperlink{movement_8h_a06455c5400852e2b70952a4c5c6006f9}{move\+\_\+p1}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int num\+\_\+pawn, char $\ast$str, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl)
-\item 
-int \mbox{\hyperlink{movement_8h_ac4876db3570725fc49e344af21021c7b}{move\+\_\+p2}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int num\+\_\+pawn, char $\ast$str, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}})
-\end{DoxyCompactItemize}
+unsigned int \mbox{\hyperlink{movement_8h_af98c2d7ebb2b146df09e8df4422e9243}{move\+\_\+noeat}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, unsigned int num\+\_\+pawn, char $\ast$str, \mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl)
+\begin{DoxyCompactList}\small\item\em Move a given number of pawn without eat to a string direction.~\newline
+ \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{movement_8h_a5ed734f105ad05ffb03d2f437a928b2d}{eat}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, char $\ast$str, unsigned int num\+\_\+pawn, \mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, unsigned int enemy\+\_\+pawn, unsigned int n\+Pl)
+\begin{DoxyCompactList}\small\item\em Eat the enemy pawn respect us.~\newline
+ \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{movement_8h_a06455c5400852e2b70952a4c5c6006f9}{move\+\_\+p1}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, unsigned int num\+\_\+pawn, char $\ast$str, \mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl)
+\begin{DoxyCompactList}\small\item\em This is the main function that allows the pawn to move in the 4 available directions. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{movement_8h_ac4876db3570725fc49e344af21021c7b}{move\+\_\+p2}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, unsigned int num\+\_\+pawn, char $\ast$str, \mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}})
+\begin{DoxyCompactList}\small\item\em Move a given number of pawn of the second player.~\newline
+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Diego Passarella, Davide Pasqual, Michelle Ravagnan 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+2 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2021-\/01-\/17
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2021 
+\end{DoxyCopyright}
 
 
 \doxysubsection{Function Documentation}
@@ -18,21 +36,48 @@ int \mbox{\hyperlink{movement_8h_ac4876db3570725fc49e344af21021c7b}{move\+\_\+p2
 \index{movement.h@{movement.h}!eat@{eat}}
 \index{eat@{eat}!movement.h@{movement.h}}
 \doxysubsubsection{\texorpdfstring{eat()}{eat()}}
-{\footnotesize\ttfamily unsigned int eat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{char $\ast$}]{str,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{unsigned int}]{enemy\+\_\+pawn,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int eat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{char $\ast$}]{str,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}}}]{board,  }\item[{unsigned int}]{enemy\+\_\+pawn,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+
+Eat the enemy pawn respect us.~\newline
+ 
+
+There are 4 string directions \+:~\newline
+ -\/$>$ \char`\"{}l\char`\"{} which means left respect the num\+\_\+pawn pawn.~\newline
+ -\/$>$ \char`\"{}r\char`\"{} which means right respect the num\+\_\+pawn pawn.~\newline
+ -\/$>$ \char`\"{}botr\char`\"{} which means bottom right respect the num\+\_\+pawn pawn.~\newline
+ -\/$>$ \char`\"{}botl\char`\"{} which means bottom left respect the num\+\_\+pawn pawn.~\newline
+
+
+There are 5 steps \+:~\newline
+ -\/$>$ 1 step \+: calculate the number of enemy\+\_\+player and save with a char array the new characters of the num\+\_\+pawn(it has length 3 due to the height limitation of the pawn).~\newline
+ -\/$>$ 2 step \+: there are 2 main cases that will be analyzed below.~\newline
+ -\/$>$ 3 step \+: modify the label of num\+\_\+pawn pawn (if his height $<$ 3),then modify the other fields such as the new coordinates(according to the string direction).~\newline
+ -\/$>$ 4 step \+: remove the pawn at the old coordinates on the board.~\newline
+ -\/$>$ 5 step \+: eventually promote the num\+\_\+pawn pawn.~\newline
+
+
+Main cases of 2 step \+:~\newline
+ -\/$>$ 1 case \+: the enemy pawn has grade equal to 1 so it just set it to zero to remove it from the board when the update\+\_\+board(\char`\"{}../game\+\_\+engine/game\+\_\+engine.\+h\char`\"{}) is done.~\newline
+ -\/$>$ 2 case \+: mainly it concerns when the opponent\textquotesingle{}s pawn includes more pieces and we distinguish two main sub-\/cases \+:~\newline
+ -\/$>$ 1 sub cases \+: when the highest opponent pawn in the tower is the same as the next one, simply the control of the new opponent pawn is maintained by the opposing player who is deprived of the highest pawn of the tower.~\newline
+ -\/$>$ 2 sub cases \+: when the highest pawn of the opposing tower is different from the next one, control of the pawn is lost and attributed to the other player.~\newline
+
 
 
 \begin{DoxyParams}{Parameters}
-{\em players} & \\
+{\em players} & Pointer to the players array. \\
 \hline
-{\em str} & \\
+{\em str} & String of direction where to move the pawn. \\
 \hline
-{\em num\+\_\+pawn} & \\
+{\em num\+\_\+pawn} & Number of the pawn to move and eat the enemy pawn. \\
 \hline
-{\em board} & \\
+{\em board} & Pointer to the board. \\
 \hline
-{\em enemy\+\_\+pawn} & \\
+{\em enemy\+\_\+pawn} & Number of the enemy pawn that will be eaten. \\
 \hline
-{\em n\+Pl} & \\
+{\em n\+Pl} & Number of player of num\+\_\+pawn. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -40,81 +85,126 @@ unsigned int
 \end{DoxyReturn}
 
 
-Definition at line 76 of file movement.\+c.
+Definition at line 71 of file movement.\+c.
 
 \mbox{\Hypertarget{movement_8h_af98c2d7ebb2b146df09e8df4422e9243}\label{movement_8h_af98c2d7ebb2b146df09e8df4422e9243}} 
 \index{movement.h@{movement.h}!move\_noeat@{move\_noeat}}
 \index{move\_noeat@{move\_noeat}!movement.h@{movement.h}}
 \doxysubsubsection{\texorpdfstring{move\_noeat()}{move\_noeat()}}
-{\footnotesize\ttfamily unsigned int move\+\_\+noeat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int move\+\_\+noeat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+
+Move a given number of pawn without eat to a string direction.~\newline
+ 
+
+There are 4 steps \+:~\newline
+ -\/$>$ 1 step \+: check with \char`\"{}strcmp\char`\"{} function( string.\+h library)if the given string is correct.~\newline
+ -\/$>$ 2 step \+: check if in that direction there isn\textquotesingle{}t any pawn and the new coordinates of the pawn are inside the chessboard.~\newline
+ -\/$>$ 3 step \+: assign new coordinates to the pawn and remove the pawn at the old coordinates on the board.~\newline
+ -\/$>$ 4 step \+: eventually promote the num\+\_\+pawn pawn.~\newline
+
+
+There are 4 string directions \+:~\newline
+ -\/$>$ \char`\"{}l\char`\"{} which means left respect the num\+\_\+pawn pawn.~\newline
+ -\/$>$ \char`\"{}r\char`\"{} which means right respect the num\+\_\+pawn pawn.~\newline
+ -\/$>$ \char`\"{}botr\char`\"{} which means bottom right respect the num\+\_\+pawn pawn.~\newline
+ -\/$>$ \char`\"{}botl\char`\"{} which means bottom left respect the num\+\_\+pawn pawn.~\newline
+
 
 
 \begin{DoxyParams}{Parameters}
-{\em players} & \\
+{\em players} & Pointer to the players array. \\
 \hline
-{\em num\+\_\+pawn} & \\
+{\em num\+\_\+pawn} & Number of the pawn to move. \\
 \hline
-{\em str} & \\
+{\em str} & String of direction where to move the pawn. \\
 \hline
-{\em board} & \\
+{\em board} & Pointer to the board. \\
 \hline
-{\em n\+Pl} & \\
+{\em n\+Pl} & Number of player of num\+\_\+pawn. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-unsigned int 
+unsigned int Return 1 if the pawn moves correctly,0 else. 
 \end{DoxyReturn}
 
 
-Definition at line 21 of file movement.\+c.
+Definition at line 16 of file movement.\+c.
 
 \mbox{\Hypertarget{movement_8h_a06455c5400852e2b70952a4c5c6006f9}\label{movement_8h_a06455c5400852e2b70952a4c5c6006f9}} 
 \index{movement.h@{movement.h}!move\_p1@{move\_p1}}
 \index{move\_p1@{move\_p1}!movement.h@{movement.h}}
 \doxysubsubsection{\texorpdfstring{move\_p1()}{move\_p1()}}
-{\footnotesize\ttfamily int move\+\_\+p1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int move\+\_\+p1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+
+This is the main function that allows the pawn to move in the 4 available directions. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em players} & \\
+{\em players} & Pointer to the players array. \\
 \hline
-{\em num\+\_\+pawn} & \\
+{\em num\+\_\+pawn} & Number of the pawn to move. \\
 \hline
-{\em str} & \\
+{\em str} & String of direction where to move the pawn. \\
 \hline
-{\em board} & \\
+{\em board} & Pointer to the board. \\
 \hline
-{\em n\+Pl} & \\
+{\em n\+Pl} & Number of player of num\+\_\+pawn. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-int 
+int Return a number $>$= 0 if the num\+\_\+pawn ate and matches to the number of enemy pawn that it was eaten,-\/1 if the num\+\_\+pawn move without eat, -\/2 if did nothing , -\/4 if there is an error in can\+\_\+eat function(\#include \char`\"{}../game\+\_\+engine/game\+\_\+engine.\+h\char`\"{}); 
 \end{DoxyReturn}
 
 
-Definition at line 175 of file movement.\+c.
+Definition at line 165 of file movement.\+c.
 
 \mbox{\Hypertarget{movement_8h_ac4876db3570725fc49e344af21021c7b}\label{movement_8h_ac4876db3570725fc49e344af21021c7b}} 
 \index{movement.h@{movement.h}!move\_p2@{move\_p2}}
 \index{move\_p2@{move\_p2}!movement.h@{movement.h}}
 \doxysubsubsection{\texorpdfstring{move\_p2()}{move\_p2()}}
-{\footnotesize\ttfamily int move\+\_\+p2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int move\+\_\+p2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$}]{board }\end{DoxyParamCaption})}
+
+
+
+Move a given number of pawn of the second player.~\newline
+ 
+
+It is very similar to move\+\_\+p1 but it is different because the directions of player 2 move inversely with respect to player 1, for example if I have to go in the left direction of player 1, the direction of player 2 is not left, but bottom left. This is due to the fact that in the chessboard player 1 is in the last lines, instead player 2 in the first ones, so if I move to the left of player 1 the y coordinate of the pawn decreases, on the contrary in player 2 that when I have to go on the left the y coordinate increases (as in fact when compared to player 1 I go to the bottom left and then reusing the functions of player 1).~\newline
+
+
+There are 4 string directions \+:~\newline
+ -\/$>$ \char`\"{}l\char`\"{} which means left respect the num\+\_\+pawn pawn.~\newline
+ -\/$>$ \char`\"{}r\char`\"{} which means right respect the num\+\_\+pawn pawn.~\newline
+ -\/$>$ \char`\"{}botr\char`\"{} which means bottom right respect the num\+\_\+pawn pawn.~\newline
+ -\/$>$ \char`\"{}botl\char`\"{} which means bottom left respect the num\+\_\+pawn pawn.~\newline
+
+
+The 4 directions of player 2 respect player 1 \+:~\newline
+ -\/$>$ \char`\"{}l\char`\"{} that respect player 1 it is \char`\"{}botl\char`\"{}.~\newline
+ -\/$>$ \char`\"{}r\char`\"{} that respect player 1 it is \char`\"{}botr\char`\"{}.~\newline
+ -\/$>$ \char`\"{}botr\char`\"{} that respect player 1 it is \char`\"{}r\char`\"{}.~\newline
+ -\/$>$ \char`\"{}l\char`\"{} that respect player 1 it is \char`\"{}l\char`\"{}.~\newline
+
 
 
 \begin{DoxyParams}{Parameters}
-{\em players} & \\
+{\em players} & Pointer to the players array. \\
 \hline
-{\em num\+\_\+pawn} & \\
+{\em num\+\_\+pawn} & Number of the pawn to move. \\
 \hline
-{\em str} & \\
+{\em str} & String of direction where to move the pawn. \\
 \hline
-{\em board} & \\
+{\em board} & Pointer to the board. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-int 
+int Return a number $>$= 0 if the num\+\_\+pawn ate and matches to the number of enemy pawn that it was eaten,-\/1 if the num\+\_\+pawn move without eat, -\/2 if did nothing , -\/4 if there is an error in can\+\_\+eat function(\#include \char`\"{}../game\+\_\+engine/game\+\_\+engine.\+h\char`\"{}); 
 \end{DoxyReturn}
 
 
-Definition at line 192 of file movement.\+c.
+Definition at line 182 of file movement.\+c.
 

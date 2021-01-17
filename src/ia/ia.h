@@ -1,16 +1,20 @@
-/*
-    ID gruppo : 51
-
-    886711 Passarella-Diego | 882082 Pasqual-Davide | 881493 Ravagnan-Michelle
-
+/**
+ * @file ia.h
+ * @author Diego Passarella, Davide Pasqual, Michelle Ravagnan
+ * @version 1.0.2
+ * @date 2021-01-17
+ * 
+ * @copyright Copyright (c) 2021
+ * 
  */
+
 #ifndef IA_H
 #define IA_H
 
 /**
- * @brief Auxiliary struct for the minimax.<br>
+ * @brief Auxiliary struct for the minimax.
  * 
- * In order to improve the efficiency of the minimax function we preferred to create a new struct instead of calling another function similar to minimax.<br>
+ * In order to improve the efficiency of the minimax function we preferred to create a new struct instead of calling another function similar to minimax.
  * 
  * @param value Evaluated score of the minimax or -9017 if the pawn is blocked.
  * @param directions Array containing the string of the direction.

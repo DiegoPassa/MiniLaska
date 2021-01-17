@@ -1,9 +1,13 @@
-/*
-    ID gruppo : 51
-
-    886711 Passarella-Diego | 882082 Pasqual-Davide | 881493 Ravagnan-Michelle
-
+/**
+ * @file colors.h
+ * @author Diego Passarella, Davide Pasqual, Michelle Ravagnan
+ * @version 1.0.2
+ * @date 2021-01-17
+ * 
+ * @copyright Copyright (c) 2021
+ * 
  */
+
 #ifndef COLORS_H
 #define COLORS_H
 

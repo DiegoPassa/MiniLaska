@@ -5,10 +5,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: src/user_interaction/user_interaction.c File Reference</title>
+<title>MINILASKA 51: src/user_interaction/user_interaction.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,9 +24,12 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="title.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">MINILASKA 51
+   &#160;<span id="projectnumber">1.0.2</span>
    </div>
+   <div id="projectbrief">Made with love by: Diego Passarella, Davide Pasqual, Michelle Ravagnan</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('user__interaction_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +83,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_428d2a1155d1e5831afdf35f5bf3faec.html">user_interaction</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
@@ -88,22 +107,61 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9c2af248c709bb8d1d4f48e6250d3ec2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__interaction_8c.html#a9c2af248c709bb8d1d4f48e6250d3ec2">print_board</a> (<a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> t, unsigned int cifre, unsigned npl, char char_p1, char char_p2)</td></tr>
+<tr class="memitem:a9c2af248c709bb8d1d4f48e6250d3ec2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__interaction_8c.html#a9c2af248c709bb8d1d4f48e6250d3ec2">print_board</a> (<a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> t, unsigned int cifre, unsigned npl, char char_p1, char char_p2)</td></tr>
+<tr class="memdesc:a9c2af248c709bb8d1d4f48e6250d3ec2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print the board of game from the prospective of a given number of player.  <a href="user__interaction_8c.html#a9c2af248c709bb8d1d4f48e6250d3ec2">More...</a><br /></td></tr>
 <tr class="separator:a9c2af248c709bb8d1d4f48e6250d3ec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a368be0a595d675d3cfc0f7267aa566cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__interaction_8c.html#a368be0a595d675d3cfc0f7267aa566cf">print_player</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, unsigned int nPl)</td></tr>
+<tr class="memitem:a368be0a595d675d3cfc0f7267aa566cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__interaction_8c.html#a368be0a595d675d3cfc0f7267aa566cf">print_player</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, unsigned int nPl)</td></tr>
+<tr class="memdesc:a368be0a595d675d3cfc0f7267aa566cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print the most important fields of a given number of player.  <a href="user__interaction_8c.html#a368be0a595d675d3cfc0f7267aa566cf">More...</a><br /></td></tr>
 <tr class="separator:a368be0a595d675d3cfc0f7267aa566cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1a039ae674b3b4176e96d2e96be9434"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__interaction_8c.html#ac1a039ae674b3b4176e96d2e96be9434">while_select_nPawn</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, unsigned int nPl)</td></tr>
+<tr class="memitem:ac1a039ae674b3b4176e96d2e96be9434"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__interaction_8c.html#ac1a039ae674b3b4176e96d2e96be9434">while_select_nPawn</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, unsigned int nPl)</td></tr>
+<tr class="memdesc:ac1a039ae674b3b4176e96d2e96be9434"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ask the player for a pawn number to select.  <a href="user__interaction_8c.html#ac1a039ae674b3b4176e96d2e96be9434">More...</a><br /></td></tr>
 <tr class="separator:ac1a039ae674b3b4176e96d2e96be9434"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9c6d4f44123dccc8c06128c637cd00f"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__interaction_8c.html#ad9c6d4f44123dccc8c06128c637cd00f">round_player</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, <a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *t, unsigned int nPl)</td></tr>
+<tr class="memitem:ad9c6d4f44123dccc8c06128c637cd00f"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__interaction_8c.html#ad9c6d4f44123dccc8c06128c637cd00f">round_player</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, <a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *t, unsigned int nPl)</td></tr>
+<tr class="memdesc:ad9c6d4f44123dccc8c06128c637cd00f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the game round player.  <a href="user__interaction_8c.html#ad9c6d4f44123dccc8c06128c637cd00f">More...</a><br /></td></tr>
 <tr class="separator:ad9c6d4f44123dccc8c06128c637cd00f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0f3596ada5da999aca1ba3923d6814f"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__interaction_8c.html#ad0f3596ada5da999aca1ba3923d6814f">round_choice</a> ()</td></tr>
+<tr class="memdesc:ad0f3596ada5da999aca1ba3923d6814f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine which player goes first.  <a href="user__interaction_8c.html#ad0f3596ada5da999aca1ba3923d6814f">More...</a><br /></td></tr>
 <tr class="separator:ad0f3596ada5da999aca1ba3923d6814f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9f248b0fbe758010173501a7c5330cd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__interaction_8c.html#af9f248b0fbe758010173501a7c5330cd">game</a> (unsigned int gameMode)</td></tr>
+<tr class="memdesc:af9f248b0fbe758010173501a7c5330cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate memory for structs(with call of create function), use in-game memory in any mode, and finally free up memory(with call of destroy function).  <a href="user__interaction_8c.html#af9f248b0fbe758010173501a7c5330cd">More...</a><br /></td></tr>
 <tr class="separator:af9f248b0fbe758010173501a7c5330cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e0ab9449aa7ba6e71e75cac9765a089"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__interaction_8c.html#a3e0ab9449aa7ba6e71e75cac9765a089">checkInt</a> (int scanfValue)</td></tr>
+<tr class="memdesc:a3e0ab9449aa7ba6e71e75cac9765a089"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the inserted value is an integer.  <a href="user__interaction_8c.html#a3e0ab9449aa7ba6e71e75cac9765a089">More...</a><br /></td></tr>
+<tr class="separator:a3e0ab9449aa7ba6e71e75cac9765a089"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a0e843767aeea4f433a28b9c54f573a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__interaction_8c.html#a2a0e843767aeea4f433a28b9c54f573a">menu</a> ()</td></tr>
+<tr class="memdesc:a2a0e843767aeea4f433a28b9c54f573a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cleans the terminal and launches the main game menu.  <a href="user__interaction_8c.html#a2a0e843767aeea4f433a28b9c54f573a">More...</a><br /></td></tr>
 <tr class="separator:a2a0e843767aeea4f433a28b9c54f573a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a3e0ab9449aa7ba6e71e75cac9765a089"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e0ab9449aa7ba6e71e75cac9765a089">&#9670;&nbsp;</a></span>checkInt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int checkInt </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>scanfValue</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if the inserted value is an integer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scanfValue</td><td>Value of return of the scanf. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int Return correct value. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="user__interaction_8c_source.html#l00624">624</a> of file <a class="el" href="user__interaction_8c_source.html">user_interaction.c</a>.</p>
+
+</div>
+</div>
 <a id="af9f248b0fbe758010173501a7c5330cd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af9f248b0fbe758010173501a7c5330cd">&#9670;&nbsp;</a></span>game()</h2>
 
@@ -119,15 +177,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Allocate memory for structs(with call of create function), use in-game memory in any mode, and finally free up memory(with call of destroy function). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">x</td><td></td></tr>
+    <tr><td class="paramname">x</td><td>If 0 the game mode is player vs player ,else is player vs ia. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="user__interaction_8c_source.html#l00327">327</a> of file <a class="el" href="user__interaction_8c_source.html">user_interaction.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="user__interaction_8c_source.html#l00359">359</a> of file <a class="el" href="user__interaction_8c_source.html">user_interaction.c</a>.</p>
 
 </div>
 </div>
@@ -146,7 +206,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="user__interaction_8c_source.html#l00542">542</a> of file <a class="el" href="user__interaction_8c_source.html">user_interaction.c</a>.</p>
+<p>Cleans the terminal and launches the main game menu. </p>
+
+<p class="definition">Definition at line <a class="el" href="user__interaction_8c_source.html#l00637">637</a> of file <a class="el" href="user__interaction_8c_source.html">user_interaction.c</a>.</p>
 
 </div>
 </div>
@@ -159,7 +221,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void print_board </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a>&#160;</td>
           <td class="paramname"><em>t</em>, </td>
         </tr>
         <tr>
@@ -193,18 +255,20 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Print the board of game from the prospective of a given number of player. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">t</td><td></td></tr>
-    <tr><td class="paramname">cifre</td><td></td></tr>
-    <tr><td class="paramname">npl</td><td>number of the player </td></tr>
-    <tr><td class="paramname">char_p1</td><td>color of the first player </td></tr>
-    <tr><td class="paramname">char_p2</td><td>color of the second player </td></tr>
+    <tr><td class="paramname">t</td><td>Instance of the board. </td></tr>
+    <tr><td class="paramname">cifre</td><td>Total number of space stored for the label of a pawn. </td></tr>
+    <tr><td class="paramname">npl</td><td>Number of the player. </td></tr>
+    <tr><td class="paramname">char_p1</td><td>Color of the first player. </td></tr>
+    <tr><td class="paramname">char_p2</td><td>Color of the second player. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="user__interaction_8c_source.html#l00021">21</a> of file <a class="el" href="user__interaction_8c_source.html">user_interaction.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="user__interaction_8c_source.html#l00015">15</a> of file <a class="el" href="user__interaction_8c_source.html">user_interaction.c</a>.</p>
 
 </div>
 </div>
@@ -217,7 +281,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void print_player </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
@@ -233,15 +297,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Print the most important fields of a given number of player. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">players</td><td>array wich contains the two players </td></tr>
-    <tr><td class="paramname">nPl</td><td>number that identify the player </td></tr>
+    <tr><td class="paramname">Players</td><td>array wich contains the two players. </td></tr>
+    <tr><td class="paramname">nPl</td><td>Number that identify the player. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="user__interaction_8c_source.html#l00168">168</a> of file <a class="el" href="user__interaction_8c_source.html">user_interaction.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="user__interaction_8c_source.html#l00162">162</a> of file <a class="el" href="user__interaction_8c_source.html">user_interaction.c</a>.</p>
 
 </div>
 </div>
@@ -259,9 +325,11 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>unsigned int </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="user__interaction_8c_source.html#l00289">289</a> of file <a class="el" href="user__interaction_8c_source.html">user_interaction.c</a>.</p>
+<p>Determine which player goes first. </p>
+<dl class="section return"><dt>Returns</dt><dd>unsigned int Return 0 if Player 1 goes first,1 if Player 2 goes first. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="user__interaction_8c_source.html#l00306">306</a> of file <a class="el" href="user__interaction_8c_source.html">user_interaction.c</a>.</p>
 
 </div>
 </div>
@@ -274,13 +342,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">unsigned int round_player </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *&#160;</td>
           <td class="paramname"><em>t</em>, </td>
         </tr>
         <tr>
@@ -296,17 +364,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Run the game round player. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">players</td><td></td></tr>
-    <tr><td class="paramname">t</td><td></td></tr>
-    <tr><td class="paramname">nPl</td><td></td></tr>
+    <tr><td class="paramname">players</td><td>Pointer to the players array. </td></tr>
+    <tr><td class="paramname">t</td><td>Pointer to the board. </td></tr>
+    <tr><td class="paramname">nPl</td><td>Number that identify the player. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>unsigned int </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>unsigned int Return 4 for continue the while loop to play the game in function game. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="user__interaction_8c_source.html#l00213">213</a> of file <a class="el" href="user__interaction_8c_source.html">user_interaction.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="user__interaction_8c_source.html#l00216">216</a> of file <a class="el" href="user__interaction_8c_source.html">user_interaction.c</a>.</p>
 
 </div>
 </div>
@@ -319,7 +389,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">unsigned int while_select_nPawn </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
@@ -335,23 +405,29 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Ask the player for a pawn number to select. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">players</td><td></td></tr>
-    <tr><td class="paramname">nPl</td><td></td></tr>
+    <tr><td class="paramname">players</td><td>Pointer to the players array. </td></tr>
+    <tr><td class="paramname">nPl</td><td>Number that identify the player. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>unsigned int </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>unsigned int Return a number of a pawn. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="user__interaction_8c_source.html#l00194">194</a> of file <a class="el" href="user__interaction_8c_source.html">user_interaction.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="user__interaction_8c_source.html#l00188">188</a> of file <a class="el" href="user__interaction_8c_source.html">user_interaction.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_428d2a1155d1e5831afdf35f5bf3faec.html">user_interaction</a></li><li class="navelem"><a class="el" href="user__interaction_8c.html">user_interaction.c</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.0 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -15,53 +15,51 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{game__engine_8c_a1e000b0af6247b246effb9ef89df1dc7}{initialize\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int cifre)
+void \mbox{\hyperlink{game__engine_8c_a1e000b0af6247b246effb9ef89df1dc7}{initialize\+\_\+board}} (\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int cifre)
 \begin{DoxyCompactList}\small\item\em Set char on the board. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{game__engine_8c_ade0653b2e42848b6f90ae0cd27e2cd42}{print\+\_\+directions}} (unsigned int $\ast$arr, unsigned int dim, unsigned int np)
 \begin{DoxyCompactList}\small\item\em Print hints for the movements of a given pawn. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{game__engine_8c_a55b6e9e1926c718eedf6e9d916822d11}{update\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$t, \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$\mbox{\hyperlink{structplayer}{player}})
+void \mbox{\hyperlink{game__engine_8c_a55b6e9e1926c718eedf6e9d916822d11}{update\+\_\+board}} (\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$t, \mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$\mbox{\hyperlink{structplayer}{player}})
 \begin{DoxyCompactList}\small\item\em Update the board after a player move. \end{DoxyCompactList}\item 
-unsigned int \mbox{\hyperlink{game__engine_8c_acbcad48fef30836ddcd28ef5aa651961}{check\+\_\+spot}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, unsigned int row, unsigned int col, unsigned int dim\+\_\+label)
+unsigned int \mbox{\hyperlink{game__engine_8c_acbcad48fef30836ddcd28ef5aa651961}{check\+\_\+spot}} (\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, unsigned int row, unsigned int col, unsigned int dim\+\_\+label)
 \begin{DoxyCompactList}\small\item\em Check if in a given coordinate on the board there is a pawn or not. \end{DoxyCompactList}\item 
-unsigned int \mbox{\hyperlink{game__engine_8c_ac3d6435119a6f0271f67d07bb9798c1f}{is\+\_\+selected}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$\mbox{\hyperlink{structplayer}{player}}, int num\+\_\+pawn, unsigned int n\+Pl)
+unsigned int \mbox{\hyperlink{game__engine_8c_ac3d6435119a6f0271f67d07bb9798c1f}{is\+\_\+selected}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$\mbox{\hyperlink{structplayer}{player}}, int num\+\_\+pawn, unsigned int n\+Pl)
 \begin{DoxyCompactList}\small\item\em Check if a given pawn exists in the board. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{game__engine_8c_a2b2ccf60f065b91670f5c440cc615e2e}{remove\+\_\+pawn}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int row, unsigned int col, unsigned int dim\+\_\+label)
+void \mbox{\hyperlink{game__engine_8c_a2b2ccf60f065b91670f5c440cc615e2e}{remove\+\_\+pawn}} (\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int row, unsigned int col, unsigned int dim\+\_\+label)
 \begin{DoxyCompactList}\small\item\em Reset label from a given coordinate. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{game__engine_8c_abbf532f4b90267a4b5fa0f92a7b290f6}{pawn\+\_\+promotion}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int num\+\_\+pawn, unsigned int n\+Pl, unsigned int last\+\_\+row)
+void \mbox{\hyperlink{game__engine_8c_abbf532f4b90267a4b5fa0f92a7b290f6}{pawn\+\_\+promotion}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, unsigned int num\+\_\+pawn, unsigned int n\+Pl, unsigned int last\+\_\+row)
 \begin{DoxyCompactList}\small\item\em Promote a given pawn. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{game__engine_8c_aa7661789f3fc8585f07e049bfdfbbf52}{check\+\_\+player}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int x, unsigned int y, unsigned int n\+Pl)
+int \mbox{\hyperlink{game__engine_8c_aa7661789f3fc8585f07e049bfdfbbf52}{check\+\_\+player}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, unsigned int x, unsigned int y, unsigned int n\+Pl)
 \begin{DoxyCompactList}\small\item\em Check if in a given coordinate there is an enemy pawn. \end{DoxyCompactList}\item 
-unsigned int \mbox{\hyperlink{game__engine_8c_ad95a591d93c5394a13d2d45fb856b3ab}{is\+\_\+in}} (int r, int c, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}})
+unsigned int \mbox{\hyperlink{game__engine_8c_ad95a591d93c5394a13d2d45fb856b3ab}{is\+\_\+in}} (int r, int c, \mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}})
 \begin{DoxyCompactList}\small\item\em Check if a given coordinate are included in the board. \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{game__engine_8c_a00374686d02b15fa8b62ba0b1a0a0e2e}{check\+\_\+directions}} (unsigned int $\ast$can\+Move\+\_\+arr, unsigned int dim\+\_\+can\+Move, char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Check if a given string is setted in the pawn\textquotesingle{}s possible movements. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{game__engine_8c_a6a24af5cc31ae6fc596da667a229dc3a}{must\+\_\+eat}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+\_\+pawn, unsigned int n\+Pl)
+void \mbox{\hyperlink{game__engine_8c_a6a24af5cc31ae6fc596da667a229dc3a}{must\+\_\+eat}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+\_\+pawn, unsigned int n\+Pl)
 \begin{DoxyCompactList}\small\item\em Set mandatory eat if possible. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{game__engine_8c_acd4a1e5e343482fb4152900f25886736}{can\+\_\+eat}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int num\+\_\+pawn, char $\ast$str, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl)
+int \mbox{\hyperlink{game__engine_8c_acd4a1e5e343482fb4152900f25886736}{can\+\_\+eat}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, unsigned int num\+\_\+pawn, char $\ast$str, \mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl)
 \begin{DoxyCompactList}\small\item\em Check enemy pawns in a given direction. \end{DoxyCompactList}\item 
-unsigned int \mbox{\hyperlink{game__engine_8c_a0de995b5f04add2b402ea983dc187d9c}{all\+\_\+blocked}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int n\+Pl)
+unsigned int \mbox{\hyperlink{game__engine_8c_a0de995b5f04add2b402ea983dc187d9c}{all\+\_\+blocked}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, unsigned int n\+Pl)
 \begin{DoxyCompactList}\small\item\em Check if a player can move. \end{DoxyCompactList}\item 
-unsigned int \mbox{\hyperlink{game__engine_8c_ad913753d69ed13ad3bcff7a80b1fa4e3}{is\+\_\+victory}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players)
+unsigned int \mbox{\hyperlink{game__engine_8c_ad913753d69ed13ad3bcff7a80b1fa4e3}{is\+\_\+victory}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players)
 \begin{DoxyCompactList}\small\item\em Check if there is a winner. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{game__engine_8c_a0b8736bf8d03748b3eb4c3cf5bd19138}{is\+\_\+empty}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} p)
+int \mbox{\hyperlink{game__engine_8c_a0b8736bf8d03748b3eb4c3cf5bd19138}{is\+\_\+empty}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} p)
 \begin{DoxyCompactList}\small\item\em Check if in the player\textquotesingle{}s array there is an unused pawn. \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{game__engine_8c_a0bd4d9ad7b168fa5a30645559b5173bf}{max\+\_\+pawns}} (unsigned int r, unsigned int c)
 \begin{DoxyCompactList}\small\item\em Calculate the max number of pawns in a given space. \end{DoxyCompactList}\item 
-unsigned int \mbox{\hyperlink{game__engine_8c_a263b347172288a57651b3482c0d8dbc9}{is\+\_\+notstuck}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pawn, unsigned int n\+Pl)
+unsigned int \mbox{\hyperlink{game__engine_8c_a263b347172288a57651b3482c0d8dbc9}{is\+\_\+notstuck}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pawn, unsigned int n\+Pl)
 \begin{DoxyCompactList}\small\item\em Set possible movements of a given pawn. \end{DoxyCompactList}\item 
-unsigned int \mbox{\hyperlink{game__engine_8c_a107a0bfe72f29a205eb704cfec1e68df}{add\+\_\+pawn}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int enemy\+\_\+pawn, unsigned int n\+Pl, char c)
-\item 
-void \mbox{\hyperlink{game__engine_8c_a501e49904d4a110a0f433447c45cd135}{set\+\_\+moves\+\_\+pawn}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl, int n\+Pawn)
+void \mbox{\hyperlink{game__engine_8c_a501e49904d4a110a0f433447c45cd135}{set\+\_\+moves\+\_\+pawn}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl, int n\+Pawn)
 \begin{DoxyCompactList}\small\item\em Set possible movements of a given pawn and set mandatory eat. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{game__engine_8c_a570fd3c27f9fff1e0b771dc6ed57edfd}{reset\+\_\+moves\+\_\+pawns}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, int n\+Pawn, unsigned int n\+Pl)
+void \mbox{\hyperlink{game__engine_8c_a570fd3c27f9fff1e0b771dc6ed57edfd}{reset\+\_\+moves\+\_\+pawns}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, int n\+Pawn, unsigned int n\+Pl)
 \begin{DoxyCompactList}\small\item\em Reset possible movements of a given pawn. \end{DoxyCompactList}\item 
-unsigned int \mbox{\hyperlink{game__engine_8c_a8fec67377eed54d06d8001375ac7ad74}{check\+\_\+can\+Move}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int n\+Ped, unsigned int n\+Pl)
+unsigned int \mbox{\hyperlink{game__engine_8c_a8fec67377eed54d06d8001375ac7ad74}{check\+\_\+can\+Move}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, unsigned int n\+Ped, unsigned int n\+Pl)
 \begin{DoxyCompactList}\small\item\em Check if a pawn is able to move. \end{DoxyCompactList}\item 
-unsigned int \mbox{\hyperlink{game__engine_8c_af3109f8954897ba3feb48475cc5566cf}{check\+\_\+while}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int n\+Pl, unsigned int n\+Pawn)
+unsigned int \mbox{\hyperlink{game__engine_8c_af3109f8954897ba3feb48475cc5566cf}{check\+\_\+while}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, unsigned int n\+Pl, unsigned int n\+Pawn)
 \begin{DoxyCompactList}\small\item\em Check if a pawn is selectable. \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{game__engine_8c_a3fab312a910163e9634d12fe728f1d70}{check\+\_\+string}} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Compare if the a given string equals to a valid movement. \end{DoxyCompactList}\item 
-unsigned int \mbox{\hyperlink{game__engine_8c_aa3c132e96baafe05bc8ae89beff5313c}{char\+\_\+converter}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, unsigned int r, unsigned int c, unsigned int dim\+\_\+label)
+unsigned int \mbox{\hyperlink{game__engine_8c_aa3c132e96baafe05bc8ae89beff5313c}{char\+\_\+converter}} (\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, unsigned int r, unsigned int c, unsigned int dim\+\_\+label)
 \begin{DoxyCompactList}\small\item\em Convert a given char on a label to int. \end{DoxyCompactList}\item 
 char \mbox{\hyperlink{game__engine_8c_a00edfa0b11cbdf464431c6f3b3b3eb27}{int\+\_\+converter}} (int num, unsigned int index)
 \begin{DoxyCompactList}\small\item\em Convert a given int to a char. \end{DoxyCompactList}\item 
@@ -72,35 +70,11 @@ unsigned int \mbox{\hyperlink{game__engine_8c_a0274aaa6306d984a6b58c3f21254dc9c}
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{game__engine_8c_a107a0bfe72f29a205eb704cfec1e68df}\label{game__engine_8c_a107a0bfe72f29a205eb704cfec1e68df}} 
-\index{game\_engine.c@{game\_engine.c}!add\_pawn@{add\_pawn}}
-\index{add\_pawn@{add\_pawn}!game\_engine.c@{game\_engine.c}}
-\doxysubsubsection{\texorpdfstring{add\_pawn()}{add\_pawn()}}
-{\footnotesize\ttfamily unsigned int add\+\_\+pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{enemy\+\_\+pawn,  }\item[{unsigned int}]{n\+Pl,  }\item[{char}]{c }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em players} & \\
-\hline
-{\em enemy\+\_\+pawn} & \\
-\hline
-{\em n\+Pl} & \\
-\hline
-{\em c} & \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-unsigned int 
-\end{DoxyReturn}
-
-
-Definition at line 477 of file game\+\_\+engine.\+c.
-
 \mbox{\Hypertarget{game__engine_8c_a0de995b5f04add2b402ea983dc187d9c}\label{game__engine_8c_a0de995b5f04add2b402ea983dc187d9c}} 
 \index{game\_engine.c@{game\_engine.c}!all\_blocked@{all\_blocked}}
 \index{all\_blocked@{all\_blocked}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{all\_blocked()}{all\_blocked()}}
-{\footnotesize\ttfamily unsigned int all\+\_\+blocked (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int all\+\_\+blocked (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
 
 
@@ -124,7 +98,7 @@ Definition at line 344 of file game\+\_\+engine.\+c.
 \index{game\_engine.c@{game\_engine.c}!can\_eat@{can\_eat}}
 \index{can\_eat@{can\_eat}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{can\_eat()}{can\_eat()}}
-{\footnotesize\ttfamily int can\+\_\+eat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int can\+\_\+eat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
 
 
@@ -154,7 +128,7 @@ Definition at line 222 of file game\+\_\+engine.\+c.
 \index{game\_engine.c@{game\_engine.c}!char\_converter@{char\_converter}}
 \index{char\_converter@{char\_converter}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{char\_converter()}{char\_converter()}}
-{\footnotesize\ttfamily unsigned int char\+\_\+converter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{unsigned int}]{r,  }\item[{unsigned int}]{c,  }\item[{unsigned int}]{dim\+\_\+label }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int char\+\_\+converter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}}}]{board,  }\item[{unsigned int}]{r,  }\item[{unsigned int}]{c,  }\item[{unsigned int}]{dim\+\_\+label }\end{DoxyParamCaption})}
 
 
 
@@ -176,13 +150,13 @@ unsigned int Return the conversion of the char to int.
 \end{DoxyReturn}
 
 
-Definition at line 622 of file game\+\_\+engine.\+c.
+Definition at line 568 of file game\+\_\+engine.\+c.
 
 \mbox{\Hypertarget{game__engine_8c_a8fec67377eed54d06d8001375ac7ad74}\label{game__engine_8c_a8fec67377eed54d06d8001375ac7ad74}} 
 \index{game\_engine.c@{game\_engine.c}!check\_canMove@{check\_canMove}}
 \index{check\_canMove@{check\_canMove}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{check\_canMove()}{check\_canMove()}}
-{\footnotesize\ttfamily unsigned int check\+\_\+can\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{n\+Ped,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int check\+\_\+can\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{n\+Ped,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
 
 
@@ -202,7 +176,7 @@ unsigned int Return 1 if the pawn can move, 0 otherwise.
 \end{DoxyReturn}
 
 
-Definition at line 582 of file game\+\_\+engine.\+c.
+Definition at line 528 of file game\+\_\+engine.\+c.
 
 \mbox{\Hypertarget{game__engine_8c_a0274aaa6306d984a6b58c3f21254dc9c}\label{game__engine_8c_a0274aaa6306d984a6b58c3f21254dc9c}} 
 \index{game\_engine.c@{game\_engine.c}!check\_char\_color@{check\_char\_color}}
@@ -224,7 +198,7 @@ unsigned int Return 1 if the char matches, 2 if the char mathes being uppercase,
 \end{DoxyReturn}
 
 
-Definition at line 645 of file game\+\_\+engine.\+c.
+Definition at line 591 of file game\+\_\+engine.\+c.
 
 \mbox{\Hypertarget{game__engine_8c_a00374686d02b15fa8b62ba0b1a0a0e2e}\label{game__engine_8c_a00374686d02b15fa8b62ba0b1a0a0e2e}} 
 \index{game\_engine.c@{game\_engine.c}!check\_directions@{check\_directions}}
@@ -256,7 +230,7 @@ Definition at line 154 of file game\+\_\+engine.\+c.
 \index{game\_engine.c@{game\_engine.c}!check\_player@{check\_player}}
 \index{check\_player@{check\_player}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{check\_player()}{check\_player()}}
-{\footnotesize\ttfamily int check\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{x,  }\item[{unsigned int}]{y,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int check\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{x,  }\item[{unsigned int}]{y,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
 
 
@@ -284,7 +258,7 @@ Definition at line 131 of file game\+\_\+engine.\+c.
 \index{game\_engine.c@{game\_engine.c}!check\_spot@{check\_spot}}
 \index{check\_spot@{check\_spot}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{check\_spot()}{check\_spot()}}
-{\footnotesize\ttfamily unsigned int check\+\_\+spot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{unsigned int}]{row,  }\item[{unsigned int}]{col,  }\item[{unsigned int}]{dim\+\_\+label }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int check\+\_\+spot (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}}}]{board,  }\item[{unsigned int}]{row,  }\item[{unsigned int}]{col,  }\item[{unsigned int}]{dim\+\_\+label }\end{DoxyParamCaption})}
 
 
 
@@ -328,13 +302,13 @@ unsigned int Return 1 if the string correspond, 0 otherwise.
 \end{DoxyReturn}
 
 
-Definition at line 605 of file game\+\_\+engine.\+c.
+Definition at line 551 of file game\+\_\+engine.\+c.
 
 \mbox{\Hypertarget{game__engine_8c_af3109f8954897ba3feb48475cc5566cf}\label{game__engine_8c_af3109f8954897ba3feb48475cc5566cf}} 
 \index{game\_engine.c@{game\_engine.c}!check\_while@{check\_while}}
 \index{check\_while@{check\_while}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{check\_while()}{check\_while()}}
-{\footnotesize\ttfamily unsigned int check\+\_\+while (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{n\+Pl,  }\item[{unsigned int}]{n\+Pawn }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int check\+\_\+while (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{n\+Pl,  }\item[{unsigned int}]{n\+Pawn }\end{DoxyParamCaption})}
 
 
 
@@ -354,13 +328,13 @@ unsigned int Return 1 if the pawn is selectable, 0 otherwise.
 \end{DoxyReturn}
 
 
-Definition at line 597 of file game\+\_\+engine.\+c.
+Definition at line 543 of file game\+\_\+engine.\+c.
 
 \mbox{\Hypertarget{game__engine_8c_a1e000b0af6247b246effb9ef89df1dc7}\label{game__engine_8c_a1e000b0af6247b246effb9ef89df1dc7}} 
 \index{game\_engine.c@{game\_engine.c}!initialize\_board@{initialize\_board}}
 \index{initialize\_board@{initialize\_board}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{initialize\_board()}{initialize\_board()}}
-{\footnotesize\ttfamily void initialize\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{cifre }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void initialize\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{cifre }\end{DoxyParamCaption})}
 
 
 
@@ -401,13 +375,13 @@ char Return the conversion of the int to a char.
 \end{DoxyReturn}
 
 
-Definition at line 631 of file game\+\_\+engine.\+c.
+Definition at line 577 of file game\+\_\+engine.\+c.
 
 \mbox{\Hypertarget{game__engine_8c_a0b8736bf8d03748b3eb4c3cf5bd19138}\label{game__engine_8c_a0b8736bf8d03748b3eb4c3cf5bd19138}} 
 \index{game\_engine.c@{game\_engine.c}!is\_empty@{is\_empty}}
 \index{is\_empty@{is\_empty}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{is\_empty()}{is\_empty()}}
-{\footnotesize\ttfamily int is\+\_\+empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}}}]{p }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int is\+\_\+empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}}}]{p }\end{DoxyParamCaption})}
 
 
 
@@ -429,7 +403,7 @@ Definition at line 384 of file game\+\_\+engine.\+c.
 \index{game\_engine.c@{game\_engine.c}!is\_in@{is\_in}}
 \index{is\_in@{is\_in}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{is\_in()}{is\_in()}}
-{\footnotesize\ttfamily unsigned int is\+\_\+in (\begin{DoxyParamCaption}\item[{int}]{r,  }\item[{int}]{c,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int is\+\_\+in (\begin{DoxyParamCaption}\item[{int}]{r,  }\item[{int}]{c,  }\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}}}]{board }\end{DoxyParamCaption})}
 
 
 
@@ -455,7 +429,7 @@ Definition at line 146 of file game\+\_\+engine.\+c.
 \index{game\_engine.c@{game\_engine.c}!is\_notstuck@{is\_notstuck}}
 \index{is\_notstuck@{is\_notstuck}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{is\_notstuck()}{is\_notstuck()}}
-{\footnotesize\ttfamily unsigned int is\+\_\+notstuck (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{unsigned int}]{n\+Pawn,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int is\+\_\+notstuck (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}}}]{board,  }\item[{unsigned int}]{n\+Pawn,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
 
 
@@ -483,7 +457,7 @@ Definition at line 420 of file game\+\_\+engine.\+c.
 \index{game\_engine.c@{game\_engine.c}!is\_selected@{is\_selected}}
 \index{is\_selected@{is\_selected}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{is\_selected()}{is\_selected()}}
-{\footnotesize\ttfamily unsigned int is\+\_\+selected (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{player,  }\item[{int}]{num\+\_\+pawn,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int is\+\_\+selected (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{player,  }\item[{int}]{num\+\_\+pawn,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
 
 
@@ -509,7 +483,7 @@ Definition at line 104 of file game\+\_\+engine.\+c.
 \index{game\_engine.c@{game\_engine.c}!is\_victory@{is\_victory}}
 \index{is\_victory@{is\_victory}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{is\_victory()}{is\_victory()}}
-{\footnotesize\ttfamily unsigned int is\+\_\+victory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int is\+\_\+victory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players }\end{DoxyParamCaption})}
 
 
 
@@ -555,7 +529,7 @@ Definition at line 394 of file game\+\_\+engine.\+c.
 \index{game\_engine.c@{game\_engine.c}!must\_eat@{must\_eat}}
 \index{must\_eat@{must\_eat}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{must\_eat()}{must\_eat()}}
-{\footnotesize\ttfamily void must\+\_\+eat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+\_\+pawn,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void must\+\_\+eat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+\_\+pawn,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
 
 
@@ -580,7 +554,7 @@ Definition at line 183 of file game\+\_\+engine.\+c.
 \index{game\_engine.c@{game\_engine.c}!pawn\_promotion@{pawn\_promotion}}
 \index{pawn\_promotion@{pawn\_promotion}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{pawn\_promotion()}{pawn\_promotion()}}
-{\footnotesize\ttfamily void pawn\+\_\+promotion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{unsigned int}]{n\+Pl,  }\item[{unsigned int}]{last\+\_\+row }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void pawn\+\_\+promotion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{num\+\_\+pawn,  }\item[{unsigned int}]{n\+Pl,  }\item[{unsigned int}]{last\+\_\+row }\end{DoxyParamCaption})}
 
 
 
@@ -628,7 +602,7 @@ Definition at line 44 of file game\+\_\+engine.\+c.
 \index{game\_engine.c@{game\_engine.c}!remove\_pawn@{remove\_pawn}}
 \index{remove\_pawn@{remove\_pawn}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{remove\_pawn()}{remove\_pawn()}}
-{\footnotesize\ttfamily void remove\+\_\+pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{row,  }\item[{unsigned int}]{col,  }\item[{unsigned int}]{dim\+\_\+label }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void remove\+\_\+pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{row,  }\item[{unsigned int}]{col,  }\item[{unsigned int}]{dim\+\_\+label }\end{DoxyParamCaption})}
 
 
 
@@ -653,7 +627,7 @@ Definition at line 112 of file game\+\_\+engine.\+c.
 \index{game\_engine.c@{game\_engine.c}!reset\_moves\_pawns@{reset\_moves\_pawns}}
 \index{reset\_moves\_pawns@{reset\_moves\_pawns}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{reset\_moves\_pawns()}{reset\_moves\_pawns()}}
-{\footnotesize\ttfamily void reset\+\_\+moves\+\_\+pawns (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{int}]{n\+Pawn,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void reset\+\_\+moves\+\_\+pawns (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{int}]{n\+Pawn,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
 
 
 
@@ -670,13 +644,13 @@ Reset possible movements of a given pawn.
 \end{DoxyParams}
 
 
-Definition at line 555 of file game\+\_\+engine.\+c.
+Definition at line 501 of file game\+\_\+engine.\+c.
 
 \mbox{\Hypertarget{game__engine_8c_a501e49904d4a110a0f433447c45cd135}\label{game__engine_8c_a501e49904d4a110a0f433447c45cd135}} 
 \index{game\_engine.c@{game\_engine.c}!set\_moves\_pawn@{set\_moves\_pawn}}
 \index{set\_moves\_pawn@{set\_moves\_pawn}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{set\_moves\_pawn()}{set\_moves\_pawn()}}
-{\footnotesize\ttfamily void set\+\_\+moves\+\_\+pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl,  }\item[{int}]{n\+Pawn }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void set\+\_\+moves\+\_\+pawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl,  }\item[{int}]{n\+Pawn }\end{DoxyParamCaption})}
 
 
 
@@ -697,13 +671,13 @@ Calls to is\+\_\+notstuck, must\+\_\+eat and reset\+\_\+moves\+\_\+pawns.
 \end{DoxyParams}
 
 
-Definition at line 531 of file game\+\_\+engine.\+c.
+Definition at line 477 of file game\+\_\+engine.\+c.
 
 \mbox{\Hypertarget{game__engine_8c_a55b6e9e1926c718eedf6e9d916822d11}\label{game__engine_8c_a55b6e9e1926c718eedf6e9d916822d11}} 
 \index{game\_engine.c@{game\_engine.c}!update\_board@{update\_board}}
 \index{update\_board@{update\_board}!game\_engine.c@{game\_engine.c}}
 \doxysubsubsection{\texorpdfstring{update\_board()}{update\_board()}}
-{\footnotesize\ttfamily void update\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{t,  }\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{player }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void update\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$}]{t,  }\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{player }\end{DoxyParamCaption})}
 
 
 
@@ -740,5 +714,5 @@ char Return the uppercased char.
 \end{DoxyReturn}
 
 
-Definition at line 641 of file game\+\_\+engine.\+c.
+Definition at line 587 of file game\+\_\+engine.\+c.
 

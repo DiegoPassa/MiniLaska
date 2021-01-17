@@ -5,22 +5,12 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{colors_8c_a03c9d5679c38141cabbd1c6a06098910}{set\+Red}} (int n)
-\item 
-void \mbox{\hyperlink{colors_8c_ab58ee2d183465444aa9f5a677783c517}{set\+Yellow}} (int n)
-\item 
 void \mbox{\hyperlink{colors_8c_aed52d7c65cd909285276319cb174e8dc}{print\+Text\+Color}} (char color)
-\item 
+\begin{DoxyCompactList}\small\item\em Set the next text based on the player color. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{colors_8c_afa9282475cb25d7cd191a5bfd36fc262}{print\+Color}} (char color)
-\item 
-void \mbox{\hyperlink{colors_8c_a4efb6e29ef481b58cd2a09254591a694}{print\+Player\+Turn}} (char n\+Pl)
-\item 
-void \mbox{\hyperlink{colors_8c_aa366a927fadeac5e1f875502417e501e}{set\+Black}} ()
-\begin{DoxyCompactList}\small\item\em Set the Black object. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Set the next background color based on the player color. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{colors_8c_aa87bf20277082181193ad03909d2d875}{set\+White}} ()
-\begin{DoxyCompactList}\small\item\em Set the White object. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{colors_8c_afe00396766eb6b8ca4674de4c5d3d949}{reset\+Color}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Set the next text to white. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -31,28 +21,17 @@ void \mbox{\hyperlink{colors_8c_afe00396766eb6b8ca4674de4c5d3d949}{reset\+Color}
 {\footnotesize\ttfamily void print\+Color (\begin{DoxyParamCaption}\item[{char}]{color }\end{DoxyParamCaption})}
 
 
+
+Set the next background color based on the player color. 
+
+
 \begin{DoxyParams}{Parameters}
-{\em color} & \\
+{\em color} & Color of the player. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 56 of file colors.\+c.
-
-\mbox{\Hypertarget{colors_8c_a4efb6e29ef481b58cd2a09254591a694}\label{colors_8c_a4efb6e29ef481b58cd2a09254591a694}} 
-\index{colors.c@{colors.c}!printPlayerTurn@{printPlayerTurn}}
-\index{printPlayerTurn@{printPlayerTurn}!colors.c@{colors.c}}
-\doxysubsubsection{\texorpdfstring{printPlayerTurn()}{printPlayerTurn()}}
-{\footnotesize\ttfamily void print\+Player\+Turn (\begin{DoxyParamCaption}\item[{char}]{n\+Pl }\end{DoxyParamCaption})}
-
-
-\begin{DoxyParams}{Parameters}
-{\em n\+Pl} & \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 77 of file colors.\+c.
+Definition at line 26 of file colors.\+c.
 
 \mbox{\Hypertarget{colors_8c_aed52d7c65cd909285276319cb174e8dc}\label{colors_8c_aed52d7c65cd909285276319cb174e8dc}} 
 \index{colors.c@{colors.c}!printTextColor@{printTextColor}}
@@ -61,47 +40,17 @@ Definition at line 77 of file colors.\+c.
 {\footnotesize\ttfamily void print\+Text\+Color (\begin{DoxyParamCaption}\item[{char}]{color }\end{DoxyParamCaption})}
 
 
+
+Set the next text based on the player color. 
+
+
 \begin{DoxyParams}{Parameters}
-{\em color} & \\
+{\em color} & Color of the player. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 35 of file colors.\+c.
-
-\mbox{\Hypertarget{colors_8c_afe00396766eb6b8ca4674de4c5d3d949}\label{colors_8c_afe00396766eb6b8ca4674de4c5d3d949}} 
-\index{colors.c@{colors.c}!resetColor@{resetColor}}
-\index{resetColor@{resetColor}!colors.c@{colors.c}}
-\doxysubsubsection{\texorpdfstring{resetColor()}{resetColor()}}
-{\footnotesize\ttfamily void reset\+Color (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Definition at line 94 of file colors.\+c.
-
-\mbox{\Hypertarget{colors_8c_aa366a927fadeac5e1f875502417e501e}\label{colors_8c_aa366a927fadeac5e1f875502417e501e}} 
-\index{colors.c@{colors.c}!setBlack@{setBlack}}
-\index{setBlack@{setBlack}!colors.c@{colors.c}}
-\doxysubsubsection{\texorpdfstring{setBlack()}{setBlack()}}
-{\footnotesize\ttfamily void set\+Black (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Set the Black object. 
-
-
-
-Definition at line 86 of file colors.\+c.
-
-\mbox{\Hypertarget{colors_8c_a03c9d5679c38141cabbd1c6a06098910}\label{colors_8c_a03c9d5679c38141cabbd1c6a06098910}} 
-\index{colors.c@{colors.c}!setRed@{setRed}}
-\index{setRed@{setRed}!colors.c@{colors.c}}
-\doxysubsubsection{\texorpdfstring{setRed()}{setRed()}}
-{\footnotesize\ttfamily void set\+Red (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
-
-
-
-Definition at line 17 of file colors.\+c.
+Definition at line 5 of file colors.\+c.
 
 \mbox{\Hypertarget{colors_8c_aa87bf20277082181193ad03909d2d875}\label{colors_8c_aa87bf20277082181193ad03909d2d875}} 
 \index{colors.c@{colors.c}!setWhite@{setWhite}}
@@ -111,19 +60,9 @@ Definition at line 17 of file colors.\+c.
 
 
 
-Set the White object. 
+Set the next text to white. 
 
 
 
-Definition at line 90 of file colors.\+c.
-
-\mbox{\Hypertarget{colors_8c_ab58ee2d183465444aa9f5a677783c517}\label{colors_8c_ab58ee2d183465444aa9f5a677783c517}} 
-\index{colors.c@{colors.c}!setYellow@{setYellow}}
-\index{setYellow@{setYellow}!colors.c@{colors.c}}
-\doxysubsubsection{\texorpdfstring{setYellow()}{setYellow()}}
-{\footnotesize\ttfamily void set\+Yellow (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
-
-
-
-Definition at line 26 of file colors.\+c.
+Definition at line 47 of file colors.\+c.
 

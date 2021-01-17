@@ -1,9 +1,3 @@
-/*
-    ID gruppo : 51
-
-    886711 Passarella-Diego | 882082 Pasqual-Davide | 881493 Ravagnan-Michelle
-
- */
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -657,6 +651,7 @@ void menu(){
         int scanfValue;
         printf("\n\n Select mode: "YEL);
         scanfValue = scanf("%d", &choice);
+        printf(reset);
         if (scanfValue != 1) choice = checkInt(scanfValue);
         switch(choice){
             case 1:

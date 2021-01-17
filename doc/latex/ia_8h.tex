@@ -4,30 +4,45 @@
 \begin{DoxyCompactItemize}
 \item 
 typedef struct \mbox{\hyperlink{structvalue_minimax}{value\+Minimax}} \mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Auxiliary struct for the minimax. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-unsigned int \mbox{\hyperlink{ia_8h_ab9533ccf304c2028b15cd68ad22a9ad5}{round\+\_\+ia\+\_\+random}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl)
-\item 
-int \mbox{\hyperlink{ia_8h_a04c98e99a199fcfc80fefa3a33699707}{last\+\_\+move}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, unsigned int n\+Pl)
-\item 
-int \mbox{\hyperlink{ia_8h_a84662d50a743b387f2e8ac427dd17424}{round\+\_\+ia\+\_\+minimax}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl, unsigned int depth)
-\item 
-int \mbox{\hyperlink{ia_8h_ab304981f61da05ef06335cd557446d08}{minimax}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, int depth, unsigned int n\+Ped, unsigned int n\+Pl, \mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$v, int cheat, int $\ast$alpha, int $\ast$beta)
-\item 
-int \mbox{\hyperlink{ia_8h_a82180885d90f464ccd27de484d0e786a}{call\+\_\+minimax}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$board\+\_\+copy, \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players\+\_\+copy, unsigned int depth, unsigned int n\+Ped, unsigned int n\+Pl, \mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$v, char $\ast$str, int max\+Eval, int cheat, int $\ast$alpha, int $\ast$beta)
-\item 
+unsigned int \mbox{\hyperlink{ia_8h_ab9533ccf304c2028b15cd68ad22a9ad5}{round\+\_\+ia\+\_\+random}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl)
+\begin{DoxyCompactList}\small\item\em Move the player randomly. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ia_8h_a04c98e99a199fcfc80fefa3a33699707}{last\+\_\+move}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, unsigned int n\+Pl)
+\begin{DoxyCompactList}\small\item\em Simplify the pawn selection in the random when there is only 1 pawn left. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ia_8h_a84662d50a743b387f2e8ac427dd17424}{round\+\_\+ia\+\_\+minimax}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}}, unsigned int n\+Pl, unsigned int depth)
+\begin{DoxyCompactList}\small\item\em Move the player using the minimax algorithm. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ia_8h_ab304981f61da05ef06335cd557446d08}{minimax}} (\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, \mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, int depth, unsigned int n\+Ped, unsigned int n\+Pl, \mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$v, int cheat, int $\ast$alpha, int $\ast$beta)
+\begin{DoxyCompactList}\small\item\em Algorithm which computes the best move possible for a player. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ia_8h_a82180885d90f464ccd27de484d0e786a}{call\+\_\+minimax}} (\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$board\+\_\+copy, \mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players\+\_\+copy, unsigned int depth, unsigned int n\+Ped, unsigned int n\+Pl, \mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$v, char $\ast$str, int max\+Eval, int cheat, int $\ast$alpha, int $\ast$beta)
+\begin{DoxyCompactList}\small\item\em Synthesizes some operations in the minimax. \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{ia_8h_abc43d8c30252b175795eb6514c2e79f8}{interrupt\+\_\+minimax}} (int $\ast$alpha, int $\ast$beta)
-\item 
-int \mbox{\hyperlink{ia_8h_a0ba8ad8f657d084b47a08e8da7f58f6d}{evaluate\+\_\+score}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players)
-\item 
+\begin{DoxyCompactList}\small\item\em Compare alpha and beta. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ia_8h_a0ba8ad8f657d084b47a08e8da7f58f6d}{evaluate\+\_\+score}} (\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, \mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players)
+\begin{DoxyCompactList}\small\item\em Calculate the score of the board. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{ia_8h_a290c05f1dd7d30ae62ab3593e0e39786}{print\+\_\+minimax}} (\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$value\+\_\+arr, unsigned int dim\+\_\+arr)
-\item 
+\begin{DoxyCompactList}\small\item\em Print minimax results. \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{ia_8h_a314d84d04c7347f8e51b42bc3caf20fd}{max}} (\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$arr, unsigned int dim)
-\item 
+\begin{DoxyCompactList}\small\item\em Calculate the max value among all previous results. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{ia_8h_a53075eb6ea08340d6a611d2ff6473035}{destroy\+\_\+value\+\_\+minimax}} (\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$arr, unsigned int dim)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Deallocate all allocated memory by round\+\_\+ia\+\_\+minimax. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Diego Passarella, Davide Pasqual, Michelle Ravagnan 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0.\+2 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2021-\/01-\/17
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2021 
+\end{DoxyCopyright}
 
 
 \doxysubsection{Typedef Documentation}
@@ -39,6 +54,19 @@ void \mbox{\hyperlink{ia_8h_a53075eb6ea08340d6a611d2ff6473035}{destroy\+\_\+valu
 
 
 
+Auxiliary struct for the minimax. 
+
+In order to improve the efficiency of the minimax function we preferred to create a new struct instead of calling another function similar to minimax.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Evaluated score of the minimax or -\/9017 if the pawn is blocked. \\
+\hline
+{\em directions} & Array containing the string of the direction. \\
+\hline
+\end{DoxyParams}
+
+
 Definition at line 1 of file ia.\+h.
 
 
@@ -48,39 +76,43 @@ Definition at line 1 of file ia.\+h.
 \index{ia.h@{ia.h}!call\_minimax@{call\_minimax}}
 \index{call\_minimax@{call\_minimax}!ia.h@{ia.h}}
 \doxysubsubsection{\texorpdfstring{call\_minimax()}{call\_minimax()}}
-{\footnotesize\ttfamily int call\+\_\+minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board\+\_\+copy,  }\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players\+\_\+copy,  }\item[{unsigned int}]{depth,  }\item[{unsigned int}]{n\+Ped,  }\item[{unsigned int}]{n\+Pl,  }\item[{\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$}]{v,  }\item[{char $\ast$}]{str,  }\item[{int}]{max\+Eval,  }\item[{int}]{cheat,  }\item[{int $\ast$}]{alpha,  }\item[{int $\ast$}]{beta }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int call\+\_\+minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$}]{board\+\_\+copy,  }\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players\+\_\+copy,  }\item[{unsigned int}]{depth,  }\item[{unsigned int}]{n\+Ped,  }\item[{unsigned int}]{n\+Pl,  }\item[{\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$}]{v,  }\item[{char $\ast$}]{str,  }\item[{int}]{max\+Eval,  }\item[{int}]{cheat,  }\item[{int $\ast$}]{alpha,  }\item[{int $\ast$}]{beta }\end{DoxyParamCaption})}
+
+
+
+Synthesizes some operations in the minimax. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em board\+\_\+copy} & \\
+{\em board\+\_\+copy} & Pointer to a copy of a board. \\
 \hline
-{\em players\+\_\+copy} & \\
+{\em players\+\_\+copy} & Pointer to a copy of players array. \\
 \hline
-{\em depth} & \\
+{\em depth} & Depth of the tree generated by the minimax. \\
 \hline
-{\em n\+Ped} & \\
+{\em n\+Ped} & Number of the pawn to calculate the move. \\
 \hline
-{\em n\+Pl} & \\
+{\em n\+Pl} & Number of the player. \\
 \hline
-{\em v} & \\
+{\em v} & Pointer to an element of the \mbox{\hyperlink{structvalue_minimax}{value\+Minimax}} array. \\
 \hline
-{\em str} & \\
+{\em str} & Direction considerated by the minimax. \\
 \hline
-{\em max\+Eval} & \\
+{\em max\+Eval} & Compare the score of this call with the others. \\
 \hline
-{\em cheat} & \\
+{\em cheat} & Determines the selection of the min value or max value in that level of the graph. \\
 \hline
-{\em alpha} & \\
+{\em alpha} & Min value of the player 1 can reach. \\
 \hline
-{\em beta} & \\
+{\em beta} & Max value of the player 2 can reach. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-int 
+int Return the max value or the min value based on the cheat flag. 
 \end{DoxyReturn}
 
 
-Definition at line 262 of file ia.\+c.
+Definition at line 257 of file ia.\+c.
 
 \mbox{\Hypertarget{ia_8h_a53075eb6ea08340d6a611d2ff6473035}\label{ia_8h_a53075eb6ea08340d6a611d2ff6473035}} 
 \index{ia.h@{ia.h}!destroy\_value\_minimax@{destroy\_value\_minimax}}
@@ -89,35 +121,43 @@ Definition at line 262 of file ia.\+c.
 {\footnotesize\ttfamily void destroy\+\_\+value\+\_\+minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$}]{arr,  }\item[{unsigned int}]{dim }\end{DoxyParamCaption})}
 
 
+
+Deallocate all allocated memory by round\+\_\+ia\+\_\+minimax. 
+
+
 \begin{DoxyParams}{Parameters}
-{\em arr} & \\
+{\em arr} & Pointer to \mbox{\hyperlink{structvalue_minimax}{value\+Minimax}} array. \\
 \hline
-{\em dim} & \\
+{\em dim} & Dimension of the \mbox{\hyperlink{structvalue_minimax}{value\+Minimax}} array. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 361 of file ia.\+c.
+Definition at line 356 of file ia.\+c.
 
 \mbox{\Hypertarget{ia_8h_a0ba8ad8f657d084b47a08e8da7f58f6d}\label{ia_8h_a0ba8ad8f657d084b47a08e8da7f58f6d}} 
 \index{ia.h@{ia.h}!evaluate\_score@{evaluate\_score}}
 \index{evaluate\_score@{evaluate\_score}!ia.h@{ia.h}}
 \doxysubsubsection{\texorpdfstring{evaluate\_score()}{evaluate\_score()}}
-{\footnotesize\ttfamily int evaluate\+\_\+score (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int evaluate\+\_\+score (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}}}]{board,  }\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players }\end{DoxyParamCaption})}
+
+
+
+Calculate the score of the board. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em board} & \\
+{\em board} & Instance of the board. \\
 \hline
-{\em players} & \\
+{\em players} & Pointer to players array. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-int 
+int Return the score. 
 \end{DoxyReturn}
 
 
-Definition at line 313 of file ia.\+c.
+Definition at line 308 of file ia.\+c.
 
 \mbox{\Hypertarget{ia_8h_abc43d8c30252b175795eb6514c2e79f8}\label{ia_8h_abc43d8c30252b175795eb6514c2e79f8}} 
 \index{ia.h@{ia.h}!interrupt\_minimax@{interrupt\_minimax}}
@@ -126,38 +166,46 @@ Definition at line 313 of file ia.\+c.
 {\footnotesize\ttfamily unsigned int interrupt\+\_\+minimax (\begin{DoxyParamCaption}\item[{int $\ast$}]{alpha,  }\item[{int $\ast$}]{beta }\end{DoxyParamCaption})}
 
 
+
+Compare alpha and beta. 
+
+
 \begin{DoxyParams}{Parameters}
-{\em alpha} & \\
+{\em alpha} & Min value of the player 1 can reach. \\
 \hline
-{\em beta} & \\
+{\em beta} & Max value of the player 2 can reach. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-unsigned int 
+unsigned int Return 0 if alpha or beta are inf or alpha $<$ beta, 1 otherwise. 
 \end{DoxyReturn}
 
 
-Definition at line 306 of file ia.\+c.
+Definition at line 301 of file ia.\+c.
 
 \mbox{\Hypertarget{ia_8h_a04c98e99a199fcfc80fefa3a33699707}\label{ia_8h_a04c98e99a199fcfc80fefa3a33699707}} 
 \index{ia.h@{ia.h}!last\_move@{last\_move}}
 \index{last\_move@{last\_move}!ia.h@{ia.h}}
 \doxysubsubsection{\texorpdfstring{last\_move()}{last\_move()}}
-{\footnotesize\ttfamily int last\+\_\+move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int last\+\_\+move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+
+Simplify the pawn selection in the random when there is only 1 pawn left. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em players} & \\
+{\em players} & Pointer to players array. \\
 \hline
-{\em n\+Pl} & \\
+{\em n\+Pl} & Number of the player to move. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-int 
+int Return the pawn number, -\/1 otherwise. 
 \end{DoxyReturn}
 
 
-Definition at line 77 of file ia.\+c.
+Definition at line 72 of file ia.\+c.
 
 \mbox{\Hypertarget{ia_8h_a314d84d04c7347f8e51b42bc3caf20fd}\label{ia_8h_a314d84d04c7347f8e51b42bc3caf20fd}} 
 \index{ia.h@{ia.h}!max@{max}}
@@ -166,52 +214,60 @@ Definition at line 77 of file ia.\+c.
 {\footnotesize\ttfamily unsigned int max (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$}]{arr,  }\item[{unsigned int}]{dim }\end{DoxyParamCaption})}
 
 
+
+Calculate the max value among all previous results. 
+
+
 \begin{DoxyParams}{Parameters}
-{\em arr} & \\
+{\em arr} & Pointer to \mbox{\hyperlink{structvalue_minimax}{value\+Minimax}} array. \\
 \hline
-{\em dim} & \\
+{\em dim} & Dimension of the \mbox{\hyperlink{structvalue_minimax}{value\+Minimax}} array. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-unsigned int 
+unsigned int Return the index of the array containing the max value. 
 \end{DoxyReturn}
 
 
-Definition at line 346 of file ia.\+c.
+Definition at line 341 of file ia.\+c.
 
 \mbox{\Hypertarget{ia_8h_ab304981f61da05ef06335cd557446d08}\label{ia_8h_ab304981f61da05ef06335cd557446d08}} 
 \index{ia.h@{ia.h}!minimax@{minimax}}
 \index{minimax@{minimax}!ia.h@{ia.h}}
 \doxysubsubsection{\texorpdfstring{minimax()}{minimax()}}
-{\footnotesize\ttfamily int minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{int}]{depth,  }\item[{unsigned int}]{n\+Ped,  }\item[{unsigned int}]{n\+Pl,  }\item[{\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$}]{v,  }\item[{int}]{cheat,  }\item[{int $\ast$}]{alpha,  }\item[{int $\ast$}]{beta }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}}}]{board,  }\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{int}]{depth,  }\item[{unsigned int}]{n\+Ped,  }\item[{unsigned int}]{n\+Pl,  }\item[{\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$}]{v,  }\item[{int}]{cheat,  }\item[{int $\ast$}]{alpha,  }\item[{int $\ast$}]{beta }\end{DoxyParamCaption})}
+
+
+
+Algorithm which computes the best move possible for a player. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em board} & \\
+{\em board} & Instance of the board. \\
 \hline
-{\em players} & \\
+{\em players} & Pointer to players array. \\
 \hline
-{\em depth} & \\
+{\em depth} & Depth of the tree generated by the minimax. \\
 \hline
-{\em n\+Ped} & \\
+{\em n\+Ped} & Number of the pawn to calculate the move. \\
 \hline
-{\em n\+Pl} & \\
+{\em n\+Pl} & Number of the player. \\
 \hline
-{\em v} & \\
+{\em v} & Pointer to an element of the \mbox{\hyperlink{structvalue_minimax}{value\+Minimax}} array. \\
 \hline
-{\em cheat} & \\
+{\em cheat} & Determines the selection of the min value or max value in that level of the graph. \\
 \hline
-{\em alpha} & \\
+{\em alpha} & Min value of the player 1 can reach. \\
 \hline
-{\em beta} & \\
+{\em beta} & Max value of the player 2 can reach. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-int 
+int Return the evaluated score. 
 \end{DoxyReturn}
 
 
-Definition at line 130 of file ia.\+c.
+Definition at line 125 of file ia.\+c.
 
 \mbox{\Hypertarget{ia_8h_a290c05f1dd7d30ae62ab3593e0e39786}\label{ia_8h_a290c05f1dd7d30ae62ab3593e0e39786}} 
 \index{ia.h@{ia.h}!print\_minimax@{print\_minimax}}
@@ -220,59 +276,71 @@ Definition at line 130 of file ia.\+c.
 {\footnotesize\ttfamily void print\+\_\+minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ia_8h_ad6248e2b2f82af10b452a7753cdde8f2}{value\+Minimax\+\_\+t}} $\ast$}]{value\+\_\+arr,  }\item[{unsigned int}]{dim\+\_\+arr }\end{DoxyParamCaption})}
 
 
+
+Print minimax results. 
+
+
 \begin{DoxyParams}{Parameters}
-{\em value\+\_\+arr} & \\
+{\em value\+\_\+arr} & Pointer to \mbox{\hyperlink{structvalue_minimax}{value\+Minimax}} array. \\
 \hline
-{\em dim\+\_\+arr} & \\
+{\em dim\+\_\+arr} & Dimension of the \mbox{\hyperlink{structvalue_minimax}{value\+Minimax}} array. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 335 of file ia.\+c.
+Definition at line 330 of file ia.\+c.
 
 \mbox{\Hypertarget{ia_8h_a84662d50a743b387f2e8ac427dd17424}\label{ia_8h_a84662d50a743b387f2e8ac427dd17424}} 
 \index{ia.h@{ia.h}!round\_ia\_minimax@{round\_ia\_minimax}}
 \index{round\_ia\_minimax@{round\_ia\_minimax}!ia.h@{ia.h}}
 \doxysubsubsection{\texorpdfstring{round\_ia\_minimax()}{round\_ia\_minimax()}}
-{\footnotesize\ttfamily int round\+\_\+ia\+\_\+minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl,  }\item[{unsigned int}]{depth }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int round\+\_\+ia\+\_\+minimax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl,  }\item[{unsigned int}]{depth }\end{DoxyParamCaption})}
+
+
+
+Move the player using the minimax algorithm. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em players} & \\
+{\em players} & Pointer to players array. \\
 \hline
-{\em board} & \\
+{\em board} & Pointer to the board. \\
 \hline
-{\em n\+Pl} & \\
+{\em n\+Pl} & Number of the player to move. \\
 \hline
-{\em depth} & \\
+{\em depth} & Depth of the tree generated by the minimax. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-int 
+int Return 2 if there are errors, 4 otherwise. 
 \end{DoxyReturn}
 
 
-Definition at line 92 of file ia.\+c.
+Definition at line 87 of file ia.\+c.
 
 \mbox{\Hypertarget{ia_8h_ab9533ccf304c2028b15cd68ad22a9ad5}\label{ia_8h_ab9533ccf304c2028b15cd68ad22a9ad5}} 
 \index{ia.h@{ia.h}!round\_ia\_random@{round\_ia\_random}}
 \index{round\_ia\_random@{round\_ia\_random}!ia.h@{ia.h}}
 \doxysubsubsection{\texorpdfstring{round\_ia\_random()}{round\_ia\_random()}}
-{\footnotesize\ttfamily unsigned int round\+\_\+ia\+\_\+random (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unsigned int round\+\_\+ia\+\_\+random (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$}]{board,  }\item[{unsigned int}]{n\+Pl }\end{DoxyParamCaption})}
+
+
+
+Move the player randomly. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em players} & \\
+{\em players} & Pointer to players array. \\
 \hline
-{\em board} & \\
+{\em board} & Pointer to the board. \\
 \hline
-{\em n\+Pl} & \\
+{\em n\+Pl} & Number of the player to move. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-unsigned int 
+unsigned int Return 2 if there are errors, 4 otherwise. 
 \end{DoxyReturn}
 
 
-Definition at line 26 of file ia.\+c.
+Definition at line 21 of file ia.\+c.
 

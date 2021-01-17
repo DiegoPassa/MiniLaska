@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['flag_286',['flag',['../game__engine_8h.html#a1e136e020b4a3ab89e91221a40e8f28d',1,'flag():&#160;game_engine.h'],['../supporto_8h.html#a1e136e020b4a3ab89e91221a40e8f28d',1,'flag():&#160;supporto.h']]]
+  ['valueminimax_5ft_260',['valueMinimax_t',['../ia_8h.html#ad6248e2b2f82af10b452a7753cdde8f2',1,'ia.h']]]
 ];

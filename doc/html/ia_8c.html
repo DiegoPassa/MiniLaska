@@ -5,10 +5,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: src/ia/ia.c File Reference</title>
+<title>MINILASKA 51: src/ia/ia.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,9 +24,12 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="title.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">MINILASKA 51
+   &#160;<span id="projectnumber">1.0.2</span>
    </div>
+   <div id="projectbrief">Made with love by: Diego Passarella, Davide Pasqual, Michelle Ravagnan</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('ia_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +83,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_73efee319eeaf6e352bd6de855d59872.html">ia</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
@@ -94,25 +113,35 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab9533ccf304c2028b15cd68ad22a9ad5"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ia_8c.html#ab9533ccf304c2028b15cd68ad22a9ad5">round_ia_random</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, <a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *<a class="el" href="structboard.html">board</a>, unsigned int nPl)</td></tr>
+<tr class="memitem:ab9533ccf304c2028b15cd68ad22a9ad5"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ia_8c.html#ab9533ccf304c2028b15cd68ad22a9ad5">round_ia_random</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, <a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *<a class="el" href="structboard.html">board</a>, unsigned int nPl)</td></tr>
+<tr class="memdesc:ab9533ccf304c2028b15cd68ad22a9ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the player randomly.  <a href="ia_8c.html#ab9533ccf304c2028b15cd68ad22a9ad5">More...</a><br /></td></tr>
 <tr class="separator:ab9533ccf304c2028b15cd68ad22a9ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04c98e99a199fcfc80fefa3a33699707"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ia_8c.html#a04c98e99a199fcfc80fefa3a33699707">last_move</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, unsigned int nPl)</td></tr>
+<tr class="memitem:a04c98e99a199fcfc80fefa3a33699707"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ia_8c.html#a04c98e99a199fcfc80fefa3a33699707">last_move</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, unsigned int nPl)</td></tr>
+<tr class="memdesc:a04c98e99a199fcfc80fefa3a33699707"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simplify the pawn selection in the random when there is only 1 pawn left.  <a href="ia_8c.html#a04c98e99a199fcfc80fefa3a33699707">More...</a><br /></td></tr>
 <tr class="separator:a04c98e99a199fcfc80fefa3a33699707"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84662d50a743b387f2e8ac427dd17424"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ia_8c.html#a84662d50a743b387f2e8ac427dd17424">round_ia_minimax</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, <a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *<a class="el" href="structboard.html">board</a>, unsigned int nPl, unsigned int depth)</td></tr>
+<tr class="memitem:a84662d50a743b387f2e8ac427dd17424"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ia_8c.html#a84662d50a743b387f2e8ac427dd17424">round_ia_minimax</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, <a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *<a class="el" href="structboard.html">board</a>, unsigned int nPl, unsigned int depth)</td></tr>
+<tr class="memdesc:a84662d50a743b387f2e8ac427dd17424"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the player using the minimax algorithm.  <a href="ia_8c.html#a84662d50a743b387f2e8ac427dd17424">More...</a><br /></td></tr>
 <tr class="separator:a84662d50a743b387f2e8ac427dd17424"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab304981f61da05ef06335cd557446d08"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ia_8c.html#ab304981f61da05ef06335cd557446d08">minimax</a> (<a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> <a class="el" href="structboard.html">board</a>, <a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, int depth, unsigned int nPed, unsigned int nPl, <a class="el" href="ia_8h.html#ad6248e2b2f82af10b452a7753cdde8f2">valueMinimax_t</a> *v, int cheat, int *alpha, int *beta)</td></tr>
+<tr class="memitem:ab304981f61da05ef06335cd557446d08"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ia_8c.html#ab304981f61da05ef06335cd557446d08">minimax</a> (<a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> <a class="el" href="structboard.html">board</a>, <a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, int depth, unsigned int nPed, unsigned int nPl, <a class="el" href="ia_8h.html#ad6248e2b2f82af10b452a7753cdde8f2">valueMinimax_t</a> *v, int cheat, int *alpha, int *beta)</td></tr>
+<tr class="memdesc:ab304981f61da05ef06335cd557446d08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Algorithm which computes the best move possible for a player.  <a href="ia_8c.html#ab304981f61da05ef06335cd557446d08">More...</a><br /></td></tr>
 <tr class="separator:ab304981f61da05ef06335cd557446d08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82180885d90f464ccd27de484d0e786a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ia_8c.html#a82180885d90f464ccd27de484d0e786a">call_minimax</a> (<a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *board_copy, <a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players_copy, unsigned int depth, unsigned int nPed, unsigned int nPl, <a class="el" href="ia_8h.html#ad6248e2b2f82af10b452a7753cdde8f2">valueMinimax_t</a> *v, char *str, int maxEval, int cheat, int *alpha, int *beta)</td></tr>
+<tr class="memitem:a82180885d90f464ccd27de484d0e786a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ia_8c.html#a82180885d90f464ccd27de484d0e786a">call_minimax</a> (<a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *board_copy, <a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players_copy, unsigned int depth, unsigned int nPed, unsigned int nPl, <a class="el" href="ia_8h.html#ad6248e2b2f82af10b452a7753cdde8f2">valueMinimax_t</a> *v, char *str, int maxEval, int cheat, int *alpha, int *beta)</td></tr>
+<tr class="memdesc:a82180885d90f464ccd27de484d0e786a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synthesizes some operations in the minimax.  <a href="ia_8c.html#a82180885d90f464ccd27de484d0e786a">More...</a><br /></td></tr>
 <tr class="separator:a82180885d90f464ccd27de484d0e786a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc43d8c30252b175795eb6514c2e79f8"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ia_8c.html#abc43d8c30252b175795eb6514c2e79f8">interrupt_minimax</a> (int *alpha, int *beta)</td></tr>
+<tr class="memdesc:abc43d8c30252b175795eb6514c2e79f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare alpha and beta.  <a href="ia_8c.html#abc43d8c30252b175795eb6514c2e79f8">More...</a><br /></td></tr>
 <tr class="separator:abc43d8c30252b175795eb6514c2e79f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ba8ad8f657d084b47a08e8da7f58f6d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ia_8c.html#a0ba8ad8f657d084b47a08e8da7f58f6d">evaluate_score</a> (<a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> <a class="el" href="structboard.html">board</a>, <a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players)</td></tr>
+<tr class="memitem:a0ba8ad8f657d084b47a08e8da7f58f6d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ia_8c.html#a0ba8ad8f657d084b47a08e8da7f58f6d">evaluate_score</a> (<a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> <a class="el" href="structboard.html">board</a>, <a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players)</td></tr>
+<tr class="memdesc:a0ba8ad8f657d084b47a08e8da7f58f6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the score of the board.  <a href="ia_8c.html#a0ba8ad8f657d084b47a08e8da7f58f6d">More...</a><br /></td></tr>
 <tr class="separator:a0ba8ad8f657d084b47a08e8da7f58f6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a290c05f1dd7d30ae62ab3593e0e39786"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ia_8c.html#a290c05f1dd7d30ae62ab3593e0e39786">print_minimax</a> (<a class="el" href="ia_8h.html#ad6248e2b2f82af10b452a7753cdde8f2">valueMinimax_t</a> *value_arr, unsigned int dim_arr)</td></tr>
+<tr class="memdesc:a290c05f1dd7d30ae62ab3593e0e39786"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print minimax results.  <a href="ia_8c.html#a290c05f1dd7d30ae62ab3593e0e39786">More...</a><br /></td></tr>
 <tr class="separator:a290c05f1dd7d30ae62ab3593e0e39786"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a314d84d04c7347f8e51b42bc3caf20fd"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ia_8c.html#a314d84d04c7347f8e51b42bc3caf20fd">max</a> (<a class="el" href="ia_8h.html#ad6248e2b2f82af10b452a7753cdde8f2">valueMinimax_t</a> *arr, unsigned int dim)</td></tr>
+<tr class="memdesc:a314d84d04c7347f8e51b42bc3caf20fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the max value among all previous results.  <a href="ia_8c.html#a314d84d04c7347f8e51b42bc3caf20fd">More...</a><br /></td></tr>
 <tr class="separator:a314d84d04c7347f8e51b42bc3caf20fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53075eb6ea08340d6a611d2ff6473035"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ia_8c.html#a53075eb6ea08340d6a611d2ff6473035">destroy_value_minimax</a> (<a class="el" href="ia_8h.html#ad6248e2b2f82af10b452a7753cdde8f2">valueMinimax_t</a> *arr, unsigned int dim)</td></tr>
+<tr class="memdesc:a53075eb6ea08340d6a611d2ff6473035"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deallocate all allocated memory by round_ia_minimax.  <a href="ia_8c.html#a53075eb6ea08340d6a611d2ff6473035">More...</a><br /></td></tr>
 <tr class="separator:a53075eb6ea08340d6a611d2ff6473035"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -125,13 +154,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int call_minimax </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *&#160;</td>
           <td class="paramname"><em>board_copy</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players_copy</em>, </td>
         </tr>
         <tr>
@@ -195,25 +224,27 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Synthesizes some operations in the minimax. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">board_copy</td><td></td></tr>
-    <tr><td class="paramname">players_copy</td><td></td></tr>
-    <tr><td class="paramname">depth</td><td></td></tr>
-    <tr><td class="paramname">nPed</td><td></td></tr>
-    <tr><td class="paramname">nPl</td><td></td></tr>
-    <tr><td class="paramname">v</td><td></td></tr>
-    <tr><td class="paramname">str</td><td></td></tr>
-    <tr><td class="paramname">maxEval</td><td></td></tr>
-    <tr><td class="paramname">cheat</td><td></td></tr>
-    <tr><td class="paramname">alpha</td><td></td></tr>
-    <tr><td class="paramname">beta</td><td></td></tr>
+    <tr><td class="paramname">board_copy</td><td>Pointer to a copy of a board. </td></tr>
+    <tr><td class="paramname">players_copy</td><td>Pointer to a copy of players array. </td></tr>
+    <tr><td class="paramname">depth</td><td>Depth of the tree generated by the minimax. </td></tr>
+    <tr><td class="paramname">nPed</td><td>Number of the pawn to calculate the move. </td></tr>
+    <tr><td class="paramname">nPl</td><td>Number of the player. </td></tr>
+    <tr><td class="paramname">v</td><td>Pointer to an element of the <a class="el" href="structvalue_minimax.html">valueMinimax</a> array. </td></tr>
+    <tr><td class="paramname">str</td><td>Direction considerated by the minimax. </td></tr>
+    <tr><td class="paramname">maxEval</td><td>Compare the score of this call with the others. </td></tr>
+    <tr><td class="paramname">cheat</td><td>Determines the selection of the min value or max value in that level of the graph. </td></tr>
+    <tr><td class="paramname">alpha</td><td>Min value of the player 1 can reach. </td></tr>
+    <tr><td class="paramname">beta</td><td>Max value of the player 2 can reach. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int Return the max value or the min value based on the cheat flag. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00262">262</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00257">257</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
 
 </div>
 </div>
@@ -242,15 +273,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Deallocate all allocated memory by round_ia_minimax. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">arr</td><td></td></tr>
-    <tr><td class="paramname">dim</td><td></td></tr>
+    <tr><td class="paramname">arr</td><td>Pointer to <a class="el" href="structvalue_minimax.html">valueMinimax</a> array. </td></tr>
+    <tr><td class="paramname">dim</td><td>Dimension of the <a class="el" href="structvalue_minimax.html">valueMinimax</a> array. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00361">361</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00356">356</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
 
 </div>
 </div>
@@ -263,13 +296,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int evaluate_score </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a>&#160;</td>
           <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>&#160;</td>
         </tr>
         <tr>
@@ -279,16 +312,18 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Calculate the score of the board. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">board</td><td></td></tr>
-    <tr><td class="paramname">players</td><td></td></tr>
+    <tr><td class="paramname">board</td><td>Instance of the board. </td></tr>
+    <tr><td class="paramname">players</td><td>Pointer to players array. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int Return the score. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00313">313</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00308">308</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
 
 </div>
 </div>
@@ -317,16 +352,18 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Compare alpha and beta. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">alpha</td><td></td></tr>
-    <tr><td class="paramname">beta</td><td></td></tr>
+    <tr><td class="paramname">alpha</td><td>Min value of the player 1 can reach. </td></tr>
+    <tr><td class="paramname">beta</td><td>Max value of the player 2 can reach. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>unsigned int </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>unsigned int Return 0 if alpha or beta are inf or alpha &lt; beta, 1 otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00306">306</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00301">301</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
 
 </div>
 </div>
@@ -339,7 +376,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int last_move </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
@@ -355,16 +392,18 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Simplify the pawn selection in the random when there is only 1 pawn left. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">players</td><td></td></tr>
-    <tr><td class="paramname">nPl</td><td></td></tr>
+    <tr><td class="paramname">players</td><td>Pointer to players array. </td></tr>
+    <tr><td class="paramname">nPl</td><td>Number of the player to move. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int Return the pawn number, -1 otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00077">77</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00072">72</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
 
 </div>
 </div>
@@ -393,16 +432,18 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Calculate the max value among all previous results. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">arr</td><td></td></tr>
-    <tr><td class="paramname">dim</td><td></td></tr>
+    <tr><td class="paramname">arr</td><td>Pointer to <a class="el" href="structvalue_minimax.html">valueMinimax</a> array. </td></tr>
+    <tr><td class="paramname">dim</td><td>Dimension of the <a class="el" href="structvalue_minimax.html">valueMinimax</a> array. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>unsigned int </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>unsigned int Return the index of the array containing the max value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00346">346</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00341">341</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
 
 </div>
 </div>
@@ -415,13 +456,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int minimax </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a>&#160;</td>
           <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
@@ -473,23 +514,25 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Algorithm which computes the best move possible for a player. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">board</td><td></td></tr>
-    <tr><td class="paramname">players</td><td></td></tr>
-    <tr><td class="paramname">depth</td><td></td></tr>
-    <tr><td class="paramname">nPed</td><td></td></tr>
-    <tr><td class="paramname">nPl</td><td></td></tr>
-    <tr><td class="paramname">v</td><td></td></tr>
-    <tr><td class="paramname">cheat</td><td></td></tr>
-    <tr><td class="paramname">alpha</td><td></td></tr>
-    <tr><td class="paramname">beta</td><td></td></tr>
+    <tr><td class="paramname">board</td><td>Instance of the board. </td></tr>
+    <tr><td class="paramname">players</td><td>Pointer to players array. </td></tr>
+    <tr><td class="paramname">depth</td><td>Depth of the tree generated by the minimax. </td></tr>
+    <tr><td class="paramname">nPed</td><td>Number of the pawn to calculate the move. </td></tr>
+    <tr><td class="paramname">nPl</td><td>Number of the player. </td></tr>
+    <tr><td class="paramname">v</td><td>Pointer to an element of the <a class="el" href="structvalue_minimax.html">valueMinimax</a> array. </td></tr>
+    <tr><td class="paramname">cheat</td><td>Determines the selection of the min value or max value in that level of the graph. </td></tr>
+    <tr><td class="paramname">alpha</td><td>Min value of the player 1 can reach. </td></tr>
+    <tr><td class="paramname">beta</td><td>Max value of the player 2 can reach. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int Return the evaluated score. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00130">130</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00125">125</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
 
 </div>
 </div>
@@ -518,15 +561,17 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Print minimax results. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value_arr</td><td></td></tr>
-    <tr><td class="paramname">dim_arr</td><td></td></tr>
+    <tr><td class="paramname">value_arr</td><td>Pointer to <a class="el" href="structvalue_minimax.html">valueMinimax</a> array. </td></tr>
+    <tr><td class="paramname">dim_arr</td><td>Dimension of the <a class="el" href="structvalue_minimax.html">valueMinimax</a> array. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00335">335</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00330">330</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
 
 </div>
 </div>
@@ -539,13 +584,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int round_ia_minimax </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *&#160;</td>
           <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
@@ -567,18 +612,20 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Move the player using the minimax algorithm. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">players</td><td></td></tr>
-    <tr><td class="paramname">board</td><td></td></tr>
-    <tr><td class="paramname">nPl</td><td></td></tr>
-    <tr><td class="paramname">depth</td><td></td></tr>
+    <tr><td class="paramname">players</td><td>Pointer to players array. </td></tr>
+    <tr><td class="paramname">board</td><td>Pointer to the board. </td></tr>
+    <tr><td class="paramname">nPl</td><td>Number of the player to move. </td></tr>
+    <tr><td class="paramname">depth</td><td>Depth of the tree generated by the minimax. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int Return 2 if there are errors, 4 otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00092">92</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00087">87</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
 
 </div>
 </div>
@@ -591,13 +638,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">unsigned int round_ia_random </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *&#160;</td>
           <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
@@ -613,24 +660,30 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Move the player randomly. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">players</td><td></td></tr>
-    <tr><td class="paramname">board</td><td></td></tr>
-    <tr><td class="paramname">nPl</td><td></td></tr>
+    <tr><td class="paramname">players</td><td>Pointer to players array. </td></tr>
+    <tr><td class="paramname">board</td><td>Pointer to the board. </td></tr>
+    <tr><td class="paramname">nPl</td><td>Number of the player to move. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>unsigned int </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>unsigned int Return 2 if there are errors, 4 otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00026">26</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ia_8c_source.html#l00021">21</a> of file <a class="el" href="ia_8c_source.html">ia.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_73efee319eeaf6e352bd6de855d59872.html">ia</a></li><li class="navelem"><a class="el" href="ia_8c.html">ia.c</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.0 </li>
+  </ul>
+</div>
 </body>
 </html>

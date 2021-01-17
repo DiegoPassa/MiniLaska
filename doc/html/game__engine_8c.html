@@ -5,10 +5,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: src/game_engine/game_engine.c File Reference</title>
+<title>MINILASKA 51: src/game_engine/game_engine.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,9 +24,12 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="title.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">MINILASKA 51
+   &#160;<span id="projectnumber">1.0.2</span>
    </div>
+   <div id="projectbrief">Made with love by: Diego Passarella, Davide Pasqual, Michelle Ravagnan</div>
   </td>
  </tr>
  </tbody>
@@ -45,6 +52,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('game__engine_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +83,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_8a63a06b97ec1e69eb6b2537b1056ef4.html">game_engine</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
@@ -88,75 +107,73 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a1e000b0af6247b246effb9ef89df1dc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a1e000b0af6247b246effb9ef89df1dc7">initialize_board</a> (<a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *<a class="el" href="structboard.html">board</a>, unsigned int cifre)</td></tr>
+<tr class="memitem:a1e000b0af6247b246effb9ef89df1dc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a1e000b0af6247b246effb9ef89df1dc7">initialize_board</a> (<a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *<a class="el" href="structboard.html">board</a>, unsigned int cifre)</td></tr>
 <tr class="memdesc:a1e000b0af6247b246effb9ef89df1dc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set char on the board.  <a href="game__engine_8c.html#a1e000b0af6247b246effb9ef89df1dc7">More...</a><br /></td></tr>
 <tr class="separator:a1e000b0af6247b246effb9ef89df1dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade0653b2e42848b6f90ae0cd27e2cd42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#ade0653b2e42848b6f90ae0cd27e2cd42">print_directions</a> (unsigned int *arr, unsigned int dim, unsigned int np)</td></tr>
 <tr class="memdesc:ade0653b2e42848b6f90ae0cd27e2cd42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print hints for the movements of a given pawn.  <a href="game__engine_8c.html#ade0653b2e42848b6f90ae0cd27e2cd42">More...</a><br /></td></tr>
 <tr class="separator:ade0653b2e42848b6f90ae0cd27e2cd42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55b6e9e1926c718eedf6e9d916822d11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a55b6e9e1926c718eedf6e9d916822d11">update_board</a> (<a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *t, <a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *<a class="el" href="structplayer.html">player</a>)</td></tr>
+<tr class="memitem:a55b6e9e1926c718eedf6e9d916822d11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a55b6e9e1926c718eedf6e9d916822d11">update_board</a> (<a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *t, <a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *<a class="el" href="structplayer.html">player</a>)</td></tr>
 <tr class="memdesc:a55b6e9e1926c718eedf6e9d916822d11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the board after a player move.  <a href="game__engine_8c.html#a55b6e9e1926c718eedf6e9d916822d11">More...</a><br /></td></tr>
 <tr class="separator:a55b6e9e1926c718eedf6e9d916822d11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbcad48fef30836ddcd28ef5aa651961"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#acbcad48fef30836ddcd28ef5aa651961">check_spot</a> (<a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> <a class="el" href="structboard.html">board</a>, unsigned int row, unsigned int col, unsigned int dim_label)</td></tr>
+<tr class="memitem:acbcad48fef30836ddcd28ef5aa651961"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#acbcad48fef30836ddcd28ef5aa651961">check_spot</a> (<a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> <a class="el" href="structboard.html">board</a>, unsigned int row, unsigned int col, unsigned int dim_label)</td></tr>
 <tr class="memdesc:acbcad48fef30836ddcd28ef5aa651961"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if in a given coordinate on the board there is a pawn or not.  <a href="game__engine_8c.html#acbcad48fef30836ddcd28ef5aa651961">More...</a><br /></td></tr>
 <tr class="separator:acbcad48fef30836ddcd28ef5aa651961"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3d6435119a6f0271f67d07bb9798c1f"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#ac3d6435119a6f0271f67d07bb9798c1f">is_selected</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *<a class="el" href="structplayer.html">player</a>, int num_pawn, unsigned int nPl)</td></tr>
+<tr class="memitem:ac3d6435119a6f0271f67d07bb9798c1f"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#ac3d6435119a6f0271f67d07bb9798c1f">is_selected</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *<a class="el" href="structplayer.html">player</a>, int num_pawn, unsigned int nPl)</td></tr>
 <tr class="memdesc:ac3d6435119a6f0271f67d07bb9798c1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given pawn exists in the board.  <a href="game__engine_8c.html#ac3d6435119a6f0271f67d07bb9798c1f">More...</a><br /></td></tr>
 <tr class="separator:ac3d6435119a6f0271f67d07bb9798c1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b2ccf60f065b91670f5c440cc615e2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a2b2ccf60f065b91670f5c440cc615e2e">remove_pawn</a> (<a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *<a class="el" href="structboard.html">board</a>, unsigned int row, unsigned int col, unsigned int dim_label)</td></tr>
+<tr class="memitem:a2b2ccf60f065b91670f5c440cc615e2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a2b2ccf60f065b91670f5c440cc615e2e">remove_pawn</a> (<a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *<a class="el" href="structboard.html">board</a>, unsigned int row, unsigned int col, unsigned int dim_label)</td></tr>
 <tr class="memdesc:a2b2ccf60f065b91670f5c440cc615e2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset label from a given coordinate.  <a href="game__engine_8c.html#a2b2ccf60f065b91670f5c440cc615e2e">More...</a><br /></td></tr>
 <tr class="separator:a2b2ccf60f065b91670f5c440cc615e2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbf532f4b90267a4b5fa0f92a7b290f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#abbf532f4b90267a4b5fa0f92a7b290f6">pawn_promotion</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, unsigned int num_pawn, unsigned int nPl, unsigned int last_row)</td></tr>
+<tr class="memitem:abbf532f4b90267a4b5fa0f92a7b290f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#abbf532f4b90267a4b5fa0f92a7b290f6">pawn_promotion</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, unsigned int num_pawn, unsigned int nPl, unsigned int last_row)</td></tr>
 <tr class="memdesc:abbf532f4b90267a4b5fa0f92a7b290f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Promote a given pawn.  <a href="game__engine_8c.html#abbf532f4b90267a4b5fa0f92a7b290f6">More...</a><br /></td></tr>
 <tr class="separator:abbf532f4b90267a4b5fa0f92a7b290f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7661789f3fc8585f07e049bfdfbbf52"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#aa7661789f3fc8585f07e049bfdfbbf52">check_player</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, unsigned int x, unsigned int y, unsigned int nPl)</td></tr>
+<tr class="memitem:aa7661789f3fc8585f07e049bfdfbbf52"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#aa7661789f3fc8585f07e049bfdfbbf52">check_player</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, unsigned int x, unsigned int y, unsigned int nPl)</td></tr>
 <tr class="memdesc:aa7661789f3fc8585f07e049bfdfbbf52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if in a given coordinate there is an enemy pawn.  <a href="game__engine_8c.html#aa7661789f3fc8585f07e049bfdfbbf52">More...</a><br /></td></tr>
 <tr class="separator:aa7661789f3fc8585f07e049bfdfbbf52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad95a591d93c5394a13d2d45fb856b3ab"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#ad95a591d93c5394a13d2d45fb856b3ab">is_in</a> (int r, int c, <a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> <a class="el" href="structboard.html">board</a>)</td></tr>
+<tr class="memitem:ad95a591d93c5394a13d2d45fb856b3ab"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#ad95a591d93c5394a13d2d45fb856b3ab">is_in</a> (int r, int c, <a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> <a class="el" href="structboard.html">board</a>)</td></tr>
 <tr class="memdesc:ad95a591d93c5394a13d2d45fb856b3ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given coordinate are included in the board.  <a href="game__engine_8c.html#ad95a591d93c5394a13d2d45fb856b3ab">More...</a><br /></td></tr>
 <tr class="separator:ad95a591d93c5394a13d2d45fb856b3ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00374686d02b15fa8b62ba0b1a0a0e2e"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a00374686d02b15fa8b62ba0b1a0a0e2e">check_directions</a> (unsigned int *canMove_arr, unsigned int dim_canMove, char *str)</td></tr>
 <tr class="memdesc:a00374686d02b15fa8b62ba0b1a0a0e2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given string is setted in the pawn's possible movements.  <a href="game__engine_8c.html#a00374686d02b15fa8b62ba0b1a0a0e2e">More...</a><br /></td></tr>
 <tr class="separator:a00374686d02b15fa8b62ba0b1a0a0e2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a24af5cc31ae6fc596da667a229dc3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a6a24af5cc31ae6fc596da667a229dc3a">must_eat</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, <a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *<a class="el" href="structboard.html">board</a>, unsigned int n_pawn, unsigned int nPl)</td></tr>
+<tr class="memitem:a6a24af5cc31ae6fc596da667a229dc3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a6a24af5cc31ae6fc596da667a229dc3a">must_eat</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, <a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *<a class="el" href="structboard.html">board</a>, unsigned int n_pawn, unsigned int nPl)</td></tr>
 <tr class="memdesc:a6a24af5cc31ae6fc596da667a229dc3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set mandatory eat if possible.  <a href="game__engine_8c.html#a6a24af5cc31ae6fc596da667a229dc3a">More...</a><br /></td></tr>
 <tr class="separator:a6a24af5cc31ae6fc596da667a229dc3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd4a1e5e343482fb4152900f25886736"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#acd4a1e5e343482fb4152900f25886736">can_eat</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, unsigned int num_pawn, char *str, <a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *<a class="el" href="structboard.html">board</a>, unsigned int nPl)</td></tr>
+<tr class="memitem:acd4a1e5e343482fb4152900f25886736"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#acd4a1e5e343482fb4152900f25886736">can_eat</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, unsigned int num_pawn, char *str, <a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *<a class="el" href="structboard.html">board</a>, unsigned int nPl)</td></tr>
 <tr class="memdesc:acd4a1e5e343482fb4152900f25886736"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check enemy pawns in a given direction.  <a href="game__engine_8c.html#acd4a1e5e343482fb4152900f25886736">More...</a><br /></td></tr>
 <tr class="separator:acd4a1e5e343482fb4152900f25886736"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0de995b5f04add2b402ea983dc187d9c"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a0de995b5f04add2b402ea983dc187d9c">all_blocked</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, unsigned int nPl)</td></tr>
+<tr class="memitem:a0de995b5f04add2b402ea983dc187d9c"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a0de995b5f04add2b402ea983dc187d9c">all_blocked</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, unsigned int nPl)</td></tr>
 <tr class="memdesc:a0de995b5f04add2b402ea983dc187d9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a player can move.  <a href="game__engine_8c.html#a0de995b5f04add2b402ea983dc187d9c">More...</a><br /></td></tr>
 <tr class="separator:a0de995b5f04add2b402ea983dc187d9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad913753d69ed13ad3bcff7a80b1fa4e3"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#ad913753d69ed13ad3bcff7a80b1fa4e3">is_victory</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players)</td></tr>
+<tr class="memitem:ad913753d69ed13ad3bcff7a80b1fa4e3"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#ad913753d69ed13ad3bcff7a80b1fa4e3">is_victory</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players)</td></tr>
 <tr class="memdesc:ad913753d69ed13ad3bcff7a80b1fa4e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if there is a winner.  <a href="game__engine_8c.html#ad913753d69ed13ad3bcff7a80b1fa4e3">More...</a><br /></td></tr>
 <tr class="separator:ad913753d69ed13ad3bcff7a80b1fa4e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b8736bf8d03748b3eb4c3cf5bd19138"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a0b8736bf8d03748b3eb4c3cf5bd19138">is_empty</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> p)</td></tr>
+<tr class="memitem:a0b8736bf8d03748b3eb4c3cf5bd19138"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a0b8736bf8d03748b3eb4c3cf5bd19138">is_empty</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> p)</td></tr>
 <tr class="memdesc:a0b8736bf8d03748b3eb4c3cf5bd19138"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if in the player's array there is an unused pawn.  <a href="game__engine_8c.html#a0b8736bf8d03748b3eb4c3cf5bd19138">More...</a><br /></td></tr>
 <tr class="separator:a0b8736bf8d03748b3eb4c3cf5bd19138"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bd4d9ad7b168fa5a30645559b5173bf"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a0bd4d9ad7b168fa5a30645559b5173bf">max_pawns</a> (unsigned int r, unsigned int c)</td></tr>
 <tr class="memdesc:a0bd4d9ad7b168fa5a30645559b5173bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the max number of pawns in a given space.  <a href="game__engine_8c.html#a0bd4d9ad7b168fa5a30645559b5173bf">More...</a><br /></td></tr>
 <tr class="separator:a0bd4d9ad7b168fa5a30645559b5173bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a263b347172288a57651b3482c0d8dbc9"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a263b347172288a57651b3482c0d8dbc9">is_notstuck</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, <a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> <a class="el" href="structboard.html">board</a>, unsigned int nPawn, unsigned int nPl)</td></tr>
+<tr class="memitem:a263b347172288a57651b3482c0d8dbc9"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a263b347172288a57651b3482c0d8dbc9">is_notstuck</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, <a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> <a class="el" href="structboard.html">board</a>, unsigned int nPawn, unsigned int nPl)</td></tr>
 <tr class="memdesc:a263b347172288a57651b3482c0d8dbc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set possible movements of a given pawn.  <a href="game__engine_8c.html#a263b347172288a57651b3482c0d8dbc9">More...</a><br /></td></tr>
 <tr class="separator:a263b347172288a57651b3482c0d8dbc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a107a0bfe72f29a205eb704cfec1e68df"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a107a0bfe72f29a205eb704cfec1e68df">add_pawn</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, unsigned int enemy_pawn, unsigned int nPl, char c)</td></tr>
-<tr class="separator:a107a0bfe72f29a205eb704cfec1e68df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a501e49904d4a110a0f433447c45cd135"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a501e49904d4a110a0f433447c45cd135">set_moves_pawn</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, <a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *<a class="el" href="structboard.html">board</a>, unsigned int nPl, int nPawn)</td></tr>
+<tr class="memitem:a501e49904d4a110a0f433447c45cd135"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a501e49904d4a110a0f433447c45cd135">set_moves_pawn</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, <a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *<a class="el" href="structboard.html">board</a>, unsigned int nPl, int nPawn)</td></tr>
 <tr class="memdesc:a501e49904d4a110a0f433447c45cd135"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set possible movements of a given pawn and set mandatory eat.  <a href="game__engine_8c.html#a501e49904d4a110a0f433447c45cd135">More...</a><br /></td></tr>
 <tr class="separator:a501e49904d4a110a0f433447c45cd135"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a570fd3c27f9fff1e0b771dc6ed57edfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a570fd3c27f9fff1e0b771dc6ed57edfd">reset_moves_pawns</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, int nPawn, unsigned int nPl)</td></tr>
+<tr class="memitem:a570fd3c27f9fff1e0b771dc6ed57edfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a570fd3c27f9fff1e0b771dc6ed57edfd">reset_moves_pawns</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, int nPawn, unsigned int nPl)</td></tr>
 <tr class="memdesc:a570fd3c27f9fff1e0b771dc6ed57edfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset possible movements of a given pawn.  <a href="game__engine_8c.html#a570fd3c27f9fff1e0b771dc6ed57edfd">More...</a><br /></td></tr>
 <tr class="separator:a570fd3c27f9fff1e0b771dc6ed57edfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fec67377eed54d06d8001375ac7ad74"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a8fec67377eed54d06d8001375ac7ad74">check_canMove</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, unsigned int nPed, unsigned int nPl)</td></tr>
+<tr class="memitem:a8fec67377eed54d06d8001375ac7ad74"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a8fec67377eed54d06d8001375ac7ad74">check_canMove</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, unsigned int nPed, unsigned int nPl)</td></tr>
 <tr class="memdesc:a8fec67377eed54d06d8001375ac7ad74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a pawn is able to move.  <a href="game__engine_8c.html#a8fec67377eed54d06d8001375ac7ad74">More...</a><br /></td></tr>
 <tr class="separator:a8fec67377eed54d06d8001375ac7ad74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3109f8954897ba3feb48475cc5566cf"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#af3109f8954897ba3feb48475cc5566cf">check_while</a> (<a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *players, unsigned int nPl, unsigned int nPawn)</td></tr>
+<tr class="memitem:af3109f8954897ba3feb48475cc5566cf"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#af3109f8954897ba3feb48475cc5566cf">check_while</a> (<a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *players, unsigned int nPl, unsigned int nPawn)</td></tr>
 <tr class="memdesc:af3109f8954897ba3feb48475cc5566cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a pawn is selectable.  <a href="game__engine_8c.html#af3109f8954897ba3feb48475cc5566cf">More...</a><br /></td></tr>
 <tr class="separator:af3109f8954897ba3feb48475cc5566cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fab312a910163e9634d12fe728f1d70"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a3fab312a910163e9634d12fe728f1d70">check_string</a> (char *str)</td></tr>
 <tr class="memdesc:a3fab312a910163e9634d12fe728f1d70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare if the a given string equals to a valid movement.  <a href="game__engine_8c.html#a3fab312a910163e9634d12fe728f1d70">More...</a><br /></td></tr>
 <tr class="separator:a3fab312a910163e9634d12fe728f1d70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3c132e96baafe05bc8ae89beff5313c"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#aa3c132e96baafe05bc8ae89beff5313c">char_converter</a> (<a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> <a class="el" href="structboard.html">board</a>, unsigned int r, unsigned int c, unsigned int dim_label)</td></tr>
+<tr class="memitem:aa3c132e96baafe05bc8ae89beff5313c"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#aa3c132e96baafe05bc8ae89beff5313c">char_converter</a> (<a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> <a class="el" href="structboard.html">board</a>, unsigned int r, unsigned int c, unsigned int dim_label)</td></tr>
 <tr class="memdesc:aa3c132e96baafe05bc8ae89beff5313c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a given char on a label to int.  <a href="game__engine_8c.html#aa3c132e96baafe05bc8ae89beff5313c">More...</a><br /></td></tr>
 <tr class="separator:aa3c132e96baafe05bc8ae89beff5313c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00edfa0b11cbdf464431c6f3b3b3eb27"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__engine_8c.html#a00edfa0b11cbdf464431c6f3b3b3eb27">int_converter</a> (int num, unsigned int index)</td></tr>
@@ -170,58 +187,6 @@ Functions</h2></td></tr>
 <tr class="separator:a0274aaa6306d984a6b58c3f21254dc9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a107a0bfe72f29a205eb704cfec1e68df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a107a0bfe72f29a205eb704cfec1e68df">&#9670;&nbsp;</a></span>add_pawn()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int add_pawn </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
-          <td class="paramname"><em>players</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>enemy_pawn</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>nPl</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>c</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">players</td><td></td></tr>
-    <tr><td class="paramname">enemy_pawn</td><td></td></tr>
-    <tr><td class="paramname">nPl</td><td></td></tr>
-    <tr><td class="paramname">c</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>unsigned int </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00477">477</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
-
-</div>
-</div>
 <a id="a0de995b5f04add2b402ea983dc187d9c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0de995b5f04add2b402ea983dc187d9c">&#9670;&nbsp;</a></span>all_blocked()</h2>
 
@@ -231,7 +196,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">unsigned int all_blocked </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
@@ -271,7 +236,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int can_eat </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
@@ -289,7 +254,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *&#160;</td>
           <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
@@ -332,7 +297,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">unsigned int char_converter </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a>&#160;</td>
           <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
@@ -373,7 +338,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>unsigned int Return the conversion of the char to int. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00622">622</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00568">568</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
 
 </div>
 </div>
@@ -386,7 +351,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">unsigned int check_canMove </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
@@ -420,7 +385,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>unsigned int Return 1 if the pawn can move, 0 otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00582">582</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00528">528</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
 
 </div>
 </div>
@@ -449,7 +414,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>unsigned int Return 1 if the char matches, 2 if the char mathes being uppercase, 0 otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00645">645</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00591">591</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
 
 </div>
 </div>
@@ -509,7 +474,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int check_player </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
@@ -563,7 +528,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">unsigned int check_spot </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a>&#160;</td>
           <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
@@ -633,7 +598,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>unsigned int Return 1 if the string correspond, 0 otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00605">605</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00551">551</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
 
 </div>
 </div>
@@ -646,7 +611,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">unsigned int check_while </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
@@ -680,7 +645,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>unsigned int Return 1 if the pawn is selectable, 0 otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00597">597</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00543">543</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
 
 </div>
 </div>
@@ -693,7 +658,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void initialize_board </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *&#160;</td>
           <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
@@ -760,7 +725,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>char Return the conversion of the int to a char. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00631">631</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00577">577</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
 
 </div>
 </div>
@@ -773,7 +738,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int is_empty </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a>&#160;</td>
           <td class="paramname"><em>p</em></td><td>)</td>
           <td></td>
         </tr>
@@ -814,7 +779,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a>&#160;</td>
           <td class="paramname"><em>board</em>&#160;</td>
         </tr>
         <tr>
@@ -849,13 +814,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">unsigned int is_notstuck </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a>&#160;</td>
           <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
@@ -903,7 +868,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">unsigned int is_selected </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>player</em>, </td>
         </tr>
         <tr>
@@ -950,7 +915,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">unsigned int is_victory </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1019,13 +984,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void must_eat </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *&#160;</td>
           <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
@@ -1072,7 +1037,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void pawn_promotion </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
@@ -1171,7 +1136,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void remove_pawn </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *&#160;</td>
           <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
@@ -1224,7 +1189,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void reset_moves_pawns </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
@@ -1257,7 +1222,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00555">555</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00501">501</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
 
 </div>
 </div>
@@ -1270,13 +1235,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void set_moves_pawn </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>players</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *&#160;</td>
           <td class="paramname"><em>board</em>, </td>
         </tr>
         <tr>
@@ -1311,7 +1276,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00531">531</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00477">477</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
 
 </div>
 </div>
@@ -1324,13 +1289,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void update_board </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#ab483a33346a4bc76ef78b41d60e6ec13">board_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a0c086db189c5a372182b711655d13a35">board_t</a> *&#160;</td>
           <td class="paramname"><em>t</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="supporto_8h.html#a9df65ef34efcf40007091fa0e679ea0c">player_t</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="game__engine_8h.html#a3296436e9f0e0df92571f44c3e0ba70b">player_t</a> *&#160;</td>
           <td class="paramname"><em>player</em>&#160;</td>
         </tr>
         <tr>
@@ -1379,14 +1344,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>char Return the uppercased char. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00641">641</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="game__engine_8c_source.html#l00587">587</a> of file <a class="el" href="game__engine_8c_source.html">game_engine.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.0
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_8a63a06b97ec1e69eb6b2537b1056ef4.html">game_engine</a></li><li class="navelem"><a class="el" href="game__engine_8c.html">game_engine.c</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.0 </li>
+  </ul>
+</div>
 </body>
 </html>

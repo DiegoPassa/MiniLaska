@@ -15,20 +15,20 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$ \mbox{\hyperlink{memory__management_8c_a59717829a891932b9087821edba6c9ba}{create\+\_\+board}} (unsigned int n\+\_\+rows, unsigned int n\+\_\+cols, unsigned int cifre)
+\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$ \mbox{\hyperlink{memory__management_8c_a59717829a891932b9087821edba6c9ba}{create\+\_\+board}} (unsigned int n\+\_\+rows, unsigned int n\+\_\+cols, unsigned int cifre)
 \begin{DoxyCompactList}\small\item\em Create a board object. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$ \mbox{\hyperlink{memory__management_8c_a78a40143a6e01b942333cbad61af46f9}{create\+\_\+pawns}} (unsigned int tot\+Pawns, char player1, char player2, unsigned int cifre, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}})
+\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$ \mbox{\hyperlink{memory__management_8c_a78a40143a6e01b942333cbad61af46f9}{create\+\_\+pawns}} (unsigned int tot\+Pawns, char player1, char player2, unsigned int cifre, \mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}})
 \begin{DoxyCompactList}\small\item\em Create a pawns object. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$ \mbox{\hyperlink{memory__management_8c_a756df69ef86d001e387271af896b5078}{copy\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$new\+Board, unsigned int cifre, unsigned int set)
-\item 
-\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$ \mbox{\hyperlink{memory__management_8c_a7f9bac937dc0ea682379dce48f23cdfd}{player\+\_\+copy}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$new\+Players, unsigned int dim\+\_\+label, unsigned int set)
-\item 
-void \mbox{\hyperlink{memory__management_8c_ac609f664beb8147e2372bc173b30af32}{destroy\+\_\+player}} (\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players)
-\item 
-void \mbox{\hyperlink{memory__management_8c_aeef99ca7f1dc371d786f261cd7a73fef}{destroy\+\_\+board}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}})
-\item 
-void \mbox{\hyperlink{memory__management_8c_ae7bc18f77d401b9b34cd20bea551c49b}{restore\+\_\+copy}} (\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$board\+\_\+copy, \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$players\+\_\+copy)
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$ \mbox{\hyperlink{memory__management_8c_a756df69ef86d001e387271af896b5078}{copy\+\_\+board}} (\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, \mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$new\+Board, unsigned int cifre, unsigned int set)
+\begin{DoxyCompactList}\small\item\em It copy all value of board to another board,eventually allocating memory if necessary. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$ \mbox{\hyperlink{memory__management_8c_a7f9bac937dc0ea682379dce48f23cdfd}{player\+\_\+copy}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$new\+Players, unsigned int dim\+\_\+label, unsigned int set)
+\begin{DoxyCompactList}\small\item\em It copy all value of array players to another array players,eventually allocating memory if necessary. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{memory__management_8c_ac609f664beb8147e2372bc173b30af32}{destroy\+\_\+player}} (\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players)
+\begin{DoxyCompactList}\small\item\em Deallocate all allocated memory by create\+\_\+pawns. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{memory__management_8c_aeef99ca7f1dc371d786f261cd7a73fef}{destroy\+\_\+board}} (\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$\mbox{\hyperlink{structboard}{board}})
+\begin{DoxyCompactList}\small\item\em Deallocate all allocated memory by create\+\_\+board. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{memory__management_8c_ae7bc18f77d401b9b34cd20bea551c49b}{restore\+\_\+copy}} (\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} \mbox{\hyperlink{structboard}{board}}, \mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players, \mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$board\+\_\+copy, \mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$players\+\_\+copy)
+\begin{DoxyCompactList}\small\item\em Calls the two copy functions to summarize the various copy calls into one. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -36,59 +36,61 @@ void \mbox{\hyperlink{memory__management_8c_ae7bc18f77d401b9b34cd20bea551c49b}{r
 \index{memory\_management.c@{memory\_management.c}!copy\_board@{copy\_board}}
 \index{copy\_board@{copy\_board}!memory\_management.c@{memory\_management.c}}
 \doxysubsubsection{\texorpdfstring{copy\_board()}{copy\_board()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}$\ast$ copy\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{new\+Board,  }\item[{unsigned int}]{cifre,  }\item[{unsigned int}]{set }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}}$\ast$ copy\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}}}]{board,  }\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$}]{new\+Board,  }\item[{unsigned int}]{cifre,  }\item[{unsigned int}]{set }\end{DoxyParamCaption})}
+
+
+
+It copy all value of board to another board,eventually allocating memory if necessary. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em board} & \\
+{\em board} & Instance of a board. \\
 \hline
-{\em new\+Board} & \\
+{\em new\+Board} & Pointer of a board where do the copy. \\
 \hline
-{\em cifre} & \\
+{\em cifre} & Number of columns that are necessary to represent a label of one pawn. \\
 \hline
-{\em set} & \\
+{\em set} & If 1 then the fuction allocating memory,0 else. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-board\+\_\+t$\ast$ 
+board\+\_\+t$\ast$ Return a pointer of a board that it is the copy of chessboard. 
 \end{DoxyReturn}
 
 
-Definition at line 151 of file memory\+\_\+management.\+c.
+Definition at line 146 of file memory\+\_\+management.\+c.
 
 \mbox{\Hypertarget{memory__management_8c_a59717829a891932b9087821edba6c9ba}\label{memory__management_8c_a59717829a891932b9087821edba6c9ba}} 
 \index{memory\_management.c@{memory\_management.c}!create\_board@{create\_board}}
 \index{create\_board@{create\_board}!memory\_management.c@{memory\_management.c}}
 \doxysubsubsection{\texorpdfstring{create\_board()}{create\_board()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}$\ast$ create\+\_\+board (\begin{DoxyParamCaption}\item[{unsigned int}]{n\+\_\+rows,  }\item[{unsigned int}]{n\+\_\+cols,  }\item[{unsigned int}]{cifre }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}}$\ast$ create\+\_\+board (\begin{DoxyParamCaption}\item[{unsigned int}]{n\+\_\+rows,  }\item[{unsigned int}]{n\+\_\+cols,  }\item[{unsigned int}]{cifre }\end{DoxyParamCaption})}
 
 
 
 Create a board object. 
 
-Creazione del campo di gioco.
-
 
 \begin{DoxyParams}{Parameters}
-{\em n\+\_\+rows} & \\
+{\em n\+\_\+rows} & Number of row of the new board. \\
 \hline
-{\em n\+\_\+cols} & \\
+{\em n\+\_\+cols} & Number of columns of the new board. \\
 \hline
-{\em cifre} & \\
+{\em cifre} & Number of columns that are necessary to represent a label of one pawn. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-board\+\_\+t$\ast$ 
+board\+\_\+t$\ast$ Return a pointer of the board. 
 \end{DoxyReturn}
 
 
-Definition at line 22 of file memory\+\_\+management.\+c.
+Definition at line 17 of file memory\+\_\+management.\+c.
 
 \mbox{\Hypertarget{memory__management_8c_a78a40143a6e01b942333cbad61af46f9}\label{memory__management_8c_a78a40143a6e01b942333cbad61af46f9}} 
 \index{memory\_management.c@{memory\_management.c}!create\_pawns@{create\_pawns}}
 \index{create\_pawns@{create\_pawns}!memory\_management.c@{memory\_management.c}}
 \doxysubsubsection{\texorpdfstring{create\_pawns()}{create\_pawns()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}}$\ast$ create\+\_\+pawns (\begin{DoxyParamCaption}\item[{unsigned int}]{tot\+Pawns,  }\item[{char}]{player1,  }\item[{char}]{player2,  }\item[{unsigned int}]{cifre,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}}$\ast$ create\+\_\+pawns (\begin{DoxyParamCaption}\item[{unsigned int}]{tot\+Pawns,  }\item[{char}]{player1,  }\item[{char}]{player2,  }\item[{unsigned int}]{cifre,  }\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}}}]{board }\end{DoxyParamCaption})}
 
 
 
@@ -96,96 +98,112 @@ Create a pawns object.
 
 
 \begin{DoxyParams}{Parameters}
-{\em tot\+Pawns} & \\
+{\em tot\+Pawns} & Number of pawns for each player. \\
 \hline
-{\em player1} & \\
+{\em player1} & Characters of the pawn of player 1,and this is helpful for the print\+\_\+board(\char`\"{}../game\+\_\+engine/game\+\_\+engine.\+h\char`\"{}). \\
 \hline
-{\em player2} & \\
+{\em player2} & Characters of the pawn of player 2,and this is helpful for the print\+\_\+board(\char`\"{}../game\+\_\+engine/game\+\_\+engine.\+h\char`\"{}). \\
 \hline
-{\em cifre} & \\
+{\em cifre} & Numbers of characters to represent the number of a pawn. \\
 \hline
-{\em board} & \\
+{\em board} & Instance of the board. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-player\+\_\+t$\ast$ 
+player\+\_\+t$\ast$ Return a pointer of the array players. 
 \end{DoxyReturn}
 
 
-Definition at line 42 of file memory\+\_\+management.\+c.
+Definition at line 37 of file memory\+\_\+management.\+c.
 
 \mbox{\Hypertarget{memory__management_8c_aeef99ca7f1dc371d786f261cd7a73fef}\label{memory__management_8c_aeef99ca7f1dc371d786f261cd7a73fef}} 
 \index{memory\_management.c@{memory\_management.c}!destroy\_board@{destroy\_board}}
 \index{destroy\_board@{destroy\_board}!memory\_management.c@{memory\_management.c}}
 \doxysubsubsection{\texorpdfstring{destroy\_board()}{destroy\_board()}}
-{\footnotesize\ttfamily void destroy\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void destroy\+\_\+board (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$}]{board }\end{DoxyParamCaption})}
+
+
+
+Deallocate all allocated memory by create\+\_\+board. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em board} & \\
+{\em board} & Pointer of a board. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 259 of file memory\+\_\+management.\+c.
+Definition at line 254 of file memory\+\_\+management.\+c.
 
 \mbox{\Hypertarget{memory__management_8c_ac609f664beb8147e2372bc173b30af32}\label{memory__management_8c_ac609f664beb8147e2372bc173b30af32}} 
 \index{memory\_management.c@{memory\_management.c}!destroy\_player@{destroy\_player}}
 \index{destroy\_player@{destroy\_player}!memory\_management.c@{memory\_management.c}}
 \doxysubsubsection{\texorpdfstring{destroy\_player()}{destroy\_player()}}
-{\footnotesize\ttfamily void destroy\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void destroy\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players }\end{DoxyParamCaption})}
+
+
+
+Deallocate all allocated memory by create\+\_\+pawns. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em players} & \\
+{\em players} & Pointer of players array. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 242 of file memory\+\_\+management.\+c.
+Definition at line 237 of file memory\+\_\+management.\+c.
 
 \mbox{\Hypertarget{memory__management_8c_a7f9bac937dc0ea682379dce48f23cdfd}\label{memory__management_8c_a7f9bac937dc0ea682379dce48f23cdfd}} 
 \index{memory\_management.c@{memory\_management.c}!player\_copy@{player\_copy}}
 \index{player\_copy@{player\_copy}!memory\_management.c@{memory\_management.c}}
 \doxysubsubsection{\texorpdfstring{player\_copy()}{player\_copy()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}}$\ast$ player\+\_\+copy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{new\+Players,  }\item[{unsigned int}]{dim\+\_\+label,  }\item[{unsigned int}]{set }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}}$\ast$ player\+\_\+copy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{new\+Players,  }\item[{unsigned int}]{dim\+\_\+label,  }\item[{unsigned int}]{set }\end{DoxyParamCaption})}
+
+
+
+It copy all value of array players to another array players,eventually allocating memory if necessary. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em players} & \\
+{\em players} & Pointer of players array. \\
 \hline
-{\em new\+Players} & \\
+{\em new\+Players} & Pointer of players array where to make the copy. \\
 \hline
-{\em dim\+\_\+label} & \\
+{\em dim\+\_\+label} & Dimension of label array of pawn. \\
 \hline
-{\em set} & \\
+{\em set} & If 1 then the fuction allocating memory,0 else. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-player\+\_\+t$\ast$ 
+player\+\_\+t$\ast$ Return a pointer of a players array that is the copy of players parameter. 
 \end{DoxyReturn}
 
 
-Definition at line 182 of file memory\+\_\+management.\+c.
+Definition at line 177 of file memory\+\_\+management.\+c.
 
 \mbox{\Hypertarget{memory__management_8c_ae7bc18f77d401b9b34cd20bea551c49b}\label{memory__management_8c_ae7bc18f77d401b9b34cd20bea551c49b}} 
 \index{memory\_management.c@{memory\_management.c}!restore\_copy@{restore\_copy}}
 \index{restore\_copy@{restore\_copy}!memory\_management.c@{memory\_management.c}}
 \doxysubsubsection{\texorpdfstring{restore\_copy()}{restore\_copy()}}
-{\footnotesize\ttfamily void restore\+\_\+copy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}}}]{board,  }\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{supporto_8h_ab483a33346a4bc76ef78b41d60e6ec13}{board\+\_\+t}} $\ast$}]{board\+\_\+copy,  }\item[{\mbox{\hyperlink{supporto_8h_a9df65ef34efcf40007091fa0e679ea0c}{player\+\_\+t}} $\ast$}]{players\+\_\+copy }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void restore\+\_\+copy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}}}]{board,  }\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players,  }\item[{\mbox{\hyperlink{game__engine_8h_a0c086db189c5a372182b711655d13a35}{board\+\_\+t}} $\ast$}]{board\+\_\+copy,  }\item[{\mbox{\hyperlink{game__engine_8h_a3296436e9f0e0df92571f44c3e0ba70b}{player\+\_\+t}} $\ast$}]{players\+\_\+copy }\end{DoxyParamCaption})}
+
+
+
+Calls the two copy functions to summarize the various copy calls into one. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em board} & \\
+{\em board} & Instance of a board. \\
 \hline
-{\em players} & \\
+{\em players} & Pointer of players array. \\
 \hline
-{\em board\+\_\+copy} & \\
+{\em board\+\_\+copy} & Pointer of a board where do the copy. \\
 \hline
-{\em players\+\_\+copy} & \\
+{\em players\+\_\+copy} & Pointer of players array where to make the copy. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 269 of file memory\+\_\+management.\+c.
+Definition at line 264 of file memory\+\_\+management.\+c.
 
