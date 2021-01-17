@@ -368,7 +368,7 @@ int game(unsigned int gameMode){
     int isCustom = 3, depth;
     unsigned int exit = 4,turno = 0,round = 0;
     unsigned int cifre,conta = 2,numped = 11;
-    int scanfValue;
+    int scanfValue = 1;
 
     srand(time(0));
 
@@ -424,8 +424,10 @@ int game(unsigned int gameMode){
     printf(" ["YEL"2"reset"] Custom\n");
     printf("\n Selection: ");
 
-
-    while (isCustom != 1 && isCustom != 2){
+    scanfValue = scanf("%d", &isCustom);
+    if (scanfValue != 1) isCustom = checkInt(scanfValue);
+    while ( (isCustom != 1) && (isCustom != 2) ){
+        printf("\n Invalid selection.. try again: ");
         printf(YEL);
         scanfValue = scanf("%d", &isCustom);
         if (scanfValue != 1) isCustom = checkInt(scanfValue);
@@ -579,7 +581,8 @@ int game(unsigned int gameMode){
             printf(" Player %d turn\n", turno+1);
             printf(reset);
             if (turno == 0 ){
-                exit = round_player(players,t,turno);
+                exit = round_ia_random(players, t, turno);
+                /*exit = round_player(players,t,turno);*/
                 turno = 1;
             }else{
                 if (gameMode){
@@ -626,7 +629,7 @@ int game(unsigned int gameMode){
 }
 
 int checkInt(int scanfValue){
-    int value;
+    int value = 0;
     while(scanfValue != 1)
     {
         printf(RED" Please enter an integer: ");
