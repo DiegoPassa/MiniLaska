@@ -81,18 +81,6 @@
 #define reset "\033[0m"
 
 /**
- * @brief Set the Yellow object
- * 
- */
-void setYellow();
-
-/**
- * @brief Set the Black object
- * 
- */
-void setBlack();
-
-/**
  * @brief Set the White object
  * 
  */
@@ -111,18 +99,4 @@ void printTextColor(char color);
  * @param color 
  */
 void printColor(char color);
-
-/**
- * @brief 
- * 
- * @param nPl 
- */
-void printPlayerTurn(char nPl);
-
-/**
- * @brief 
- * 
- */
-void resetColor();
-
 #endif

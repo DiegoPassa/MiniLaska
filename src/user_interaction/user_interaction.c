@@ -64,8 +64,8 @@ void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char 
                 
                 /* stampa le torri */
                 if (cime[j/cifre]==l){
-                    if (topPl[j/cifre] == char_p2 || topPl[j/cifre] == char_p1){
-                        setBlack();
+                    if (topPl[j/cifre] == char_p2 || topPl[j/cifre] == char_p1){                
+                        printf(BLK"");
                         if (topPl[j/cifre] == char_p2){
                             printColor(char_p2);
                         }else if (topPl[j/cifre] == char_p1){
@@ -85,7 +85,7 @@ void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char 
                             }
                         }
                         printf(" ");
-                        resetColor();
+                        printf(reset"");
                     }
                 }else{
                     if (cime[j/cifre]<l){
@@ -106,14 +106,14 @@ void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char 
                         for(z = 0 ; z < cifre+2; ++z){
                             printf(" ");
                         }
-                        resetColor();
+                        printf(reset"");
                     }    /* stampa le caselle bianche */
                     else if (topPl[j/cifre] == '#' || (cime[j/cifre]!=3)){
                         setWhite();
                         for(z = 0 ; z < cifre+2; ++z){
                             printf(" ");
                         }
-                        resetColor();
+                        printf(reset"");
                     }
                     /* stampa le caselle nere */
                     else{
@@ -393,7 +393,7 @@ int game(unsigned int gameMode){
             scanf("%u",&w);
         }
         max_ped = max_pawns(h,w);
-        printf(reset" Maximum number of pawns : %u\n",max_ped);
+        printf(reset" %u is the maximum number of pawns\n",max_ped);
         printf(" Select number of pawns : "YEL);
         scanf("%u",&cifre);
         while(cifre > max_ped){
@@ -416,7 +416,7 @@ int game(unsigned int gameMode){
             initialize_board(t,3+conta+1);
 
 
-            printf("\n [" BLK REDB" R " reset "] ["BLK YELB" Y " reset "] ["BLK GRNB" G " reset "] ["BLK CYNB" C " reset "] ["BLK BLUB" B " reset "] ["BLK MAGB" M " reset "]\n");
+            printf(reset"\n [" BLK REDB" R " reset "] ["BLK YELB" Y " reset "] ["BLK GRNB" G " reset "] ["BLK CYNB" C " reset "] ["BLK BLUB" B " reset "] ["BLK MAGB" M " reset "]\n");
 
             printf(" Choose player 1 pawn color: ");
             scanf("%s", &char_p1);
@@ -459,10 +459,7 @@ int game(unsigned int gameMode){
                 }
             }
 
-            players = create_pawns(numped,char_p1, char_p2, conta,*t); /* create array[2] of player_t type */
-            /* 
-            print_player(players,0);
-            print_player(players,1); */
+            players = create_pawns(numped,char_p1, char_p2, conta,*t);
 
         }else{
             printf(" It doesn't have any sense playing with %d pawns",cifre);
@@ -490,9 +487,10 @@ int game(unsigned int gameMode){
             printf(" Round number : %u\n",round);
             printTextColor(players[turno].color);
             printf(" Player %d turn\n", turno+1);
-            resetColor();
+            printf(reset"");
             if (turno == 0 ){
-                exit = round_player(players,t,turno);
+                /* exit = round_player(players,t,turno); */
+                exit = round_ia_random(players, t, turno);
                 turno = 1;
             }else{
                 if (gameMode){
@@ -510,8 +508,7 @@ int game(unsigned int gameMode){
             print_player(players,1); */
             update_board(t, players);
             print_board(*t, players[turno].pawns[0].dim_label+1+3, 0, players[0].color, players[1].color);
-            /*printMatrix(*t);*/
-            sleep(0);
+            sleep(1);
             ++round;
         }
     }
@@ -553,17 +550,17 @@ void menu(){
     printf("\n ["YEL"2"reset"] Player vs. IA");
     printf("\n ["YEL"3"reset"] Exit");
     while(choice != 1 && choice != 2 && choice != 3){
-        printf("\n\n Select mode: ");
+        printf("\n\n Select mode: "YEL);
         scanf("%d", &choice);
         switch(choice){
             case 1:
                 system("clear");
-                printf("\n Selected Player vs. Player\n");
+                printf(reset"\n Selected Player vs. Player\n");
                 game(0);
                 break;
             case 2:
-                printf("\n Selected Player vs. IA\n");
                 system("clear");
+                printf(reset"\n Selected Player vs. IA\n");
                 game(1);
                 break;
             case 3:

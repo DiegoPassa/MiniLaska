@@ -473,7 +473,7 @@ unsigned int is_notstuck(player_t *players, board_t board, unsigned int nPawn, u
         return 0;
     }
 }
-
+/* 
 unsigned int add_pawn(player_t *players, unsigned int enemy_pawn, unsigned int nPl,char c ){
     int nPl2 = 1;
 
@@ -490,7 +490,7 @@ unsigned int add_pawn(player_t *players, unsigned int enemy_pawn, unsigned int n
         char temp[3];
         temp[0] = ' ';
         temp[1] = c;
-        temp[2] = players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima]; /* 012 */
+        temp[2] = players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima];
 
         players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima] = ' ';
         players[nPl2].pawns[enemy_pawn].cima+=1;
@@ -510,7 +510,7 @@ unsigned int add_pawn(player_t *players, unsigned int enemy_pawn, unsigned int n
         players[nPl2].pawns[players[nPl].dim_pawns].label[players[nPl].pawns[players[nPl].dim_pawns].dim_label+3] = ' ';
         players[nPl].pawns[players[nPl].dim_pawns].label[players[nPl].pawns[players[nPl].dim_pawns].dim_label+3] = ' ';
 
-        /* in caso if per cifre e riadattare cifre*/
+        
         for(i = 0 ; i < 3 ; ++i){
             players[nPl].pawns[players[nPl].dim_pawns].label[i] = temp[i];
         }
@@ -526,7 +526,7 @@ unsigned int add_pawn(player_t *players, unsigned int enemy_pawn, unsigned int n
         printf(" Error in the realloc\n");
         return 0;
     }
-}
+} */
 
 void set_moves_pawn(player_t *players, board_t *board, unsigned int nPl, int nPawn){
 

@@ -7,31 +7,6 @@
 #include <stdio.h>
 #include "colors.h"
 
-/*
-    **********************
-    *    1 = Testo       *
-    *    2 = Sfondo      *
-    **********************
-*/
-
-void setRed (int n) {
-    if (n == 1){
-        printf("\033[0;31m");
-    }
-    if (n == 2){
-        printf(REDB);
-    }
-}
-
-void setYellow (int n){
-    if (n == 1){
-        printf("\033[0;33m");
-    }
-    if (n == 2){
-        printf("\033[43m");
-    }
-}
-
 void printTextColor(char color){
     if (color == 'R'){
         printf(RED);
@@ -74,23 +49,6 @@ void printColor(char color){
     }
 }
 
-void printPlayerTurn(char nPl){
-    if (nPl == 'B'){
-        setYellow(1);
-    }
-    if (nPl == 'N'){
-        setRed(1);
-    }
-}
-
-void setBlack (){
-    printf(BLK);
-}
-
 void setWhite (){
     printf("\033[7m");
-}
-
-void resetColor () {
-    printf("\033[0m");
 }

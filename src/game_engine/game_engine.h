@@ -17,7 +17,7 @@ typedef unsigned int dim_board, coord, flag;
  *
  */
 struct board{
-    char **mat; /*!< Detailed description after the member */
+    char **mat;
     dim_board n_rows;
     dim_board n_cols;
 }typedef board_t;
@@ -30,8 +30,8 @@ struct board{
  *
  */
 struct point{
-    coord x; /* cols */
-    coord y; /* rows */
+    coord x; /*!< cols */
+    coord y; /*!< rows */
 }typedef point_t;
 
 /**
@@ -50,13 +50,13 @@ struct point{
  *              -> canMove[3]  = bottom left.
  */
 struct pawn{
-    char *label; /* etichetta della pedina Es.|  BN07 | */
+    char *label; /*!< label of the pawn ex.|  BN07 | */
     unsigned int dim_label;
     point_t coordinate;
     unsigned int cima;
     unsigned int grade;
-    flag isPromoted; /* Es: |  BN07^ | */
-    unsigned int *canMove; /* 0010 -> bassodx */
+    flag isPromoted;
+    unsigned int *canMove;
 }typedef pawn_t;
 
 /**
@@ -76,7 +76,7 @@ struct player{
 /**
  * @brief Set char on the board.
  * 
- * '#' white cell, it's where pawns can move
+ * '#' white cell, it's where pawns can move <br>
  * ' ' black cell, it's where pawns cannot move
  * 
  * @param board Pointer to the board.

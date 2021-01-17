@@ -95,7 +95,8 @@ unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t bo
     }else{
         int newPos = is_empty(players[nPl]);
         if (newPos == -1){
-            add_pawn(players, enemy_pawn, nPl,players[nPl].pawns[num_pawn].label[players[nPl].pawns[num_pawn].cima]);
+            printf("\n\n\n AIUTOOOOOOOOOOOO \n\n\n");
+            /* add_pawn(players, enemy_pawn, nPl,players[nPl].pawns[num_pawn].label[players[nPl].pawns[num_pawn].cima]); */
         }else if(newPos >= 0 && players[nPl2].pawns[enemy_pawn].grade > 1){
             int newPos_copy;
             unsigned int index;
