@@ -313,13 +313,13 @@ int evaluate_score(board_t board, player_t *players){
                 if (j == 0){
                     val+=players[j].pawns[i].grade;
                     if (players[j].pawns[i].isPromoted){
-                        val++;
+                        val+=2;
                     }                
                 }else{
                     val-=players[j].pawns[i].grade;
                     if (players[j].pawns[i].isPromoted){
-                        val--;
-                    }                
+                        val-=2;
+                    }
                 }
             }
         }

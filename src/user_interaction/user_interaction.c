@@ -418,8 +418,10 @@ int game(unsigned int gameMode){
     printf(" ["YEL"2"reset"] Custom\n");
     printf("\n Selection: ");
 
+    printf(YEL);
     scanfValue = scanf("%d", &isCustom);
     if (scanfValue != 1) isCustom = checkInt(scanfValue);
+    printf(reset);
     while ( (isCustom != 1) && (isCustom != 2) ){
         printf("\n Invalid selection.. try again: ");
         printf(YEL);
@@ -582,8 +584,8 @@ int game(unsigned int gameMode){
                     if (depth == 0){
                         exit = round_ia_random(players, t, turno);
                     }else{
-                        exit = round_ia_minimax(players,t,turno, depth);                
-                    }                
+                        exit = round_ia_minimax(players,t,turno, depth);
+                    }
                 }else{            
                     exit = round_player(players,t,turno);
                 }
