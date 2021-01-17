@@ -1,0 +1,74 @@
+/*
+    ID gruppo : 51
+
+    886711 Passarella-Diego | 882082 Pasqual-Davide | 881493 Ravagnan-Michelle
+
+ */
+#ifndef GAME_ENGINE_H
+#define GAME_ENGINE_H
+typedef unsigned int dim_board, coord, flag;
+
+/**
+ * @brief Description of struct board:
+ *
+ * -> mat : two-dimensional array of characters.
+ * -> n_rows : it is the number of row int the matrix.
+ * -> n_columns : it is the number of columns int the matrix.
+ *
+ */
+struct board{
+    char **mat;
+    dim_board n_rows;
+    dim_board n_cols;
+}typedef board_t;
+
+/**
+ * @brief Description of struct point :
+ *
+ * -> x : it represents the coordinate x of the matrix,so the column coordinate.
+ * -> y : it represents the coordinate y of the matrix,so the row coordinate.
+ *
+ */
+struct point{
+    coord x; /* cols */
+    coord y; /* rows */
+}typedef point_t;
+
+/**
+ * @brief Description of struct pawn :
+ *
+ * -> label : it is a char pointer,so it is the label of a pawn in the chessboard.
+ * -> dim_label : it is the number of char that are necessary to represent the number of a pawn in the label.
+ * -> coordinate : they are the coordinates of a pawn in the board.
+ * -> cima : it is the position of the highest pawn int he label.
+ * -> grade : if 0 then the label doesn't appear in the board,else it represents the height of the pawn tower.
+ * -> is_promoted : if 1 then the pawn can move to bottom right or bottom left respect the pawn ,else the pawn can move only left or right respect the pawn.
+ * -> canMove : it is a int pointer,so where it set to 1 the pawn can move in that direction :
+ *              -> canMove[0]  = left.
+ *              -> canMove[1]  = right.
+ *              -> canMove[2]  = bottom right.
+ *              -> canMove[3]  = bottom left.
+ */
+struct pawn{
+    char *label; /* label of pawn Ex.|  BN07 | */
+    unsigned int dim_label;
+    point_t coordinate;
+    unsigned int cima;
+    unsigned int grade;
+    flag isPromoted; /* Ex: |  BN07^ | */
+    unsigned int *canMove; /* 0010 -> botr */
+}typedef pawn_t;
+
+/**
+ * @brief Description of struct player :
+ *
+ * -> color : it represents the character of the player,eventually the color when the board is printed.
+ * -> *pawns : it is a pointer of struct pawn,so it is the pawn array.
+ * -> dim_pawns : it is the number of pawns of the player,so it is the dimension of pawns array.
+ * 
+ */
+struct player{
+    char color;
+    pawn_t *pawns;
+    unsigned int dim_pawns;
+}typedef player_t;
