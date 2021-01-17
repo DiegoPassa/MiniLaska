@@ -84,7 +84,7 @@ void printPlayerTurn(char nPl){
 }
 
 void setBlack (){
-    printf("\033[0;30m");
+    printf(BLK);
 }
 
 void setWhite (){

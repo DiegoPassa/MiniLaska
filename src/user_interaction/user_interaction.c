@@ -334,44 +334,44 @@ int game(unsigned int gameMode){
     srand(time(0));
 
     if (gameMode){
-        printf("\n\tSelect difficulty: \n\n");
-        printf(" [0] "GRN"Easy"reset"   (random IA)\n");
-        printf(" [1] "YEL"Medium"reset" (low-depth minimax)\n");
-        printf(" [2] "RED"Hard"reset"   (high-depth minimax)\n");
-        printf(" [3] Custom (custom-depth minimax)\n");
-        printf("\n Selection: ");
+        printf("\n\t"RED"Select difficulty:"reset" \n\n");
+        printf(" ["YEL"1"reset"] "GRN"Easy"reset"   (random IA)\n");
+        printf(" ["YEL"2"reset"] "YEL"Medium"reset" (low-depth minimax)\n");
+        printf(" ["YEL"3"reset"] "RED"Hard"reset"   (high-depth minimax)\n");
+        printf(" ["YEL"4"reset"] "CYN"Custom"reset" (custom-depth minimax)\n");
+        printf("\n Selection: "YEL);
 
         scanf("%d", &depth);
-        if (depth == 1){
+        if (depth == 2){
             depth = 5;
-            printf(" Selected "YEL"medium"reset".\n");
-        }else if(depth == 2){
+            printf(reset" Selected "YEL"medium"reset".\n");
+        }else if(depth == 3){
             depth = 11;
-            printf(" Selected "RED"hard"reset".\n");
-        }else if (depth == 3){
-            printf(" Select depth: ");
+            printf(reset" Selected "RED"hard"reset".\n");
+        }else if (depth == 4){
+            printf(reset" Select depth: ");
             scanf("%d", &depth);
             while(depth%2 == 0 ){
                 printf(" Depth must to be an odd number\n");
-                printf(" Select depth: ");
+                printf(" Select depth: "YEL);
                 scanf("%d", &depth);
             }
         }else{
             depth = 0;
-            printf(" Selected "GRN"easy"reset".\n");
+            printf(reset" Selected "GRN"easy"reset".\n");
         }
     
     }
     
-    printf("\n\tSelect gamemode:\n");
-    printf(" [0] Classic (11 vs 11, board 7x7)\n");
-    printf(" [1] Custom\n");
-    printf("\n Selection: ");
+    printf("\n\tSelect gamemode:\n\n");
+    printf(" ["YEL"1"reset"] Classic (11 vs 11, board 7x7)\n");
+    printf(" ["YEL"2"reset"] Custom\n");
+    printf("\n Selection: "YEL);
 
     scanf("%d", &isCustom);
     
 
-    if(isCustom == 0){
+    if(isCustom == 1){
         t = create_board(7,7,3+conta+1);
         initialize_board(t,3+conta+1);
         players = create_pawns(11,'Y','R',conta,*t); /* create array[2] of player_t type */
@@ -379,9 +379,9 @@ int game(unsigned int gameMode){
         unsigned int w,h,max_ped = 0;
         char char_p1, char_p2;
         conta = 0;
-        printf(" Board height : ");
+        printf(reset"\n Board height : "YEL);
         scanf("%u",&h);
-        printf(" Board width : ");
+        printf(reset" Board width : "YEL);
         scanf("%u",&w);
 
         while(w < 3 || h < 3){
@@ -393,11 +393,11 @@ int game(unsigned int gameMode){
             scanf("%u",&w);
         }
         max_ped = max_pawns(h,w);
-        printf(" Maximum number of pawns : %u\n",max_ped);
-        printf(" Select number of pawns : ");
+        printf(reset" Maximum number of pawns : %u\n",max_ped);
+        printf(" Select number of pawns : "YEL);
         scanf("%u",&cifre);
         while(cifre > max_ped){
-            printf(" Reselect number of pawns : ");
+            printf(reset" Reselect number of pawns : "YEL);
             scanf("%u",&cifre);
         }
 
@@ -416,7 +416,7 @@ int game(unsigned int gameMode){
             initialize_board(t,3+conta+1);
 
 
-            printf("\n [" RED "R" reset "] [" GRN "G" reset "] ["MAG "M" reset "] ["BLU "B" reset "] ["CYN "C" reset "] ["YEL "Y" reset "]\n");
+            printf("\n [" BLK REDB" R " reset "] ["BLK YELB" Y " reset "] ["BLK GRNB" G " reset "] ["BLK CYNB" C " reset "] ["BLK BLUB" B " reset "] ["BLK MAGB" M " reset "]\n");
 
             printf(" Choose player 1 pawn color: ");
             scanf("%s", &char_p1);
@@ -471,7 +471,7 @@ int game(unsigned int gameMode){
     }
 
     turno = round_choice();
-    printf(" Starting player is %u\n",turno+1);
+    printf("\n Starting player is %u\n",turno+1);
     while((exit == 4)&&(is_victory(players)>2)){
         set_moves_pawn(players,t,0,-1);
         set_moves_pawn(players,t,1,-1);
@@ -545,13 +545,13 @@ void menu(){
     printf(" #886711 Diego    Passarella\n");
     printf(" #882082 Davide   Pasqual\n");
     printf(" #881493 Michelle Ravagnan\n");
-    printf("\n\t"RED"+-+"YEL"-+"GRN"-+"CYN"-+-+"BLU"-+-+-+-+-+-+-+-+\n"
-             "\t"RED"|M|"YEL"i|"GRN"n|"CYN"i| |"BLU"L|"MAG"a|"RED"s|"YEL"k|"GRN"a| |"CYN"5|"BLU"1|\n"
-             "\t"CYN"+-+-+-+-+-+"BLU"-+"MAG"-+"RED"-+"YEL"-+"GRN"-+-+"CYN"-+"BLU"-+"reset"\n");
+    printf("\n +-+-+-+-+-+-+-+-+-+-+-+-+-+\n"
+             " |"RED"M"reset"|"YEL"i"reset"|"GRN"n"reset"|"CYN"i"reset"| |"BLU"L"reset"|"MAG"a"reset"|"RED"s"reset"|"YEL"k"reset"|"GRN"a"reset"| |"CYN"5"reset"|"BLU"1"reset"|\n"
+             " +-+-+-+-+-+-+-+-+-+-+-+-+-+\n");
              
-    printf("\n [1] Player vs. Player");
-    printf("\n [2] Player vs. IA");
-    printf("\n [3] Exit");
+    printf("\n ["YEL"1"reset"] Player vs. Player");
+    printf("\n ["YEL"2"reset"] Player vs. IA");
+    printf("\n ["YEL"3"reset"] Exit");
     while(choice != 1 && choice != 2 && choice != 3){
         printf("\n\n Select mode: ");
         scanf("%d", &choice);
