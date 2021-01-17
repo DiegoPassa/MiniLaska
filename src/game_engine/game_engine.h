@@ -9,8 +9,12 @@
 typedef unsigned int dim_board, coord, flag;
 
 /**
- * @brief 
- * 
+ * @brief Description of struct board:
+ *
+ * @param **mat : two-dimensional array of characters.
+ * @param n_rows : it is the number of row int the matrix.
+ * @param n_cols : it is the number of columns int the matrix.
+ *
  */
 struct board{
     char **mat; /*!< Detailed description after the member */
@@ -19,8 +23,11 @@ struct board{
 }typedef board_t;
 
 /**
- * @brief 
- * 
+ * @brief Description of struct point :
+ *
+ * @param x : it represents the coordinate x of the matrix,so the column coordinate.
+ * @param y : it represents the coordinate y of the matrix,so the row coordinate.
+ *
  */
 struct point{
     coord x; /* cols */
@@ -28,8 +35,19 @@ struct point{
 }typedef point_t;
 
 /**
- * @brief 
- * 
+ * @brief Description of struct pawn :
+ *
+ * @param *label : it is a char pointer,so it is the label of a pawn in the chessboard.
+ * @param dim_label : it is the number of char that are necessary to represent the number of a pawn in the label.
+ * @param coordinate : they are the coordinates of a pawn in the board.
+ * @param cima : it is the position of the highest pawn int he label.
+ * @param grade : if 0 then the label doesn't appear in the board,else it represents the height of the pawn tower.
+ * @param is_promoted : if 1 then the pawn can move to bottom right or bottom left respect the pawn ,else the pawn can move only left or right respect the pawn.
+ * @param canMove : it is a int pointer,so where it set to 1 the pawn can move in that direction :
+ *              -> canMove[0]  = left.
+ *              -> canMove[1]  = right.
+ *              -> canMove[2]  = bottom right.
+ *              -> canMove[3]  = bottom left.
  */
 struct pawn{
     char *label; /* etichetta della pedina Es.|  BN07 | */
@@ -42,7 +60,11 @@ struct pawn{
 }typedef pawn_t;
 
 /**
- * @brief 
+ * @brief Description of struct player :
+ *
+ * @param color : it represents the character of the player,eventually the color when the board is printed.
+ * @param *pawns : it is a pointer of struct pawn,so it is the pawn array.
+ * @param dim_pawns : it is the number of pawns of the player,so it is the dimension of pawns array.
  * 
  */
 struct player{
