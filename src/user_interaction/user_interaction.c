@@ -193,10 +193,12 @@ void print_player(player_t *players, unsigned int nPl){
 
 unsigned int while_select_nPawn(player_t *players,unsigned int nPl){
     unsigned int nPawn;
+    int scanfValue ;
     printf(" Select no. pawn to move : ");
 
     printTextColor(players[nPl].color);
-    scanf("%u",&nPawn);
+    scanfValue = scanf("%u", &nPawn);
+    if (scanfValue != 1) nPawn = checkInt(scanfValue);
     printf(reset);
 
     while(!check_while(players, nPl,nPawn) ){
@@ -208,7 +210,8 @@ unsigned int while_select_nPawn(player_t *players,unsigned int nPl){
             printf(" Pawn no. %u is unable to move!\n",nPawn);
             printf(" Select no. pawn to move : ");
             printTextColor(players[nPl].color);
-            scanf("%u",&nPawn);
+            scanfValue = scanf("%u", &nPawn);
+            if (scanfValue != 1) nPawn = checkInt(scanfValue);
             printf(reset);
         }
 

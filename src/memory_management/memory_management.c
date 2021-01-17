@@ -141,7 +141,7 @@ player_t *create_pawns(unsigned int totPawns,char player1, char player2, unsigne
             }
             players[nPl].dim_pawns = totPawns;
         }else{
-            printf("Errore malloc funzione crea_pedine\totPawns");
+            printf("Error malloc function create_Pawns\n");
             return NULL;
         }
     }
@@ -163,7 +163,7 @@ board_t *copy_board(board_t board ,board_t *newBoard,unsigned int cifre,unsigned
                 newBoard->mat[i] = (char*)calloc(board.n_cols,sizeof(char));
             }
             if(!(newBoard->mat)){
-                printf("Errore nella campo_copy(malloc della matrice di char)");
+                printf("Error copy_board(malloc char matrix)");
                 return NULL;
             }
         }
@@ -174,7 +174,7 @@ board_t *copy_board(board_t board ,board_t *newBoard,unsigned int cifre,unsigned
         }
         return newBoard;
     }else{
-        printf("Errore nella campo_copy (malloc di newBoard)");
+        printf("Error copy_board (malloc di newBoard)");
         return NULL;
     }
 }
@@ -234,7 +234,7 @@ player_t *player_copy(player_t *players, player_t *newPlayers, unsigned int dim_
 
         return newPlayers;
     }else{
-        printf("Errore player_copy");
+        printf("Error player_copy");
         return NULL;
     }
 }
