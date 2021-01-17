@@ -581,8 +581,7 @@ int game(unsigned int gameMode){
             printf(" Player %d turn\n", turno+1);
             printf(reset);
             if (turno == 0 ){
-                exit = round_ia_random(players, t, turno);
-                /*exit = round_player(players,t,turno);*/
+                exit = round_player(players,t,turno);
                 turno = 1;
             }else{
                 if (gameMode){
