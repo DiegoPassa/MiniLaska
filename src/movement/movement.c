@@ -92,45 +92,39 @@ unsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t bo
         players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima] = ' ';
         players[nPl2].pawns[enemy_pawn].cima+=1;
         players[nPl2].pawns[enemy_pawn].grade-=1;
-    }else{
+    }else if(is_empty(players[nPl]) >= 0 && players[nPl2].pawns[enemy_pawn].grade > 1){
         int newPos = is_empty(players[nPl]);
-        if (newPos == -1){
-            printf("\n\n\n AIUTOOOOOOOOOOOO \n\n\n");
-            /* add_pawn(players, enemy_pawn, nPl,players[nPl].pawns[num_pawn].label[players[nPl].pawns[num_pawn].cima]); */
-        }else if(newPos >= 0 && players[nPl2].pawns[enemy_pawn].grade > 1){
-            int newPos_copy;
-            unsigned int index;
-            players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima] = ' ';
-            players[nPl2].pawns[enemy_pawn].cima+=1;
-            players[nPl2].pawns[enemy_pawn].grade-=1;
-            players[nPl].pawns[newPos].grade = players[nPl2].pawns[enemy_pawn].grade;
-            players[nPl2].pawns[enemy_pawn].grade = 0;
-            players[nPl].pawns[newPos].cima = players[nPl2].pawns[enemy_pawn].cima;
+        int newPos_copy;
+        unsigned int index;
+        players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima] = ' ';
+        players[nPl2].pawns[enemy_pawn].cima+=1;
+        players[nPl2].pawns[enemy_pawn].grade-=1;
+        players[nPl].pawns[newPos].grade = players[nPl2].pawns[enemy_pawn].grade;
+        players[nPl2].pawns[enemy_pawn].grade = 0;
+        players[nPl].pawns[newPos].cima = players[nPl2].pawns[enemy_pawn].cima;
 
-            players[nPl].pawns[newPos].coordinate.x = players[nPl2].pawns[enemy_pawn].coordinate.x;
-            players[nPl].pawns[newPos].coordinate.y = players[nPl2].pawns[enemy_pawn].coordinate.y;
+        players[nPl].pawns[newPos].coordinate.x = players[nPl2].pawns[enemy_pawn].coordinate.x;
+        players[nPl].pawns[newPos].coordinate.y = players[nPl2].pawns[enemy_pawn].coordinate.y;
 
-            players[nPl].pawns[newPos].dim_label = players[nPl2].pawns[enemy_pawn].dim_label;
+        players[nPl].pawns[newPos].dim_label = players[nPl2].pawns[enemy_pawn].dim_label;
 
-            players[nPl].pawns[newPos].isPromoted = 0;
-            players[nPl2].pawns[enemy_pawn].isPromoted = 0;
-            players[nPl2].pawns[newPos].label[players[nPl].pawns[newPos].dim_label+3] = ' ';
-            players[nPl].pawns[newPos].label[players[nPl].pawns[newPos].dim_label+3] = ' ';
+        players[nPl].pawns[newPos].isPromoted = 0;
+        players[nPl2].pawns[enemy_pawn].isPromoted = 0;
+        players[nPl2].pawns[newPos].label[players[nPl].pawns[newPos].dim_label+3] = ' ';
+        players[nPl].pawns[newPos].label[players[nPl].pawns[newPos].dim_label+3] = ' ';
 
-            for (i = 0; i < 3; i++){
-                players[nPl].pawns[newPos].label[i] = players[nPl2].pawns[enemy_pawn].label[i];
-            }
-            index = players[nPl].pawns[newPos].dim_label-1;
-            newPos_copy = newPos;
-            for (i = 3; i < players[nPl].pawns[newPos].dim_label+3; i++){
-                players[nPl].pawns[newPos].label[i] = int_converter(newPos_copy, index);
-                newPos_copy -= (pow(10, index)*(players[nPl].pawns[newPos].label[i] - '0'));
-
-                index--;
-            }
-
+        for (i = 0; i < 3; i++){
+            players[nPl].pawns[newPos].label[i] = players[nPl2].pawns[enemy_pawn].label[i];
         }
-        
+        index = players[nPl].pawns[newPos].dim_label-1;
+        newPos_copy = newPos;
+        for (i = 3; i < players[nPl].pawns[newPos].dim_label+3; i++){
+            players[nPl].pawns[newPos].label[i] = int_converter(newPos_copy, index);
+            newPos_copy -= (pow(10, index)*(players[nPl].pawns[newPos].label[i] - '0'));
+
+            index--;
+        }
+
     }
     if (players[nPl].pawns[num_pawn].grade < 3){
         for (i = 0; i < 3; i++){

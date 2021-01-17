@@ -81,22 +81,22 @@
 #define reset "\033[0m"
 
 /**
- * @brief Set the White object
+ * @brief Set the next text to white.
  * 
  */
 void setWhite();
 
 /**
- * @brief 
+ * @brief Set the next text based on the player color.
  * 
- * @param color 
+ * @param color Color of the player.
  */
 void printTextColor(char color);
 
 /**
- * @brief 
+ * @brief Set the next background color based on the player color.
  * 
- * @param color 
+ * @param color Color of the player.
  */
 void printColor(char color);
 #endif

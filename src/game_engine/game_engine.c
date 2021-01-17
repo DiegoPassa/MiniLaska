@@ -473,60 +473,6 @@ unsigned int is_notstuck(player_t *players, board_t board, unsigned int nPawn, u
         return 0;
     }
 }
-/* 
-unsigned int add_pawn(player_t *players, unsigned int enemy_pawn, unsigned int nPl,char c ){
-    int nPl2 = 1;
-
-    if (nPl == 1){
-        nPl2 = 0;
-    }
-    
-    players[nPl].pawns = (pawn_t*)realloc(players[nPl].pawns,(players[nPl].dim_pawns+1)*sizeof(pawn_t));
-    players[nPl].pawns[players[nPl].dim_pawns].label = (char*)calloc((players[nPl2].pawns[enemy_pawn].dim_label+3+1),sizeof(char));
-    players[nPl].pawns[players[nPl].dim_pawns].canMove = (unsigned int*)calloc(2,sizeof(unsigned int));
-
-    if((players[nPl].pawns) &&(players[nPl].pawns[players[nPl].dim_pawns].label)) {
-        unsigned int i,index;
-        char temp[3];
-        temp[0] = ' ';
-        temp[1] = c;
-        temp[2] = players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima];
-
-        players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima] = ' ';
-        players[nPl2].pawns[enemy_pawn].cima+=1;
-        players[nPl2].pawns[enemy_pawn].grade-=1;
-
-        players[nPl].pawns[players[nPl].dim_pawns].grade = players[nPl2].pawns[enemy_pawn].grade;
-        players[nPl2].pawns[enemy_pawn].grade = 0;
-        players[nPl].pawns[players[nPl].dim_pawns].cima = players[nPl2].pawns[enemy_pawn].cima;
-
-        players[nPl].pawns[players[nPl].dim_pawns].coordinate.x = players[nPl2].pawns[enemy_pawn].coordinate.x;
-        players[nPl].pawns[players[nPl].dim_pawns].coordinate.y = players[nPl2].pawns[enemy_pawn].coordinate.y;
-
-        players[nPl].pawns[players[nPl].dim_pawns].dim_label = players[nPl2].pawns[enemy_pawn].dim_label;
-
-        players[nPl].pawns[players[nPl].dim_pawns].isPromoted = 0;
-        players[nPl2].pawns[enemy_pawn].isPromoted = 0;
-        players[nPl2].pawns[players[nPl].dim_pawns].label[players[nPl].pawns[players[nPl].dim_pawns].dim_label+3] = ' ';
-        players[nPl].pawns[players[nPl].dim_pawns].label[players[nPl].pawns[players[nPl].dim_pawns].dim_label+3] = ' ';
-
-        
-        for(i = 0 ; i < 3 ; ++i){
-            players[nPl].pawns[players[nPl].dim_pawns].label[i] = temp[i];
-        }
-        index = players[nPl2].pawns[enemy_pawn].dim_label;
-        for(i = 3 ; i < players[nPl2].pawns[enemy_pawn].dim_label+3 ; ++i){
-            players[nPl].pawns[players[nPl].dim_pawns].label[i] = players[nPl2].pawns[enemy_pawn].label[i];
-            --index;
-        }
-
-        ++players[nPl].dim_pawns;
-        return 1;
-    }else{
-        printf(" Error in the realloc\n");
-        return 0;
-    }
-} */
 
 void set_moves_pawn(player_t *players, board_t *board, unsigned int nPl, int nPawn){
 

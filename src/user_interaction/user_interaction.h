@@ -61,6 +61,14 @@ unsigned int round_choice();
 int game(unsigned int x);
 
 /**
+ * @brief Check if the inserted value is an integer.
+ * 
+ * @param scanfValue Value of return of the scanf.
+ * @return int Return correct value.
+ */
+int checkInt(int scanfValue);
+
+/**
  * @brief Cleans the terminal and launches the main game menu.
  * 
  */

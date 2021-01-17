@@ -165,7 +165,7 @@ void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char 
     free(topPl);
 }
 
-void print_player(player_t *players,unsigned int nPl){
+void print_player(player_t *players, unsigned int nPl){
     unsigned int i,j;
     for(i = 0 ; i < players[nPl].dim_pawns; ++i){
         if (players[nPl].pawns[i].grade>0){
@@ -194,7 +194,10 @@ void print_player(player_t *players,unsigned int nPl){
 unsigned int while_select_nPawn(player_t *players,unsigned int nPl){
     unsigned int nPawn;
     printf(" Select no. pawn to move : ");
+
+    printTextColor(players[nPl].color);
     scanf("%u",&nPawn);
+    printf(reset);
 
     while(!check_while(players, nPl,nPawn) ){
         unsigned int flag = 1;
@@ -204,13 +207,16 @@ unsigned int while_select_nPawn(player_t *players,unsigned int nPl){
         if(!flag){
             printf(" Pawn no. %u is unable to move!\n",nPawn);
             printf(" Select no. pawn to move : ");
+            printTextColor(players[nPl].color);
             scanf("%u",&nPawn);
+            printf(reset);
         }
 
     }
     return nPawn;
 }
-unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
+
+unsigned int round_player(player_t *players, board_t *t, unsigned int nPl){
     char str[10];
     unsigned int num_Pawn = 0;
     int y = -2;
@@ -219,19 +225,25 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
     print_board(*t,(players[0].pawns[0].dim_label+3)+1,nPl, players[0].color, players[1].color);
 
     printf(" Surrender? (y/n): ");
+    printTextColor(players[nPl].color);
     scanf("%s",str);
+    printf(reset);
     if((!strcmp(str,"y"))||(!strcmp(str,"yes"))||(!strcmp(str,"Y"))||(!strcmp(str,"YES"))){
         return 3;
     }
 
     num_Pawn = while_select_nPawn(players,nPl);
     printf(" Confirm selection? (y/n): ");
+    printTextColor(players[nPl].color);
     scanf("%s",str);
+    printf(reset);
 
     while((!strcmp(str,"n"))||(!strcmp(str,"NO"))||(!strcmp(str,"No")) ||(!strcmp(str,"no"))){
         num_Pawn = while_select_nPawn(players,nPl);
         printf(" Confirm selection? (y/n): ");
+        printTextColor(players[nPl].color);
         scanf("%s",str);
+        printf(reset);
     }
 
     while(y==-2){
@@ -242,14 +254,18 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
             print_directions(players[nPl].pawns[num_Pawn].canMove,index,num_Pawn);
         }
         printf(" Which direction you want to move? ");
+        printTextColor(players[nPl].color);
         scanf("%s",str);
+        printf(reset);
         if(nPl == 1 || nPl == 0){
             unsigned int index = 2;
             players[nPl].pawns[num_Pawn].isPromoted ? index = 4 : index;
             while(!check_directions(players[nPl].pawns[num_Pawn].canMove,index,str) && tentativi != 0){
                 printf(" Number of attempts remained : %u\n",tentativi);
-                printf(" Which direction you want to move?");
+                printf(" Which direction you want to move? ");
+                printTextColor(players[nPl].color);
                 scanf("%s",str);
+                printf(reset);
                 --tentativi;
             }
             if(!tentativi){
@@ -269,12 +285,16 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
             num_Pawn = while_select_nPawn(players,nPl);
 
             printf(" Confirm selection? (y/n): ");
+            printTextColor(players[nPl].color);
             scanf("%s",temp);
+            printf(reset);
 
             while((!strcmp(str,"no"))||(!strcmp(str,"NO"))||(!strcmp(str,"No"))){
                 num_Pawn = while_select_nPawn(players,nPl);
                 printf(" Confirm selection? (y/n): ");
+                printTextColor(players[nPl].color);
                 scanf("%s",str);
+                printf(reset);
             }
         }
     }
@@ -287,22 +307,37 @@ unsigned int round_player(player_t *players,board_t *t,unsigned int nPl){
 }
 
 unsigned int round_choice(){
+    int scanfValue;
     char str[2];
 
     printf(" Start as first player? (y/n): ");
+    printf(YEL);
     scanf("%s",str);
+    printf(reset);
     if((!strcmp(str,"y"))||(!strcmp(str,"yes"))||(!strcmp(str,"Y"))||(!strcmp(str,"YES"))){
         return 0;
     }else{
         printf(" Flip coin (y/n): ? ");
+        printf(YEL);
         scanf("%s",str);
+        printf(reset);
         if((!strcmp(str,"n"))||(!strcmp(str,"NO"))||(!strcmp(str,"No")) ||(!strcmp(str,"no"))){
             unsigned int npl = 0;
             printf(" Which player goes first? (1/2): ");
-            scanf("%u",&npl);
+            printf(YEL);
+            scanfValue = scanf("%u", &npl);
+            if (scanfValue != 1){
+                npl = checkInt(scanfValue);
+            }
+            printf(reset);
             while(npl != 1 && npl != 2){
                 printf(" Invalid input..\n Which player goes first? (1/2): ");
-                scanf("%u",&npl);
+                printf(YEL);
+                scanfValue = scanf("%u", &npl);
+                if (scanfValue != 1){
+                    npl = checkInt(scanfValue);
+                }
+                printf(reset);
             }
 
             return npl-1;
@@ -327,50 +362,73 @@ unsigned int round_choice(){
 int game(unsigned int gameMode){
     board_t *t = NULL;
     player_t *players = NULL;
-    int isCustom, depth;
+    int isCustom = 3, depth;
     unsigned int exit = 4,turno = 0,round = 0;
     unsigned int cifre,conta = 2,numped = 11;
+    int scanfValue;
 
     srand(time(0));
 
     if (gameMode){
-        printf("\n\t"RED"Select difficulty:"reset" \n\n");
+        printf("\n\t"MAG"Select difficulty:"reset" \n\n");
         printf(" ["YEL"1"reset"] "GRN"Easy"reset"   (random IA)\n");
         printf(" ["YEL"2"reset"] "YEL"Medium"reset" (low-depth minimax)\n");
         printf(" ["YEL"3"reset"] "RED"Hard"reset"   (high-depth minimax)\n");
         printf(" ["YEL"4"reset"] "CYN"Custom"reset" (custom-depth minimax)\n");
-        printf("\n Selection: "YEL);
+        printf("\n Selection: ");
 
-        scanf("%d", &depth);
+        printf(YEL);
+        scanfValue = scanf("%d", &depth);
+        if (scanfValue != 1) depth = checkInt(scanfValue);
+        printf(reset);
+        while (depth > 4 || depth < 1){
+            printf("\n Invalid selection.. try again: ");
+            printf(YEL);
+            scanfValue = scanf("%d", &depth);
+            if (scanfValue != 1) depth = checkInt(scanfValue);
+            printf(reset);
+        }
+        
         if (depth == 2){
             depth = 5;
-            printf(reset" Selected "YEL"medium"reset".\n");
+            printf(" Selected "YEL"medium"reset".\n");
         }else if(depth == 3){
             depth = 11;
-            printf(reset" Selected "RED"hard"reset".\n");
+            printf(" Selected "RED"hard"reset".\n");
         }else if (depth == 4){
-            printf(reset" Select depth: ");
-            scanf("%d", &depth);
+            printf(" Select depth: ");
+            printf(YEL);
+            scanfValue = scanf("%d", &depth);
+            if (scanfValue != 1) depth = checkInt(scanfValue);
+            printf(reset);
             while(depth%2 == 0 ){
                 printf(" Depth must to be an odd number\n");
-                printf(" Select depth: "YEL);
-                scanf("%d", &depth);
+                printf(" Select depth: ");
+                printf(YEL);
+                scanfValue = scanf("%d", &depth);
+                if (scanfValue != 1) depth = checkInt(scanfValue);
+                printf(reset);
             }
         }else{
             depth = 0;
-            printf(reset" Selected "GRN"easy"reset".\n");
+            printf(" Selected "GRN"easy"reset".\n");
         }
     
     }
     
-    printf("\n\tSelect gamemode:\n\n");
+    printf("\n\t"MAG"Select gamemode:"reset"\n\n");
     printf(" ["YEL"1"reset"] Classic (11 vs 11, board 7x7)\n");
     printf(" ["YEL"2"reset"] Custom\n");
-    printf("\n Selection: "YEL);
+    printf("\n Selection: ");
 
-    scanf("%d", &isCustom);
+
+    while (isCustom != 1 && isCustom != 2){
+        printf(YEL);
+        scanfValue = scanf("%d", &isCustom);
+        if (scanfValue != 1) isCustom = checkInt(scanfValue);
+        printf(reset);
+    }
     
-
     if(isCustom == 1){
         t = create_board(7,7,3+conta+1);
         initialize_board(t,3+conta+1);
@@ -379,26 +437,48 @@ int game(unsigned int gameMode){
         unsigned int w,h,max_ped = 0;
         char char_p1, char_p2;
         conta = 0;
-        printf(reset"\n Board height : "YEL);
-        scanf("%u",&h);
-        printf(reset" Board width : "YEL);
-        scanf("%u",&w);
+        printf("\n Board height : ");
+
+        printf(YEL);
+        scanfValue = scanf("%u", &h);
+        if (scanfValue != 1) h = checkInt(scanfValue);
+        printf(reset);
+
+        printf(" Board width : ");
+
+        printf(YEL);
+        scanfValue = scanf("%u", &w);
+        if (scanfValue != 1) w = checkInt(scanfValue);
+        printf(reset);
 
         while(w < 3 || h < 3){
             printf(" The board must be high and wide at least 3\n");
             printf(" Reselect board size.. \n");
             printf(" Board height : ");
-            scanf("%u",&h);
+            printf(YEL);
+            scanfValue = scanf("%u", &h);
+            if (scanfValue != 1) h = checkInt(scanfValue);
+            printf(reset);
+
             printf(" Board width : ");
-            scanf("%u",&w);
+            printf(YEL);
+            scanfValue = scanf("%u", &w);
+            if (scanfValue != 1) w = checkInt(scanfValue);
+            printf(reset);
         }
         max_ped = max_pawns(h,w);
-        printf(reset" %u is the maximum number of pawns\n",max_ped);
-        printf(" Select number of pawns : "YEL);
-        scanf("%u",&cifre);
+        printf(" %u is the maximum number of pawns\n",max_ped);
+        printf(" Select number of pawns : ");
+        printf(YEL);
+        scanfValue = scanf("%u", &cifre);
+        if (scanfValue != 1) cifre = checkInt(scanfValue);
+        printf(reset);
         while(cifre > max_ped){
-            printf(reset" Reselect number of pawns : "YEL);
-            scanf("%u",&cifre);
+            printf(" Reselect number of pawns : ");
+            printf(YEL);
+            scanfValue = scanf("%u", &cifre);
+            if (scanfValue != 1) cifre = checkInt(scanfValue);
+            printf(reset);
         }
 
 
@@ -416,10 +496,12 @@ int game(unsigned int gameMode){
             initialize_board(t,3+conta+1);
 
 
-            printf(reset"\n [" BLK REDB" R " reset "] ["BLK YELB" Y " reset "] ["BLK GRNB" G " reset "] ["BLK CYNB" C " reset "] ["BLK BLUB" B " reset "] ["BLK MAGB" M " reset "]\n");
+            printf("\n [" BLK REDB" R " reset "] ["BLK YELB" Y " reset "] ["BLK GRNB" G " reset "] ["BLK CYNB" C " reset "] ["BLK BLUB" B " reset "] ["BLK MAGB" M " reset "]\n");
 
             printf(" Choose player 1 pawn color: ");
+            printf(YEL);
             scanf("%s", &char_p1);
+            printf(reset);
             if(check_char_color(char_p1) == 2){
                 char temp;
                 temp = uppercase(char_p1);
@@ -427,18 +509,21 @@ int game(unsigned int gameMode){
             }
 
             printf(" Choose player 2 pawn color: ");
+            printf(YEL);
             scanf("%s", &char_p2);
+            printf(reset);
             if(check_char_color(char_p2) == 2){
                 char temp;
                 temp = uppercase(char_p2);
                 char_p2 = temp;
             }
 
-
             while(check_char_color(char_p1)!=1 || check_char_color(char_p2)!=1){
                 if(!check_char_color(char_p1) ){
                     printf(" Invalid input.. \n Choose another color for player 1's pawns: ");
+                    printf(YEL);
                     scanf("%s", &char_p1);
+                    printf(reset);
                 }else{
                     if(check_char_color(char_p1) == 2){
                         char temp;
@@ -448,7 +533,9 @@ int game(unsigned int gameMode){
                 }
                 if(!check_char_color(char_p2)){
                     printf(" Invalid input.. \n Choose another color for player 2's pawns: ");
+                    printf(YEL);
                     scanf("%s", &char_p2);
+                    printf(reset);
                 }else{
                     printf("%u",check_char_color(char_p2));
                     if(check_char_color(char_p2) == 2){
@@ -487,10 +574,9 @@ int game(unsigned int gameMode){
             printf(" Round number : %u\n",round);
             printTextColor(players[turno].color);
             printf(" Player %d turn\n", turno+1);
-            printf(reset"");
+            printf(reset);
             if (turno == 0 ){
-                /* exit = round_player(players,t,turno); */
-                exit = round_ia_random(players, t, turno);
+                exit = round_player(players,t,turno);
                 turno = 1;
             }else{
                 if (gameMode){
@@ -508,7 +594,7 @@ int game(unsigned int gameMode){
             print_player(players,1); */
             update_board(t, players);
             print_board(*t, players[turno].pawns[0].dim_label+1+3, 0, players[0].color, players[1].color);
-            sleep(1);
+            sleep(0);
             ++round;
         }
     }
@@ -536,6 +622,19 @@ int game(unsigned int gameMode){
     return 1;
 }
 
+int checkInt(int scanfValue){
+    int value;
+    while(scanfValue != 1)
+    {
+        printf(RED" Please enter an integer: ");
+        printf(YEL);
+        while(getchar() != '\n');
+        scanfValue = scanf("%d",&value);
+        printf(reset);
+    }
+    return value;
+}
+
 void menu(){
     int choice = 0;
     system("clear");
@@ -550,24 +649,26 @@ void menu(){
     printf("\n ["YEL"2"reset"] Player vs. IA");
     printf("\n ["YEL"3"reset"] Exit");
     while(choice != 1 && choice != 2 && choice != 3){
+        int scanfValue;
         printf("\n\n Select mode: "YEL);
-        scanf("%d", &choice);
+        scanfValue = scanf("%d", &choice);
+        if (scanfValue != 1) choice = checkInt(scanfValue);
         switch(choice){
             case 1:
                 system("clear");
-                printf(reset"\n Selected Player vs. Player\n");
+                printf("\n Selected Player vs. Player\n");
                 game(0);
                 break;
             case 2:
                 system("clear");
-                printf(reset"\n Selected Player vs. IA\n");
+                printf("\n Selected Player vs. IA\n");
                 game(1);
                 break;
             case 3:
                 system("clear");
                 break;
             default:
-                printf("\nINVALID SELECTION...Please try again\n");
+                printf("\n INVALID SELECTION...Please try again\n");
         };
     }
 }
