@@ -508,6 +508,22 @@ int game(unsigned int gameMode){
                 temp = uppercase(char_p1);
                 char_p1 = temp;
             }
+            /* SEBSEQUENT MEASURES
+            while(check_char_color(char_p1)!=1 ){
+                if(!check_char_color(char_p1) ){
+                    printf(" Invalid input.. \n Choose another color for player 1's pawns: ");
+                    printf(YEL);
+                    scanf("%s", &char_p1);
+                    printf(reset);
+                }else{
+                    if(check_char_color(char_p1) == 2){
+                        char temp;
+                        temp = uppercase(char_p1);
+                        char_p1 = temp;
+                    }
+                }
+            }*/
+
 
             printf(" Choose player 2 pawn color: ");
             printf(YEL);
@@ -518,7 +534,23 @@ int game(unsigned int gameMode){
                 temp = uppercase(char_p2);
                 char_p2 = temp;
             }
+        /*  SEBSEQUENT MEASURES
+            while(check_char_color(char_p2)!=1 || char_p1 == char_p2){
 
+                if(!check_char_color(char_p2) || char_p1 == char_p2 ){
+                    printf(" Invalid input.. \n Choose another color for player 2's pawns: ");
+                    printf(YEL);
+                    scanf("%s", &char_p2);
+                    printf(reset);
+                }else{
+                    if(check_char_color(char_p2) == 2){
+                        char temp;
+                        temp = uppercase(char_p2);
+                        char_p2 = temp;
+                    }
+                }
+            }*/
+            /* WHILE LOOP PROJECT DELIVERY */
             while(check_char_color(char_p1)!=1 || check_char_color(char_p2)!=1){
                 if(!check_char_color(char_p1) ){
                     printf(" Invalid input.. \n Choose another color for player 1's pawns: ");
