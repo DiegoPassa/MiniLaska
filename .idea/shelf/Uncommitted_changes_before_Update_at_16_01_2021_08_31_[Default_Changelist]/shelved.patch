@@ -1,0 +1,132 @@
+Index: supporto.c
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include<stdio.h>\r\n#include <unistd.h>\r\n#include<stdlib.h>\r\n#include\"supporto.h\"\r\n#include<string.h>\r\n#include<time.h>\r\n#include <math.h>\r\n#include \"src/colors/colors.h\"\r\n\r\n/* void pawn_remove_promotion(player_t *players ,int num_pawn,unsigned int nPl){\r\n    if (num_pawn > -1 && num_pawn < players[nPl].dim_pawns && (nPl == 0 || nPl == 1)){\r\n        if(players[nPl].pawns[num_pawn].isPromoted == 1){\r\n            players[nPl].pawns[num_pawn].isPromoted = 0;\r\n            players[nPl].pawns[num_pawn].label[players[nPl].pawns[num_pawn].dim_label+3] = ' ';\r\n             free(players[nPl].pawns[num_pawn].canMove);\r\n            players[nPl].pawns[num_pawn].canMove = (unsigned int*)calloc(2 ,sizeof(unsigned int));\r\n        }\r\n    }\r\n}\r\n*/
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/supporto.c b/supporto.c
+--- a/supporto.c	(revision fc0335b7779c6de6f7c76cc251e9e10e93f6f37a)
++++ b/supporto.c	(date 1610731039699)
+@@ -5,7 +5,7 @@
+ #include<string.h>
+ #include<time.h>
+ #include <math.h>
+-#include "src/colors/colors.h"
++/*#include "src/colors/colors.h"*/
+ 
+ /* void pawn_remove_promotion(player_t *players ,int num_pawn,unsigned int nPl){
+     if (num_pawn > -1 && num_pawn < players[nPl].dim_pawns && (nPl == 0 || nPl == 1)){
+Index: src/ia/ia.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#ifndef IA_H\r\n#define IA_H\r\n\r\ntypedef struct valueMinimax valueMinimax_t;\r\n\r\nunsigned int round_ia_random(player_t *players, board_t *board, unsigned int nPl);\r\n\r\nint last_move(player_t *players,unsigned int nPl);\r\n\r\nint round_ia_minimax(player_t *players, board_t *board,unsigned int nPl, unsigned int depth);\r\n\r\nint minimax(board_t board, player_t *players, int depth,unsigned  int nPed,unsigned int nPl,valueMinimax_t *v, int cheat,int *alpha,int *beta);\r\n\r\nint call_minimax(board_t *board_copy, player_t *players_copy,unsigned int depth, unsigned int nPed,unsigned int nPl,valueMinimax_t *v,char *str,int maxEval, int cheat,int *alpha,int *beta);\r\n\r\nunsigned int interrupt_minimax(int *alpha ,int *beta);\r\n\r\nint evaluate_score(board_t board, player_t *players);\r\n\r\nvoid print_minimax(valueMinimax_t *value_arr,unsigned int dim_arr);\r\n\r\nunsigned int max(valueMinimax_t *arr,unsigned int dim);\r\n\r\nvoid destroy_value_minimax(valueMinimax_t *arr,unsigned int dim);\r\n\r\n#endif
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/ia/ia.h b/src/ia/ia.h
+--- a/src/ia/ia.h	(revision fc0335b7779c6de6f7c76cc251e9e10e93f6f37a)
++++ b/src/ia/ia.h	(date 1610731042926)
+@@ -1,5 +1,10 @@
+ #ifndef IA_H
+ #define IA_H
++/*#include "../colors/colors.h"
++#include "../game_engine/game_engine.h"
++#include "../memory_management/memory_management.h"
++#include "../movement/movement.h"
++#include "../user_interaction/user_interaction.h"*/
+ 
+ typedef struct valueMinimax valueMinimax_t;
+ 
+Index: src/movement/movement.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#ifndef MOVEMENT_H\r\n#define MOVEMENT_H\r\n\r\nunsigned int move_noeat(player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl);\r\n\r\nunsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t board, unsigned int enemy_pawn, unsigned int nPl);\r\n\r\nint move_p1 (player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl);\r\n\r\nint move_p2(player_t *players,unsigned int num_pawn,char *str,board_t *board);\r\n\r\n#endif
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/movement/movement.h b/src/movement/movement.h
+--- a/src/movement/movement.h	(revision fc0335b7779c6de6f7c76cc251e9e10e93f6f37a)
++++ b/src/movement/movement.h	(date 1610731042933)
+@@ -1,5 +1,10 @@
+ #ifndef MOVEMENT_H
+ #define MOVEMENT_H
++/*#include "../colors/colors.h"
++#include "../game_engine/game_engine.h"
++#include "../ia/ia.h"
++#include "../memory_management/memory_management.h"
++#include "../user_interaction/user_interaction.h"*/
+ 
+ unsigned int move_noeat(player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl);
+ 
+@@ -9,4 +14,5 @@
+ 
+ int move_p2(player_t *players,unsigned int num_pawn,char *str,board_t *board);
+ 
++
+ #endif
+\ No newline at end of file
+Index: src/game_engine/game_engine.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#ifndef GAME_ENGINE_H\r\n#define GAME_ENGINE_H\r\n\r\ntypedef unsigned int dim_board, coord, flag;\r\nstruct board{\r\n    char **mat; /*!< Detailed description after the member */\r\n    dim_board n_rows;\r\n    dim_board n_cols;\r\n}typedef board_t;\r\n\r\nstruct point{\r\n    coord x; /* cols */\r\n    coord y; /* rows */\r\n}typedef point_t;\r\n\r\nstruct pawn{\r\n    char *label; /* etichetta della pedina Es.|  BN07 | */\r\n    unsigned int dim_label;\r\n    point_t coordinate;\r\n    unsigned int cima;\r\n    unsigned int grade;\r\n    flag isPromoted; /* Es: |  BN07^ | */\r\n    unsigned int *canMove; /* 0010 -> bassodx */\r\n}typedef pawn_t;\r\nstruct player{\r\n    char color;\r\n    pawn_t *pawns;\r\n    unsigned int dim_pawns;\r\n}typedef player_t;\r\n\r\n\r\nvoid initialize_board(board_t *board,unsigned int cifre);\r\n\r\nvoid print_directions(unsigned int *arr,unsigned int dim,unsigned int np);\r\n\r\nvoid update_board(board_t *t,player_t *player);\r\n\r\nunsigned int check_spot(board_t board,unsigned int row,unsigned int col,unsigned int dim_label);\r\n\r\nunsigned int is_selected(player_t *player, int num_pawn, unsigned int nPl);\r\n\r\nvoid remove_pawn(board_t *board, unsigned int row, unsigned int col, unsigned int dim_label);\r\n\r\nvoid pawn_promotion(player_t *players, unsigned int num_pawn, unsigned int nPl, unsigned int last_row);\r\n\r\nint check_player(player_t *players, unsigned int x, unsigned int y,unsigned int nPl);\r\n\r\nunsigned int is_in(int r, int c, board_t board);\r\n\r\nunsigned int check_directions(unsigned int *canMove_arr, unsigned int dim_canMove, char *str);\r\n\r\nvoid must_eat(player_t *players, board_t *board, unsigned int n_pawn, unsigned int nPl);\r\n\r\nint can_eat(player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl);\r\n\r\nunsigned int all_blocked(player_t *players, board_t board, unsigned int nPl);\r\n\r\nunsigned int is_victory(player_t *players);\r\n\r\nint is_empty(player_t p);\r\n\r\nunsigned int max_pawns(unsigned int r,unsigned int c);\r\n\r\nunsigned int round_choice();\r\n\r\nunsigned int is_notstuck(player_t *players, board_t board, unsigned int nPawn, unsigned int nPl);\r\n\r\nunsigned int add_pawn(player_t *players, unsigned int enemy_pawn, unsigned int nPl,char c );\r\n\r\nvoid set_moves_pawn(player_t *players, board_t *board, unsigned int nPl, int nPawn);\r\n\r\nvoid reset_moves_pawns(player_t *players, int nPawn, unsigned int nPl);\r\n\r\nunsigned int check_canMove(player_t *players, unsigned int nPed,unsigned int nPl);\r\n\r\nunsigned int check_while(player_t *players, unsigned int nPl, unsigned int nPawn);\r\n\r\nunsigned int check_string(char *str);\r\n\r\nunsigned int char_converter(board_t board, unsigned int r, unsigned int c, unsigned int dim_label);\r\n\r\nchar int_converter(int num,unsigned int index);\r\n\r\n#endif
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/game_engine/game_engine.h b/src/game_engine/game_engine.h
+--- a/src/game_engine/game_engine.h	(revision fc0335b7779c6de6f7c76cc251e9e10e93f6f37a)
++++ b/src/game_engine/game_engine.h	(date 1610731042939)
+@@ -1,5 +1,10 @@
+ #ifndef GAME_ENGINE_H
+ #define GAME_ENGINE_H
++/*#include "../colors/colors.h"
++#include "../ia/ia.h"
++#include "../memory_management/memory_management.h"
++#include "../movement/movement.h"
++#include "../user_interaction/user_interaction.h"*/
+ 
+ typedef unsigned int dim_board, coord, flag;
+ struct board{
+Index: src/user_interaction/user_interaction.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#ifndef USER_INTERACTION_H\r\n#define USER_INTERACTION_H\r\n\r\nvoid print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char char_p2);\r\n\r\nvoid print_player(player_t *players,unsigned int nPl);\r\n\r\nunsigned int round_player(player_t *players,board_t *t,unsigned int nPl);\r\n\r\nint player_vs_player(unsigned int x);\r\n\r\nvoid menu();\r\n\r\n#endif
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/user_interaction/user_interaction.h b/src/user_interaction/user_interaction.h
+--- a/src/user_interaction/user_interaction.h	(revision fc0335b7779c6de6f7c76cc251e9e10e93f6f37a)
++++ b/src/user_interaction/user_interaction.h	(date 1610731042946)
+@@ -1,5 +1,11 @@
+ #ifndef USER_INTERACTION_H
+ #define USER_INTERACTION_H
++/*
++#include "../colors/colors.h"
++#include "../game_engine/game_engine.h"
++#include "../ia/ia.h"
++#include "../memory_management/memory_management.h"
++#include "../movement/movement.h"*/
+ 
+ void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char char_p2);
+ 
+Index: src/memory_management/memory_management.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#ifndef MEMORY_MANAGEMENT_H\r\n#define MEMORY_MANAGEMENT_H\r\n\r\nboard_t* create_board(unsigned int n_rows,unsigned int n_cols,unsigned int cifre);\r\n\r\nplayer_t *create_pawns(unsigned int totPawns,char player1, char player2, unsigned int cifre,board_t board);\r\n\r\nboard_t *copy_board(board_t board ,board_t *newBoard,unsigned int cifre,unsigned int set);\r\n\r\nplayer_t *player_copy(player_t *players, player_t *newPlayers, unsigned int dim_label,unsigned int set);\r\n\r\nvoid destroy_player (player_t *players);\r\n\r\nvoid destroy_board(board_t *board);\r\n\r\nvoid restore_copy(board_t board, player_t *players, board_t *board_copy, player_t *players_copy);\r\n\r\n#endif
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/memory_management/memory_management.h b/src/memory_management/memory_management.h
+--- a/src/memory_management/memory_management.h	(revision fc0335b7779c6de6f7c76cc251e9e10e93f6f37a)
++++ b/src/memory_management/memory_management.h	(date 1610731042951)
+@@ -1,5 +1,10 @@
+ #ifndef MEMORY_MANAGEMENT_H
+ #define MEMORY_MANAGEMENT_H
++/*#include <../colors/colors.h>
++#include <../game_engine/game_engine.h>
++#include <../ia/ia.h>
++#include <../movement/movement.h>
++#include <../user_interaction/user_interaction.h>*/
+ 
+ board_t* create_board(unsigned int n_rows,unsigned int n_cols,unsigned int cifre);
+ 

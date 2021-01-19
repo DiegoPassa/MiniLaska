@@ -1,0 +1,165 @@
+Index: supporto.c
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include<stdio.h>\r\n#include <unistd.h>\r\n#include<stdlib.h>\r\n#include\"supporto.h\"\r\n#include<string.h>\r\n#include<time.h>\r\n#include <math.h>\r\n#include \"src/colors/colors.h\"\r\n\r\n/* void pawn_remove_promotion(player_t *players ,int num_pawn,unsigned int nPl){\r\n    if (num_pawn > -1 && num_pawn < players[nPl].dim_pawns && (nPl == 0 || nPl == 1)){\r\n        if(players[nPl].pawns[num_pawn].isPromoted == 1){\r\n            players[nPl].pawns[num_pawn].isPromoted = 0;\r\n            players[nPl].pawns[num_pawn].label[players[nPl].pawns[num_pawn].dim_label+3] = ' ';\r\n             free(players[nPl].pawns[num_pawn].canMove);\r\n            players[nPl].pawns[num_pawn].canMove = (unsigned int*)calloc(2 ,sizeof(unsigned int));\r\n        }\r\n    }\r\n}\r\n*/
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/supporto.c b/supporto.c
+--- a/supporto.c	(revision f584deb95e50ea008b39799b7d3f06af0ee3246e)
++++ b/supporto.c	(date 1610726427256)
+@@ -5,7 +5,7 @@
+ #include<string.h>
+ #include<time.h>
+ #include <math.h>
+-#include "src/colors/colors.h"
++/*#include "src/colors/colors.h"*/
+ 
+ /* void pawn_remove_promotion(player_t *players ,int num_pawn,unsigned int nPl){
+     if (num_pawn > -1 && num_pawn < players[nPl].dim_pawns && (nPl == 0 || nPl == 1)){
+Index: main.c
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include <stdio.h>\r\n#include <stdlib.h>\r\n#include <string.h>\r\n#include \"src/user_interaction/user_interaction.h\"\r\n\r\n\r\nint main(){\r\n\r\n\r\n    /*menu();*/\r\n    player_vs_player(0);\r\n\r\n    /*player_vs_ia();*/\r\n\r\n    /*board_t *board;\r\n    player_t *players;\r\n\r\n    board = create_board(7,7,6);\r\n    initialize_board(board, 6);\r\n\r\n    players = create_pawns(11, 'B', 'N', 2, *board);\r\n\r\n    update_board(board, players);\r\n\r\n    print_player(players[0]);\r\n    print_player(players[1]);\r\n\r\n    print_board(*board, 6, 0);*/\r\n/*  tcampo *board;\r\n\r\n    tplayer *p1;\r\n    tplayer *p2;\r\n    board = create_board(7, 7, 6);\r\n    initialize_board(board, 6);\r\n    p1 = create_pawns(11, 'B', 1, 2, *board);\r\n    p2 = create_pawns(11, 'N', 2, 2, *board);\r\n\r\n    update_board(board, *p1, *p2);\r\n\r\n    set_moves_pawn(p1, p2, *board, 1);\r\n    set_moves_pawn(p1, p2, *board, 2);\r\n\r\n    print_board(*board, 6, 1);\r\n\r\n    print_player(*p1);\r\n    printf(\"\\n\");\r\n    print_player(*p2);\r\n\r\n    destroy_board(board);\r\n    destroy_player(p1);\r\n    destroy_player(p2); */\r\n\r\n    return 0;\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.c b/main.c
+--- a/main.c	(revision f584deb95e50ea008b39799b7d3f06af0ee3246e)
++++ b/main.c	(date 1610722383796)
+@@ -1,9 +1,14 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
++/*
++#include <src/colors/colors.h>
++#include <src/game_engine/game_engine.c>
++#include <src/ia/ia.c>
++#include <src/memory_management/memory_management.c>
++#include <src/movement/movement.c>*/
+ #include "src/user_interaction/user_interaction.h"
+ 
+-
+ int main(){
+ 
+ 
+Index: src/ia/ia.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\ntypedef struct valueMinimax valueMinimax_t;\r\n\r\nunsigned int round_ia_random(player_t *players, board_t *board, unsigned int nPl);\r\n\r\nint last_move(player_t *players,unsigned int nPl);\r\n\r\nint round_ia_minimax(player_t *players, board_t *board,unsigned int nPl, unsigned int depth);\r\n\r\nint minimax(board_t board, player_t *players, int depth,unsigned  int nPed,unsigned int nPl,valueMinimax_t *v, int cheat,int *alpha,int *beta);\r\n\r\nint call_minimax(board_t *board_copy, player_t *players_copy,unsigned int depth, unsigned int nPed,unsigned int nPl,valueMinimax_t *v,char *str,int maxEval, int cheat,int *alpha,int *beta);\r\n\r\nunsigned int interrupt_minimax(int *alpha ,int *beta);\r\n\r\nint evaluate_score(board_t board, player_t *players);\r\n\r\nvoid print_minimax(valueMinimax_t *value_arr,unsigned int dim_arr);\r\n\r\nunsigned int max(valueMinimax_t *arr,unsigned int dim);\r\n\r\nvoid destroy_value_minimax(valueMinimax_t *arr,unsigned int dim);
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/ia/ia.h b/src/ia/ia.h
+--- a/src/ia/ia.h	(revision f584deb95e50ea008b39799b7d3f06af0ee3246e)
++++ b/src/ia/ia.h	(date 1610726452839)
+@@ -1,3 +1,8 @@
++/*#include "../colors/colors.h"
++#include "../game_engine/game_engine.h"
++#include "../memory_management/memory_management.h"
++#include "../movement/movement.h"
++#include "../user_interaction/user_interaction.h"*/
+ 
+ typedef struct valueMinimax valueMinimax_t;
+ 
+Index: src/movement/movement.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\nunsigned int move_noeat(player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl);\r\n\r\nunsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t board, unsigned int enemy_pawn, unsigned int nPl);\r\n\r\nint move_p1 (player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl);\r\n\r\nint move_p2(player_t *players,unsigned int num_pawn,char *str,board_t *board);
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/movement/movement.h b/src/movement/movement.h
+--- a/src/movement/movement.h	(revision f584deb95e50ea008b39799b7d3f06af0ee3246e)
++++ b/src/movement/movement.h	(date 1610726485807)
+@@ -1,3 +1,8 @@
++/*#include "../colors/colors.h"
++#include "../game_engine/game_engine.h"
++#include "../ia/ia.h"
++#include "../memory_management/memory_management.h"
++#include "../user_interaction/user_interaction.h"*/
+ 
+ unsigned int move_noeat(player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl);
+ 
+@@ -5,4 +10,5 @@
+ 
+ int move_p1 (player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl);
+ 
+-int move_p2(player_t *players,unsigned int num_pawn,char *str,board_t *board);
+\ No newline at end of file
++int move_p2(player_t *players,unsigned int num_pawn,char *str,board_t *board);
++
+Index: src/game_engine/game_engine.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\ntypedef unsigned int dim_board, coord, flag;\r\n\r\ntypedef struct board board_t;\r\n\r\ntypedef struct point point_t;\r\n\r\ntypedef struct pawn pawn_t;\r\n\r\ntypedef struct player player_t;\r\n\r\nvoid initialize_board(board_t *board,unsigned int cifre);\r\n\r\nvoid print_directions(unsigned int *arr,unsigned int dim,unsigned int np);\r\n\r\nvoid update_board(board_t *t,player_t *player);\r\n\r\nunsigned int check_spot(board_t board,unsigned int row,unsigned int col,unsigned int dim_label);\r\n\r\nunsigned int is_selected(player_t *player, int num_pawn, unsigned int nPl);\r\n\r\nvoid remove_pawn(board_t *board, unsigned int row, unsigned int col, unsigned int dim_label);\r\n\r\nvoid pawn_promotion(player_t *players, unsigned int num_pawn, unsigned int nPl, unsigned int last_row);\r\n\r\nint check_player(player_t *players, unsigned int x, unsigned int y,unsigned int nPl);\r\n\r\nunsigned int is_in(int r, int c, board_t board);\r\n\r\nunsigned int check_directions(unsigned int *canMove_arr, unsigned int dim_canMove, char *str);\r\n\r\nvoid must_eat(player_t *players, board_t *board, unsigned int n_pawn, unsigned int nPl);\r\n\r\nint can_eat(player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl);\r\n\r\nunsigned int all_blocked(player_t *players, board_t board, unsigned int nPl);\r\n\r\nunsigned int is_victory(player_t *players);\r\n\r\nint is_empty(player_t p);\r\n\r\nunsigned int max_pawns(unsigned int r,unsigned int c);\r\n\r\nunsigned int round_choice();\r\n\r\nunsigned int is_notstuck(player_t *players, board_t board, unsigned int nPawn, unsigned int nPl);\r\n\r\nunsigned int add_pawn(player_t *players, unsigned int enemy_pawn, unsigned int nPl,char c );\r\n\r\nvoid set_moves_pawn(player_t *players, board_t *board, unsigned int nPl, int nPawn);\r\n\r\nvoid reset_moves_pawns(player_t *players, int nPawn, unsigned int nPl);\r\n\r\nunsigned int check_canMove(player_t *players, unsigned int nPed,unsigned int nPl);\r\n\r\nunsigned int check_while(player_t *players, unsigned int nPl, unsigned int nPawn);\r\n\r\nunsigned int check_string(char *str);\r\n\r\nunsigned int char_converter(board_t board, unsigned int r, unsigned int c, unsigned int dim_label);\r\n\r\nchar int_converter(int num,unsigned int index);
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/game_engine/game_engine.h b/src/game_engine/game_engine.h
+--- a/src/game_engine/game_engine.h	(revision f584deb95e50ea008b39799b7d3f06af0ee3246e)
++++ b/src/game_engine/game_engine.h	(date 1610726442407)
+@@ -1,3 +1,8 @@
++/*#include "../colors/colors.h"
++#include "../ia/ia.h"
++#include "../memory_management/memory_management.h"
++#include "../movement/movement.h"
++#include "../user_interaction/user_interaction.h"*/
+ 
+ typedef unsigned int dim_board, coord, flag;
+ 
+Index: src/user_interaction/user_interaction.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\nvoid print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char char_p2);\r\n\r\nvoid print_player(player_t *players,unsigned int nPl);\r\n\r\nunsigned int round_player(player_t *players,board_t *t,unsigned int nPl);\r\n\r\nint player_vs_player(unsigned int x);\r\n\r\nvoid menu();
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/user_interaction/user_interaction.h b/src/user_interaction/user_interaction.h
+--- a/src/user_interaction/user_interaction.h	(revision f584deb95e50ea008b39799b7d3f06af0ee3246e)
++++ b/src/user_interaction/user_interaction.h	(date 1610726494479)
+@@ -1,3 +1,9 @@
++/*
++#include "../colors/colors.h"
++#include "../game_engine/game_engine.h"
++#include "../ia/ia.h"
++#include "../memory_management/memory_management.h"
++#include "../movement/movement.h"*/
+ 
+ void print_board(board_t t,unsigned int cifre, unsigned npl, char char_p1, char char_p2);
+ 
+Index: src/memory_management/memory_management.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\nboard_t* create_board(unsigned int n_rows,unsigned int n_cols,unsigned int cifre);\r\n\r\nplayer_t *create_pawns(unsigned int totPawns,char player1, char player2, unsigned int cifre,board_t board);\r\n\r\nboard_t *copy_board(board_t board ,board_t *newBoard,unsigned int cifre,unsigned int set);\r\n\r\nplayer_t *player_copy(player_t *players, player_t *newPlayers, unsigned int dim_label,unsigned int set);\r\n\r\nvoid destroy_player (player_t *players);\r\n\r\nvoid destroy_board(board_t *board);\r\n\r\nvoid restore_copy(board_t board, player_t *players, board_t *board_copy, player_t *players_copy);
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/memory_management/memory_management.h b/src/memory_management/memory_management.h
+--- a/src/memory_management/memory_management.h	(revision f584deb95e50ea008b39799b7d3f06af0ee3246e)
++++ b/src/memory_management/memory_management.h	(date 1610726461503)
+@@ -1,3 +1,8 @@
++/*#include <../colors/colors.h>
++#include <../game_engine/game_engine.h>
++#include <../ia/ia.h>
++#include <../movement/movement.h>
++#include <../user_interaction/user_interaction.h>*/
+ 
+ board_t* create_board(unsigned int n_rows,unsigned int n_cols,unsigned int cifre);
+ 
+Index: src/movement/movement.c
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include \"movement/movement.h\"\r\n\r\n\r\nunsigned int move_noeat(player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl){\r\n    if(!strcmp(str,\"sx\")){\r\n        if((is_in(players[nPl].pawns[num_pawn].coordinate.y-1,players[nPl].pawns[num_pawn].coordinate.x-(players[nPl].pawns[num_pawn].dim_label+3+1),*board))&&(!check_spot(*board,players[nPl].pawns[num_pawn].coordinate.y-1,players[nPl].pawns[num_pawn].coordinate.x-(players[nPl].pawns[num_pawn].dim_label+3+1),(players[nPl].pawns[num_pawn].dim_label+3+1)))){\r\n            remove_pawn(board,players[nPl].pawns[num_pawn].coordinate.y,players[nPl].pawns[num_pawn].coordinate.x,(players[nPl].pawns[num_pawn].dim_label+3+1));\r\n            --players[nPl].pawns[num_pawn].coordinate.y;\r\n            players[nPl].pawns[num_pawn].coordinate.x -= (players[nPl].pawns[num_pawn].dim_label+3+1);\r\n            pawn_promotion(players,num_pawn,nPl,board->n_rows-1);\r\n            return 1;\r\n        }else{\r\n            return 0;\r\n        }\r\n    }else{\r\n        if (!strcmp(str, \"dx\")) {\r\n            if((is_in(players[nPl].pawns[num_pawn].coordinate.y-1, players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3+1), *board))&&(!check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y - 1, players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3+1),players[nPl].pawns[num_pawn].dim_label+3+1))){\r\n                remove_pawn(board,players[nPl].pawns[num_pawn].coordinate.y,players[nPl].pawns[num_pawn].coordinate.x,(players[nPl].pawns[num_pawn].dim_label+3+1));\r\n                --players[nPl].pawns[num_pawn].coordinate.y;\r\n                players[nPl].pawns[num_pawn].coordinate.x += (players[nPl].pawns[num_pawn].dim_label+3+1);\r\n                pawn_promotion(players,num_pawn,nPl,board->n_rows-1);\r\n                return 1;\r\n            }else{\r\n                return 0;\r\n            }\r\n        }\r\n        if (!strcmp(str, \"bassosx\") && ((nPl == 1) || (players[nPl].pawns[num_pawn].isPromoted))) {\r\n            if((is_in(players[nPl].pawns[num_pawn].coordinate.y+1,players[nPl].pawns[num_pawn].coordinate.x-(players[nPl].pawns[num_pawn].dim_label+3+1),*board))&&(!check_spot(*board,players[nPl].pawns[num_pawn].coordinate.y+1,players[nPl].pawns[num_pawn].coordinate.x-(players[nPl].pawns[num_pawn].dim_label+3+1),(players[nPl].pawns[num_pawn].dim_label+3+1)))){\r\n                remove_pawn(board,players[nPl].pawns[num_pawn].coordinate.y,players[nPl].pawns[num_pawn].coordinate.x,(players[nPl].pawns[num_pawn].dim_label+3+1));\r\n                players[nPl].pawns[num_pawn].coordinate.y++;\r\n                players[nPl].pawns[num_pawn].coordinate.x -= (players[nPl].pawns[num_pawn].dim_label+3+1);\r\n                if(nPl == 1){\r\n                    pawn_promotion(players,num_pawn,nPl,board->n_rows-1);\r\n                }\r\n                return 1;\r\n            }else{\r\n                return 0;\r\n            }\r\n        }\r\n        if (!strcmp(str, \"bassodx\") && ((nPl == 1) || (players[nPl].pawns[num_pawn].isPromoted))) {\r\n            if((is_in(players[nPl].pawns[num_pawn].coordinate.y+1, players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3+1), *board))&&(!check_spot(*board, players[nPl].pawns[num_pawn].coordinate.y+1, players[nPl].pawns[num_pawn].coordinate.x + (players[nPl].pawns[num_pawn].dim_label + 3+1),players[nPl].pawns[num_pawn].dim_label + 3+1))){\r\n                remove_pawn(board,players[nPl].pawns[num_pawn].coordinate.y,players[nPl].pawns[num_pawn].coordinate.x,(players[nPl].pawns[num_pawn].dim_label+3+1));\r\n                players[nPl].pawns[num_pawn].coordinate.y++;\r\n                players[nPl].pawns[num_pawn].coordinate.x += (players[nPl].pawns[num_pawn].dim_label+3+1);\r\n                if(nPl == 1){\r\n                    pawn_promotion(players,num_pawn,nPl,board->n_rows-1);\r\n                }\r\n                return 1;\r\n            }else{\r\n                return 0;\r\n            }\r\n        }\r\n\r\n    }\r\n\r\n    return 0;\r\n}\r\n\r\nunsigned int eat(player_t *players, char *str, unsigned int num_pawn, board_t board, unsigned int enemy_pawn, unsigned int nPl){\r\n\r\n    unsigned int nPl2 = 1, i;\r\n    char temp[3];\r\n\r\n    if (nPl == 1){\r\n        nPl2 = 0;\r\n    }\r\n\r\n    temp[0] = players[nPl].pawns[num_pawn].label[1];\r\n    temp[1] = players[nPl].pawns[num_pawn].label[2];\r\n    temp[2] = players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima]; /* 012 */\r\n\r\n    if (players[nPl2].pawns[enemy_pawn].grade == 1){\r\n        players[nPl2].pawns[enemy_pawn].grade = 0;\r\n    }else if((players[nPl2].pawns[enemy_pawn].grade > 1) && players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima] == players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima+1]){\r\n        players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima] = ' ';\r\n        players[nPl2].pawns[enemy_pawn].cima+=1;\r\n        players[nPl2].pawns[enemy_pawn].grade-=1;\r\n    }else{\r\n        int newPos = is_empty(players[nPl]);\r\n        if (newPos == -1){\r\n            add_pawn(players, enemy_pawn, nPl,players[nPl].pawns[num_pawn].label[players[nPl].pawns[num_pawn].cima]);\r\n        }else if(newPos >= 0 && players[nPl2].pawns[enemy_pawn].grade > 1){\r\n            int newPos_copy;\r\n            unsigned int index;\r\n            players[nPl2].pawns[enemy_pawn].label[players[nPl2].pawns[enemy_pawn].cima] = ' ';\r\n            players[nPl2].pawns[enemy_pawn].cima+=1;\r\n            players[nPl2].pawns[enemy_pawn].grade-=1;\r\n            players[nPl].pawns[newPos].grade = players[nPl2].pawns[enemy_pawn].grade;\r\n            players[nPl2].pawns[enemy_pawn].grade = 0;\r\n            players[nPl].pawns[newPos].cima = players[nPl2].pawns[enemy_pawn].cima;\r\n\r\n            players[nPl].pawns[newPos].coordinate.x = players[nPl2].pawns[enemy_pawn].coordinate.x;\r\n            players[nPl].pawns[newPos].coordinate.y = players[nPl2].pawns[enemy_pawn].coordinate.y;\r\n\r\n            players[nPl].pawns[newPos].dim_label = players[nPl2].pawns[enemy_pawn].dim_label;\r\n\r\n            players[nPl].pawns[newPos].isPromoted = 0;\r\n            players[nPl2].pawns[enemy_pawn].isPromoted = 0;\r\n            players[nPl2].pawns[newPos].label[players[nPl].pawns[newPos].dim_label+3] = ' ';\r\n            players[nPl].pawns[newPos].label[players[nPl].pawns[newPos].dim_label+3] = ' ';\r\n\r\n            for (i = 0; i < 3; i++){\r\n                players[nPl].pawns[newPos].label[i] = players[nPl2].pawns[enemy_pawn].label[i];\r\n            }\r\n            index = players[nPl].pawns[newPos].dim_label-1;\r\n            newPos_copy = newPos;\r\n            for (i = 3; i < players[nPl].pawns[newPos].dim_label+3; i++){\r\n                players[nPl].pawns[newPos].label[i] = int_converter(newPos_copy, index);\r\n                newPos_copy -= (pow(10, index)*(players[nPl].pawns[newPos].label[i] - '0'));\r\n\r\n                index--;\r\n            }\r\n\r\n        }\r\n        \r\n    }\r\n    if (players[nPl].pawns[num_pawn].grade < 3){\r\n        for (i = 0; i < 3; i++){\r\n            players[nPl].pawns[num_pawn].label[i] = temp[i];\r\n        }\r\n        players[nPl].pawns[num_pawn].cima-=1;\r\n        players[nPl].pawns[num_pawn].grade+=1;\r\n    }\r\n    remove_pawn(&board,players[nPl2].pawns[enemy_pawn].coordinate.y,players[nPl2].pawns[enemy_pawn].coordinate.x,players[nPl2].pawns[enemy_pawn].dim_label+3+1);\r\n    if(!strcmp(str,\"sx\")){\r\n        players[nPl].pawns[num_pawn].coordinate.y -= 2;\r\n        players[nPl].pawns[num_pawn].coordinate.x -= (players[nPl].pawns[num_pawn].dim_label+3+1)*2;\r\n    }\r\n    if(!strcmp(str,\"dx\")){\r\n        players[nPl].pawns[num_pawn].coordinate.y -= 2;\r\n        players[nPl].pawns[num_pawn].coordinate.x += (players[nPl].pawns[num_pawn].dim_label+3+1)*2;\r\n    }\r\n    if(!strcmp(str,\"bassosx\")){\r\n        players[nPl].pawns[num_pawn].coordinate.y += 2;\r\n        players[nPl].pawns[num_pawn].coordinate.x -= (players[nPl].pawns[num_pawn].dim_label+3+1)*2;\r\n    }\r\n    if(!strcmp(str,\"bassodx\")){\r\n        players[nPl].pawns[num_pawn].coordinate.y += 2;\r\n        players[nPl].pawns[num_pawn].coordinate.x += (players[nPl].pawns[num_pawn].dim_label+3+1)*2;\r\n    }\r\n\r\n    if(!strcmp(str,\"sx\")){\r\n        remove_pawn(&board,players[nPl].pawns[num_pawn].coordinate.y+2,players[nPl].pawns[num_pawn].coordinate.x+((players[nPl].pawns[num_pawn].dim_label+3+1)*2),players[nPl].pawns[num_pawn].dim_label+3+1);\r\n    }\r\n    if(!strcmp(str,\"dx\")){\r\n        remove_pawn(&board,players[nPl].pawns[num_pawn].coordinate.y+2,players[nPl].pawns[num_pawn].coordinate.x-((players[nPl].pawns[num_pawn].dim_label+3+1)*2),(players[nPl].pawns[num_pawn].dim_label+3+1));\r\n    }\r\n    if(!strcmp(str,\"bassosx\")){\r\n        remove_pawn(&board,players[nPl].pawns[num_pawn].coordinate.y-2,players[nPl].pawns[num_pawn].coordinate.x+((players[nPl].pawns[num_pawn].dim_label+3+1)*2),players[nPl].pawns[num_pawn].dim_label+3+1);\r\n    }\r\n    if(!strcmp(str,\"bassodx\")){\r\n        remove_pawn(&board,players[nPl].pawns[num_pawn].coordinate.y-2,players[nPl].pawns[num_pawn].coordinate.x-((players[nPl].pawns[num_pawn].dim_label+3+1)*2),(players[nPl].pawns[num_pawn].dim_label+3+1));\r\n    }\r\n    pawn_promotion(players,num_pawn,nPl,board.n_rows-1);\r\n    return 1;\r\n}\r\n\r\nint move_p1 (player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl){\r\n    int enemy_pawn;\r\n    enemy_pawn = can_eat(players,num_pawn,str,board, nPl);\r\n    if(enemy_pawn > -1){\r\n        eat(players, str, num_pawn, *board, enemy_pawn, nPl);\r\n        return enemy_pawn;\r\n    }else if(enemy_pawn == -4){\r\n        printf(\"Errore nella can_eat\\n\");\r\n    }else if(move_noeat(players, num_pawn, str, board, nPl)){\r\n        return -1;\r\n    }else{\r\n        return -2;\r\n    }\r\n\r\n    return 0;\r\n}\r\n\r\nint move_p2(player_t *players,unsigned int num_pawn,char *str,board_t *board){\r\n    if(!strcmp(str,\"sx\")) {\r\n        return move_p1(players,num_pawn,\"bassosx\",board,1);\r\n    }else{\r\n        if(!strcmp(str,\"dx\")){\r\n            return move_p1(players,num_pawn,\"bassodx\",board,1);\r\n        }\r\n        if(!strcmp(str,\"bassodx\")&&(players[1].pawns[num_pawn].isPromoted)) {\r\n            return move_p1(players,num_pawn,\"dx\",board,1);\r\n        }\r\n        if(!strcmp(str,\"bassosx\")&&(players[1].pawns[num_pawn].isPromoted)) {\r\n            return move_p1(players,num_pawn,\"sx\",board,1);\r\n        }\r\n    }\r\n\r\n    return 0;\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/movement/movement.c b/src/movement/movement.c
+--- a/src/movement/movement.c	(revision f584deb95e50ea008b39799b7d3f06af0ee3246e)
++++ b/src/movement/movement.c	(date 1610722405285)
+@@ -1,4 +1,4 @@
+-#include "movement/movement.h"
++#include "movement.h"
+ 
+ 
+ unsigned int move_noeat(player_t *players, unsigned int num_pawn, char *str, board_t *board, unsigned int nPl){
